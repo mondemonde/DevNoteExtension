@@ -287,7 +287,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Visible>True</Visible>
     </Content>
-    <Content Include="Chrome\DevNotePlayExtension\.gitignore" />
     <Content Include="Chrome\DevNotePlayExtension\background\background.js" />
     <Content Include="Chrome\DevNotePlayExtension\background\install.js" />
     <Content Include="Chrome\DevNotePlayExtension\background\kar.js" />
