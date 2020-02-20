@@ -167,12 +167,15 @@
     <Reference Include="SharpCompress, Version=0.17.1.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpCompress.0.17.1\lib\net45\SharpCompress.dll</HintPath>
     </Reference>
-    <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Splat.1.6.2\lib\Net45\Splat.dll</HintPath>
+    <Reference Include="Splat, Version=9.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Splat.9.3.11\lib\net461\Splat.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -238,7 +241,6 @@
     <None Include="CodeCeptJS\Project2\RunChromeExt.bat" />
     <None Include="CodeCeptJS\Project2\RunCodeceptjs0.bat" />
     <None Include="Custom.config" />
-    <None Include="DevNotePlay_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -274,6 +276,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="CodeCeptJS\Project1\codecept.conf.template.txt" />
+    <Resource Include="CodeCeptJS\Project1\ReadMe.txt" />
+    <Resource Include="CodeCeptJS\Project2\output\endpoint\MyGrabValue.txt" />
+    <Resource Include="CodeCeptJS\Project2\template_test.txt" />
     <Resource Include="robot-32.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -305,17 +311,13 @@
     <Content Include="Chrome\DevNotePlayExtension\content\targetSelecter.js" />
     <Content Include="Chrome\DevNotePlayExtension\content\utils.js" />
     <Content Include="CodeCeptJS\Project1\codecept.conf.js" />
-    <Resource Include="CodeCeptJS\Project1\codecept.conf.template.txt" />
-    <Resource Include="CodeCeptJS\Project1\ReadMe.txt" />
     <Content Include="CodeCeptJS\Project2\codecept.conf.js" />
     <Content Include="CodeCeptJS\Project2\first_test_test.js" />
     <Content Include="CodeCeptJS\Project2\latest_test.js" />
     <Content Include="CodeCeptJS\Project2\LaunchChromeExt.js" />
     <Content Include="CodeCeptJS\Project2\mypuppet_helper.js" />
-    <Resource Include="CodeCeptJS\Project2\output\endpoint\MyGrabValue.txt" />
     <Content Include="CodeCeptJS\Project2\record_test.js" />
     <Content Include="CodeCeptJS\Project2\steps_file.js" />
-    <Resource Include="CodeCeptJS\Project2\template_test.txt" />
     <Content Include="CodeCeptJS\Project2\wfh_test.js" />
     <Resource Include="Chrome\DevNotePlayExtension\icons\help.png" />
     <Resource Include="Chrome\DevNotePlayExtension\icons\icons-48.png" />
