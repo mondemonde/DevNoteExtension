@@ -1,0 +1,15 @@
+
+Feature('template');
+
+Scenario('template', async (I) => {
+var MyGrabValue='';
+
+
+    ##steps##
+  
+
+});
+
+After((I) => {
+  I.CloseAndCreateResultFile(); 
+});
