@@ -139,14 +139,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DevNotePlay.exe" size="79872">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DevNotePlay.exe" size="636928">
       <assemblyIdentity name="DevNotePlay" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>5yYvZSpKWGtYRgxA0+6NJF0RguQjY3q/ucSzjOLUaO8=</dsig:DigestValue>
+        <dsig:DigestValue>t6LAj6k8OjTGkKkwMjUtdyaPTFkcvS8ukafyvmdDmvQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -318,6 +318,1419 @@
       </hash>
     </dependentAssembly>
   </dependency>
+  <file name="Chrome\DevNotePlayExtension\.gitattributes" size="2581">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>RiR17lMB530qVKZHV9lcPyH8OnnpLm7JS9/MizbkiWQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\.gitignore" size="6084">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>693fZI0itZCxhVQTqw9qtXaxEIm3XnGSLFs/rAQK71M=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\background\background.js" size="4656">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>bdmA2eB4v4j74ZPYnGV5pblpSHovusIMnx5wKWJTA4c=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\background\install.js" size="914">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>VF5F+NeXdR1RR0Q6PhoNGLl3X0MQujQG3NfGUO9Jx6M=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\background\kar.js" size="12469">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>xenLpyJVxb4aRJ0QX0olFDqurEtbdooT28iCveYuCtQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\common\browser-polyfill.js" size="25774">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>IULUtOiPqT/JCaSttI+IeLIlSTn3JiUSywQrTRDJQ6A=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\common\escape.js" size="8003">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>zRoaYrzkIZb1pS5mKCsc9CfxSqm/Pps8GK0u/2MkovY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\common\jquery-3.2.1.min.js" size="86663">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>dbcH2HYeK/vSX71mHykKT3/RHEjhv1Ojbca9igA0+jU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\content\atoms.js" size="494689">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>RA6O9jxL1maqGm3GoKguQUitCWewsKmuKWv6bAIzGc0=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\content\bowser.js" size="18882">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>KzgrhCr8z/FRlLvAZNWjYhKPozOwFNXeUD5EZCXbVr8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\content\command-receiver.js" size="9469">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>OYJjRkm13y4CshGTvJKgY6BbJLUvBCDgBkot+XYZQSI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\content\jquery.simulate.js" size="8869">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>A+NZB8HRstX+2hd6jWbZf+znue8tSRaO2V3RgzFb5Cw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\content\kar.js" size="167">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>V5qIMnBCcW9IkRtuienqhN3GTa/SlwLBI9TBJeDeWik=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\content\locatorBuilders.js" size="20423">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>TvF2IbqjLhodNkvPGt0vzxndYUNJYJUe1w9y3Md7ZRQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\content\prompt-injecter.js" size="3630">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>9Jj0ndJKznWAcQk4QNiVJ2B/1KmtRChXnTSM1Rr+f1w=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\content\recorder.js" size="5067">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>2YBU7//G8dwwrRJeT3qhYYN5EFmBEInxLRXu3mq6Ivw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\content\recorder-handlers.js" size="26183">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>sfrzWPzewk2eVkd5Eh+7awSnn4NxoEOf1RixMzRMHyE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\content\runScript-injecter.js" size="1176">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>elitmP195RjZNXgAKU5PZkWm1aj6mVY0Ayi9vSZ3isg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\content\selenium-api.js" size="158624">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Rl1hbtby3m1PAUfzhWdGSOcGRZlouS/cblCc0yomadQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\content\selenium-browserbot.js" size="110397">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>fQ7mZiigu6p7xInpQ06aqeNNpxbIrOV6yWwhLtVnhfM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\content\selenium-commandhandlers.js" size="16895">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>GScbzY6Go0tMoDsdh2x6ET2RcIg2hVQmhYTkfdtn8EE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\content\sizzle.js" size="67573">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>74zydVasP4KprQHIsdAo0TnQDL7EXAaeYZjiVHN0Jio=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\content\targetSelecter.js" size="3277">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>1tTehBTFvQ+unHynwEw27CYNQfyYbiHxb2+BaVdqagw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\content\utils.js" size="335110">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>vN5ZdhlXXuVa1BvaQyJQu4TMnafQabhk/H5RGFRA05U=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\DogoSoup.mp4" size="286750">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>uSILLr/ZnFze0Y/3Cn4foyR5Kiqhe2kUUM0UDuH44lU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\add-icon.svg" size="875">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>H54D/ghU77GbE/vqMbpOV5eNQeV/ar50A12H8Uqyvb8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\add-icon-hover.svg" size="887">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>KDSx5SVO6lpXbqXur5FtHbcGk/js0RHewS/8P/e0vhQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\advanced-icon.svg" size="1139">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>H6ACBC1b6SIpvdVgFEimLoYFg3KEQea8UJBJWFocZ1M=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\breakpoint.svg" size="1074">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Ij5Nxmo4OfXK7+VZZ8L5cna/z9HBfZNoK+y+FSYz+AM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\close-icon.svg" size="776">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Zd0BI8800uhJqKjf3/yuRenBXsOXutjuSMnvZNw/O9A=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\close-icon-hover.svg" size="788">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>emj6M/qf9Mp+81nYTSDwmlSy0rvvrcGtjJ64i0FgjBQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\community-icon.svg" size="4425">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>0F+CM7VuPdRqbinRI1FwRi/KTfJkui8WSX9WW8A7cf0=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\copy-icon.svg" size="1323">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>UDyAe/rKsdqevdd28nysLhVyRCZ14rmOPgftOTCogeQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\copy-icon-hover.svg" size="1335">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>SjqZZALye5t20/OboCfAPhiTZTSF+mZrcaxBr8tYsNc=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\delete-icon.svg" size="3007">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>alJ4dS9MiVZtEnibk8np3kDfbuE33V5ODdEql6ijIJ8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\delete-icon-hover.svg" size="3019">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>ezNRdPZveNX2Aw9dxRJlnpzbyRRSMgF4MENmBPugW7w=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\drap-drop-icon.svg" size="1471">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>RylylIDqngKy5/Saqy7GDUYyyAmTDQMuLC+BAYHbEL4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\edit-icon.svg" size="2276">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>0pFo+NYd6On8iWAb+Mm8YxohcrcXkspLgHBwDQAvL3I=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\edit-icon-hover.svg" size="2288">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>RGMZLr014b2GbmOMT0Cy+sV6zH7HGmYNN4ogXWZ5hFg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\export-icon.svg" size="4199">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>d+eZHqn0zbaWubs8KdZDphwy+Cobc6wrlYwuEdmqaLU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\export-icon-16.svg" size="4150">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>fnRulUriWQW8Rl7m5Qi80Ck+LPYl3I+zBLvGv/Q47Bk=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\fail.svg" size="570">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>2Q1EOHGBKtsvFgULitZdWCrLoWYes5q9pId2TrBUL3c=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\find-icon.svg" size="4152">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Gte52UBx3B4qnslQUKIh6q7Ths8O5TbUTSNTvVtfFbA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\find-icon-hover.svg" size="4179">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>0EvoUtjnAFxPzg7zrdz/jfN92PeLG7tVaKGqD5bVmI0=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\help-icon.svg" size="2347">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>vtgJemZRb+hDR6vSiF+lX0rADkXZnSe3fZkrQGnov/M=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\help-icon-16.svg" size="2317">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>rANHDWN4oTNOYesvKXKxBV/YVEiBYi1X/KAMbbRseiM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\ic_keyboard_arrow_down_black_18px.svg" size="216">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>lchflaJOxPsWhWqtBdW+8mjnMHmceH9V4GxaI2TdY9U=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\ic_keyboard_arrow_up_black_18px.svg" size="213">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>GxsI7lzGHBO/1mxitQGg95i4VIqENy0LX0ccTScOzDw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\more-icon.svg" size="1112">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>VvERt1Zfw2OA7cLFYLGPciVpN0xpt9URNXjhACm7yYM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\new-icon.svg" size="1285">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>ivw/3DLBCme1x3thtRhd6bRwvmJe3LFQt2VAdl09Hbk=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\new-icon-16.svg" size="1116">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>PzJrvXesPcJsDrfFTYMfK0kseeSEPkgCXtt39TgRxKk=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\open-icon.svg" size="1603">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Dst6vLPc2p98w5nPgXORJmOYo2mesSkUM3+wGEP2GKo=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\open-icon-hover.svg" size="1615">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Itt2Kb8tId4xza6jEMR9YRNvfhmDPTo42r9qZ2KHIf8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\pass.svg" size="604">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>jKYkg/aTkANBv4xkxu4Z2DybHzJKn5XRDWXaye3pOrQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\paste-icon.svg" size="1537">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>gplSCRDmmqeB/maPbBlMfYSPMZFql7TIcPRiPDh21BM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\paste-icon-hover.svg" size="1549">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>QWZxvEocstdud/9WJ9YeXVhfoY5NC9rMSuK5KIiyVEI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\pause-icon.svg" size="742">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>biJGO7npdkaZtovsA4/3TcazdjPf2kQSYi5kaKgp8SQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\pause-icon-16.svg" size="682">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Y4MOHLzCVCn2MOEvOdRRJ5tCmYRUaWcUXx94DzEx/gA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\play-all-icon-16.svg" size="1351">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>VZnFsU7+sxQ8P7FR9Gfr01BxN8Gn659x44ZUoXLY+Jw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\play-icon.svg" size="854">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>hF/OawvHwUVjgBLD+e2PKEoDyqiYXpKZ8QCtrS0+lkA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\play-icon-16.svg" size="1011">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>wiEMrQNr9qKmw5BK44W7x5in9oqp61hMMSiPqaAfco8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\play-suite-icon-16.svg" size="1399">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>niZ2k+cj/hmbcvdeXPRe/okTugWVxJ+avuuwLRIOUCg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\record-icon.svg" size="762">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Nt9/sQ/HJRF3nnKmUWyFfstLJ5F0cvkesX3juauD4Vw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\record-icon-16.svg" size="790">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>oyOZpc52ehLZ4I+YkZgIiYSMTKhlveM/eJLbbdWXWPw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\resume-icon.svg" size="740">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>aSs3eZrsLJiELhA5vNO9uVZRvjXn31WDwFkA0YOcfpQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\resume-icon-16.svg" size="1246">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>YhAu79mTZxtfItxXevfj5+4RmqweN2nubt+TJtSrNV0=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\save-icon.svg" size="1254">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>JWyQxSO05d9iw7MDJjmaU0eynoToiDOWJTIosRfjedM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\save-icon-hover.svg" size="1266">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>AyUf+Qn8T0XHo0RNBbXvEi0y65y6mnTOKSlNhdP6GSE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\select-icon.svg" size="2476">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>By9MLN3Yt9FLiyU8X2D72pGCyPb5FI0Mn04YMlXnPYs=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\select-icon-hover.svg" size="2488">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>HsV3EkwE/YmKTfzaP5ahB1vXa6+qDFSZz7pQxxZSAcY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\setting-icon.svg" size="2578">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>w1vpkZcDcPIbAJfpWEiHSoEL2EbbhV1eZ25gdMrMPQM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\setting-icon-16.svg" size="2438">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>AXs9DUgWvZAWjRCAH5wbynBRUacHIIAgcvPcPz/rqLY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\speed-icon-16.svg" size="4178">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>t/I69B9RPOjIa3xFGr1V8ROR5DdKOMTnIIMncbKWMZY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\stop-icon.svg" size="934">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>R8DbvFsHc0HUlj+pqOON1y7N6K8/DMhLNajBVltGzhU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\stop-icon-16.svg" size="819">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>IYhXqROieuAVtoZXsGih6t/UlLHgQe0yCU4IieE25G8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\upload-icon.svg" size="1468">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>NxCo290U7R582YKcuLi50/PTcE1J7cE40KN9Dy+xSxg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\upload-icon-hover.svg" size="1499">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Qffg71wFP7x5s/Fc/waZWjg0xgHgumvhmziVxLAnN3A=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\user-manual-icon.svg" size="1770">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Q0TU7wQkA/mbNbb6MhEAeJdsRmVsKBSNYyWpNkJPSQU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\videos-icon.svg" size="1338">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>SbFvvQcCFXtXwMkf1z6vNx3u6B/s9kxwTrV7O30NHhA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\web-icon.svg" size="1676">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>KhegQd35oA1LMHFienvDXKf17tCUyojd0XSbGPxJHNA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\katalon\images\SVG\web-icon-16.svg" size="1537">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Qnh5gevbhqdP2bGZT6AKZVXJgIIDlkOTqfjulTI6BqI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\page\prompt.js" size="9996">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>QlDqQKlhAea9Lf6lftiQn1zhlz7DTvs9HOs8M012eIc=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\page\runScript.js" size="1513">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>MZ8pN4YRf5iCYTNra7HfoLfHUBAnbDd6u4IkQcs0Mbk=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\css\font-awesome.min.css" size="31004">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>gg4WnOJIJAZtmXP9S2Vhqunc1tvvZDXakF1aHWSCmXw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\css\ie.css" size="764">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>dePiBs3+REVB6iU7hkucUoomPmFUJbN3n94hSVbLYi4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\css\jquery-ui.min.css" size="32082">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>yk3yv0AKQth1LhFfAzZqkLK07Qay2p70KdQf2l8VcF4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\css\jquery-ui-slider-pips.css" size="9138">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>rh9pdWVzP3Jg4JGKQUMJ+6YYpqbuH6dFJxMQxNPPDP0=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\css\kar.css" size="31201">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>OpB2QcdpUcxEOYsDdqQOtVfCliDboxO+3QdBaqHbq5w=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\css\layout.css" size="32015">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>/Qpcx8Rm3Naqe5wPOTTW2rr/vkqFfLNbSJHMRpF4veY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\css\options.css" size="1217">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>pAZGP0PlesBTyTtsW0pDJsWkoHlH9+0EKE6Br1AG2dw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\fonts\fontawesome-webfont.svg" size="451258">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>ZZTH98+Ct7ZfJmQD4C3qGnNAnSXtl40Z0lhmA1J6kck=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\index.html" size="26373">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>j00g9YNB6qP502LufCCb0+X62SYkpDr0GVYC3NIRfdo=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\background\doc.js" size="6420">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>iovbFUTb8T1riP+/Qn1+sRYBomj9Muk+qGos6MqVe+E=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\background\editor.js" size="5272">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>ndmwI62G++Xw4BC0R8fftn0dUtTj2CFLtGal1ahK3To=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\background\formatCommand.js" size="2081">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>SnXYnNzgBbQoy/yyHDkXFFg3iALN5BBoYbjIfiWbSto=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\background\initial.js" size="1183">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>tzzDDmt10OVgaIGXWDmbxYS6GvkhXCLJqRCX8sNMSDg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\background\playback.js" size="46583">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>VEQdKW+IG2qUlp9/eD9Xb7tj5IX8ra8KWqpaJvnD8Ic=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\background\recorder.js" size="14959">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>eOsIhRZxJfv10iXsm9X/SdfJg+/ngnU/+3U/ksO1KSg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\background\window-controller.js" size="14596">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>ZxVx1RUGiT6sN6kSuVRBmlMYRvD+YVSt/nNAha+8oOE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\IO\inputFileTransformer.js" size="8876">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>i9PrZd0qVrn93Oy9VsuNfvLcqqdeMWq0rXDIeJN3ELw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\IO\load_file.js" size="7545">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>7/TJa31VkEhbPD1CHdbTgTw2orC9k44FOHfuEJQPYfA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\IO\save_file.js" size="9207">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>dfXDLqUlVNlO6+9bILQ/FUI6Jl5XgK+DZSpQv94NPvk=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\bowser.js" size="18882">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>KzgrhCr8z/FRlLvAZNWjYhKPozOwFNXeUD5EZCXbVr8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\codemirror-5.31.0\lib\codemirror.css" size="8829">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>I0HG688eyXv3HXBnQ1dL1NHPRM9puMtDzyJYMdzebGI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\codemirror-5.31.0\lib\codemirror.js" size="377554">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>N3IqIZbv9ZQ+OL7/nMcmqfp5VSCaBzGRtTy89yDgkoc=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\codemirror-5.31.0\mode\clike\clike.js" size="31857">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>o578voPhMnk12AGCJsgeP8pTahhfk4YW9h12icp/nQA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\codemirror-5.31.0\mode\groovy\groovy.js" size="8134">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>cm9cZtYHyJb2qix8X4ksjyyHgwuMIZ1qOGmRh2yfdo0=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\codemirror-5.31.0\mode\javascript\javascript.js" size="34128">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>aP148IKXViuGSSDk/zb8ECTO7As+DsNG5yKpx4hlQyQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\codemirror-5.31.0\mode\php\php.js" size="18501">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>BVdOksT1+OnAXWlbCtdLlKI99+JAcILnvtpqZbv0V+s=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\codemirror-5.31.0\mode\python\python.js" size="12647">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>29h0SwzFhQAWBPyjXim4XkWyUdwvsDMHjkIYY4XQVrI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\codemirror-5.31.0\mode\ruby\ruby.js" size="10832">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>L7OlQ3xtHQuntRfwnJoMs/IfWKLiPcdXDzgxTcgBhMA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\codemirror-5.31.0\mode\xml\xml.js" size="13286">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>jetsp+BfvycLpOkU1cn9hkbZm1kf4Bfkiqvb5yy8ZhQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\command-reference.js" size="0">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\kar.js" size="51761">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>i9DIk7MNrjutW9jUOAsQCjxNw25+a9zP7M/k/+AASfk=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\newformatters\nrsynthetics.js" size="15145">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>125ngt42jMwvNQ+SQZFfLn7UJB/BjYJc7tGM8T3Y73s=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\newformatters\protractorts.js" size="6737">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>OhNtRatzjlgGX7BJfvS9LkambPBs9gwnd99VELQsi80=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\newformatters\sample.js" size="337">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>nBmQX4gUQubpalpgxJomdk5r6eoAHl6PFX+mjsopTpY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\papaparse.js" size="42509">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>V8INGpGVw/AsVBRJnVZtFB2dhTZXRB9s6r9g+YwQO0Q=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\csharp\cs-mstest-wd.js" size="17002">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>CGjJfQ29Hj3/nKuDcDox0Z5kb/oT2woSIaQ3I/VVVtI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\csharp\cs-rc.js" size="6847">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>4NN30JC8E4R+67UCXAVPT2HymwDuWWpkQnwLWTgCZvQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\csharp\cs-wd.js" size="15251">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Cx1BbYZPApmJciguNtLNHrgJFO+Tw9BM/TyzHumC3sk=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\java\java-backed-junit4.js" size="7847">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>NqtGJHpYazqjhMAzdhmPyK1OyMqg6YM+HjtMg78rwzs=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\java\java-rc.js" size="6706">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Dvq89xyjEtaDQ0TrHtgGo9Ct3OLT1XzxHl/9zp+PuLA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\java\java-rc-junit4.js" size="7368">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>pvIhRAqsgVWSG1gxCsxt5Z/hZYQTwggZ14Aq4DeNzsw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\java\java-rc-testng.js" size="1477">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>8MgcdX/l7AF/9UFeN52nCZus/TLXW0fOGzLHgsfv+EI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\java\webdriver-junit4.js" size="15893">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>RCtCfKShYQvn0wzC87Eanoe1fZla8vqDzLWBowFxUJY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\java\webdriver-testng.js" size="15839">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Vdck3zIOdMohA8i5GwFobpUaqvi+pu/M3R4i6kP100I=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\katalon\katalon.js" size="2676">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>IfDzgnJQkGEVPrhpXPqOvQWuypQgbpsIBiFyB2mtjtw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\python\python2-rc.js" size="6626">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>hOd+Q/dqud8zOIiFf3m+aL5M+q9gGcdLp+7Yo87cyn8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\python\python2-wd.js" size="15253">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>qAvYODtKf7uQqpArsiwHJ+369LbhO49onUaBsDnSRWE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\python\python-appdynamics.js" size="16432">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>NvEIXPoVjj9jG9NobpfxgZtDckpcrlQD5x+a0XvxPmg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\robot\robot.js" size="10108">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>9JNXDrucrTSABjfJ0g2EmmV4nD7Veo6G6XEj84td7wk=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\ruby\ruby-rc.js" size="6379">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>WZWuNc51I9wC/59yZqznTsqQ1tdedpuiOLniKvryRew=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\ruby\ruby-rc-rspec.js" size="7732">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>k60RpR/KpIOgX1HH9G06IjUlKjcKIciiMYfsRqoUtlk=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\ruby\ruby-wd.js" size="14046">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>EcXSNzRNWwWksOTIcHyO8GIROcmDSDyYXFjaTsd6cmk=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\ruby\ruby-wd-rspec.js" size="14530">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>GDrDPGAkGM0usymROuMvV7s0ayvBZBDIaVDmPQZ028Q=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\xml\XML-formatter.js" size="9029">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>FSC8EvFBbS/LovFodJ3EXmAwzpNSBKszcmebAMVyTTY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\formatCommandOnlyAdapter.js" size="3743">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>ssglYagNWaf4ajcNtu0U7IiNf8AhEK9EblpWSRJI4zY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\remoteControl.js" size="13356">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>MUE7yW1vmwG9WsNA9q4xXKE/oN4Pw0oEgmJLnVlvCJo=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\testCase.js" size="16769">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Gcbp+s/jT1TTJX7zT7m+pl5YH3LJphYwfVpjrB5PXy8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\webdriver.js" size="28668">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>3Ol/Z0Jdv5pmHNc5SH/PoXSHvrKCgIv65LLBme4cu/8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\lib\colResizable-1.5.min.js" size="5823">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Nzd1t8PDxviW6eEkR2vF9GsvDVmDY3Dv+yyIfp4+7lo=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\lib\jquery.equalHeight.js" size="613">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>fr42QsZTHwbzqBtyCUP+CDu3+8kp5OG0N80vRQXnk1c=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\lib\jquery.tablesorter.min.js" size="16523">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>YXpgHs4PytyQppEN4pPlgRALK/pB5pC3ZoKoVPMh/JE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\lib\jquery.tabletab.js" size="144">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>oFJujLKqiDt2mpFJADnxyhKQpyVWJUOlNczV/7WKtRg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\lib\jquery-ui.min.js" size="253681">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>IcrMqOnrmPHzJwK0F2aF8vlBr1GrW8fPiMy1Q1obsIA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\lib\jquery-ui-slider-pips.js" size="24855">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>ecLrOczQxWCxkdwtAmCt3Z3h5UOEOqFuXxYmAIFp/XE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\lib\utils.js" size="2171">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>EUEHa7+qi6Gxv0sFyA/bn858T0GJHEBSnqaWPhXTngA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\UI\command_grid.js" size="16823">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>t8gHAAffOwIuYklg+eJbhK3ALDHeTnIWrNZ0hoTiHZo=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\UI\command_grid_toolbar.js" size="4345">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>OEKVxs9p8CHJd8KH3B+j36NQMTPy5sJBn0bC1D3BfaY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\UI\context_menu.js" size="12767">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>XlRgA4qE5P5yDKhk2bWnz1RbT4cB7RHMvC1/6igATk8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\UI\hideshow.js" size="3587">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>vCs/cER5zm7fLzwn2BDHYLnqFramYJ0S9mgTto7BDI8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\UI\log.js" size="2247">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>ExN62DH9P8gWFvZROcr2s5P9HGSz1kIY7BE3I+KI/to=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\UI\options.js" size="971">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>g0Jy/OJm3uE1+RwjQQxHViY6KF/8k8JbBbAXNFigGBY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\UI\panelSetting.js" size="7931">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>zoR1tGp8Y0E0P1VnZBHYVVLc1tmWul0PJG0l4gPoQEU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\UI\sortable-ui.js" size="3519">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>yi7YXQYU4DDiaVoCN/gMbfvDjYhaznsr6SI/5CFIjOk=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Chrome\DevNotePlayExtension\panel\js\UI\testcase_grid.js" size="20691">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>3bN5iDVuhLXmL6+aHAaVJf2NGu2OkS2AofQ8QgbW+CI=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="CodeCeptJS\Project1\codecept.conf.js" size="245">
     <hash>
       <dsig:Transforms>
