@@ -226,6 +226,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Chrome\DevNotePlayExtension\NOTICE" />
     <None Include="CodeCeptJS\Project2\package-lock.json" />
     <None Include="CodeCeptJS\Project2\package.json" />
     <None Include="CodeCeptJS\Project2\RunChromeExt.bat" />
@@ -293,8 +294,6 @@
       <Visible>True</Visible>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Chrome\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
