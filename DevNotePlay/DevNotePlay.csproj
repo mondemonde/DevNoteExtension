@@ -1,0 +1,520 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{47C742A2-AC92-45AF-9FC1-506DB9A409BA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Player</RootNamespace>
+    <AssemblyName>DevNotePlay</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>D:\_MY_PROJECTS\_DEVNOTE\_DevNote4\DevNoteFront\Publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://localhost/DevNoteFront/Publish/</InstallUrl>
+    <PublisherName>Blastasia Inc.</PublisherName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>13</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>57ACC178FE6D253151A10B78CBE012A312862C6C</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>DevNotePlay_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>robot-32.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'MAIN_DEBUG|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\MAIN_DEBUG\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'AZURE|AnyCPU'">
+    <OutputPath>bin\AZURE\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CLIENT_DEBUG|AnyCPU'">
+    <OutputPath>bin\CLIENT_DEBUG\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CodeceptSupport">
+      <HintPath>..\DependencyLib\Dependency\CodeceptSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="DeltaCompressionDotNet, Version=1.1.0.0, Culture=neutral, PublicKeyToken=1d14d6e5194e7f4a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DeltaCompressionDotNet.1.1.0\lib\net20\DeltaCompressionDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DeltaCompressionDotNet.MsDelta, Version=1.1.0.0, Culture=neutral, PublicKeyToken=46b2138a390abf55, processorArchitecture=MSIL">
+      <HintPath>..\packages\DeltaCompressionDotNet.1.1.0\lib\net20\DeltaCompressionDotNet.MsDelta.dll</HintPath>
+    </Reference>
+    <Reference Include="DeltaCompressionDotNet.PatchApi, Version=1.1.0.0, Culture=neutral, PublicKeyToken=3e8888ee913ed789, processorArchitecture=MSIL">
+      <HintPath>..\packages\DeltaCompressionDotNet.1.1.0\lib\net20\DeltaCompressionDotNet.PatchApi.dll</HintPath>
+    </Reference>
+    <Reference Include="DevNote.Interface">
+      <HintPath>..\DependencyLib\Dependency\DevNote.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="DevNoteCmdPlayer2">
+      <HintPath>..\DependencyLib\Dependency\DevNoteCmdPlayer2.dll</HintPath>
+    </Reference>
+    <Reference Include="DotBits.Configuration">
+      <HintPath>..\DependencyLib\Dependency\DotBits.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="LogApplication">
+      <HintPath>..\DependencyLib\Dependency\LogApplication.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.3.1.953, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.3.1.953\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.6.1\lib\net45\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Mdb, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.6.1\lib\net45\Mono.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.6.1\lib\net45\Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Rocks, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.6.1\lib\net45\Mono.Cecil.Rocks.dll</HintPath>
+    </Reference>
+    <Reference Include="PuppetSupportLib">
+      <HintPath>..\DependencyLib\Dependency\PuppetSupportLib.dll</HintPath>
+    </Reference>
+    <Reference Include="SeleniumSupportLib">
+      <HintPath>..\DependencyLib\Dependency\SeleniumSupportLib.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpCompress, Version=0.17.1.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpCompress.0.17.1\lib\net45\SharpCompress.dll</HintPath>
+    </Reference>
+    <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Splat.1.6.2\lib\Net45\Splat.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Chrome\DevNotePlayExtension\APACHE LICENSE 2.0" />
+    <None Include="Chrome\DevNotePlayExtension\KATALON RECORDER CONTRIBUTION LICENSE AGREEMENT.md" />
+    <None Include="Chrome\DevNotePlayExtension\manifest.json" />
+    <None Include="Chrome\DevNotePlayExtension\NOTICE" />
+    <None Include="Chrome\DevNotePlayExtension\panel\fonts\fontawesome-webfont.eot" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\fonts\fontawesome-webfont.ttf" />
+    <None Include="Chrome\DevNotePlayExtension\panel\fonts\fontawesome-webfont.woff" />
+    <None Include="Chrome\DevNotePlayExtension\panel\fonts\fontawesome-webfont.woff2" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\fonts\FontAwesome.otf" />
+    <None Include="Chrome\DevNotePlayExtension\README.md" />
+    <None Include="CodeCeptJS\Project2\package-lock.json" />
+    <None Include="CodeCeptJS\Project2\package.json" />
+    <None Include="CodeCeptJS\Project2\RunChromeExt.bat" />
+    <None Include="CodeCeptJS\Project2\RunCodeceptjs0.bat" />
+    <None Include="Custom.config" />
+    <None Include="DevNotePlay_TemporaryKey.pfx" />
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\photo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\photo %281%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\photo %282%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="chromeExtIcon.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="robot-32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Chrome\*.*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Visible>True</Visible>
+    </Content>
+    <Content Include="Chrome\DevNotePlayExtension\.gitignore" />
+    <Content Include="Chrome\DevNotePlayExtension\background\background.js" />
+    <Content Include="Chrome\DevNotePlayExtension\background\install.js" />
+    <Content Include="Chrome\DevNotePlayExtension\background\kar.js" />
+    <Content Include="Chrome\DevNotePlayExtension\common\browser-polyfill.js" />
+    <Content Include="Chrome\DevNotePlayExtension\common\escape.js" />
+    <Content Include="Chrome\DevNotePlayExtension\common\jquery-3.2.1.min.js" />
+    <Content Include="Chrome\DevNotePlayExtension\content\atoms.js" />
+    <Content Include="Chrome\DevNotePlayExtension\content\bowser.js" />
+    <Content Include="Chrome\DevNotePlayExtension\content\command-receiver.js" />
+    <Content Include="Chrome\DevNotePlayExtension\content\jquery.simulate.js" />
+    <Content Include="Chrome\DevNotePlayExtension\content\kar.js" />
+    <Content Include="Chrome\DevNotePlayExtension\content\locatorBuilders.js" />
+    <Content Include="Chrome\DevNotePlayExtension\content\prompt-injecter.js" />
+    <Content Include="Chrome\DevNotePlayExtension\content\recorder-handlers.js" />
+    <Content Include="Chrome\DevNotePlayExtension\content\recorder.js" />
+    <Content Include="Chrome\DevNotePlayExtension\content\runScript-injecter.js" />
+    <Content Include="Chrome\DevNotePlayExtension\content\selenium-api.js" />
+    <Content Include="Chrome\DevNotePlayExtension\content\selenium-browserbot.js" />
+    <Content Include="Chrome\DevNotePlayExtension\content\selenium-commandhandlers.js" />
+    <Content Include="Chrome\DevNotePlayExtension\content\sizzle.js" />
+    <Content Include="Chrome\DevNotePlayExtension\content\targetSelecter.js" />
+    <Content Include="Chrome\DevNotePlayExtension\content\utils.js" />
+    <Content Include="CodeCeptJS\Project1\codecept.conf.js" />
+    <Resource Include="CodeCeptJS\Project1\codecept.conf.template.txt" />
+    <Resource Include="CodeCeptJS\Project1\ReadMe.txt" />
+    <Content Include="CodeCeptJS\Project2\codecept.conf.js" />
+    <Content Include="CodeCeptJS\Project2\first_test_test.js" />
+    <Content Include="CodeCeptJS\Project2\latest_test.js" />
+    <Content Include="CodeCeptJS\Project2\LaunchChromeExt.js" />
+    <Content Include="CodeCeptJS\Project2\mypuppet_helper.js" />
+    <Resource Include="CodeCeptJS\Project2\output\endpoint\MyGrabValue.txt" />
+    <Content Include="CodeCeptJS\Project2\record_test.js" />
+    <Content Include="CodeCeptJS\Project2\steps_file.js" />
+    <Resource Include="CodeCeptJS\Project2\template_test.txt" />
+    <Content Include="CodeCeptJS\Project2\wfh_test.js" />
+    <Resource Include="Chrome\DevNotePlayExtension\icons\help.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\icons\icons-48.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\icons\icons-96.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\icons\icons-96_whitebord.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\icons\logo.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\icons\options.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\icons\QA.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\icons\record_button.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\icons\sideex1.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\icons\sideex2.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\icons\sideex3.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\icons\url_record.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\katalon\images\branding_128.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\katalon\images\branding_16.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\katalon\images\branding_32.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\katalon\images\branding_48.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\katalon\images\branding_64.png" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\DogoSoup.mp4" />
+    <Resource Include="Chrome\DevNotePlayExtension\katalon\images\object_spy_24.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\katalon\images\port-setting.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\katalon\images\record_28.png" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\add-icon-hover.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\add-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\advanced-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\breakpoint.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\close-icon-hover.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\close-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\community-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\copy-icon-hover.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\copy-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\delete-icon-hover.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\delete-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\drap-drop-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\edit-icon-hover.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\edit-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\export-icon-16.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\export-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\fail.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\find-icon-hover.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\find-icon.svg" />
+    <Resource Include="Chrome\DevNotePlayExtension\katalon\images\SVG\github-icon.png" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\help-icon-16.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\help-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\ic_keyboard_arrow_down_black_18px.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\ic_keyboard_arrow_up_black_18px.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\more-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\new-icon-16.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\new-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\open-icon-hover.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\open-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\pass.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\paste-icon-hover.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\paste-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\pause-icon-16.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\pause-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\play-all-icon-16.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\play-icon-16.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\play-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\play-suite-icon-16.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\record-icon-16.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\record-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\resume-icon-16.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\resume-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\save-icon-hover.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\save-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\select-icon-hover.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\select-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\setting-icon-16.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\setting-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\speed-icon-16.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\stop-icon-16.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\stop-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\upload-icon-hover.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\upload-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\user-manual-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\videos-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\web-icon-16.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\katalon\images\SVG\web-icon.svg" />
+    <Content Include="Chrome\DevNotePlayExtension\page\prompt.js" />
+    <Content Include="Chrome\DevNotePlayExtension\page\runScript.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\css\font-awesome.min.css" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\css\ie.css" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\css\jquery-ui-slider-pips.css" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\css\jquery-ui.min.css" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\css\kar.css" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\css\layout.css" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\css\options.css" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\fonts\fontawesome-webfont.svg" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\breadcrumb_divider.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\btn_submit.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\btn_submit_2.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\btn_view_site.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\header_bg.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\header_shadow.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\icn_add_user.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\icn_alert_error.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\icn_alert_info.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\icn_alert_success.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\icn_alert_warning.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\icn_audio.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\icn_categories.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\icn_edit.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\icn_edit_article.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\icn_folder.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\icn_jump_back.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\icn_logout.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\icn_new_article.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\icn_photo.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\icn_profile.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\icn_search.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\icn_security.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\icn_settings.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\icn_tags.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\icn_trash.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\icn_user.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\icn_video.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\icn_view_users.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\module_footer_bg.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\post_message.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\secondary_bar.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\secondary_bar_shadow.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\sidebar.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\sidebar_divider.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\sidebar_shadow.png" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\images\table_sorter_header.png" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\index.html" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\background\doc.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\background\editor.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\background\formatCommand.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\background\initial.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\background\playback.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\background\recorder.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\background\window-controller.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\IO\inputFileTransformer.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\IO\load_file.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\IO\save_file.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\bowser.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\codemirror-5.31.0\lib\codemirror.css" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\codemirror-5.31.0\lib\codemirror.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\codemirror-5.31.0\mode\clike\clike.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\codemirror-5.31.0\mode\groovy\groovy.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\codemirror-5.31.0\mode\javascript\javascript.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\codemirror-5.31.0\mode\php\php.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\codemirror-5.31.0\mode\python\python.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\codemirror-5.31.0\mode\ruby\ruby.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\codemirror-5.31.0\mode\xml\xml.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\command-reference.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\kar.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\newformatters\nrsynthetics.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\newformatters\protractorts.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\newformatters\sample.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\papaparse.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\formatCommandOnlyAdapter.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\csharp\cs-mstest-wd.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\csharp\cs-rc.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\csharp\cs-wd.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\java\java-backed-junit4.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\java\java-rc-junit4.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\java\java-rc-testng.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\java\java-rc.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\java\webdriver-junit4.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\java\webdriver-testng.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\katalon\katalon.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\python\python-appdynamics.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\python\python2-rc.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\python\python2-wd.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\robot\robot.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\ruby\ruby-rc-rspec.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\ruby\ruby-rc.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\ruby\ruby-wd-rspec.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\ruby\ruby-wd.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\format\xml\XML-formatter.js" />
+    <Resource Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\iedoc-core.xml" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\remoteControl.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\testCase.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\webdriver.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\lib\colResizable-1.5.min.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\lib\jquery-ui-slider-pips.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\lib\jquery-ui.min.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\lib\jquery.equalHeight.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\lib\jquery.tablesorter.min.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\lib\jquery.tabletab.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\lib\utils.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\UI\command_grid.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\UI\command_grid_toolbar.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\UI\context_menu.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\UI\hideshow.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\UI\log.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\UI\options.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\UI\panelSetting.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\UI\sortable-ui.js" />
+    <Content Include="Chrome\DevNotePlayExtension\panel\js\UI\testcase_grid.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CodeCeptJS\*.*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Visible>True</Visible>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
