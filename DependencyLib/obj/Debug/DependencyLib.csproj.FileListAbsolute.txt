@@ -1,5 +1,0 @@
-F:\Users\rgalvez\Documents\GitHub\DevNoteExtension\DependencyLib\bin\Debug\DependencyLib.dll
-F:\Users\rgalvez\Documents\GitHub\DevNoteExtension\DependencyLib\bin\Debug\DependencyLib.pdb
-F:\Users\rgalvez\Documents\GitHub\DevNoteExtension\DependencyLib\obj\Debug\DependencyLib.csprojAssemblyReference.cache
-F:\Users\rgalvez\Documents\GitHub\DevNoteExtension\DependencyLib\obj\Debug\DependencyLib.dll
-F:\Users\rgalvez\Documents\GitHub\DevNoteExtension\DependencyLib\obj\Debug\DependencyLib.pdb
