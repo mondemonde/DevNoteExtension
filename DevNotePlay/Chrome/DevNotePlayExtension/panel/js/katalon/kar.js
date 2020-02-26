@@ -1048,7 +1048,7 @@ function showDialog(html, showOK) {
     return $('<div></div>')
         .html(html)
         .dialog({
-            title: 'Qubot',
+            title: 'DevNotePlay',
             resizable: false,
             height: "auto",
             width: 400,
