@@ -35,6 +35,8 @@
 
     <link rel="stylesheet" href="js/katalon/codemirror-5.31.0/lib/codemirror.css">
     <link rel="stylesheet" href="css/kar.css"/>
+
+    <link rel="stylesheet" href="css/custom.css">
     <!-- to hide right button feature -->
     <!--[if lt IE 9]>
     <link rel="stylesheet" href="panel/css/ie.css" type="text/css" media="screen" />
@@ -251,7 +253,7 @@
                         <button id="grid-copy-btn"></button>
                         <button id="grid-paste-btn"></button>
                     </div>
-                    <div class="fieldset">
+                    <div class="fieldset" style="overflow: auto; flex-direction: column;">
                         <!-- TODO: make (command &) target selectable -->
                         <div class="command-row">
                             <label>Command</label>
@@ -272,8 +274,32 @@
                         <datalist id="command-target-list">
                         </datalist>
                         <div class="command-row">
-                            <label>Value</label>
-                            <input id="command-value" type="text">
+                            <!-- 2020-27-02 - Converted command row into a table so extra controls (radio/checkbox) are neatly displayed -->
+                            <table id="command-value-table" style="width: calc(100% - 20px); table-layout: fixed;">
+                                <tr>
+                                    <td style="width: 70px; padding: 0px;">
+                                        <label>Value</label>
+                                    </td>
+                                    <td colspan="3">
+                                        <input id="command-value" type="text" style="width: 100%;">
+                                    </td>
+                                </tr>
+                                <tr id="command-value-controls">
+                                    <td></td>
+                                    <td>
+                                        <input id="command-value-radio" name="valueoption" type="radio">
+                                        <label for="command-value-radio">Value</label>
+                                    </td>
+                                    <td>
+                                        <input id="command-coordinates-radio" name="valueoption" type="radio">
+                                        <label for="command-coordinates-radio">Coordinates</label>
+                                    </td>
+                                    <td>
+                                        <input id="command-delay-checkbox" type="checkbox">
+                                        <label for="command-delay-checkbox">Delay</label>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>

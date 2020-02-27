@@ -107,3 +107,63 @@ $("#command-value").on("input", function(event) {
         }
     }
 });
+
+// 2020-26-02 - Command value options
+$(function() {
+    $('#command-command').change(function() {
+        toggleValueControls(this);
+    });
+});
+
+// 2020-27-02 - Toggles show/hide for Value controls
+function toggleValueControls(commandSelector) {
+    if (commandSelector.value == "click") {
+        $("#command-value-controls").show();
+    }
+    else {
+        $("#command-value-controls").hide();
+    }
+}
+
+// 2020-27-02 - Command value radio button listeners
+$(function() { // Value/Label radio button
+    $('#command-value-radio').change(function() {
+        // get the value of the value input field
+        debugger;
+        let value = $("#command-value").val();
+        
+        value = resetValueOptions(value);
+
+        let index = 1;
+        value = replaceCharInString(value, '1', index);
+        $("#command-value").val(value);
+        $("#command-value").trigger("input");
+    });
+});
+
+$(function() { // Coordinates radio button
+    $('#command-coordinates-radio').change(function() {
+        let value = $("#command-value").val();
+
+        value = resetValueOptions(value);
+
+        let index = value.indexOf("#0#", 3);
+        value = replaceCharInString(value, '1', index + 1);
+        $("#command-value").val(value);
+        $("#command-value").trigger("input");
+    });
+});
+
+function resetValueOptions(value) {
+    let indexToReset = value.indexOf("#1#");
+    if (indexToReset != -1) {
+        return replaceCharInString(value, '0', indexToReset + 1);
+    }
+    else {
+        return value;
+    }
+}
+
+function replaceCharInString(str, chr, index) {
+    return str.substring(0, index) + chr + str.substring(index + 1);
+}
