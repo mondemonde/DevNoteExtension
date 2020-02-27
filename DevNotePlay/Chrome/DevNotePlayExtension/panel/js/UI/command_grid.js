@@ -209,7 +209,13 @@ function attachEvent(start, end) {
             }
 
             // notice that "textNode" also is a node
-            document.getElementById("command-command").value = getCommandName(ref);
+            // 2020-27-02 - declared variable for DOM get so it can be passed to toggleValueControls
+            var commandSelector = document.getElementById("command-command");
+            commandSelector.value = getCommandName(ref);
+            toggleValueControls(commandSelector);
+            // radio buttons should be reset upon selecting a new record
+            $('input[name="valueoption"]').prop('checked', false);
+
             scrape(document.getElementById("command-command").value);
             document.getElementById("command-target").value = getCommandTarget(ref, true);
             var targetList = ref.getElementsByTagName("td")[1].getElementsByTagName("datalist")[0].cloneNode(true);
