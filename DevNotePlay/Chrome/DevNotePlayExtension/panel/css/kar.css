@@ -653,7 +653,8 @@ div.test-suite-title {
 
 #command-toolbar {
     /* width: calc(100% - 20px); */
-    height: 151px;
+    /* height: 151px; */
+    height: 45vh;
 }
 
 #command-toolbar-buttons {
@@ -795,7 +796,7 @@ div.test-suite-title {
     margin-right: auto;
 }
 
-.fieldset input[type=text] {
+.fieldset input[type=text], .fieldset select {
     border-radius: 3px;
     border: 0.5px solid #D4D4D4;
     outline: none;
