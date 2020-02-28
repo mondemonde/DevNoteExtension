@@ -253,7 +253,7 @@
                         <button id="grid-copy-btn"></button>
                         <button id="grid-paste-btn"></button>
                     </div>
-                    <div class="fieldset" style="overflow: auto; flex-direction: column;">
+                    <div class="fieldset" style="overflow: auto; flex-direction: column; height: 40vh">
                         <!-- TODO: make (command &) target selectable -->
                         <div class="command-row">
                             <label>Command</label>
@@ -280,23 +280,38 @@
                                     <td style="width: 70px; padding: 0px;">
                                         <label>Value</label>
                                     </td>
-                                    <td colspan="3">
+                                    <td colspan="4">
                                         <input id="command-value" type="text" style="width: 100%;">
                                     </td>
                                 </tr>
                                 <tr id="command-value-controls">
                                     <td></td>
                                     <td>
-                                        <input id="command-value-radio" name="valueoption" type="radio">
-                                        <label for="command-value-radio">Value</label>
+                                        <div class="command-value-control-row">
+                                            <input id="command-none-radio" name="value-option" type="radio">
+                                            <label for="command-none-radio">None</label>
+                                        </div>
                                     </td>
                                     <td>
-                                        <input id="command-coordinates-radio" name="valueoption" type="radio">
-                                        <label for="command-coordinates-radio">Coordinates</label>
+                                        <div class="command-value-control-row">
+                                            <input id="command-value-radio" name="value-option" type="radio">
+                                            <label for="command-value-radio">Value</label>
+                                        </div>
                                     </td>
                                     <td>
-                                        <input id="command-delay-checkbox" type="checkbox">
-                                        <label for="command-delay-checkbox">Delay</label>
+                                        <div class="command-value-control-row">
+                                            <input id="command-coordinates-radio" name="value-option" type="radio">
+                                            <label for="command-coordinates-radio">Coordinates</label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <!-- <input id="command-keyword" list="command-keyword-list" type="text"><i id="keyword-" class="fa fa-chevron-down" aria-hidden="true"></i> -->
+                                        <!-- <div id="keyword-dropdown" class="w3-dropdown-content w3-bar-block"></div> -->
+                                        <div class="command-value-control-row">
+                                            <label for="command-keyword-dropdown">Keywords:</label>
+                                            <select id="command-keyword-dropdown">
+                                            </select>
+                                        </div>
                                     </td>
                                 </tr>
                             </table>
