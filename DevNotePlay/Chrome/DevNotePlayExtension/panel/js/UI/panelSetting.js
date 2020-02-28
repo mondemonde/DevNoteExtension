@@ -136,6 +136,7 @@ $(document).ready(function() {
     // $(".fixed").width($("table:not(.fixed)").width());
 
     $("#command-dropdown,#command-command-list").html(genCommandDatalist());
+    $("#command-keyword-dropdown").html(genKeywordDatalist());
 
     $(".record-bottom").click(function() {
         $(this).addClass("active");
@@ -242,6 +243,39 @@ function genCommandDatalist() {
     supportedCommand.forEach(function(command) {
         datalistHTML += ('<option value="' + command + '">' + command + '</option>\n');
         formalCommands[command.toLowerCase()] = command;
+    });
+
+    return datalistHTML;
+}
+
+function genKeywordDatalist() {
+    var keywords = [
+        {
+            key: '',
+            description: 'none'
+        },
+        {
+            key: '_',
+            description: 'Click and type'
+        },
+        {
+            key: '_?',
+            description: 'Type and tab'
+        },
+        {
+            key: '_@',
+            description: 'Type only'
+        },
+        {
+            key: '_END',
+            description: 'Click and End'
+        },
+    ];
+
+    var datalistHTML = "";
+    keywords.forEach(function(keyword) {
+        let keywordJSON = JSON.stringify(keyword)
+        datalistHTML += ("<option value='" + keywordJSON + "'>" + keyword.description + "</option>\n");
     });
 
     return datalistHTML;
