@@ -108,14 +108,7 @@ $("#command-value").on("input", function(event) {
     }
 });
 
-// 2020-26-02 - Command value options
-$(function() {
-    $('#command-command').change(function() {
-        toggleValueControls(this);
-    });
-});
-
-// 2020-27-02 - Toggles show/hide for Value controls
+// 2020-02-27 - Toggles show/hide for Value controls
 function toggleValueControls(commandSelector) {
     if (commandSelector.value == "click") {
         $("#command-value-controls").show();
@@ -125,32 +118,65 @@ function toggleValueControls(commandSelector) {
     }
 }
 
-// 2020-27-02 - Command value radio button listeners
-$(function() { // Value/Label radio button
-    $('#command-value-radio').change(function() {
-        // get the value of the value input field
-        debugger;
+$(function() {
+    let valuePattern = /#\d{1}#.*#\d{1}#\d*###\d*Delay3/;
+
+    // 2020-02-26 - Command value options
+    $('#command-command').change(function() {
+        toggleValueControls(this);
+    });
+    
+    // 2020-02-27 - Command value radio button listeners
+    // None radio button
+    $('#command-none-radio').change(function() {
         let value = $("#command-value").val();
+        let result = valuePattern.test(value);
+        if (result == false) return;
+        
+        value = resetValueOptions(value);
+
+        saveValueToTextbox(value);
+    });
+
+    // Value/Label radio button
+    $('#command-value-radio').change(function() {
+        let value = $("#command-value").val();
+        let result = valuePattern.test(value);
+        if (result == false) return;
         
         value = resetValueOptions(value);
 
         let index = 1;
         value = replaceCharInString(value, '1', index);
-        $("#command-value").val(value);
-        $("#command-value").trigger("input");
+        
+        saveValueToTextbox(value);
     });
-});
 
-$(function() { // Coordinates radio button
+    // Coordinates radio button
     $('#command-coordinates-radio').change(function() {
         let value = $("#command-value").val();
+        let result = valuePattern.test(value);
+        if (result == false) return;
 
         value = resetValueOptions(value);
 
         let index = value.indexOf("#0#", 3);
         value = replaceCharInString(value, '1', index + 1);
-        $("#command-value").val(value);
-        $("#command-value").trigger("input");
+        
+        saveValueToTextbox(value);
+    });
+
+    // 2020-02-28 - Keywords dropdown
+    $('#command-keyword-dropdown').change(function() {
+        let value = $("#command-value").val();
+        let result = valuePattern.test(value);
+        if (result == false) return;
+
+        let keyword = JSON.parse($(this).val());
+        let index = value.indexOf("Delay3") + 6;
+        value = value.substring(0, index) + keyword.key;
+
+        saveValueToTextbox(value);
     });
 });
 
@@ -162,6 +188,11 @@ function resetValueOptions(value) {
     else {
         return value;
     }
+}
+
+function saveValueToTextbox(value) {
+    $("#command-value").val(value); 
+    $("#command-value").trigger("input");
 }
 
 function replaceCharInString(str, chr, index) {
