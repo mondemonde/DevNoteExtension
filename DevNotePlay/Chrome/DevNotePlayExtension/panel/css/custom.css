@@ -8,7 +8,7 @@
     overflow: auto;
 }
 
-#checkbox-row td {
+.command-value-control-row {
     align-items: center;
     display: flex;
 }

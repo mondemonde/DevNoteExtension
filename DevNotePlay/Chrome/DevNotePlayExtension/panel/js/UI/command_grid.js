@@ -214,7 +214,7 @@ function attachEvent(start, end) {
             commandSelector.value = getCommandName(ref);
             toggleValueControls(commandSelector);
             // radio buttons should be reset upon selecting a new record
-            $('input[name="valueoption"]').prop('checked', false);
+            $('input[name="value-option"]').prop('checked', false);
 
             scrape(document.getElementById("command-command").value);
             document.getElementById("command-target").value = getCommandTarget(ref, true);
