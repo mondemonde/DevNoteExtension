@@ -1,0 +1,1 @@
+﻿this is the common folder stack for exe apps

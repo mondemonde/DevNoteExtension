@@ -1,7 +1,9 @@
-﻿using System;
+﻿using LogApplication.Common.Config;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Player
@@ -13,8 +15,11 @@ namespace Player
         static bool IsAuto { get; set; }
         static bool IsHeadless { get; set; }
 
+        static string JSFile { get; set; }
+
         //public static RunWFCmdParam MyPayload { get; set; }
-       // static CmdPlayer MyPlayer = new CmdPlayer();
+        //static WinPlayer MyPlayer = new WinPlayer();
+        //public static System.IO.FileSystemWatcher fileWatcher;
 
 
         /// <summary>
@@ -30,7 +35,7 @@ namespace Player
                 if (args[i] == "-file")
                 {
                     // call http client args[i+1] for URL
-                  //  MyPlayer.JSFile = args[i + 1];
+                    JSFile = args[i + 1];
 
                 }
                 else if (args[i] == "-isHeadless")
@@ -45,9 +50,7 @@ namespace Player
                 }
             }
 
-
-
-            Console.WriteLine("Hello World!");
+         
             var application = new App();
             application.InitializeComponent();
             application.Run();
@@ -55,5 +58,8 @@ namespace Player
 
           
         }
+
+
+
     }
 }

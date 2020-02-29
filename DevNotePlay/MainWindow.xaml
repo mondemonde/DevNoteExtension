@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Player"
+        xmlns:myControls="clr-namespace:DevNoteCmdPlayer2.DevNoteUI;assembly=DevNoteCmdPlayer2"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="PLAYER" Height="120" Width="325" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Foreground="LightSteelBlue" WindowStyle="None" MouseDown="Window_MouseDown">
+        Title="PLAYER" Height="120" Width="325" ResizeMode="NoResize" WindowStartupLocation="Manual" Foreground="LightSteelBlue" WindowStyle="None" MouseDown="Window_MouseDown" Activated="Window_Activated">
     <Window.Resources>
         <ResourceDictionary>
             <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
@@ -117,12 +118,15 @@
                 </StackPanel.Triggers>
                 <Canvas x:Name="canvas" Width="{Binding ActualWidth, ElementName=stack}">
                     <TextBlock Text="DevNotePlay™  version 1.0.0.1" FontSize="14"  x:Name="txtKron" Canvas.Left="0" Margin="0,27,0,0"/>
-                    <TextBlock Text="{Binding Text, ElementName=txtKron}" FontSize="14" Canvas.Left="{Binding Width, ElementName=canvas}" Margin="0,27,0,0"/>
+                    <TextBlock x:Name="txtCaption" Text="{Binding Text, ElementName=txtKron}" FontSize="14" Canvas.Left="{Binding Width, ElementName=canvas}" Margin="0,27,0,0"/>
                 </Canvas>
+              
             </StackPanel>
 
             <Grid VerticalAlignment="Top" Grid.ColumnSpan="2" Background="#44444444">
-
+                <!--<WindowsFormsHost Height="1" VerticalAlignment="Top" Width="200" Margin="-5">
+                    <myControls:UserControlPlayer x:Name="hostPlayer"  />
+                </WindowsFormsHost>-->
                 <Button x:Name="btnNew" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
                         Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" 
                         Width="30" Height="20" Click="btnPlus_Click" 
@@ -179,10 +183,7 @@
 
                     <Menu DockPanel.Dock="Bottom" Background="#44444444" Foreground="OrangeRed" Height="50" Margin="0,0,-5,0" >
 
-                        <Button x:Name="btnRec" 
-                                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
-                                Background="#00000000"
-                                BorderBrush="#70702222" HorizontalAlignment="Left" Click="btnRec_Click">
+                        <Button x:Name="btnRec" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="#00000000" BorderBrush="#70702222" HorizontalAlignment="Left" Click="btnRec_Click">
 
                             <Button.ToolTip>
                                 <ToolTip >
@@ -212,7 +213,7 @@
 
                         </Button>
 
-                        <Button x:Name="Anterior" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}"  HorizontalAlignment="Left" Margin="0,0" Width="45" >
+                        <Button x:Name="Anterior" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}"  HorizontalAlignment="Left" Margin="0,0" Width="45" Click="Anterior_Click_1" >
                             <materialDesign:PackIcon Kind="Replay" VerticalAlignment="Center" Width="30" Height="30">
                                 <materialDesign:PackIcon.Foreground>
                                     <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -369,7 +370,7 @@
                         </materialDesign:PackIcon.Foreground>
                     </materialDesign:PackIcon>
                 </Button>-->
-
+             
             </Grid>
         </Grid>
     </Grid>
