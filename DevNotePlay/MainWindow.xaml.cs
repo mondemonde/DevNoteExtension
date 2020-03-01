@@ -66,30 +66,30 @@ namespace Player
             //}
         }
 
-        public int ArmId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IChromeIdentity ChromePartner { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int ArmId {get;set;}
+        public IChromeIdentity ChromePartner { get; set; }
 
         public CodeceptAction CurrentAction => throw new NotImplementedException();
 
-        public string InitialChangeDirCmd { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string InitialDirectory { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool IsArmReady { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public EnumTaskStatus IsAutoplayDone { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool IsAutoPlaying { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool IsAutoRun { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool IsHeadless { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool IsPlaying { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string InitialChangeDirCmd {get;set;}
+        public string InitialDirectory {get;set;}
+        public bool IsArmReady {get;set;}
+        public EnumTaskStatus IsAutoplayDone {get;set;}
+        public bool IsAutoPlaying {get;set;}
+        public bool IsAutoRun {get;set;}
+        public bool IsHeadless {get;set;}
+        public bool IsPlaying {get;set;}
         public bool IsSessionLifeSpan { get; set; }
-        public string JSFile { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public CodeceptAction LastAction { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public List<CodeceptAction> MyActions { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int MyRetry { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string JSFile {get;set;}
+        public CodeceptAction LastAction {get;set;}
+        public List<CodeceptAction> MyActions {get;set;}
+        public int MyRetry {get;set;}
 
         public string ProjectFolder => throw new NotImplementedException();
 
-        public string RemoteDebuggerAddress { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public EnumPlayStatus Status { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public CmdToken Token { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string RemoteDebuggerAddress {get;set;}
+        public EnumPlayStatus Status {get;set;}
+        public CmdToken Token {get;set;}
         public DateTime TimeStarted { get; private set; }
 
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
@@ -135,9 +135,16 @@ namespace Player
 
             IsSessionLifeSpan = true;
             // CheckForUpdate();
+
+            txtVersion.Text = txtCaption.Text =string.Format("DevNotePlay™ version {0}", GetVersion());
+
         }
 
-
+        string GetVersion()
+        {
+           var version =  DevAPI.GetVersion();
+           return version.ToString();
+        }
         #region SQUIRREL
 
         //async Task CheckForUpdate()
@@ -160,7 +167,7 @@ namespace Player
         }
 
         //This method processes your file, you can do your sync here
-        private void ProcessFile(System.IO.FileSystemEventArgs e)
+        private  void ProcessFile(System.IO.FileSystemEventArgs e)
         {
             // Based on the eventtype you do your operation
             switch (e.ChangeType)
@@ -170,8 +177,9 @@ namespace Player
                     break;
                 case System.IO.WatcherChangeTypes.Created:
                     Console.WriteLine($"File is created: {e.Name}");
+                    Task.Run<bool>(async () => await TriggerPlay(e));
 
-                    TriggerPlay(e);
+                   
 
 
                     break;
@@ -180,14 +188,14 @@ namespace Player
                     break;
                 case System.IO.WatcherChangeTypes.Renamed:
                     Console.WriteLine($"File is renamed: {e.Name}");
-                    TriggerPlay(e);
+                    Task.Run<bool>(async () => await TriggerPlay(e));
 
                     break;
             }
         }
 
 
-        void TriggerPlay(System.IO.FileSystemEventArgs e)
+       async Task<bool>  TriggerPlay(System.IO.FileSystemEventArgs e)
         {
             //step# 70 PLAY.TXT
             if (e.Name.ToLower() == "play.txt")
@@ -202,12 +210,12 @@ namespace Player
                 var fileList = latestFiles.ToList();
 
                 if (fileList.Count > 0)
-                    return;
+                    return true;
 
                 //dot restart let run for awhile
                 if (span.TotalSeconds > 20)
                 {
-                    Play(true);
+                    await  Play(true);
                     TimeStarted = DateTime.Now;
                 }
 
@@ -256,6 +264,8 @@ namespace Player
                 }
 
             }
+
+            return true;
         }
 
         #endregion
@@ -362,11 +372,76 @@ namespace Player
             throw new NotImplementedException();
         }
 
-        public Task<bool> Play(bool isRecording = false)
+        //public Task<bool> Play(bool isRecording = false)
+        //{
+        //    throw new NotImplementedException();
+        //    //int RevisionNumber = (int)(DateTime.UtcNow.Date - DateTime.UtcNow.AddHours(-12)).TotalSeconds;
+        //}
+
+        public async Task<bool> Play(bool isRecording = false)
         {
-            throw new NotImplementedException();
-            //int RevisionNumber = (int)(DateTime.UtcNow.Date - DateTime.UtcNow.AddHours(-12)).TotalSeconds;
+
+            // this.InvokeOnUiThreadIfRequired(() => ShowHelper());
+
+
+            CloseCodeCeptJsWindow();
+
+            // ConfigManager config = new ConfigManager();
+            var defaultXML = FileEndPointManager.DefaultPlayXMLFile; // config.GetValue("DefaultXMLFile");
+
+
+            if (isRecording)
+            {
+                var endPointFolder = Path.GetDirectoryName(FileEndPointManager.DefaultPlayXMLFile);
+
+                //TODO check for error in UI
+                //ActivateGroupBox(groupBoxRec);
+                defaultXML = Path.Combine(endPointFolder, "latest.xml");
+            }
+
+            //groupBoxRec.Visible = true;
+            //_HACK BtnPlay_Click
+            #region---TEST ONLY: Compiler will  automatically erase this in RELEASE mode and it will not run if Global.GlobalTestMode is not set to TestMode.Simulation
+#if OVERRIDE || OFFLINE
+
+            Console.WriteLine("HACK-TEST -");
+            //defaultXML = @"D:\_MY_PROJECTS\_DEVNOTE\_DevNote3\DevNote.Main\bin\Debug\KatalonRaw\ExternalRecordings\commonTestOrig.xml";
+            //defaultXML = @"D:\_MY_PROJECTS\_DEVNOTE\_DevNote3\DevNote.Main\bin\Debug\KatalonRaw\ExternalRecordings\Tour.xml";
+            // defaultXML = @"D:\_MY_PROJECTS\_DEVNOTE\_DevNote3\DevNote.Main\bin\Debug\KatalonRaw\ExternalRecordings\Inquiry.xml";
+            // defaultXML = @"D:\_MY_PROJECTS\_DEVNOTE\_DevNote3\DevNote.Main\bin\Debug\KatalonRaw\ExternalRecordings\Inquiry.xml";
+            // defaultXML = @"D:\_MY_PROJECTS\_DEVNOTE\WFH_Xamun_RawKatalon.xml";
+
+            //defaultXML = @"D:\_KATALON\ERROR\latest.xml";
+#endif
+            #endregion //////////////END TEST
+
+            //step# 5 load defaultXML
+            Open_File(defaultXML);
+
+            //dgActions.DataSource = actionSource;
+            //dgActions.Refresh(); // Make sure this comes first
+            //dgActions.Parent.Refresh(); // Make sure this comes second
+            //flowMain.Refresh();
+
+            RunCondeceptjsDefault();
+
+            //Application.DoEvents();
+
+            //int limit = MyRetry ;
+            TaskWaiter.Conditions cond = new TaskWaiter.Conditions("Wait_CondceptJS_Console");
+            await cond.WaitUntil(() => CmdExeForCodecept != null)
+                .ContinueWith(x =>
+                {
+
+                    // WindowsHelper.FollowConsole(this, CmdExeForCodecept);
+
+
+                });
+
+            return true;
         }
+
+
 
         public Task<EnumPlayStatus> PlayStep()
         {

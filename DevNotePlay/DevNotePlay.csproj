@@ -363,12 +363,19 @@
     <Resource Include="Chrome\DevNotePlayExtension\panel\images\table_sorter_header.png" />
     <Resource Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\iedoc-core.xml" />
     <Resource Include="CodeCeptJS\Project1\codecept.conf.template.txt" />
-    <Resource Include="CodeCeptJS\Project1\ReadMe.txt" />
+    <Resource Include="CodeCeptJS\ReadMe.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="CodeCeptJS\Project2\output\endpoint\MyGrabValue.txt" />
-    <Resource Include="CodeCeptJS\Project2\template_test.txt" />
+    <Resource Include="CodeCeptJS\Project2\template_test.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="robot-32.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CodeCeptJS\steps_file.js.template.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Bat\Exe\ReadMe.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -540,13 +547,23 @@
     <Content Include="Chrome\DevNotePlayExtension\panel\js\UI\sortable-ui.js" />
     <Content Include="Chrome\DevNotePlayExtension\panel\js\UI\testcase_grid.js" />
     <Content Include="CodeCeptJS\Project1\codecept.conf.js" />
-    <Content Include="CodeCeptJS\Project2\codecept.conf.js" />
+    <Content Include="CodeCeptJS\Project2\codecept.conf.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="CodeCeptJS\Project2\first_test_test.js" />
     <Content Include="CodeCeptJS\Project2\latest_test.js" />
-    <Content Include="CodeCeptJS\Project2\LaunchChromeExt.js" />
-    <Content Include="CodeCeptJS\Project2\mypuppet_helper.js" />
-    <Content Include="CodeCeptJS\Project2\record_test.js" />
-    <Content Include="CodeCeptJS\Project2\steps_file.js" />
+    <Content Include="CodeCeptJS\Project2\LaunchChromeExt.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeCeptJS\Project2\mypuppet_helper.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeCeptJS\Project2\record_test.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeCeptJS\Project2\steps_file.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="CodeCeptJS\Project2\wfh_test.js" />
   </ItemGroup>
   <ItemGroup>

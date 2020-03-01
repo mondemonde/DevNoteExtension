@@ -117,7 +117,7 @@
                     </EventTrigger>
                 </StackPanel.Triggers>
                 <Canvas x:Name="canvas" Width="{Binding ActualWidth, ElementName=stack}">
-                    <TextBlock Text="DevNotePlay™  version 1.0.0.1" FontSize="14"  x:Name="txtVersion" Canvas.Left="0" Margin="0,27,0,0"/>
+                    <TextBlock Text="DevNotePlay™  version 1.0.0.1" FontSize="14"  x:Name="txtKron" Canvas.Left="0" Margin="0,27,0,0"/>
                     <TextBlock x:Name="txtCaption" Text="{Binding Text, ElementName=txtKron}" FontSize="14" Canvas.Left="{Binding Width, ElementName=canvas}" Margin="0,27,0,0"/>
                 </Canvas>
               
