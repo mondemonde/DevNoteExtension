@@ -363,9 +363,6 @@
     <Resource Include="Chrome\DevNotePlayExtension\panel\images\table_sorter_header.png" />
     <Resource Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\iedoc-core.xml" />
     <Resource Include="CodeCeptJS\Project1\codecept.conf.template.txt" />
-    <Resource Include="CodeCeptJS\ReadMe.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="CodeCeptJS\Project2\output\endpoint\MyGrabValue.txt" />
     <Resource Include="CodeCeptJS\Project2\template_test.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
