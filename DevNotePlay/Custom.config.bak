@@ -53,7 +53,7 @@
 
     <add key="DevNotePlayerExe" value="D:\_MY_PROJECTS\_DEVNOTE\_DevNote4\DevNote.Main\bin\Debug2\_EXE\Player\DevNote.Web.Recorder.exe" />
 
-    <!--<add key="Project2EndPointFolder" value="D:\_MY_PROJECTS\_DEVNOTE\_DevNote4\DevNote.Main\bin\Debug2\_EXE\Player\CodeCeptJS\Project2\output\endpoint" />-->
+    <add key="Project2EndPointFolder" value="D:\_MY_PROJECTS\_DEVNOTE\_DevNote4\DevNote.Main\bin\Debug2\_EXE\Player\CodeCeptJS\Project2\output\endpoint" />
 
     <!--<add key="ChromeExe" value="F:\Dump\chrome-win\chrome.exe" />-->
     <add key="ChromeExe" value="D:\_ChromeExtension\chrome-win\chrome.exe" />
@@ -67,7 +67,7 @@
         if supplied it override the default.
         set this as your default download of chrome.exe
         -->
-    <!--<add key="DefaultPlayXMLFile" value="D:\_MY_PROJECTS\_DEVNOTE\_DevNote4\DevNote.Main\bin\Debug2\_EXE\Player\CodeCeptJS\Project2" />-->
+    <!--<add key="DefaultPlayXMLFile" value="D:\_MY_PROJECTS\_DEVNOTE\_DevNote4\DevNote.Main\bin\Debug2\_EXE\Player\CodeCeptJS\Project2\record.xml" />-->
 
     <add key="Click_Default_Wait" value="2" />
 

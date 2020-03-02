@@ -29,7 +29,7 @@ namespace DevNote.Web.Recorder
             //ConfigManager config = new ConfigManager();
             //var endPointFolder =config.GetValue("DefaultXMLFile");
 
-            var endPointFolder = FileEndPointManager.Project2Folder;
+           var endPointFolder = Path.GetDirectoryName(FileEndPointManager.DefaultPlayXMLFile);
 
             FileSystemWatcher fileWatcher = new FileSystemWatcher(endPointFolder);
 
@@ -90,7 +90,7 @@ namespace DevNote.Web.Recorder
             //step# 70 PLAY.TXT
             if (e.Name.ToLower() == "play.txt")
             {
-                var endPointFolder = FileEndPointManager.Project2Folder;
+                var endPointFolder = Path.GetDirectoryName(FileEndPointManager.DefaultPlayXMLFile);
 
 
                 Console.WriteLine("found play.txt");
@@ -122,7 +122,7 @@ namespace DevNote.Web.Recorder
             {
                 //copy and delete record.xml
                 // record(1).xml  ,record(2).xml
-                var endPointFolder = FileEndPointManager.Project2Folder;
+                var endPointFolder = Path.GetDirectoryName(FileEndPointManager.DefaultPlayXMLFile);
 
                 //"*.exe|*.dll"
                 var latestFiles = Directory.GetFiles(endPointFolder, "recor*.xml",SearchOption.TopDirectoryOnly);

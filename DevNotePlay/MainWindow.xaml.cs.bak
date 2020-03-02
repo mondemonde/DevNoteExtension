@@ -135,9 +135,16 @@ namespace Player
 
             IsSessionLifeSpan = true;
             // CheckForUpdate();
+
+            txtVersion.Text = txtCaption.Text =string.Format("DevNotePlay™ version {0}", GetVersion());
+
         }
 
-
+        string GetVersion()
+        {
+           var version =  DevAPI.GetVersion();
+           return version.ToString();
+        }
         #region SQUIRREL
 
         //async Task CheckForUpdate()
@@ -425,8 +432,9 @@ namespace Player
             await cond.WaitUntil(() => CmdExeForCodecept != null)
                 .ContinueWith(x =>
                 {
-
-                    // WindowsHelper.FollowConsole(this, CmdExeForCodecept);
+                    //Task.Delay(1);
+                    // WindowsHelper.FollowConsole(CmdExeForCodecept);
+                    this.Activate();
 
 
                 });

@@ -119,8 +119,10 @@ namespace Player
             this.openFileDialog1.Title = "Browse Script Files (json)";
             // 
 
-            ConfigManager config = new ConfigManager();         
-            var chromeDefaultDownload = Path.GetDirectoryName(FileEndPointManager.DefaultPlayXMLFile);
+            FileEndPointManager.Root = STEP_.PLAYER;
+
+            ConfigManager config = new ConfigManager();
+            var chromeDefaultDownload = FileEndPointManager.Project2Folder;//Path.GetDirectoryName(FileEndPointManager.DefaultPlayXMLFile);
 
 
             RecFileWatcher watcher = new RecFileWatcher();
@@ -200,7 +202,7 @@ namespace Player
             //step# 70 PLAY.TXT
             if (e.Name.ToLower() == "play.txt")
             {
-                var endPointFolder = System.IO.Path.GetDirectoryName(FileEndPointManager.DefaultPlayXMLFile);
+                var endPointFolder = FileEndPointManager.Project2Folder; 
 
 
                 Console.WriteLine("found play.txt");
@@ -231,7 +233,7 @@ namespace Player
             {
                 //copy and delete record.xml
                 // record(1).xml  ,record(2).xml
-                var endPointFolder = System.IO.Path.GetDirectoryName(FileEndPointManager.DefaultPlayXMLFile);
+                var endPointFolder = FileEndPointManager.Project2Folder;
 
                 //"*.exe|*.dll"
                 var latestFiles = System.IO.Directory.GetFiles(endPointFolder, "recor*.xml", System.IO.SearchOption.TopDirectoryOnly);
@@ -392,7 +394,7 @@ namespace Player
 
             if (isRecording)
             {
-                var endPointFolder = Path.GetDirectoryName(FileEndPointManager.DefaultPlayXMLFile);
+                var endPointFolder =FileEndPointManager.Project2Folder;
 
                 //TODO check for error in UI
                 //ActivateGroupBox(groupBoxRec);
@@ -432,8 +434,9 @@ namespace Player
             await cond.WaitUntil(() => CmdExeForCodecept != null)
                 .ContinueWith(x =>
                 {
-
-                    // WindowsHelper.FollowConsole(this, CmdExeForCodecept);
+                    //Task.Delay(1);
+                    // WindowsHelper.FollowConsole(CmdExeForCodecept);
+                    this.Activate();
 
 
                 });
@@ -821,12 +824,15 @@ namespace Player
             // var folder = Path.GetDirectoryName(jsXMLFile);
 
 
-            var dir = LogApplication.Agent.GetCurrentDir();
-            dir = dir.Replace("file:\\", string.Empty);
-            string drive =System.IO.Path.GetPathRoot(dir);
-            string driveLetter = drive.First().ToString();
+            //var dir = LogApplication.Agent.GetCurrentDir();
+            //dir = dir.Replace("file:\\", string.Empty);
+            //string drive =System.IO.Path.GetPathRoot(dir);
+            //string driveLetter = drive.First().ToString();
 
-            var codeceptjsFolder = string.Format("{0}\\CodeceptJs\\Project2", dir);  //@"D:\_ROBOtFRAMeWORK\CodeceptsJs\Project1\";
+            var codeceptjsFolder = FileEndPointManager.Project2Folder;//string.Format("{0}\\CodeceptJs\\Project2", dir);  //@"D:\_ROBOtFRAMeWORK\CodeceptsJs\Project1\";
+
+
+
             var codeceptTestPath =System.IO.Path.Combine(codeceptjsFolder, "latest_test.js");
 
 
