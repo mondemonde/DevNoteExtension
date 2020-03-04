@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Management;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -276,6 +277,7 @@ namespace Player
 
         private void ButtonFechar_Click(object sender, RoutedEventArgs e)
         {
+            CloseChromeWindow();
             Application.Current.Shutdown();
         }
 
@@ -321,46 +323,68 @@ namespace Player
         }
 
         public static Process CmdExeForChrome;
+        //public List<Process> ChromeProcesses;
         public static Process CmdExeForCodecept;
+        public static string ChromiumDir;
 
 
         public void CreateChrome()
         {
-            var dir = LogApplication.Agent.GetCurrentDir();
-            dir = dir.Replace("file:\\", string.Empty);
-            string drive = System.IO.Path.GetPathRoot(dir);
-            string driveLetter = drive.First().ToString();
+            ChromiumDir = LogApplication.Agent.GetCurrentDir() + "\\Chrome\\chrome-win\\chrome.exe";
+            if (CmdExeForChrome == null)
+            {
+                CmdExeForChrome = Process.Start(ChromiumDir);
+            }
+            else if (CmdExeForChrome.HasExited)
+            {
+                CmdExeForChrome = Process.Start(ChromiumDir);
+            }
+            else
+            {
+                MessageBox.Show("Only one instance of Chromium can be opened at a time.", "DevNotePlay", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            //else
+            //{
+            //    Process chromeInstance = Process.Start(dir + "\\Chrome\\chrome-win\\chrome.exe");
+            //    if (ChromeProcesses == null) ChromeProcesses = new List<Process>();
+            //    ChromeProcesses.Add(chromeInstance);
+            //}
 
-            var param = string.Format("cd /{0} {1}\\CodeceptJs\\Project2", driveLetter, dir);
+            #region 2020-3-04 old code
+            //dir = dir.Replace("file:\\", string.Empty);
+            //string drive = System.IO.Path.GetPathRoot(dir);
+            //string driveLetter = drive.First().ToString();
 
-
-            //MyConsoleControlForChrome.WriteInput("node LaunchChromeExt.js", Color.AliceBlue, true);
-
-            var batFolder = string.Format("{0}\\Bat", dir);  //@"D:\_ROBOtFRAMeWORK\CodeceptsJs\Project1\";
-            var batPath = System.IO.Path.Combine(batFolder, "RunChromeExt.bat");
-            var batTemplate = System.IO.File.ReadAllText(batPath);
-            batTemplate = batTemplate.Replace("##Home##", param);
-
-            //ConfigManager config = new ConfigManager();
-            //var exe = config.GetValue("ChromeExe");
-
-            var exe = FileEndPointManager.MyChromeViaRecorder;
-            batTemplate = batTemplate.Replace("##.exe##", exe);
-
-
-            var codeceptjsFolder = string.Format("{0}\\CodeceptJs\\Project2", dir);  //@"D:\_ROBOtFRAMeWORK\CodeceptsJs\Project1\";
-            var codeceptBatPath = System.IO.Path.Combine(codeceptjsFolder, "RunChromeExt.bat");
-
-
-            if (System.IO.File.Exists(codeceptBatPath))
-                System.IO.File.Delete(codeceptBatPath);
-
-            System.IO.File.WriteAllText(codeceptBatPath, batTemplate);
+            //var param = string.Format("cd /{0} {1}\\CodeceptJs\\Project2", driveLetter, dir);
 
 
-            //step# 2 run bat file
-            CmdExeForChrome = RunHelper.ExecuteCommandSilently(codeceptBatPath);
+            ////MyConsoleControlForChrome.WriteInput("node LaunchChromeExt.js", Color.AliceBlue, true);
 
+            //var batFolder = string.Format("{0}\\Bat", dir);  //@"D:\_ROBOtFRAMeWORK\CodeceptsJs\Project1\";
+            //var batPath = System.IO.Path.Combine(batFolder, "RunChromeExt.bat");
+            //var batTemplate = System.IO.File.ReadAllText(batPath);
+            //batTemplate = batTemplate.Replace("##Home##", param);
+
+            ////ConfigManager config = new ConfigManager();
+            ////var exe = config.GetValue("ChromeExe");
+
+            //var exe = FileEndPointManager.MyChromeViaRecorder;
+            //batTemplate = batTemplate.Replace("##.exe##", exe);
+
+
+            //var codeceptjsFolder = string.Format("{0}\\CodeceptJs\\Project2", dir);  //@"D:\_ROBOtFRAMeWORK\CodeceptsJs\Project1\";
+            //var codeceptBatPath = System.IO.Path.Combine(codeceptjsFolder, "RunChromeExt.bat");
+
+
+            //if (System.IO.File.Exists(codeceptBatPath))
+            //    System.IO.File.Delete(codeceptBatPath);
+
+            //System.IO.File.WriteAllText(codeceptBatPath, batTemplate);
+
+
+            ////step# 2 run bat file
+            //CmdExeForChrome = RunHelper.ExecuteCommandSilently(codeceptBatPath); 
+            #endregion
             return;
         }
 
@@ -713,25 +737,52 @@ namespace Player
 
         void CloseChromeWindow()
         {
-            if (CmdExeForCodecept != null)
+            try
             {
-                try
+                //clears all windows
+                //int handle = (int)CmdExeForChrome.MainWindowHandle;
+                //WindowsHelper.CloseWindow(handle);
+                //CmdExeForChrome.CloseMainWindow();
+                var processes = Process.GetProcessesByName("chrome");
+                foreach (Process p in processes)
                 {
-                    //clears all windows
-                    int handle = (int)CmdExeForChrome.MainWindowHandle;
-                    WindowsHelper.CloseWindow(handle);
+                    var processDir = GetProcessFullPath(p.Id);
 
-
-                }
-                catch (Exception)
-                {
-
-                    // throw;
+                    // Kills all processes related to chromium
+                    if (processDir == ChromiumDir)
+                    {
+                        p.Kill();
+                    }
                 }
             }
+            catch //(Exception exc)
+            {
+                //throw exc;
+            }
+        }
 
-            CmdExeForChrome = null;
+        // function to get the full path of the process regardless of whether it's 32-bit or 64-bit
+        private string GetProcessFullPath(int processId)
+        {
+            string MethodResult = "";
+            try
+            {
+                string Query = "SELECT ExecutablePath FROM Win32_Process WHERE ProcessId = " + processId;
+                using (ManagementObjectSearcher mos = new ManagementObjectSearcher(Query))
+                {
+                    using (ManagementObjectCollection moc = mos.Get())
+                    {
+                        string ExecutablePath = (from mo in moc.Cast<ManagementObject>() select mo["ExecutablePath"]).First().ToString();
 
+                        MethodResult = ExecutablePath;
+                    }
+                }
+            }
+            catch //(Exception ex)
+            {
+                //ex.HandleException();
+            }
+            return MethodResult;
         }
 
         private void Open_File(string jsXMLFile)
