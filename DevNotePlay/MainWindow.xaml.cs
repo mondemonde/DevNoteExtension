@@ -490,7 +490,8 @@ namespace Player
             string drive = Path.GetPathRoot(dir);
             string driveLetter = drive.First().ToString();
 
-            var param = string.Format("cd /{0} {1}\\CodeceptJs\\Project2", driveLetter, dir);
+            //var param = string.Format("cd /{0} {1}\\CodeceptJs\\Project2", driveLetter, dir);
+            var param = string.Format("cd {1}\\CodeceptJs\\Project2", driveLetter, dir);
 
             //MyConsoleControlForChrome.WriteInput("node LaunchChromeExt.js", Color.AliceBlue, true);
             var batFolder = string.Format("{0}\\Bat", dir);  //@"D:\_ROBOtFRAMeWORK\CodeceptsJs\Project1\";
