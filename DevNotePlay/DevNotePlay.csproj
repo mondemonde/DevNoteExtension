@@ -116,9 +116,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CodeceptSupport">
-      <HintPath>..\DependencyLib\Dependency\CodeceptSupport.dll</HintPath>
-    </Reference>
     <Reference Include="DeltaCompressionDotNet, Version=1.1.0.0, Culture=neutral, PublicKeyToken=1d14d6e5194e7f4a, processorArchitecture=MSIL">
       <HintPath>..\packages\DeltaCompressionDotNet.1.1.0\lib\net20\DeltaCompressionDotNet.dll</HintPath>
     </Reference>
@@ -127,12 +124,6 @@
     </Reference>
     <Reference Include="DeltaCompressionDotNet.PatchApi, Version=1.1.0.0, Culture=neutral, PublicKeyToken=3e8888ee913ed789, processorArchitecture=MSIL">
       <HintPath>..\packages\DeltaCompressionDotNet.1.1.0\lib\net20\DeltaCompressionDotNet.PatchApi.dll</HintPath>
-    </Reference>
-    <Reference Include="DevNote.Interface">
-      <HintPath>..\DependencyLib\Dependency\DevNote.Interface.dll</HintPath>
-    </Reference>
-    <Reference Include="DevNoteCmdPlayer2">
-      <HintPath>..\DependencyLib\Dependency\DevNoteCmdPlayer2.dll</HintPath>
     </Reference>
     <Reference Include="DotBits.Configuration">
       <HintPath>..\DependencyLib\Dependency\DotBits.Configuration.dll</HintPath>
@@ -161,14 +152,8 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="PuppetSupportLib">
-      <HintPath>..\DependencyLib\Dependency\PuppetSupportLib.dll</HintPath>
-    </Reference>
     <Reference Include="RestSharp, Version=106.0.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.106.10.1\lib\net452\RestSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="SeleniumSupportLib">
-      <HintPath>..\DependencyLib\Dependency\SeleniumSupportLib.dll</HintPath>
     </Reference>
     <Reference Include="SharpCompress, Version=0.17.1.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpCompress.0.17.1\lib\net45\SharpCompress.dll</HintPath>
@@ -570,6 +555,31 @@
       <Visible>True</Visible>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CodeceptSupport\CodeceptSupport.csproj">
+      <Project>{b8ce0356-d22e-4fc5-82af-0b829012a3b6}</Project>
+      <Name>CodeceptSupport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevNoteBrowser.Interface\DevNote.Interface.csproj">
+      <Project>{8271ba6e-0db5-4194-a9f5-08baf65b4110}</Project>
+      <Name>DevNote.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevNoteCmdPlayer\DevNoteCmdPlayer2.csproj">
+      <Project>{7a8a7452-4d46-449a-a60d-83c4ac8d8a7d}</Project>
+      <Name>DevNoteCmdPlayer2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevNoteWindowsFormsControlLibrary\DevNoteWindowsFormsControlLibrary.csproj">
+      <Project>{7c3a73c3-d9d4-4d2f-9ea4-d7fcb9ab2c76}</Project>
+      <Name>DevNoteWindowsFormsControlLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PuppeteerSupportLib\PuppetSupportLib.csproj">
+      <Project>{37fd6054-aecc-45b1-9014-7839bdd300ba}</Project>
+      <Name>PuppetSupportLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SeleniumSupportLib\SeleniumSupportLib.csproj">
+      <Project>{a20a13d8-be3f-4f6e-8aa5-448b9d8dabd9}</Project>
+      <Name>SeleniumSupportLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

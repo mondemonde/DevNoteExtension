@@ -330,7 +330,8 @@ namespace Player
 
         public void CreateChrome()
         {
-            ChromiumDir = LogApplication.Agent.GetCurrentDir() + "\\Chrome\\chrome-win\\chrome.exe";
+
+            ChromiumDir = FileEndPointManager.MyChromeViaRecorder;//LogApplication.Agent.GetCurrentDir() + "\\Chrome\\chrome-win\\chrome.exe";
             if (CmdExeForChrome == null)
             {
                 CmdExeForChrome = Process.Start(ChromiumDir);

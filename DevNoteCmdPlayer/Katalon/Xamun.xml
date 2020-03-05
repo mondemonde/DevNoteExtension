@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestCase>
+  <selenese>
+    <command>open</command>
+    <target><![CDATA[http://xamun.com/]]></target>
+    <value><![CDATA[]]></value>
+  </selenese>
+  <selenese>
+    <command>click</command>
+    <target><![CDATA[id=u11979-2]]></target>
+    <value><![CDATA[]]></value>
+  </selenese>
+  <selenese>
+    <command>click</command>
+    <target><![CDATA[id=userpasswordbox]]></target>
+    <value><![CDATA[]]></value>
+  </selenese>
+  <selenese>
+    <command>click</command>
+    <target><![CDATA[id=usernamebox]]></target>
+    <value><![CDATA[]]></value>
+  </selenese>
+  <selenese>
+    <command>click</command>
+    <target><![CDATA[id=loginButton]]></target>
+    <value><![CDATA[]]></value>
+  </selenese>
+  <selenese>
+    <command>type</command>
+    <target><![CDATA[xpath=(.//*[normalize-space(text()) and normalize-space(.)='AIFS 1'])[2]/following::input[1]]]></target>
+    <value><![CDATA[rgalvez@blastasia.com]]></value>
+  </selenese>
+  <selenese>
+    <command>type</command>
+    <target><![CDATA[xpath=(.//*[normalize-space(text()) and normalize-space(.)='Change Password:'])[1]/following::input[1]]]></target>
+    <value><![CDATA[Kc2n6Z7R]]></value>
+  </selenese>
+  <selenese>
+    <command>click</command>
+    <target><![CDATA[xpath=(.//*[normalize-space(text()) and normalize-space(.)='Task List'])[1]/following::div[3]]]></target>
+    <value><![CDATA[]]></value>
+  </selenese>
+  <selenese>
+    <command>click</command>
+    <target><![CDATA[xpath=(.//*[normalize-space(text()) and normalize-space(.)='Apply'])[1]/following::div[1]]]></target>
+    <value><![CDATA[]]></value>
+  </selenese>
+  <selenese>
+    <command>click</command>
+    <target><![CDATA[xpath=(.//*[normalize-space(text()) and normalize-space(.)='Select type'])[1]/following::div[1]]]></target>
+    <value><![CDATA[]]></value>
+  </selenese>
+  <selenese>
+    <command>click</command>
+    <target><![CDATA[xpath=(.//*[normalize-space(text()) and normalize-space(.)='Sick Leave'])[4]/following::b[1]]]></target>
+    <value><![CDATA[]]></value>
+  </selenese>
+</TestCase>

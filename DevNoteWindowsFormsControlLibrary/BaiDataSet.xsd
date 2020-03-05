@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BaiDataSet" targetNamespace="http://tempuri.org/BaiDataSet.xsd" xmlns:mstns="http://tempuri.org/BaiDataSet.xsd" xmlns="http://tempuri.org/BaiDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="MyDbContextConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="MyDbContextConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DevNoteWindowsFormsControlLibrary.Properties.Settings.GlobalReference.Default.MyDbContextConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="WFProfilesTableAdapter" GeneratorDataComponentClassName="WFProfilesTableAdapter" Name="WFProfiles" UserDataComponentName="WFProfilesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="MyDbContextConnectionString (Settings)" DbObjectName="MyDbContext.dbo.WFProfiles" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        WFProfiles.*
+FROM            WFProfiles</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="Domain" DataSetColumn="Domain" />
+              <Mapping SourceColumn="Department" DataSetColumn="Department" />
+              <Mapping SourceColumn="Alias" DataSetColumn="Alias" />
+              <Mapping SourceColumn="Tag" DataSetColumn="Tag" />
+              <Mapping SourceColumn="SourcePath" DataSetColumn="SourcePath" />
+              <Mapping SourceColumn="InActive" DataSetColumn="InActive" />
+              <Mapping SourceColumn="VersionNo" DataSetColumn="VersionNo" />
+              <Mapping SourceColumn="Created" DataSetColumn="Created" />
+              <Mapping SourceColumn="Modified" DataSetColumn="Modified" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="WFProfileParametersTableAdapter" GeneratorDataComponentClassName="WFProfileParametersTableAdapter" Name="WFProfileParameters" UserDataComponentName="WFProfileParametersTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="MyDbContextConnectionString (Settings)" DbObjectName="MyDbContext.dbo.WFProfileParameters" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        WFProfileParameters.*
+FROM            WFProfileParameters</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="WFProfileId" DataSetColumn="WFProfileId" />
+              <Mapping SourceColumn="PropertyName" DataSetColumn="PropertyName" />
+              <Mapping SourceColumn="MappedTo_Input_X" DataSetColumn="MappedTo_Input_X" />
+              <Mapping SourceColumn="DefaultValue" DataSetColumn="DefaultValue" />
+              <Mapping SourceColumn="Created" DataSetColumn="Created" />
+              <Mapping SourceColumn="Modified" DataSetColumn="Modified" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="BaiDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="BaiDataSet" msprop:Generator_UserDSName="BaiDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="WFProfiles" msprop:Generator_TableClassName="WFProfilesDataTable" msprop:Generator_TableVarName="tableWFProfiles" msprop:Generator_RowChangedName="WFProfilesRowChanged" msprop:Generator_TablePropName="WFProfiles" msprop:Generator_RowDeletingName="WFProfilesRowDeleting" msprop:Generator_RowChangingName="WFProfilesRowChanging" msprop:Generator_RowEvHandlerName="WFProfilesRowChangeEventHandler" msprop:Generator_RowDeletedName="WFProfilesRowDeleted" msprop:Generator_RowClassName="WFProfilesRow" msprop:Generator_UserTableName="WFProfiles" msprop:Generator_RowEvArgName="WFProfilesRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="Domain" msprop:Generator_ColumnVarNameInTable="columnDomain" msprop:Generator_ColumnPropNameInRow="Domain" msprop:Generator_ColumnPropNameInTable="DomainColumn" msprop:Generator_UserColumnName="Domain" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Department" msprop:Generator_ColumnVarNameInTable="columnDepartment" msprop:Generator_ColumnPropNameInRow="Department" msprop:Generator_ColumnPropNameInTable="DepartmentColumn" msprop:Generator_UserColumnName="Department" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Alias" msprop:Generator_ColumnVarNameInTable="columnAlias" msprop:Generator_ColumnPropNameInRow="Alias" msprop:Generator_ColumnPropNameInTable="AliasColumn" msprop:Generator_UserColumnName="Alias" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Tag" msprop:Generator_ColumnVarNameInTable="columnTag" msprop:Generator_ColumnPropNameInRow="Tag" msprop:Generator_ColumnPropNameInTable="TagColumn" msprop:Generator_UserColumnName="Tag" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SourcePath" msprop:Generator_ColumnVarNameInTable="columnSourcePath" msprop:Generator_ColumnPropNameInRow="SourcePath" msprop:Generator_ColumnPropNameInTable="SourcePathColumn" msprop:Generator_UserColumnName="SourcePath" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="InActive" msprop:Generator_ColumnVarNameInTable="columnInActive" msprop:Generator_ColumnPropNameInRow="InActive" msprop:Generator_ColumnPropNameInTable="InActiveColumn" msprop:Generator_UserColumnName="InActive" type="xs:boolean" />
+              <xs:element name="VersionNo" msprop:Generator_ColumnVarNameInTable="columnVersionNo" msprop:Generator_ColumnPropNameInRow="VersionNo" msprop:Generator_ColumnPropNameInTable="VersionNoColumn" msprop:Generator_UserColumnName="VersionNo" type="xs:int" />
+              <xs:element name="Created" msprop:Generator_ColumnVarNameInTable="columnCreated" msprop:Generator_ColumnPropNameInRow="Created" msprop:Generator_ColumnPropNameInTable="CreatedColumn" msprop:Generator_UserColumnName="Created" type="xs:dateTime" />
+              <xs:element name="Descriptions" msprop:Generator_ColumnVarNameInTable="columnDescriptions" msprop:Generator_ColumnPropNameInRow="Descriptions" msprop:Generator_ColumnPropNameInTable="DescriptionsColumn" msprop:Generator_UserColumnName="Descriptions" type="xs:string" minOccurs="0" />
+              <xs:element name="Modified" msprop:Generator_ColumnVarNameInTable="columnModified" msprop:Generator_ColumnPropNameInRow="Modified" msprop:Generator_ColumnPropNameInTable="ModifiedColumn" msprop:Generator_UserColumnName="Modified" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="WFProfileParameters" msprop:Generator_TableClassName="WFProfileParametersDataTable" msprop:Generator_TableVarName="tableWFProfileParameters" msprop:Generator_RowChangedName="WFProfileParametersRowChanged" msprop:Generator_TablePropName="WFProfileParameters" msprop:Generator_RowDeletingName="WFProfileParametersRowDeleting" msprop:Generator_RowChangingName="WFProfileParametersRowChanging" msprop:Generator_RowEvHandlerName="WFProfileParametersRowChangeEventHandler" msprop:Generator_RowDeletedName="WFProfileParametersRowDeleted" msprop:Generator_RowClassName="WFProfileParametersRow" msprop:Generator_UserTableName="WFProfileParameters" msprop:Generator_RowEvArgName="WFProfileParametersRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="WFProfileId" msprop:Generator_ColumnVarNameInTable="columnWFProfileId" msprop:Generator_ColumnPropNameInRow="WFProfileId" msprop:Generator_ColumnPropNameInTable="WFProfileIdColumn" msprop:Generator_UserColumnName="WFProfileId" type="xs:int" />
+              <xs:element name="PropertyName" msprop:Generator_ColumnVarNameInTable="columnPropertyName" msprop:Generator_ColumnPropNameInRow="PropertyName" msprop:Generator_ColumnPropNameInTable="PropertyNameColumn" msprop:Generator_UserColumnName="PropertyName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MappedTo_Input_X" msprop:Generator_ColumnVarNameInTable="columnMappedTo_Input_X" msprop:Generator_ColumnPropNameInRow="MappedTo_Input_X" msprop:Generator_ColumnPropNameInTable="MappedTo_Input_XColumn" msprop:Generator_UserColumnName="MappedTo_Input_X" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DefaultValue" msprop:Generator_ColumnVarNameInTable="columnDefaultValue" msprop:Generator_ColumnPropNameInRow="DefaultValue" msprop:Generator_ColumnPropNameInTable="DefaultValueColumn" msprop:Generator_UserColumnName="DefaultValue" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Created" msprop:Generator_ColumnVarNameInTable="columnCreated" msprop:Generator_ColumnPropNameInRow="Created" msprop:Generator_ColumnPropNameInTable="CreatedColumn" msprop:Generator_UserColumnName="Created" type="xs:dateTime" />
+              <xs:element name="Modified" msprop:Generator_ColumnVarNameInTable="columnModified" msprop:Generator_ColumnPropNameInRow="Modified" msprop:Generator_ColumnPropNameInTable="ModifiedColumn" msprop:Generator_UserColumnName="Modified" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:WFProfiles" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="WFProfileParameters_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:WFProfileParameters" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

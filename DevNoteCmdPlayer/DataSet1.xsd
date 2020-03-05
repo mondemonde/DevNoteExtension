@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet1" targetNamespace="http://tempuri.org/DataSet1.xsd" xmlns:mstns="http://tempuri.org/DataSet1.xsd" xmlns="http://tempuri.org/DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet1" msprop:Generator_UserDSName="DataSet1">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ActionScript" msprop:Generator_TableClassName="ActionScriptDataTable" msprop:Generator_TableVarName="tableActionScript" msprop:Generator_TablePropName="ActionScript" msprop:Generator_RowDeletingName="ActionScriptRowDeleting" msprop:Generator_RowChangingName="ActionScriptRowChanging" msprop:Generator_RowEvHandlerName="ActionScriptRowChangeEventHandler" msprop:Generator_RowDeletedName="ActionScriptRowDeleted" msprop:Generator_UserTableName="ActionScript" msprop:Generator_RowChangedName="ActionScriptRowChanged" msprop:Generator_RowEvArgName="ActionScriptRowChangeEvent" msprop:Generator_RowClassName="ActionScriptRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OrderNo" msprop:Generator_ColumnVarNameInTable="columnOrderNo" msprop:Generator_ColumnPropNameInRow="OrderNo" msprop:Generator_ColumnPropNameInTable="OrderNoColumn" msprop:Generator_UserColumnName="OrderNo" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="Script" msprop:Generator_ColumnVarNameInTable="columnScript" msprop:Generator_ColumnPropNameInRow="Script" msprop:Generator_ColumnPropNameInTable="ScriptColumn" msprop:Generator_UserColumnName="Script" type="xs:string" minOccurs="0" />
+              <xs:element name="command" msprop:Generator_ColumnVarNameInTable="columncommand" msprop:Generator_ColumnPropNameInRow="command" msprop:Generator_ColumnPropNameInTable="commandColumn" msprop:Generator_UserColumnName="command" type="xs:string" minOccurs="0" />
+              <xs:element name="target" msprop:Generator_ColumnVarNameInTable="columntarget" msprop:Generator_ColumnPropNameInRow="target" msprop:Generator_ColumnPropNameInTable="targetColumn" msprop:Generator_UserColumnName="target" type="xs:string" minOccurs="0" />
+              <xs:element name="value" msprop:Generator_ColumnVarNameInTable="columnvalue" msprop:Generator_ColumnPropNameInRow="value" msprop:Generator_ColumnPropNameInTable="valueColumn" msprop:Generator_UserColumnName="value" type="xs:string" minOccurs="0" />
+              <xs:element name="IsFailed" msprop:Generator_ColumnVarNameInTable="columnIsFailed" msprop:Generator_ColumnPropNameInRow="IsFailed" msprop:Generator_ColumnPropNameInTable="IsFailedColumn" msprop:Generator_UserColumnName="IsFailed" type="xs:boolean" default="false" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
