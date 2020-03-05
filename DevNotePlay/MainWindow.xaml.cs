@@ -938,18 +938,9 @@ namespace Player
 
                 }
 
-                //var json = JsonConvert.SerializeObject(myList);
-                // Create a file to write to.
-                //string createText = json;
-
-                //var codeceptjsFolder = string.Format("{0}\\CodeceptJs\\Project1", dir);  //@"D:\_ROBOtFRAMeWORK\CodeceptsJs\Project1\";
-                //var codeCeptConfigPath = Path.Combine(codeceptjsFolder, "codecept.conf.js");
-                //string codeCeptConfigTemplate;
-                //var codeCeptTestTemplate = File.ReadAllText(Path.Combine(codeceptjsFolder, "codecept.conf.template.txt"));
 
                 //step# _8.4 config.GetValue("CodeceptTestTemplate");
-                ConfigManager config = new ConfigManager();
-                var codeCeptConfigPath = config.GetValue("CodeceptTestTemplate");
+                var codeCeptConfigPath = FileEndPointManager.MyCodeceptTestTemplate; //config.GetValue("CodeceptTestTemplate");
                 var codeCeptTestTemplate = File.ReadAllText(codeCeptConfigPath);
                 codeCeptTestTemplate = codeCeptTestTemplate.Replace("##steps##", codes);
 

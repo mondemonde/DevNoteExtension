@@ -147,6 +147,28 @@ namespace Common
 
         }
 
+        public static string MyCodeceptTestTemplate
+        {
+            get
+            {
+                ConfigManager config = new ConfigManager();
+                string template = config.GetValue("CodeceptTestTemplate");
+
+                if (string.IsNullOrEmpty(template))
+                {
+                    //get default directory
+                    //D:\_MY_PROJECTS\_DEVNOTE\_DevNote4\DevNote.Web.Recorder\Chrome\chrome-win\chrome.exe
+                    var currentDir = LogApplication.Agent.GetCurrentDir();
+                    currentDir = currentDir.Replace("file:\\", string.Empty);
+
+
+                    var dir = string.Format("{0}\\CodeCeptJS\\Project2", currentDir);
+                    template = System.IO.Path.Combine(dir, "template_test.txt");
+                }
+                return template;
+            }
+
+        }
 
 
         public static void CreateInputWF(RunWFCmdParam cmd, bool isOverwrite = false)
