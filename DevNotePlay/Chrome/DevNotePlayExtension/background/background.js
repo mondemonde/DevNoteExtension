@@ -152,3 +152,16 @@ browser.contextMenus.onClicked.addListener(function(info, tab) {
 browser.runtime.onConnect.addListener(function(m) {
     port = m;
 });
+
+chrome.windows.onRemoved.addListener(function(windowid) {
+    chrome.windows.getAll(function(windows) {
+        let normalWindows = windows.filter(function(window) {
+            return window.type == "normal";
+        });
+        if (normalWindows.length == 0) {
+            for (let i = 0; i < windows.length; i++) {
+                chrome.windows.remove(windows[i].id);
+            }
+        }
+    });
+});
