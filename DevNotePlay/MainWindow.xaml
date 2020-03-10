@@ -133,6 +133,11 @@
                         Margin="0,0"
                         RenderTransformOrigin="1,0.5" 
                         HorizontalAlignment="Left">
+                    <Button.ToolTip>
+                        <ToolTip>
+                            Open recording
+                        </ToolTip>
+                    </Button.ToolTip>
                     <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center" Width="30" Height="20">
                         <materialDesign:PackIcon.Foreground>
                             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -146,6 +151,11 @@
 
 
                 <Button x:Name="btnPlus" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" Width="20" Height="20" Margin="0,0,35,0" Click="btnPlus_Click" RenderTransformOrigin="1,0.5" HorizontalAlignment="Right">
+                    <Button.ToolTip>
+                        <ToolTip>
+                            Settings
+                        </ToolTip>
+                    </Button.ToolTip>
                     <materialDesign:PackIcon Kind="Settings" VerticalAlignment="Center" Width="20" Height="20">
                         <materialDesign:PackIcon.Foreground>
                             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -159,6 +169,11 @@
 
 
                 <Button x:Name="ButtonFechar" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Right" Width="20" Height="20" Margin="10,0" Click="ButtonFechar_Click">
+                    <Button.ToolTip>
+                        <ToolTip>
+                            Close
+                        </ToolTip>
+                    </Button.ToolTip>
                     <materialDesign:PackIcon Kind="Power" VerticalAlignment="Center" Width="20" Height="20">
                         <materialDesign:PackIcon.Foreground>
                             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -184,7 +199,6 @@
                     <Menu DockPanel.Dock="Bottom" Background="#44444444" Foreground="OrangeRed" Height="50" Margin="0,0,-5,0" >
 
                         <Button x:Name="btnRec" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="#00000000" BorderBrush="#70702222" HorizontalAlignment="Left" Click="btnRec_Click">
-
                             <Button.ToolTip>
                                 <ToolTip >
                                     <StackPanel Width="200">
@@ -196,7 +210,6 @@
                                         </StackPanel>
                                         <TextBlock Text="Open Chrome Browser and use the DevNote Extension button to record." FontSize="14" TextWrapping="WrapWithOverflow"/>
                                         <Line Stroke="Gray" StrokeThickness="2" X2="200"/>
-
                                     </StackPanel>
                                 </ToolTip>
                             </Button.ToolTip>
@@ -214,6 +227,11 @@
                         </Button>
 
                         <Button x:Name="Anterior" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}"  HorizontalAlignment="Left" Margin="0,0" Width="45" Click="Anterior_Click_1" >
+                            <Button.ToolTip>
+                                <ToolTip>
+                                    Run recording
+                                </ToolTip>
+                            </Button.ToolTip>
                             <materialDesign:PackIcon Kind="Replay" VerticalAlignment="Center" Width="30" Height="30">
                                 <materialDesign:PackIcon.Foreground>
                                     <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -227,12 +245,17 @@
 
 
                         <MenuItem  Background="{x:Null}" BorderBrush="{x:Null}" Width="69" >
-                            <MenuItem.Icon>
-                                <!--<Image Source="/Assets/photo (1).jpg" Stretch="Uniform" RenderTransformOrigin="0,0.4">
+                            <MenuItem.ToolTip>
+                                <ToolTip>
+                                    Save recording
+                                </ToolTip>
+                            </MenuItem.ToolTip>
+                                <MenuItem.Icon>
+                            <!--<Image Source="/Assets/photo (1).jpg" Stretch="Uniform" RenderTransformOrigin="0,0.4">
                             <Image.RenderTransform>                                
                                     <ScaleTransform ScaleX  ="3" ScaleY="3.7"/>                                
                             </Image.RenderTransform>
-                        </Image>-->
+                            </Image>-->
                                 <materialDesign:PackIcon Kind="ContentSave" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="-.5,0.5">
                                     <materialDesign:PackIcon.RenderTransform>
                                         <ScaleTransform ScaleX  ="2" ScaleY="2"/>
