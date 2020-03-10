@@ -302,10 +302,32 @@ namespace Player
         private void btnPlus_Click(object sender, RoutedEventArgs e)
         {
             //setting
-            var dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
-            dir = dir.Replace("file:\\", string.Empty);
-            Process.Start(dir);
-                  
+            //var dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
+            //dir = dir.Replace("file:\\", string.Empty);
+            //Process.Start(dir);
+            using (var diag = new System.Windows.Forms.OpenFileDialog())
+            {
+                diag.Filter = "DevNotePlay Record (*.dplay)|*.dplay";
+                diag.FilterIndex = 1;
+
+                var result = diag.ShowDialog();
+
+                if (result == System.Windows.Forms.DialogResult.OK)
+                {
+                    string filePath = diag.FileName;
+
+                    var archive = ZipFile.Open(filePath, ZipArchiveMode.Read);
+                    foreach (ZipArchiveEntry file in archive.Entries)
+                    {
+                        // Uses ExtractToFile because it supports overwriting files, ExtractToDirectory does not 
+                        string destinationFileName = Path.Combine(FileEndPointManager.Project2Folder, file.FullName);
+                        file.ExtractToFile(destinationFileName, true);
+                        //ZipFile.ExtractToDirectory(diag.FileName, FileEndPointManager.Project2Folder);
+                    }
+                    // Run script as soon as it is opened
+                    Anterior_Click_1(sender, e);
+                }
+            }
         }
 
         private void btnRec_Click(object sender, RoutedEventArgs e)
@@ -463,7 +485,7 @@ namespace Player
                 {
                     //Task.Delay(1);
                     // WindowsHelper.FollowConsole(CmdExeForCodecept);
-                    this.Activate();
+                    //this.Activate();
 
 
                 });
@@ -722,8 +744,6 @@ namespace Player
                     //clears all windows
                     int handle = (int)CmdExeForCodecept.MainWindowHandle;
                     WindowsHelper.CloseWindow(handle);
-
-
                 }
                 catch (Exception err)
                 {
@@ -731,11 +751,8 @@ namespace Player
                     // throw;
                 }
             }
-
             CmdExeForCodecept = new Process();
-
             Thread.Sleep(5000);
-
         }
 
         void CloseChromeWindow()
