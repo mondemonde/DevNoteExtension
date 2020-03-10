@@ -13,8 +13,10 @@ using LogApplication.Common.Config;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Management;
 using System.Text;
@@ -557,7 +559,6 @@ namespace Player
         private async void Anterior_Click_1(object sender, RoutedEventArgs e)
         {
             await Run(FileEndPointManager.DefaultPlayXMLFile);
-
         }
 
         private async Task<bool> Run(string filepath)
@@ -970,7 +971,7 @@ namespace Player
             //saveFileDialog1.FilterIndex = 2;
             saveFileDialog1.RestoreDirectory = true;
 
-            if (saveFileDialog1.ShowDialog() ==System.Windows.Forms.DialogResult.OK)
+            if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 //textBox1.Text = saveFileDialog1.FileName;
                 toolStripButtonSave_Click(sender, e);
@@ -984,6 +985,95 @@ namespace Player
             WindowsHelper.FollowConsole(this.Width,this.Height);
             if(CmdExeForCodecept!=null)
                   WindowsHelper.FollowConsole(CmdExeForCodecept);
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: discuss functionality
+        }
+
+        private void Save_As_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: move global variables somewhere else
+            string recordJSDirectory = FileEndPointManager.DefaultPlayXMLFile;
+            string recordXMLDirectory = FileEndPointManager.DefaultLatestXMLFile;
+            //Console.WriteLine("Save as: " + recordJSDirectory);
+            //Console.WriteLine("Save as: " + recordXMLDirectory);
+            if (!File.Exists(recordJSDirectory) || !File.Exists(recordXMLDirectory))
+            {
+                // TODO: update this error message.
+                MessageBox.Show("There are no record files to save. Please make a new recording.", "DevNotePlay", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                List<string> fullPathsOfFilesToCompress = new List<string>
+                {
+                    recordJSDirectory,
+                    recordXMLDirectory
+                };
+
+                using (var diag = new System.Windows.Forms.SaveFileDialog())
+                {
+                    diag.SupportMultiDottedExtensions = true;
+                    diag.FileOk += CheckIfFileHasCorrectExtension;
+                    diag.Filter = "DevNotePlay Record (*.dplay)|*.dplay";
+                    diag.DefaultExt = "dplay";
+                    diag.AddExtension = true;
+
+                    var result = diag.ShowDialog();
+
+                    if (result == System.Windows.Forms.DialogResult.OK)
+                    {
+                        string destinationPathAndFileName = diag.FileName;
+                        //Console.WriteLine(destinationPathAndFileName);
+                        //Console.WriteLine(filesToCompressFullPaths);
+                        ArchiveFiles(fullPathsOfFilesToCompress, destinationPathAndFileName);
+                    }
+                }
+            }
+        }
+
+        private void ArchiveFiles(List<string> filesToCompress, string destination)
+        {
+            using (MemoryStream zipMS = new MemoryStream())
+            {
+                using (ZipArchive zipArchive = new ZipArchive(zipMS, ZipArchiveMode.Create, true))
+                {
+                    foreach(string file in filesToCompress)
+                    {
+                        string fileName = Path.GetFileName(file);
+
+                        ZipArchiveEntry zipFileEntry = zipArchive.CreateEntry(fileName);
+
+                        byte[] fileToZipBytes = System.IO.File.ReadAllBytes(file);
+
+                        using (Stream zipEntryStream = zipFileEntry.Open())
+                        using (BinaryWriter zipFileBinary = new BinaryWriter(zipEntryStream))
+                        {
+                            zipFileBinary.Write(fileToZipBytes);
+                        }
+                    }
+                }
+                using (FileStream finalZipFileStream = new FileStream(destination, FileMode.Create))
+                {
+                    zipMS.Seek(0, SeekOrigin.Begin);
+                    zipMS.CopyTo(finalZipFileStream);
+                }
+            }
+        }
+
+        private void CheckIfFileHasCorrectExtension(object sender, CancelEventArgs e)
+        {
+            var sv = (sender as System.Windows.Forms.SaveFileDialog);
+
+            string extension = Path.GetExtension(sv.FileName).ToLower();
+
+            if (extension != ".dplay")
+            {
+                e.Cancel = true;
+                MessageBox.Show("The file extension '" + extension + "' is not valid. Please omit this file extension, then click Save.", "DevNotePlay", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
         }
     }
 
