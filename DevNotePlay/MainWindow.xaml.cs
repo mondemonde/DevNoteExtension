@@ -42,7 +42,6 @@ namespace Player
     {
         public void InvokeOnUiThreadIfRequired( Action action)
         {
-
             // Checking if this thread has access to the object.
             if (this.Dispatcher.CheckAccess())
             {
@@ -57,8 +56,6 @@ namespace Player
                 this.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
                     action);
             }
-
-
             //if (this.InvokeRequired)
             //{
             //    BeginInvoke(action);
@@ -99,39 +96,32 @@ namespace Player
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
 
-
         public MainWindow()
         {
             InitializeComponent();
             ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject), new FrameworkPropertyMetadata(Int32.MaxValue));
 
-
             // saveFileDialog1
-            // 
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDialog1.Filter = "codecept|*.js|XML|*.xml|All Files|*.*";
             this.saveFileDialog1.Title = "Save DevNote Script (json)";
-            // 
+
             // openFileDialog1
-            // 
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
 
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog1.DefaultExt = "\"json\"";
             this.openFileDialog1.Filter = "codecept|*.js|XML|*.xml|All Files|*.*";
             this.openFileDialog1.Title = "Browse Script Files (json)";
-            // 
 
             FileEndPointManager.Root = STEP_.PLAYER;
 
             ConfigManager config = new ConfigManager();
             var chromeDefaultDownload = FileEndPointManager.Project2Folder;//Path.GetDirectoryName(FileEndPointManager.DefaultPlayXMLFile);
 
-
             RecFileWatcher watcher = new RecFileWatcher();
             watcher.Player = this;
            
-
             var maxThreads = 4;
             // Times to as most machines have double the logic processers as cores
             ThreadPool.SetMaxThreads(maxThreads, maxThreads * 2);
@@ -140,9 +130,7 @@ namespace Player
 
             IsSessionLifeSpan = true;
             // CheckForUpdate();
-
             txtVersion.Text = txtCaption.Text =string.Format("DevNotePlay™ version {0}", GetVersion());
-
         }
 
         string GetVersion()
@@ -151,7 +139,6 @@ namespace Player
            return version.ToString();
         }
         #region SQUIRREL
-
         //async Task CheckForUpdate()
         //{
 
@@ -164,7 +151,6 @@ namespace Player
         #endregion
 
         #region FILE ENDPOINT
-
         //This event adds the work to the Thread queue
         private void FileWatcher_Changed(object sender, System.IO.FileSystemEventArgs e)
         {
@@ -183,10 +169,6 @@ namespace Player
                 case System.IO.WatcherChangeTypes.Created:
                     Console.WriteLine($"File is created: {e.Name}");
                     Task.Run<bool>(async () => await TriggerPlay(e));
-
-                   
-
-
                     break;
                 case System.IO.WatcherChangeTypes.Deleted:
                     Console.WriteLine($"File is deleted: {e.Name}");
@@ -194,22 +176,19 @@ namespace Player
                 case System.IO.WatcherChangeTypes.Renamed:
                     Console.WriteLine($"File is renamed: {e.Name}");
                     Task.Run<bool>(async () => await TriggerPlay(e));
-
                     break;
             }
         }
 
-
-       async Task<bool>  TriggerPlay(System.IO.FileSystemEventArgs e)
+        async Task<bool>  TriggerPlay(System.IO.FileSystemEventArgs e)
         {
             //step# 70 PLAY.TXT
             if (e.Name.ToLower() == "play.txt")
             {
                 var endPointFolder = FileEndPointManager.Project2Folder; 
 
-
                 Console.WriteLine("found play.txt");
-               var span = DateTime.Now - TimeStarted;
+                var span = DateTime.Now - TimeStarted;
 
                 var latestFiles = System.IO.Directory.GetFiles(endPointFolder, "recor*.xml", System.IO.SearchOption.TopDirectoryOnly);
                 var fileList = latestFiles.ToList();
@@ -223,12 +202,10 @@ namespace Player
                     await  Play(true);
                     TimeStarted = DateTime.Now;
                 }
-
                 //delete play.txt
 
                 //ConfigManager config = new ConfigManager();
                 //var endPointFolder = config.GetValue("DefaultXMLFile");
-
                 var txtFile = System.IO.Path.Combine(endPointFolder, "play.txt");
                 System.IO.File.Delete(txtFile);
             }
@@ -242,41 +219,29 @@ namespace Player
                 var latestFiles = System.IO.Directory.GetFiles(endPointFolder, "recor*.xml", System.IO.SearchOption.TopDirectoryOnly);
                 var fileList = latestFiles.ToList();
 
-
-
                 //var latestXML = Path.Combine(endPointFolder, "latest_" + DateTime.Now.Ticks.ToString() + ".xml");
                 var latestXML = System.IO.Path.Combine(endPointFolder, "latest.xml");
 
                 if (System.IO.File.Exists(latestXML))
                     System.IO.File.Delete(latestXML);
-
-
                 // FileEndPointManager.DefaultKATFile = latestXML;
-
                 foreach (string file in fileList)
                 {
                     try
                     {
                         System.IO.File.Copy(file, latestXML);
                         System.IO.File.Delete(file);
-
                     }
                     catch (Exception err)
                     {
-
                         LogApplication.Agent.LogError(err);
                     }
                 }
-
             }
-
             return true;
         }
 
         #endregion
-
-
-
         private void ButtonFechar_Click(object sender, RoutedEventArgs e)
         {
             CloseChromeWindow();
@@ -351,10 +316,8 @@ namespace Player
         public static Process CmdExeForCodecept;
         public static string ChromiumDir;
 
-
         public void CreateChrome()
         {
-
             ChromiumDir = FileEndPointManager.MyChromeViaRecorder;//LogApplication.Agent.GetCurrentDir() + "\\Chrome\\chrome-win\\chrome.exe";
             if (CmdExeForChrome == null)
             {
@@ -368,13 +331,6 @@ namespace Player
             {
                 MessageBox.Show("Only one instance of Chromium can be opened at a time.", "DevNotePlay", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            //else
-            //{
-            //    Process chromeInstance = Process.Start(dir + "\\Chrome\\chrome-win\\chrome.exe");
-            //    if (ChromeProcesses == null) ChromeProcesses = new List<Process>();
-            //    ChromeProcesses.Add(chromeInstance);
-            //}
-
             #region 2020-3-04 old code
             //dir = dir.Replace("file:\\", string.Empty);
             //string drive = System.IO.Path.GetPathRoot(dir);
@@ -431,20 +387,13 @@ namespace Player
 
         public async Task<bool> Play(bool isRecording = false)
         {
-
             // this.InvokeOnUiThreadIfRequired(() => ShowHelper());
-
-
             CloseCodeCeptJsWindow();
-
             // ConfigManager config = new ConfigManager();
             var defaultXML = FileEndPointManager.DefaultPlayXMLFile; // config.GetValue("DefaultXMLFile");
-
-
             if (isRecording)
             {
-                var endPointFolder =FileEndPointManager.Project2Folder;
-
+                var endPointFolder = FileEndPointManager.Project2Folder;
                 //TODO check for error in UI
                 //ActivateGroupBox(groupBoxRec);
                 defaultXML = Path.Combine(endPointFolder, "latest.xml");
@@ -486,14 +435,9 @@ namespace Player
                     //Task.Delay(1);
                     // WindowsHelper.FollowConsole(CmdExeForCodecept);
                     //this.Activate();
-
-
                 });
-
             return true;
         }
-
-
 
         public Task<EnumPlayStatus> PlayStep()
         {
@@ -505,10 +449,8 @@ namespace Player
             throw new NotImplementedException();
         }
 
-
         public void RunCondeceptjsDefault()
         {
-
             var dir = LogApplication.Agent.GetCurrentDir();
             dir = dir.Replace("file:\\", string.Empty);
             string drive = Path.GetPathRoot(dir);
@@ -537,11 +479,9 @@ namespace Player
                         File.Delete(codeceptBatPath);
                         File.WriteAllText(codeceptBatPath, batTemplate);
                         break;
-
                     }
                     catch (Exception)
                     {
-
                         //  throw;
                     }
                 }
@@ -556,7 +496,6 @@ namespace Player
             CmdExeForCodecept = RunHelper.ExecuteCommand(codeceptBatPath);
             return;
         }
-
 
         public void SetProjectFolder(string pathFolder)
         {
@@ -602,7 +541,6 @@ namespace Player
 
             if (ext.ToLower() == ".js")
             {
-
                 //update latest_test.js
                 //STEP_.Player #803 get extension variables
                 var runCmd = FileEndPointManager.ReadInputWFCmdJsonFile();
@@ -616,7 +554,6 @@ namespace Player
 
                 if (internalParam != null && externalParam != null)
                 {
-
                     //STEP_.Player #804 CrossBreed the parameters
                     Dictionary<string, string> crossBreed = new Dictionary<string, string>();
                     foreach (var external in externalParam)
@@ -631,8 +568,6 @@ namespace Player
                             crossBreed.Add(internalP.Key, external.Value);
                         }
                     }
-
-
                     //STEP_.Player #803 insert variables
                     Interpreter it = new Interpreter();
                     //STEP.Player #804 Insert Variables
@@ -640,13 +575,8 @@ namespace Player
 
                     script = selectedContent;
                     BotHttpClient.UpdateMainUI("InsertVariables " + Environment.NewLine + crossBreed.ToArray().ToString());
-
-
                 }
-
                 //  var selectedContent = File.ReadAllText(selectedJSXML);
-
-
                 var dir = LogApplication.Agent.GetCurrentDir();
                 dir = dir.Replace("file:\\", string.Empty);
                 string drive = Path.GetPathRoot(dir);
@@ -655,22 +585,16 @@ namespace Player
                 var codeceptjsFolder = string.Format("{0}\\CodeceptJs\\Project2", dir);  //@"D:\_ROBOtFRAMeWORK\CodeceptsJs\Project1\";
                 var codeceptTestPath = Path.Combine(codeceptjsFolder, "latest_test.js");
 
-
                 if (File.Exists(codeceptTestPath))
                     File.Delete(codeceptTestPath);
 
                 File.WriteAllText(codeceptTestPath, script);
-
                 //play
                 // dgActions.DataSource = actionSource;
                 // dgActions.Refresh(); // Make sure this comes first
                 //  dgActions.Parent.Refresh(); // Make sure this comes second
                 //  flowMain.Refresh();
-
             }
-
-
-
 
             //STEP.Player #803 run _test.js using bat file
             RunCondeceptjsDefault();
@@ -682,12 +606,8 @@ namespace Player
             await cond.WaitUntil(() => (DateTime.Now - started).TotalSeconds > 5)
                 .ContinueWith(x =>
                 {
-
                     WindowsHelper.FollowConsole(CmdExeForCodecept);
-
-
                 });
-
 
             //STEP.Player #855 //check result
             //wait for output
@@ -717,11 +637,7 @@ namespace Player
 
                 //not here.. yet it will retry
                 // GlobalPlayer.CreateWFOutput("none");
-
-
             });
-
-
 
             //check result
             //STEP_.Player screenshot ERROR
@@ -731,9 +647,7 @@ namespace Player
             }
             else
                 return true; //no need to retry
-
         }
-
 
         void CloseCodeCeptJsWindow()
         {
@@ -809,7 +723,6 @@ namespace Player
         {
             //openFileDialog1.InitialDirectory = ProjectFolder;
             //openFileDialog1.Title = "Browse Script Files (json)";
-
             openFileDialog1.FileName = jsXMLFile;
 
             string file = openFileDialog1.FileName;
@@ -817,9 +730,7 @@ namespace Player
 
             if (ext.ToLower() == ".xml")
             {
-
                 ReadXML(file);
-
             }
             else
             {
@@ -836,12 +747,8 @@ namespace Player
                 //actionSource.DataSource = it.MyActions;
                 //refreshList();
                 ////end obsolete
-
-
                txtCaption.Text = "Dev Note Console -" + Path.GetFileNameWithoutExtension(openFileDialog1.FileName);
             }
-
-
         }
 
         void ReadXML(string file)
@@ -864,7 +771,6 @@ namespace Player
             SendKeyModifier keyExt = new SendKeyModifier();
             it.Mod<SendKeyModifier>(keyExt);
 
-
             //step# 82 Declare VARIABLES
             FillFieldModifier fillFieldExt = new FillFieldModifier();
             it.Mod<FillFieldModifier>(fillFieldExt);
@@ -872,7 +778,6 @@ namespace Player
             //step# 83 identify Variables 
             VariableModifier variableList = new VariableModifier();
             it.Mod<VariableModifier>(variableList);
-
 
             //step# 83 assign Variables 
             AssignModifier variableExt = new AssignModifier();
@@ -894,34 +799,25 @@ namespace Player
 
             // var folder = Path.GetDirectoryName(jsXMLFile);
 
-
             //var dir = LogApplication.Agent.GetCurrentDir();
             //dir = dir.Replace("file:\\", string.Empty);
             //string drive =System.IO.Path.GetPathRoot(dir);
             //string driveLetter = drive.First().ToString();
-
             var codeceptjsFolder = FileEndPointManager.Project2Folder;//string.Format("{0}\\CodeceptJs\\Project2", dir);  //@"D:\_ROBOtFRAMeWORK\CodeceptsJs\Project1\";
-
-
 
             var codeceptTestPath =System.IO.Path.Combine(codeceptjsFolder, "latest_test.js");
 
-
             if (System.IO.File.Exists(codeceptTestPath))
                System.IO.File.Delete(codeceptTestPath);
-
 
             saveFileDialog1.FileName = codeceptTestPath;
 
             //step# 30 Save to default js file 
             toolStripButtonSave_Click(this, EventArgs.Empty);
-
-
         }
 
         private void toolStripButtonSave_Click(object sender, EventArgs e)
         {
-
             if (System.IO.Path.GetExtension(saveFileDialog1.FileName.ToLower()) == ".xml")
             {
                 toolStripLabelSaveAs_Click(sender, e);
@@ -953,10 +849,7 @@ namespace Player
                         codes = codes + string.Format("I.{0};\n", code);
                     else
                         codes = codes + string.Format("I.say('step#{0}');I.{1};\n", a.OrderNo.ToString(), code);
-
-
                 }
-
 
                 //step# _8.4 config.GetValue("CodeceptTestTemplate");
                 var codeCeptConfigPath = FileEndPointManager.MyCodeceptTestTemplate; //config.GetValue("CodeceptTestTemplate");
@@ -970,13 +863,9 @@ namespace Player
                 File.WriteAllText(saveFileDialog1.FileName, codeCeptTestTemplate);
                txtCaption.Text = "Dev Note Console -" + Path.GetFileNameWithoutExtension(saveFileDialog1.FileName);
             }
-
-
         }
         private void toolStripLabelSaveAs_Click(object sender, EventArgs e)
         {
-
-
             if (string.IsNullOrEmpty(saveFileDialog1.InitialDirectory))
                 saveFileDialog1.InitialDirectory = ProjectFolder;
             //save as
@@ -1115,9 +1004,5 @@ namespace Player
             return value;
         }
     }
-
-
     #endregion
-
-
 }
