@@ -449,7 +449,26 @@ namespace Common
 
         }
 
+        static string _defaultLatestXMLFile;
+        public static string DefaultLatestXMLFile
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_defaultLatestXMLFile))
+                {
+                    ConfigManager config = new ConfigManager();
+                    var file = config.GetValue("DefaultLatestXMLFile");
 
+                    if (string.IsNullOrEmpty(file))
+                    {
+                        _defaultLatestXMLFile = System.IO.Path.Combine(Project2Folder, "latest.xml");
+                    }
+                    else
+                        _defaultLatestXMLFile = file;
+                }
+                return _defaultLatestXMLFile;
+            }
+        }
 
         static string _defaultPlayXMLFile;
         public static string DefaultPlayXMLFile
