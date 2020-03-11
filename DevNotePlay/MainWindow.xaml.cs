@@ -96,6 +96,13 @@ namespace Player
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
 
+        private string AppName;
+        private string RecordFileExtension;
+        private string FileDialogFilter;
+
+        private string recordJSDirectory;
+        private string recordXMLDirectory;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -108,7 +115,6 @@ namespace Player
 
             // openFileDialog1
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
-
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog1.DefaultExt = "\"json\"";
             this.openFileDialog1.Filter = "codecept|*.js|XML|*.xml|All Files|*.*";
@@ -117,6 +123,13 @@ namespace Player
             FileEndPointManager.Root = STEP_.PLAYER;
 
             ConfigManager config = new ConfigManager();
+            AppName = config.GetValue("AppName");
+            RecordFileExtension = config.GetValue("RecordFileExtension");
+            FileDialogFilter = config.GetValue("FileDialogFilter");
+
+            recordJSDirectory = FileEndPointManager.DefaultPlayXMLFile;
+            recordXMLDirectory = FileEndPointManager.DefaultLatestXMLFile;
+
             var chromeDefaultDownload = FileEndPointManager.Project2Folder;//Path.GetDirectoryName(FileEndPointManager.DefaultPlayXMLFile);
 
             RecFileWatcher watcher = new RecFileWatcher();
@@ -264,6 +277,7 @@ namespace Player
                 this.DragMove();
         }
 
+        private string OpenedFile;
         private void btnPlus_Click(object sender, RoutedEventArgs e)
         {
             //setting
@@ -272,7 +286,7 @@ namespace Player
             //Process.Start(dir);
             using (var diag = new System.Windows.Forms.OpenFileDialog())
             {
-                diag.Filter = "DevNotePlay Record (*.dplay)|*.dplay";
+                diag.Filter = FileDialogFilter;
                 diag.FilterIndex = 1;
 
                 var result = diag.ShowDialog();
@@ -280,6 +294,7 @@ namespace Player
                 if (result == System.Windows.Forms.DialogResult.OK)
                 {
                     string filePath = diag.FileName;
+                    OpenedFile = filePath;
 
                     var archive = ZipFile.Open(filePath, ZipArchiveMode.Read);
                     foreach (ZipArchiveEntry file in archive.Entries)
@@ -329,7 +344,7 @@ namespace Player
             }
             else
             {
-                MessageBox.Show("Only one instance of Chromium can be opened at a time.", "DevNotePlay", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Only one instance of Chromium can be opened at a time.", AppName, MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             #region 2020-3-04 old code
             //dir = dir.Replace("file:\\", string.Empty);
@@ -422,11 +437,9 @@ namespace Player
             //dgActions.Refresh(); // Make sure this comes first
             //dgActions.Parent.Refresh(); // Make sure this comes second
             //flowMain.Refresh();
-
             RunCondeceptjsDefault();
 
             //Application.DoEvents();
-
             //int limit = MyRetry ;
             TaskWaiter.Conditions cond = new TaskWaiter.Conditions("Wait_CondceptJS_Console");
             await cond.WaitUntil(() => CmdExeForCodecept != null)
@@ -889,26 +902,51 @@ namespace Player
         private void Window_Activated(object sender, EventArgs e)
         {
             WindowsHelper.FollowConsole(this.Width,this.Height);
-            if(CmdExeForCodecept!=null)
+            if (CmdExeForCodecept != null)
                   WindowsHelper.FollowConsole(CmdExeForCodecept);
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: discuss functionality
+            if (!string.IsNullOrEmpty(OpenedFile))
+            {
+                List<string> fullPathsOfFilesToUpdate = new List<string>
+                {
+                    recordJSDirectory,
+                    recordXMLDirectory
+                };
+
+                using (var archive = ZipFile.Open(OpenedFile, ZipArchiveMode.Update))
+                {
+                    foreach (string file in fullPathsOfFilesToUpdate)
+                    {
+                        string fileName = Path.GetFileName(file);
+
+                        //delete existing file and replace with current one
+                        archive.GetEntry(fileName).Delete();
+                        ZipArchiveEntry zipFileEntry = archive.CreateEntry(fileName);
+
+                        byte[] fileToZipBytes = System.IO.File.ReadAllBytes(file);
+                        using (Stream zipEntryStream = zipFileEntry.Open())
+                        using (BinaryWriter zipFileBinary = new BinaryWriter(zipEntryStream))
+                        {
+                            zipFileBinary.Write(fileToZipBytes);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("No recordings have been opened yet. Please open an existing recording or make a new one.", AppName, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Save_As_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: move global variables somewhere else
-            string recordJSDirectory = FileEndPointManager.DefaultPlayXMLFile;
-            string recordXMLDirectory = FileEndPointManager.DefaultLatestXMLFile;
-            //Console.WriteLine("Save as: " + recordJSDirectory);
-            //Console.WriteLine("Save as: " + recordXMLDirectory);
             if (!File.Exists(recordJSDirectory) || !File.Exists(recordXMLDirectory))
             {
-                // TODO: update this error message.
-                MessageBox.Show("There are no record files to save. Please make a new recording.", "DevNotePlay", MessageBoxButton.OK, MessageBoxImage.Error);
+                //TODO: update this error message.
+                MessageBox.Show("There are no record files to save. Please open an existing recording or make a new one.", AppName, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -922,8 +960,8 @@ namespace Player
                 {
                     diag.SupportMultiDottedExtensions = true;
                     diag.FileOk += CheckIfFileHasCorrectExtension;
-                    diag.Filter = "DevNotePlay Record (*.dplay)|*.dplay";
-                    diag.DefaultExt = "dplay";
+                    diag.Filter = FileDialogFilter;
+                    diag.DefaultExt = RecordFileExtension;
                     diag.AddExtension = true;
 
                     var result = diag.ShowDialog();
@@ -931,8 +969,6 @@ namespace Player
                     if (result == System.Windows.Forms.DialogResult.OK)
                     {
                         string destinationPathAndFileName = diag.FileName;
-                        //Console.WriteLine(destinationPathAndFileName);
-                        //Console.WriteLine(filesToCompressFullPaths);
                         ArchiveFiles(fullPathsOfFilesToCompress, destinationPathAndFileName);
                     }
                 }
@@ -974,17 +1010,16 @@ namespace Player
 
             string extension = Path.GetExtension(sv.FileName).ToLower();
 
-            if (extension != ".dplay")
+            if (extension != "." + RecordFileExtension)
             {
                 e.Cancel = true;
-                MessageBox.Show("The file extension '" + extension + "' is not valid. Please omit this file extension, then click Save.", "DevNotePlay", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("The file extension '" + extension + "' is not valid. Please omit this file extension, then click Save.", AppName, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
         }
     }
 
     #region Marquee
-
     public class NegatingConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
