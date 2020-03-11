@@ -69,7 +69,7 @@ namespace Player
         public int ArmId {get;set;}
         public IChromeIdentity ChromePartner { get; set; }
 
-        public CodeceptAction CurrentAction => throw new NotImplementedException();
+        public CodeceptAction CurrentAction { get; set; }//{get;set;}
 
         public string InitialChangeDirCmd {get;set;}
         public string InitialDirectory {get;set;}
@@ -85,7 +85,7 @@ namespace Player
         public List<CodeceptAction> MyActions {get;set;}
         public int MyRetry {get;set;}
 
-        public string ProjectFolder => throw new NotImplementedException();
+        public string ProjectFolder {get;set;}
 
         public string RemoteDebuggerAddress {get;set;}
         public EnumPlayStatus Status {get;set;}
