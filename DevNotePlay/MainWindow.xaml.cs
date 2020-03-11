@@ -281,33 +281,9 @@ namespace Player
         private void btnPlus_Click(object sender, RoutedEventArgs e)
         {
             //setting
-            //var dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
-            //dir = dir.Replace("file:\\", string.Empty);
-            //Process.Start(dir);
-            using (var diag = new System.Windows.Forms.OpenFileDialog())
-            {
-                diag.Filter = FileDialogFilter;
-                diag.FilterIndex = 1;
-
-                var result = diag.ShowDialog();
-
-                if (result == System.Windows.Forms.DialogResult.OK)
-                {
-                    string filePath = diag.FileName;
-                    OpenedFile = filePath;
-
-                    var archive = ZipFile.Open(filePath, ZipArchiveMode.Read);
-                    foreach (ZipArchiveEntry file in archive.Entries)
-                    {
-                        // Uses ExtractToFile because it supports overwriting files, ExtractToDirectory does not 
-                        string destinationFileName = Path.Combine(FileEndPointManager.Project2Folder, file.FullName);
-                        file.ExtractToFile(destinationFileName, true);
-                        //ZipFile.ExtractToDirectory(diag.FileName, FileEndPointManager.Project2Folder);
-                    }
-                    // Run script as soon as it is opened
-                    Anterior_Click_1(sender, e);
-                }
-            }
+           var dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
+           dir = dir.Replace("file:\\", string.Empty);
+           Process.Start(dir);
         }
 
         private void btnRec_Click(object sender, RoutedEventArgs e)
@@ -1016,6 +992,37 @@ namespace Player
                 MessageBox.Show("The file extension '" + extension + "' is not valid. Please omit this file extension, then click Save.", AppName, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+        }
+
+       
+
+        private void btnNew_Click(object sender, RoutedEventArgs e)
+        {
+            using (var diag = new System.Windows.Forms.OpenFileDialog())
+            {
+                diag.Filter = FileDialogFilter;
+                diag.FilterIndex = 1;
+
+                var result = diag.ShowDialog();
+
+                if (result == System.Windows.Forms.DialogResult.OK)
+                {
+                    string filePath = diag.FileName;
+                    OpenedFile = filePath;
+
+                    var archive = ZipFile.Open(filePath, ZipArchiveMode.Read);
+                    foreach (ZipArchiveEntry file in archive.Entries)
+                    {
+                        // Uses ExtractToFile because it supports overwriting files, ExtractToDirectory does not 
+                        string destinationFileName = Path.Combine(FileEndPointManager.Project2Folder, file.FullName);
+                        file.ExtractToFile(destinationFileName, true);
+                        //ZipFile.ExtractToDirectory(diag.FileName, FileEndPointManager.Project2Folder);
+                    }
+                    // Run script as soon as it is opened
+                    Anterior_Click_1(sender, e);
+                }
+            }
+
         }
     }
 
