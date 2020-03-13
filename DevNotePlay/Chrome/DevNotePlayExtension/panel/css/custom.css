@@ -1,7 +1,8 @@
 /* Custom CSS */
 
-.center-items {
-    align-items: center;
+.center-items-horizontally {
+    display: flex;
+    justify-content: center;
 }
 
 .overflow-auto {
@@ -15,21 +16,23 @@
 }
 
 #command-value-controls {
-    display: none;
-    flex-wrap: wrap; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     padding: 10px;
 }
 
 /* Command value table controls */
-#command-value-table {
+/* #command-value-table {
     table-layout: fixed;
     width: 100%;
 }
 
 #command-value-table td {
     width: auto;
-}
-
-/* #command-value-controls {
-    display: none;
 } */
+
+#command-value-controls-view {
+    display: none;
+    padding-top: 10px;
+}
