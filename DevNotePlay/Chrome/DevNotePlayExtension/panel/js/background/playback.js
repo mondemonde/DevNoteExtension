@@ -168,8 +168,8 @@ window.onload = function() {
     playButton.addEventListener("click", function() {
         saveData();
         emptyNode(document.getElementById("logcontainer"));
-        document.getElementById("result-runs").textContent = "0";
-        document.getElementById("result-failures").textContent = "0";
+        // document.getElementById("result-runs").textContent = "0";
+        // document.getElementById("result-failures").textContent = "0";
         recorder.detach();
         initAllSuite();
         setCaseScrollTop(getSelectedCase());
@@ -200,8 +200,8 @@ window.onload = function() {
     playSuiteButton.addEventListener("click", function() {
         saveData();
         emptyNode(document.getElementById("logcontainer"));
-        document.getElementById("result-runs").textContent = "0";
-        document.getElementById("result-failures").textContent = "0";
+        // document.getElementById("result-runs").textContent = "0";
+        // document.getElementById("result-failures").textContent = "0";
         recorder.detach();
         initAllSuite();
         // KAT-BEGIN focus on window when playing test suite
@@ -373,10 +373,10 @@ function play() {
     var link = makeTextFile("play","")
     link.click()
     addSampleDataToScreenshot();
-    initializePlayingProgress()
+    // initializePlayingProgress()
         // .then(executionLoop)
         // .then(finalizePlayingProgress)
-        .catch(catchPlayingError);
+        // .catch(catchPlayingError);
 }
 
 function stop() {
@@ -394,8 +394,8 @@ function stop() {
     switchPS();
     sideex_log.info("Stop executing");
     initAllSuite();
-    document.getElementById("result-runs").textContent = "0";
-    document.getElementById("result-failures").textContent = "0";
+    // document.getElementById("result-runs").textContent = "0";
+    // document.getElementById("result-failures").textContent = "0";
     finalizePlayingProgress();
 }
 
