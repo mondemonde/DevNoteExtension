@@ -24,7 +24,7 @@
 <head>
     <meta charset="utf-8" />
     <!-- TODO: Change the title bar text -->
-    <title>DevNotePlay</title>
+    <title>DevNotePlay Recorder</title>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,500,700" rel="stylesheet">
 
@@ -83,8 +83,8 @@
     <!-- right button feature -->
     <div id="suite-grid-menu" class="menu">
         <ul>
-            <li id="load-testSuite-show-menu"><a href="#">Open Test Suites</a></li>
-            <li id="add-testSuite-menu"><a href="#">Add New Test Suite</a></li>
+            <!-- <li id="load-testSuite-show-menu"><a href="#">Open Test Suites</a></li> -->
+            <li id="add-testSuite-menu"><a href="#">Add New Folder</a></li>
         </ul>
     </div>
     <div id="command-grid-menu" class="menu">
@@ -94,7 +94,7 @@
             <li id="grid-deleteAll"><a href="#">Delete All Commands</a></li>
             <li id="grid-copy"><a href="#">Copy Command <span class="hotKey">Ctrl+C</span></a></li>
             <li id="grid-paste"><a href="#">Paste Command <span class="hotKey">Ctrl+V</span></a></li>
-            <li id="grid-breakpoint"><a href="#">Toggle Breakpoint </a><span class="hotKey">Ctrl+B</span></li>
+            <!-- <li id="grid-breakpoint"><a href="#">Toggle Breakpoint </a><span class="hotKey">Ctrl+B</span></li> -->
         </ul>
     </div>
     <section id="main" class="column">
@@ -111,7 +111,7 @@
             <a download="info.html" id="downloadlink" style="display: none">Download</a>
             <button id="new" class="sub_btn"><i class="fa"></i> New</button>
             <button id="record" class="sub_btn" style="width: 15%"><i class="fa fa-video-camera" aria-hidden="true"></i> Record</button>
-            <button id="playback" class="sub_btn" style="width: 20%" disabled><i class="fa fa-play" aria-hidden="true"></i> Play</button>
+            <button id="playback" class="sub_btn" style="width: 20%" disabled><i class="fa fa-play" aria-hidden="true"></i> Play on DevNotePlay</button>
             <button id="stop" class="sub_btn" style="display: none; width: 20%"><i class="fa fa-stop" aria-hidden="true"></i> Stop</button>
             <button id="playSuite" class="sub_btn" style="width: 21%; display: none;" disabled><i class="fa fa-cube" aria-hidden="true"></i> Play Suite</button>
             <button id="playSuites" class="sub_btn" style="width: 21%; display: none;" disabled><i class="fa fa-cubes" aria-hidden="true"></i> Play All</button>
@@ -138,7 +138,7 @@
                 <div id="middle-container" class="module">
                     <header>
                         <h3 class="suite-container-title">
-                            <div class="suite-container-title">Test Suites</div>
+                            <div class="suite-container-title">Record Collections</div>
                             <div id="suite-fun" class="suite-fun">
                                 <div id="suite-open" class="suite-open"><i id="suite-open-icon" class="fa fa-folder-open-o suite-open" aria-hidden="true"></i></div>
                                 <div id="suite-plus" class="suite-plus"><i id="suite-plus-icon" class="fa fa-plus suite-plus" aria-hidden="true"></i></div>
@@ -268,8 +268,8 @@
                             <input id="command-target" list="command-target-list" type="text"><i id="target-" class="fa fa-chevron-down" aria-hidden="true"></i>
                             <div id="target-dropdown" class="w3-dropdown-content w3-bar-block">
                             </div>
-                            <button id="selectElementButton" class="btn_sf" style="width: 60px" tabindex="-1">Select</button>
-                            <button id="showElementButton" class="btn_sf" style="width: 50px" tabindex="-1">Find</button>
+                            <button id="selectElementButton" class="btn_sf" style="width: 60px" tabindex="-1" style="display: none;">Select</button>
+                            <button id="showElementButton" class="btn_sf" style="width: 50px" tabindex="-1" style="display: none;">Find</button>
                         </div>
                         <datalist id="command-target-list">
                         </datalist>
@@ -287,7 +287,7 @@
                                     <legend>Find target element by: </legend>
                                     <div class="command-value-control-row">
                                         <input id="command-none-radio" name="value-option" type="radio">
-                                        <label for="command-none-radio" style="width: auto;">None</label>
+                                        <label for="command-none-radio" style="width: auto;">Default</label>
                                     </div>
                                     <div class="command-value-control-row">
                                         <input id="command-value-radio" name="value-option" type="radio">
