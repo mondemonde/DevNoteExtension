@@ -111,7 +111,7 @@ $("#command-value").on("input", function(event) {
 // 2020-02-27 - Toggles show/hide for Value controls
 function toggleValueControls(commandSelector) {
     if (commandSelector.value == "click") {
-        $("#command-value-controls").show();
+        $("#command-value-controls").css("display", "flex");
     }
     else {
         $("#command-value-controls").hide();
