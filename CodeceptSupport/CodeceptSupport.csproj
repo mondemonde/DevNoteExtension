@@ -114,6 +114,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CaptureScreenshot.cs" />
     <Compile Include="ClickAndType.cs" />
     <Compile Include="Wait.cs" />
     <Compile Include="NotSupportedAction.cs" />

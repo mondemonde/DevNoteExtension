@@ -24,8 +24,6 @@ namespace CodeceptSupport
             //do convettion here..
             //..
             //.
-
-
             return act;
         }
 
