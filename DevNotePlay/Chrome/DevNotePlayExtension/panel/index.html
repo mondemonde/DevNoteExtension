@@ -274,47 +274,28 @@
                         <datalist id="command-target-list">
                         </datalist>
                         <div class="command-row">
-                            <!-- 2020-27-02 - Converted command row into a table so extra controls (radio/checkbox) are neatly displayed -->
-                            <table id="command-value-table" style="width: calc(100% - 20px); table-layout: fixed;">
-                                <tr>
-                                    <td style="width: 70px; padding: 0px;">
-                                        <label>Value</label>
-                                    </td>
-                                    <td colspan="4">
-                                        <input id="command-value" type="text" style="width: 100%;">
-                                    </td>
-                                </tr>
-                                <tr id="command-value-controls">
-                                    <td></td>
-                                    <td>
-                                        <div class="command-value-control-row">
-                                            <input id="command-none-radio" name="value-option" type="radio">
-                                            <label for="command-none-radio">None</label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="command-value-control-row">
-                                            <input id="command-value-radio" name="value-option" type="radio">
-                                            <label for="command-value-radio">Value</label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="command-value-control-row">
-                                            <input id="command-coordinates-radio" name="value-option" type="radio">
-                                            <label for="command-coordinates-radio">Coordinates</label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <!-- <input id="command-keyword" list="command-keyword-list" type="text"><i id="keyword-" class="fa fa-chevron-down" aria-hidden="true"></i> -->
-                                        <!-- <div id="keyword-dropdown" class="w3-dropdown-content w3-bar-block"></div> -->
-                                        <div class="command-value-control-row">
-                                            <label for="command-keyword-dropdown">Keywords:</label>
-                                            <select id="command-keyword-dropdown">
-                                            </select>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
+                            <label>Value</label>
+                            <input id="command-value" type="text">
+                        </div>
+                        <!-- 2020-13-03 - Use flex display for extra controls (radio/checkbox) -->               
+                        <div id="command-value-controls">
+                            <div class="command-value-control-row">
+                                <input id="command-none-radio" name="value-option" type="radio">
+                                <label for="command-none-radio" style="width: auto;">None</label>
+                            </div>
+                            <div class="command-value-control-row">
+                                <input id="command-value-radio" name="value-option" type="radio">
+                                <label for="command-value-radio" style="width: auto;">Value</label>
+                            </div>
+                            <div class="command-value-control-row">
+                                <input id="command-coordinates-radio" name="value-option" type="radio">
+                                <label for="command-coordinates-radio" style="width: auto;">Coordinates</label>
+                            </div>
+                            <div class="command-value-control-row">
+                                <label for="command-keyword-dropdown" style="width: auto;">Keywords:</label>
+                                <select id="command-keyword-dropdown">
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
