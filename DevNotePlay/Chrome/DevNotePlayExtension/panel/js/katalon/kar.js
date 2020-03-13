@@ -840,23 +840,23 @@ $(function() {
 
 // KAT-BEGIN add tooltip for button
 $(function() {
-    $('#record').attr('title', "Click and navigate to the desired browser tab and record your tests. NOTE: If the tab has been opened before Katalon Recorder was installed, please refresh it.");
-    $('#playback').attr('title', "Run selected test case on the active tab, any interference may stop the process. NOTE: If the tab has been opened before Katalon Recorder was installed, please refresh it.");
+    $('#record').attr('title', "Click this and go to your desired tab, navigate to a website, and start recording.");
+    $('#playback').attr('title', "Transfer the recording to the DevNotePlay app and play the recording.");
     $('#playSuite').attr('title', "Run selected test suite on the active tab, any interference may stop the process. NOTE: If the tab has been opened before Katalon Recorder was installed, please refresh it.");
     $('#playSuites').attr('title', "Run all test suites on the active tab, any interference may stop the process. NOTE: If the tab has been opened before Katalon Recorder was installed, please refresh it.");
     $('#settings').attr('title', "Settings");
     $('.sub_btn#help').attr('title', "Help");
-    $('#grid-add-btn').attr('title', "Add new test step");
-    $('#grid-delete-btn').attr('title', "Delete the current test steps");
-    $('#grid-copy-btn').attr('title', "Copy the current test steps");
-    $('#grid-paste-btn').attr('title', "Paste the copied test steps as the next step of the current one");
+    $('#grid-add-btn').attr('title', "Add a new step");
+    $('#grid-delete-btn').attr('title', "Delete the current steps");
+    $('#grid-copy-btn').attr('title', "Copy the current steps");
+    $('#grid-paste-btn').attr('title', "Paste the copied steps as the next step of the current one");
     $('#selectElementButton').attr('title', "Select a target element for the current command");
     $('#showElementButton').attr('title', "Find and highlight the curent target element of the current command");
     $('#speed').attr('title', "Adjust play speed");
-    $('#new').attr('title', "Create new test case. See samples at https://github.com/katalon-studio/katalon-recorder-samples.");
+    $('#new').attr('title', "Create a new recording.");
     $('#export').attr('title', "Export the current test case to script in C#, Java, Ruby, Python, (Katalon Studio) Groovy, or Robot Framework");
-    $('#suite-open').attr('title', "Open test suites. See samples at https://github.com/katalon-studio/katalon-recorder-samples.");
-    $('#suite-plus').attr('title', "Create new test suite");
+    $('#suite-open').attr('title', "Open an existing Record Collection");
+    $('#suite-plus').attr('title', "Create a Record Collection");
 })
 // KAT-END
 
@@ -1048,7 +1048,7 @@ function showDialog(html, showOK) {
     return $('<div></div>')
         .html(html)
         .dialog({
-            title: 'DevNotePlay',
+            title: 'DevNotePlay Recorder',
             resizable: false,
             height: "auto",
             width: 400,
