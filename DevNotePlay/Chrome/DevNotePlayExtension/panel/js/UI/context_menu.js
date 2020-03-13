@@ -39,34 +39,34 @@ $(document).on("contextmenu", function(event) {
     var temp = event.target;
     var inCommandGrid = false;
     while (temp.tagName.toLowerCase() != "body") {
-        if (/records-(\d)+/.test(temp.id)) {
-            var exe = document.createElement("li");
-            exe.classList.add("tempChild");
-            var a = document.createElement("a");
-            a.setAttribute("href", "#");
-            a.textContent = "Play This Command";
-            exe.appendChild(a);
-            var index = temp.id.split("-")[1];
-            exe.addEventListener("click", function(event) {
-                executeCommand(index);
-            }, true);
+        //if (/records-(\d)+/.test(temp.id)) {
+            // var exe = document.createElement("li");
+            // exe.classList.add("tempChild");
+            // var a = document.createElement("a");
+            // a.setAttribute("href", "#");
+            // a.textContent = "Play This Command";
+            // exe.appendChild(a);
+            // var index = temp.id.split("-")[1];
+            // exe.addEventListener("click", function(event) {
+            //     executeCommand(index);
+            // }, true);
 
-            document.getElementById("command-grid-menu").childNodes[1].appendChild(exe);
+            // document.getElementById("command-grid-menu").childNodes[1].appendChild(exe);
 
-            exe = document.createElement("li");
-            exe.classList.add("tempChild");
-            a = document.createElement("a");
-            a.setAttribute("href", "#");
-            a.textContent = "Play From Here";
-            exe.appendChild(a);
-            index = temp.id.split("-")[1];
-            exe.addEventListener("click", function(event) {
-                currentPlayingFromHereCommandIndex = parseInt(index) - 1;
-                $('#playback').click();
-            }, true);
+            // exe = document.createElement("li");
+            // exe.classList.add("tempChild");
+            // a = document.createElement("a");
+            // a.setAttribute("href", "#");
+            // a.textContent = "Play From Here";
+            // exe.appendChild(a);
+            // index = temp.id.split("-")[1];
+            // exe.addEventListener("click", function(event) {
+            //     currentPlayingFromHereCommandIndex = parseInt(index) - 1;
+            //     $('#playback').click();
+            // }, true);
 
-            document.getElementById("command-grid-menu").childNodes[1].appendChild(exe);
-        }
+            // document.getElementById("command-grid-menu").childNodes[1].appendChild(exe);
+        //}
         if (temp.id == "command-grid" || temp.className.search("record-bottom") >= 0) {
             inCommandGrid = true;
             break;

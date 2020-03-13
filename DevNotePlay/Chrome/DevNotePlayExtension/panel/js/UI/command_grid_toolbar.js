@@ -111,10 +111,11 @@ $("#command-value").on("input", function(event) {
 // 2020-02-27 - Toggles show/hide for Value controls
 function toggleValueControls(commandSelector) {
     if (commandSelector.value == "click") {
-        $("#command-value-controls").show();
+        $("#command-value-controls-view").show();
+        updateRadioButtonSelection()
     }
     else {
-        $("#command-value-controls").hide();
+        $("#command-value-controls-view").hide();
     }
 }
 
@@ -193,6 +194,18 @@ function resetValueOptions(value) {
 function saveValueToTextbox(value) {
     $("#command-value").val(value); 
     $("#command-value").trigger("input");
+}
+
+function updateRadioButtonSelection() {
+    let noneSelectedPattern = /#0#.*#0#\d*###\d*Delay3/;
+    let labelSelectedPattern = /#1#.*#0#\d*###\d*Delay3/;
+    let coordinateSelectedPattern = /#0#.*#1#\d*###\d*Delay3/;
+
+    let value = $("#command-value").val();
+
+    if (noneSelectedPattern.test(value)) $('#command-none-radio').prop("checked", true);
+    else if (labelSelectedPattern.test(value)) $('#command-value-radio').prop("checked", true);
+    else if (coordinateSelectedPattern.test(value)) $('#command-coordinates-radio').prop("checked", true);
 }
 
 function replaceCharInString(str, chr, index) {

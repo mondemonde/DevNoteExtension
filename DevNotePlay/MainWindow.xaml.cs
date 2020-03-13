@@ -913,7 +913,7 @@ namespace Player
             }
             else
             {
-                MessageBox.Show("No recordings have been opened yet. Please open an existing recording or make a new one.", AppName, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("No recordings have been opened yet. Please open an existing recording first.", AppName, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

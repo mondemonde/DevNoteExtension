@@ -81,7 +81,7 @@ function appendContextMenu(node, isCase) {
         var add_case = document.createElement("li");
         a = document.createElement("a");
         a.setAttribute("href", "#");
-        a.textContent = "Add New Test Case";
+        a.textContent = "Add New Recording";
         add_case.appendChild(a);
         add_case.addEventListener("click", function(event) {
             event.stopPropagation();
@@ -92,7 +92,7 @@ function appendContextMenu(node, isCase) {
         var remove_case = document.createElement("li");
         a = document.createElement("a");
         a.setAttribute("href", "#");
-        a.textContent = "Remove Test Case";
+        a.textContent = "Remove Recording";
         remove_case.appendChild(a);
         remove_case.addEventListener("click", function(event) {
             event.stopPropagation();
@@ -103,12 +103,12 @@ function appendContextMenu(node, isCase) {
         var rename_case = document.createElement("li");
         a = document.createElement("a");
         a.setAttribute("href", "#");
-        a.textContent = "Rename Test Case";
+        a.textContent = "Rename Recording";
         rename_case.appendChild(a);
         rename_case.addEventListener("click", function(event) {
             event.stopPropagation();
             var s_case = getSelectedCase();
-            var n_title = prompt("Please enter the Test Case's name", sideex_testCase[s_case.id].title);
+            var n_title = prompt("Please enter the name of the Recording", sideex_testCase[s_case.id].title);
             if (n_title) {
                 // get text node
                 s_case.childNodes[0].textContent = n_title;
@@ -117,38 +117,38 @@ function appendContextMenu(node, isCase) {
         }, false);
         ul.appendChild(rename_case);
 
-        var play_case_from_here = document.createElement("li");
-        a = document.createElement("a");
-        a.setAttribute("href", "#");
-        a.textContent = "Play From Here";
-        play_case_from_here.appendChild(a);
-        play_case_from_here.addEventListener("click", function(event) {
-            saveData();
-            emptyNode(document.getElementById("logcontainer"));
-            document.getElementById("result-runs").textContent = "0";
-            document.getElementById("result-failures").textContent = "0";
-            recorder.detach();
-            initAllSuite();
-            // KAT-BEGIN focus on window when playing test suite
-            if (contentWindowId) {
-                browser.windows.update(contentWindowId, {focused: true});
-            }
-            declaredVars = {};
-            clearScreenshotContainer();
-            // KAT-END
+        // var play_case_from_here = document.createElement("li");
+        // a = document.createElement("a");
+        // a.setAttribute("href", "#");
+        // a.textContent = "Play From Here";
+        // play_case_from_here.appendChild(a);
+        // play_case_from_here.addEventListener("click", function(event) {
+        //     saveData();
+        //     emptyNode(document.getElementById("logcontainer"));
+        //     document.getElementById("result-runs").textContent = "0";
+        //     document.getElementById("result-failures").textContent = "0";
+        //     recorder.detach();
+        //     initAllSuite();
+        //     // KAT-BEGIN focus on window when playing test suite
+        //     if (contentWindowId) {
+        //         browser.windows.update(contentWindowId, {focused: true});
+        //     }
+        //     declaredVars = {};
+        //     clearScreenshotContainer();
+        //     // KAT-END
 
-            var cases = getSelectedSuite().getElementsByTagName("p");
-            var i = 0;
-            while (i < cases.length) {
-                var s_case = getSelectedCase();
-                if (cases[i].id === s_case.id) {
-                    break;
-                }
-                i++;
-            }
-            playSuite(i);
-        }, false);
-        ul.appendChild(play_case_from_here);
+        //     var cases = getSelectedSuite().getElementsByTagName("p");
+        //     var i = 0;
+        //     while (i < cases.length) {
+        //         var s_case = getSelectedCase();
+        //         if (cases[i].id === s_case.id) {
+        //             break;
+        //         }
+        //         i++;
+        //     }
+        //     playSuite(i);
+        // }, false);
+        // ul.appendChild(play_case_from_here);
     } else {
         /* KAT-BEGIN hide open test suite icon
         var open_suite = document.createElement("li");
@@ -179,7 +179,7 @@ function appendContextMenu(node, isCase) {
         var save_suite = document.createElement("li");
         a = document.createElement("a");
         a.setAttribute("href", "#");
-        a.textContent = "Save Test Suite As...";
+        a.textContent = "Save Record Collection As...";
         save_suite.appendChild(a);
         save_suite.addEventListener("click", function(event) {
             event.stopPropagation();
@@ -190,7 +190,7 @@ function appendContextMenu(node, isCase) {
         var close_suite = document.createElement("li");
         a = document.createElement("a");
         a.setAttribute("href", "#");
-        a.textContent = "Close Test Suite";
+        a.textContent = "Close Record Collection";
         close_suite.appendChild(a);
         close_suite.addEventListener("click", function(event) {
             event.stopPropagation();
@@ -201,7 +201,7 @@ function appendContextMenu(node, isCase) {
         var add_case = document.createElement("li");
         a = document.createElement("a");
         a.setAttribute("href", "#");
-        a.textContent = "Add New Test Case";
+        a.textContent = "Add New Recording";
         add_case.appendChild(a);
         add_case.addEventListener("click", function(event) {
             event.stopPropagation();
@@ -212,12 +212,12 @@ function appendContextMenu(node, isCase) {
         var rename_suite = document.createElement("li");
         a = document.createElement("a");
         a.setAttribute("href", "#");
-        a.textContent = "Rename Test Suite";
+        a.textContent = "Rename Record Collection";
         rename_suite.appendChild(a);
         rename_suite.addEventListener("click", function(event) {
             event.stopPropagation();
             var s_suite = getSelectedSuite();
-            var n_title = prompt("Please enter the Test Suite's name", sideex_testSuite[s_suite.id].title);
+            var n_title = prompt("Please enter name", sideex_testSuite[s_suite.id].title);
             if (n_title) {
                 // get text node
                 s_suite.getElementsByTagName("STRONG")[0].textContent = n_title;
@@ -238,7 +238,7 @@ function addTestCase(title, id) {
         var suite_id = "suite" + sideex_testSuite.count;
         sideex_testSuite.count++;
         sideex_testSuite[suite_id] = {
-            file_name: "Untitled Process Name.html",
+            file_name: "Untitled Record Collection.html",
             title: "Untitled Process Name"
         };
         addTestSuite("Untitled Process Name", suite_id);
@@ -439,7 +439,7 @@ function modifyCaseSuite() {
 
 document.getElementById("add-testSuite").addEventListener("click", function(event) {
     event.stopPropagation();
-    var title = prompt("Please enter the Process Name", "Untitled Process Name");
+    var title = prompt("Please enter name for the Record Collection", "Untitled Record Collection");
     if (title) {
         var id = "suite" + sideex_testSuite.count;
         sideex_testSuite.count++;
@@ -499,7 +499,7 @@ document.getElementById("close-testSuite").addEventListener('click', function(ev
     var s_suite = getSelectedSuite();
     if (s_suite) {
         if ($(s_suite).find(".modified").length) {
-            confirmCloseSuite("Would you like to save this test suite?").then(function(answer) {
+            confirmCloseSuite("Would you like to save this Record Collection?").then(function(answer) {
                 if (answer === "true")
                     downloadSuite(s_suite, remove_testSuite);
                 else
@@ -527,7 +527,7 @@ document.getElementById("close-testSuite").addEventListener('click', function(ev
 document.getElementById("add-testCase").addEventListener("click", function(event) {
     //var title = prompt("Please enter the Test Case's name", "Untitled Test Case");   
     // var recordingName = $('#recording').val()
-    var title = prompt("Please enter the Test Case's name", "Untitled Test Case");   
+    var title = prompt("Please enter the name of your Recording", "Untitled Recording");   
     if (title) {
         var id = "case" + sideex_testCase.count;
         sideex_testCase.count++;
@@ -546,7 +546,7 @@ document.getElementById("delete-testCase").addEventListener('click', function() 
     var s_case = getSelectedCase();
     if (s_case) {
         if ($(s_case).hasClass("modified")) {
-            confirmCloseSuite("Would you like to save this test case?").then(function(answer) {
+            confirmCloseSuite("Would you like to save this Recording?").then(function(answer) {
                 if (answer === "true")
                     downloadSuite(getSelectedSuite(), remove_testCase);
                 else
