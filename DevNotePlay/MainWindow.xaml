@@ -129,7 +129,7 @@
                 </WindowsFormsHost>-->
                 <Button x:Name="btnNew" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
                         Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" 
-                        Width="30" Height="20" Click="btnPlus_Click" 
+                        Width="30" Height="20" Click="btnNew_Click" 
                         Margin="0,0"
                         RenderTransformOrigin="1,0.5" 
                         HorizontalAlignment="Left">
