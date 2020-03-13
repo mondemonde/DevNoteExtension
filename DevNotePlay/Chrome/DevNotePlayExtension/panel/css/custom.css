@@ -11,8 +11,16 @@
 .command-value-control-row {
     align-items: center;
     display: flex;
+    margin: 0px 10px;
 }
 
+#command-value-controls {
+    display: none;
+    flex-wrap: wrap; 
+    padding: 10px;
+}
+
+/* Command value table controls */
 #command-value-table {
     table-layout: fixed;
     width: 100%;
@@ -22,6 +30,6 @@
     width: auto;
 }
 
-#command-value-controls {
+/* #command-value-controls {
     display: none;
-}
+} */
