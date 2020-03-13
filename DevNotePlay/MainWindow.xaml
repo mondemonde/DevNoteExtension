@@ -272,7 +272,7 @@
 
                             </MenuItem.Icon>
 
-                            <MenuItem x:Name="Save" Background="Black" Header="Save" Click="Save_Click"/>
+                            <!--<MenuItem x:Name="Save" Background="Black" Header="Save" Click="Save_Click"/>-->
                             <MenuItem x:Name="Save_As" Background="Black" Header="Save as..." Click="Save_As_Click"/>
                             <MenuItem Background="Black" Header="_Exit" />
                             
