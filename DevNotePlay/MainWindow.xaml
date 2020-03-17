@@ -29,7 +29,6 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-
             <!--ScrollBars-->
             <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
                 <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
@@ -52,7 +51,6 @@
                                     </Track.DecreaseRepeatButton>
                                 </Track>
                             </Grid>
-
                             <ControlTemplate.Triggers>
                                 <Trigger SourceName="Thumb" Property="IsMouseOver" Value="true">
                                     <Setter Value="{DynamicResource ButtonSelectBrush}" TargetName="Thumb" Property="Background" />
@@ -60,7 +58,6 @@
                                 <Trigger SourceName="Thumb" Property="IsDragging" Value="true">
                                     <Setter Value="{DynamicResource DarkBrush}" TargetName="Thumb" Property="Background" />
                                 </Trigger>
-
                                 <Trigger Property="IsEnabled" Value="false">
                                     <Setter TargetName="Thumb" Property="Visibility" Value="Collapsed" />
                                 </Trigger>
@@ -94,7 +91,6 @@
                 <ColumnDefinition Width="27*"/>
                 <ColumnDefinition Width="8*"/>
             </Grid.ColumnDefinitions>
-
             <StackPanel Orientation="Horizontal" x:Name="stack" Grid.ColumnSpan="2">
                 <StackPanel.Resources>
                     <local:NegatingConverter x:Key="NegatingConverter" />
@@ -120,9 +116,7 @@
                     <TextBlock Text="DevNotePlay™  version 1.0.0.1" FontSize="14"  x:Name="txtVersion" Canvas.Left="0" Margin="0,27,0,0"/>
                     <TextBlock x:Name="txtCaption" Text="{Binding Text, ElementName=txtKron}" FontSize="14" Canvas.Left="{Binding Width, ElementName=canvas}" Margin="0,27,0,0"/>
                 </Canvas>
-              
             </StackPanel>
-
             <Grid VerticalAlignment="Top" Grid.ColumnSpan="2" Background="#44444444">
                 <!--<WindowsFormsHost Height="1" VerticalAlignment="Top" Width="200" Margin="-5">
                     <myControls:UserControlPlayer x:Name="hostPlayer"  />
@@ -148,8 +142,6 @@
                         </materialDesign:PackIcon.Foreground>
                     </materialDesign:PackIcon>
                 </Button>
-
-
                 <Button x:Name="btnPlus" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Visibility="Visible" Background="{x:Null}" BorderBrush="{x:Null}" Width="20" Height="20" Margin="0,0,35,0" Click="btnPlus_Click" RenderTransformOrigin="1,0.5" HorizontalAlignment="Right">
                     <Button.ToolTip>
                         <ToolTip>
@@ -166,8 +158,6 @@
                         </materialDesign:PackIcon.Foreground>
                     </materialDesign:PackIcon>
                 </Button>
-
-
                 <Button x:Name="ButtonFechar" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Right" Width="20" Height="20" Margin="10,0" Click="ButtonFechar_Click">
                     <Button.ToolTip>
                         <ToolTip>
@@ -184,26 +174,15 @@
                         </materialDesign:PackIcon.Foreground>
                     </materialDesign:PackIcon>
                 </Button>
-
-
-
-
-
-
-
-
             </Grid>
             <Grid VerticalAlignment="Top" Margin="0,50,5,0" Grid.ColumnSpan="2">
                 <DockPanel>
-
                     <Menu DockPanel.Dock="Bottom" Background="#44444444" Foreground="OrangeRed" Height="50" Margin="0,0,-5,0" >
-
                         <Button x:Name="btnRec" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="#00000000" BorderBrush="#70702222" HorizontalAlignment="Left" Click="btnRec_Click">
                             <Button.ToolTip>
                                 <ToolTip >
                                     <StackPanel Width="200">
                                         <TextBlock Text="Record" FontWeight="ExtraBold"/>
-
                                         <StackPanel Orientation="Horizontal" Background="Tan" Width="200">
                                             <Image Source="chromeExtIcon.PNG" Margin="10 5"/>
                                             <Label Content="Record" Margin="10 5" FontSize="20" FontWeight="Bold"/>
@@ -213,7 +192,6 @@
                                     </StackPanel>
                                 </ToolTip>
                             </Button.ToolTip>
-
                             <materialDesign:PackIcon Kind="RecordRec" VerticalAlignment="Center" Width="30" Height="30">
                                 <materialDesign:PackIcon.Foreground>
                                     <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -223,9 +201,7 @@
                                     </LinearGradientBrush>
                                 </materialDesign:PackIcon.Foreground>
                             </materialDesign:PackIcon>
-
                         </Button>
-
                         <Button x:Name="Anterior" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}"  HorizontalAlignment="Left" Margin="0,0" Width="45" Click="Anterior_Click_1" >
                             <Button.ToolTip>
                                 <ToolTip>
@@ -242,16 +218,14 @@
                                 </materialDesign:PackIcon.Foreground>
                             </materialDesign:PackIcon>
                         </Button>
-
-
                         <MenuItem  Background="{x:Null}" BorderBrush="{x:Null}" Width="69" >
                             <MenuItem.ToolTip>
                                 <ToolTip>
                                     Save recording
                                 </ToolTip>
                             </MenuItem.ToolTip>
-                                <MenuItem.Icon>
-                            <!--<Image Source="/Assets/photo (1).jpg" Stretch="Uniform" RenderTransformOrigin="0,0.4">
+                            <MenuItem.Icon>
+                                <!--<Image Source="/Assets/photo (1).jpg" Stretch="Uniform" RenderTransformOrigin="0,0.4">
                             <Image.RenderTransform>                                
                                     <ScaleTransform ScaleX  ="3" ScaleY="3.7"/>                                
                             </Image.RenderTransform>
@@ -268,18 +242,11 @@
                                         </LinearGradientBrush>
                                     </materialDesign:PackIcon.Foreground>
                                 </materialDesign:PackIcon>
-
-
                             </MenuItem.Icon>
-
                             <!--<MenuItem x:Name="Save" Background="Black" Header="Save" Click="Save_Click"/>-->
                             <MenuItem x:Name="Save_As" Background="Black" Header="Save as..." Click="Save_As_Click"/>
                             <MenuItem Background="Black" Header="_Exit" />
-                            
-                            
                         </MenuItem>
-
-
                         <MenuItem Width="74" HorizontalAlignment="Right">
                             <MenuItem.Icon>
                                 <!--<Image Source="/Assets/photo (1).jpg" Stretch="Uniform" RenderTransformOrigin="0,0.4">
@@ -300,8 +267,6 @@
                                         </LinearGradientBrush>
                                     </materialDesign:PackIcon.Foreground>
                                 </materialDesign:PackIcon>
-
-
                             </MenuItem.Icon>
                             <MenuItem Header="_Manage users">
                                 <MenuItem.Icon>
@@ -311,7 +276,6 @@
                             <MenuItem Header="_Show groups" IsCheckable="True" IsChecked="True" />
                         </MenuItem>
                     </Menu>
-
                 </DockPanel>
                 <!--<Button x:Name="btnRec" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="#00000000" BorderBrush="#70702222" HorizontalAlignment="Left">
 
@@ -393,7 +357,6 @@
                         </materialDesign:PackIcon.Foreground>
                     </materialDesign:PackIcon>
                 </Button>-->
-             
             </Grid>
         </Grid>
     </Grid>
