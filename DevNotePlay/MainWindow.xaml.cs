@@ -903,7 +903,6 @@ namespace Player
             {
                 //textBox1.Text = saveFileDialog1.FileName;
                 toolStripButtonSave_Click(sender, e);
-
                 SetProjectFolder(System.IO.Path.GetDirectoryName(saveFileDialog1.FileName));
             }
         }
@@ -1019,7 +1018,6 @@ namespace Player
         private void CheckIfFileHasCorrectExtension(object sender, CancelEventArgs e)
         {
             var sv = (sender as System.Windows.Forms.SaveFileDialog);
-
             string extension = Path.GetExtension(sv.FileName).ToLower();
 
             if (extension != "." + RecordFileExtension)
@@ -1029,8 +1027,6 @@ namespace Player
                 return;
             }
         }
-
-
 
         private void btnNew_Click(object sender, RoutedEventArgs e)
         {
@@ -1055,12 +1051,10 @@ namespace Player
                         //ZipFile.ExtractToDirectory(diag.FileName, FileEndPointManager.Project2Folder);
                     }
                     // Run script as soon as it is opened
-
                     UpdateStatus(false);
                     Anterior_Click_1(sender, e);
                 }
             }
-
         }
     }
 
