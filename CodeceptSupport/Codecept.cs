@@ -56,6 +56,9 @@ namespace CodeceptSupport
                 case "captureEntirePageScreenshot":
                     result = new CaptureScreenshot(cmd).Script(it);
                     break;
+                case "scrollTo":
+                    result = new ScrollTo(cmd).Script(it);
+                    break;
                 default:
                     result = new NotSupportedAction(cmd).Script(it);
                     break;
