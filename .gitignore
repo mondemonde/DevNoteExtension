@@ -25,3 +25,6 @@ bld/
 /.vs/DevNoteExtension/v16/Server/sqlite3/db.lock
 /.vs/DevNoteExtension/v16
 
+/DevNotePlay/MenuWindow.xaml.cs
+/DevNotePlay/MenuWindow.xaml
+/DevNotePlay/DevNotePlay.csproj.bak
