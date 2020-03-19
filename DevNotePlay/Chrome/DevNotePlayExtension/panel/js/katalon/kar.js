@@ -1229,38 +1229,7 @@ function addSampleDataToScreenshot() {
 // KAT-BEGIN handle event for help button click
 $(function() {
     $('#help.sub_btn').on('click', function() {
-        $("#helpDialog").dialog({
-            autoOpen: false,
-            modal: true,
-            height: "auto",
-            width: "584px",
-            dialogClass: "help-dialog",
-            draggable: false,
-            resize: function(event, ui) {
-                var size = ui.size;
-                var helpDialog = $('#helpDialog');
-                if (size.width <= 350) {
-                    helpDialog.addClass('small');
-                } else {
-                    helpDialog.removeClass('small');
-                }
-            },
-            open: function(event, ui) {
-                $('.ui-widget-overlay').addClass("dim-overlay");
-            },
-            close: function(event, ui) {
-                $('#helpDialog').removeClass('small');
-                $('.ui-widget-overlay').removeClass("dim-overlay");
-            }
-        })
-            .parent()
-            .draggable();
-
-        $('#helpDialog').dialog("open");
-
-        $('#helpDialog-close').on("click", function() {
-            $('#helpDialog').dialog("close");
-        });
+        $('.help-section').toggle('show');
     });
 });
 
