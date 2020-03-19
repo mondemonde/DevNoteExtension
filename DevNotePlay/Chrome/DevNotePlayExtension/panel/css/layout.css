@@ -486,6 +486,7 @@ section#main {
 #command-toolbar {
     height: 105px;
     width: 100%;
+    position: relative;
 }
 
 .module_right {}
@@ -1431,6 +1432,7 @@ button.active {
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
+    position: relative;
 }
 
 .fixed th {

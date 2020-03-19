@@ -73,6 +73,7 @@ $(document).ready(function() {
         $("#target-dropdown").css({
             'width': $("#command-target").width() + 29 + "px"
         });
+        adjustHelpSectionWidthsToMatchParents();
     });
     //dropdown when click the down icon
     $(".fa-chevron-down").click(function() {
@@ -131,6 +132,8 @@ $(document).ready(function() {
                 init();
             });
         };
+
+        adjustHelpSectionWidthsToMatchParents();
     });
 
     // $(".fixed").width($("table:not(.fixed)").width());
@@ -186,6 +189,15 @@ function closeConfirm(bool) {
         if (!$("#testCase-grid").find(".modified").length)
             $(window).off("beforeunload");
     }
+}
+
+function adjustHelpSectionWidthsToMatchParents() {
+    let recordCollectionContainerWidth = $("#testCase-container").width();
+    let commandContainerWidth = $("#command-container").width();
+
+    $("#record-collection-help-section").width(recordCollectionContainerWidth * .9);
+    $("#command-container-help-section").width(commandContainerWidth * .9);
+    $("#command-toolbar-help-section").width(commandContainerWidth * .9);
 }
 
 //KAT-BEGIN add Selenium IDE commands

@@ -150,10 +150,10 @@ document.getElementById("load-testSuite-show").addEventListener("click", functio
     document.getElementById('load-testSuite-hidden').click();
 }, false);
 
-document.getElementById("load-testSuite-show-menu").addEventListener("click", function(event) {
-    event.stopPropagation();
-    document.getElementById('load-testSuite-hidden').click();
-}, false);
+// document.getElementById("load-testSuite-show-menu").addEventListener("click", function(event) {
+//     event.stopPropagation();
+//     document.getElementById('load-testSuite-hidden').click();
+// }, false);
 
 $(document).ready(function() {
 
