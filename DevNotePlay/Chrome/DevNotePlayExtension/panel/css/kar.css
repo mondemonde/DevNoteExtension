@@ -754,7 +754,7 @@ div.test-suite-title {
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     padding-top: 0px;
     padding-bottom: 10px;
     padding-left: 10px;

@@ -40,7 +40,7 @@ namespace Player
     /// </summary>
     public partial class MainWindow : Window, IFrmDevNoteCmd
     {
-        public void InvokeOnUiThreadIfRequired( Action action)
+        public void InvokeOnUiThreadIfRequired(Action action)
         {
             // Checking if this thread has access to the object.
             if (this.Dispatcher.CheckAccess())
@@ -66,30 +66,30 @@ namespace Player
             //}
         }
 
-        public int ArmId {get;set;}
+        public int ArmId { get; set; }
         public IChromeIdentity ChromePartner { get; set; }
 
         public CodeceptAction CurrentAction { get; set; }//{get;set;}
 
-        public string InitialChangeDirCmd {get;set;}
-        public string InitialDirectory {get;set;}
-        public bool IsArmReady {get;set;}
-        public EnumTaskStatus IsAutoplayDone {get;set;}
-        public bool IsAutoPlaying {get;set;}
-        public bool IsAutoRun {get;set;}
-        public bool IsHeadless {get;set;}
-        public bool IsPlaying {get;set;}
+        public string InitialChangeDirCmd { get; set; }
+        public string InitialDirectory { get; set; }
+        public bool IsArmReady { get; set; }
+        public EnumTaskStatus IsAutoplayDone { get; set; }
+        public bool IsAutoPlaying { get; set; }
+        public bool IsAutoRun { get; set; }
+        public bool IsHeadless { get; set; }
+        public bool IsPlaying { get; set; }
         public bool IsSessionLifeSpan { get; set; }
-        public string JSFile {get;set;}
-        public CodeceptAction LastAction {get;set;}
-        public List<CodeceptAction> MyActions {get;set;}
-        public int MyRetry {get;set;}
+        public string JSFile { get; set; }
+        public CodeceptAction LastAction { get; set; }
+        public List<CodeceptAction> MyActions { get; set; }
+        public int MyRetry { get; set; }
 
-        public string ProjectFolder {get;set;}
+        public string ProjectFolder { get; set; }
 
-        public string RemoteDebuggerAddress {get;set;}
-        public EnumPlayStatus Status {get;set;}
-        public CmdToken Token {get;set;}
+        public string RemoteDebuggerAddress { get; set; }
+        public EnumPlayStatus Status { get; set; }
+        public CmdToken Token { get; set; }
         public DateTime TimeStarted { get; private set; }
 
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
@@ -134,7 +134,7 @@ namespace Player
 
             RecFileWatcher watcher = new RecFileWatcher();
             watcher.Player = this;
-           
+
             var maxThreads = 4;
             // Times to as most machines have double the logic processers as cores
             ThreadPool.SetMaxThreads(maxThreads, maxThreads * 2);
@@ -143,13 +143,42 @@ namespace Player
 
             IsSessionLifeSpan = true;
             // CheckForUpdate();
-            txtVersion.Text = txtCaption.Text =string.Format("DevNotePlay™ version {0}", GetVersion());
+            txtVersion.Text = string.Format("DevNotePlay™ version {0}", GetVersion());
+            //txtCaption.Text = string.Format("DevNotePlay™ version {0}", GetVersion());
+            UpdateStatus(false);
         }
 
         string GetVersion()
         {
-           var version =  DevAPI.GetVersion();
-           return version.ToString();
+            var version = DevAPI.GetVersion();
+            return version.ToString();
+        }
+
+        private string GetNameOfOpenedFile()
+        {
+            if (string.IsNullOrEmpty(OpenedFile))
+            {
+                return "None";
+            }
+            else
+            {
+                return Path.GetFileName(OpenedFile);
+            }
+        }
+
+        private void UpdateStatus(bool isPlaying)
+        {
+            if (!isPlaying)
+            {
+                txtCaption.Text = string.Format("Currently Opened: {0}", GetNameOfOpenedFile());
+            }
+            else
+            {
+                string fileName = GetNameOfOpenedFile();
+                if (fileName == "None") fileName = "New Recording";
+
+                txtCaption.Text = string.Format("Currently Playing: {0}", fileName);
+            }
         }
         #region SQUIRREL
         //async Task CheckForUpdate()
@@ -171,7 +200,7 @@ namespace Player
         }
 
         //This method processes your file, you can do your sync here
-        private  void ProcessFile(System.IO.FileSystemEventArgs e)
+        private void ProcessFile(System.IO.FileSystemEventArgs e)
         {
             // Based on the eventtype you do your operation
             switch (e.ChangeType)
@@ -193,12 +222,12 @@ namespace Player
             }
         }
 
-        async Task<bool>  TriggerPlay(System.IO.FileSystemEventArgs e)
+        async Task<bool> TriggerPlay(System.IO.FileSystemEventArgs e)
         {
             //step# 70 PLAY.TXT
             if (e.Name.ToLower() == "play.txt")
             {
-                var endPointFolder = FileEndPointManager.Project2Folder; 
+                var endPointFolder = FileEndPointManager.Project2Folder;
 
                 Console.WriteLine("found play.txt");
                 var span = DateTime.Now - TimeStarted;
@@ -212,7 +241,7 @@ namespace Player
                 //dot restart let run for awhile
                 if (span.TotalSeconds > 20)
                 {
-                    await  Play(true);
+                    await Play(true);
                     TimeStarted = DateTime.Now;
                 }
                 //delete play.txt
@@ -263,12 +292,12 @@ namespace Player
 
         private void Proxima_Click(object sender, RoutedEventArgs e)
         {
-           
+
         }
 
         private void Anterior_Click(object sender, RoutedEventArgs e)
         {
-           
+
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -281,9 +310,9 @@ namespace Player
         private void btnPlus_Click(object sender, RoutedEventArgs e)
         {
             //setting
-           var dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
-           dir = dir.Replace("file:\\", string.Empty);
-           Process.Start(dir);
+            var dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
+            dir = dir.Replace("file:\\", string.Empty);
+            Process.Start(dir);
         }
 
         private void btnRec_Click(object sender, RoutedEventArgs e)
@@ -389,6 +418,8 @@ namespace Player
                 //ActivateGroupBox(groupBoxRec);
                 defaultXML = Path.Combine(endPointFolder, "latest.xml");
             }
+            OpenedFile = "New Unsaved Recording";
+            UpdateStatus(false);
 
             //groupBoxRec.Visible = true;
             //_HACK BtnPlay_Click
@@ -736,7 +767,8 @@ namespace Player
                 //actionSource.DataSource = it.MyActions;
                 //refreshList();
                 ////end obsolete
-               txtCaption.Text = "Dev Note Console -" + Path.GetFileNameWithoutExtension(openFileDialog1.FileName);
+                //txtCaption.Text = "Dev Note Console -" + Path.GetFileNameWithoutExtension(openFileDialog1.FileName);
+                //UpdateStatus(true);
             }
         }
 
@@ -783,7 +815,7 @@ namespace Player
             //this.actionSource.DataSource = MyActions;
             //refreshList();
 
-            txtCaption.Text = "Dev Note Recorder -" +System.IO. Path.GetFileName(openFileDialog1.FileName);
+            //txtCaption.Text = "DevNote Recorder -" + System.IO.Path.GetFileName(openFileDialog1.FileName);
             //saveFileDialog1.FileName = openFileDialog1.FileName;
 
             // var folder = Path.GetDirectoryName(jsXMLFile);
@@ -794,10 +826,10 @@ namespace Player
             //string driveLetter = drive.First().ToString();
             var codeceptjsFolder = FileEndPointManager.Project2Folder;//string.Format("{0}\\CodeceptJs\\Project2", dir);  //@"D:\_ROBOtFRAMeWORK\CodeceptsJs\Project1\";
 
-            var codeceptTestPath =System.IO.Path.Combine(codeceptjsFolder, "latest_test.js");
+            var codeceptTestPath = System.IO.Path.Combine(codeceptjsFolder, "latest_test.js");
 
             if (System.IO.File.Exists(codeceptTestPath))
-               System.IO.File.Delete(codeceptTestPath);
+                System.IO.File.Delete(codeceptTestPath);
 
             saveFileDialog1.FileName = codeceptTestPath;
 
@@ -850,7 +882,8 @@ namespace Player
 
                 //step# _8.5 save scenario file
                 File.WriteAllText(saveFileDialog1.FileName, codeCeptTestTemplate);
-               txtCaption.Text = "Dev Note Console -" + Path.GetFileNameWithoutExtension(saveFileDialog1.FileName);
+                //txtCaption.Text = "Dev Note Console -" + Path.GetFileNameWithoutExtension(saveFileDialog1.FileName);
+                //UpdateStatus(true);
             }
         }
         private void toolStripLabelSaveAs_Click(object sender, EventArgs e)
@@ -870,16 +903,15 @@ namespace Player
             {
                 //textBox1.Text = saveFileDialog1.FileName;
                 toolStripButtonSave_Click(sender, e);
-
                 SetProjectFolder(System.IO.Path.GetDirectoryName(saveFileDialog1.FileName));
             }
         }
 
         private void Window_Activated(object sender, EventArgs e)
         {
-            WindowsHelper.FollowConsole(this.Width,this.Height);
+            WindowsHelper.FollowConsole(this.Width, this.Height);
             if (CmdExeForCodecept != null)
-                  WindowsHelper.FollowConsole(CmdExeForCodecept);
+                WindowsHelper.FollowConsole(CmdExeForCodecept);
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
@@ -913,7 +945,7 @@ namespace Player
             }
             else
             {
-                MessageBox.Show("No recordings have been opened yet. Please open an existing recording or make a new one.", AppName, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("No recordings have been opened yet. Please open an existing recording first.", AppName, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -946,6 +978,9 @@ namespace Player
                     {
                         string destinationPathAndFileName = diag.FileName;
                         ArchiveFiles(fullPathsOfFilesToCompress, destinationPathAndFileName);
+
+                        OpenedFile = Path.GetFileName(diag.FileName);
+                        UpdateStatus(false);
                     }
                 }
             }
@@ -957,7 +992,7 @@ namespace Player
             {
                 using (ZipArchive zipArchive = new ZipArchive(zipMS, ZipArchiveMode.Create, true))
                 {
-                    foreach(string file in filesToCompress)
+                    foreach (string file in filesToCompress)
                     {
                         string fileName = Path.GetFileName(file);
 
@@ -983,7 +1018,6 @@ namespace Player
         private void CheckIfFileHasCorrectExtension(object sender, CancelEventArgs e)
         {
             var sv = (sender as System.Windows.Forms.SaveFileDialog);
-
             string extension = Path.GetExtension(sv.FileName).ToLower();
 
             if (extension != "." + RecordFileExtension)
@@ -993,8 +1027,6 @@ namespace Player
                 return;
             }
         }
-
-       
 
         private void btnNew_Click(object sender, RoutedEventArgs e)
         {
@@ -1019,10 +1051,10 @@ namespace Player
                         //ZipFile.ExtractToDirectory(diag.FileName, FileEndPointManager.Project2Folder);
                     }
                     // Run script as soon as it is opened
+                    UpdateStatus(false);
                     Anterior_Click_1(sender, e);
                 }
             }
-
         }
     }
 

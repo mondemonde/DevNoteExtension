@@ -15,6 +15,12 @@ class MyPuppet extends Helper {
     // If you need to access other helpers
     // use: this.helpers['helperName']
 
+    async scrollToElement(thisSelector) {
+        const { page } = this.helpers.Puppeteer;
+
+        await page.$eval(thisSelector, (el) => el.scrollIntoViewIfNeeded(true));
+    }
+
     async waitByPuppet(thisSelector, timeOut) {
         const { page } = this.helpers.Puppeteer;
         //await page.emulate(iPhone);

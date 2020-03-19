@@ -24,7 +24,7 @@
 <head>
     <meta charset="utf-8" />
     <!-- TODO: Change the title bar text -->
-    <title>DevNotePlay</title>
+    <title>DevNotePlay Recorder</title>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,500,700" rel="stylesheet">
 
@@ -83,8 +83,8 @@
     <!-- right button feature -->
     <div id="suite-grid-menu" class="menu">
         <ul>
-            <li id="load-testSuite-show-menu"><a href="#">Open Test Suites</a></li>
-            <li id="add-testSuite-menu"><a href="#">Add New Test Suite</a></li>
+            <!-- <li id="load-testSuite-show-menu"><a href="#">Open Test Suites</a></li> -->
+            <li id="add-testSuite-menu"><a href="#">Add New Record Collection</a></li>
         </ul>
     </div>
     <div id="command-grid-menu" class="menu">
@@ -94,7 +94,7 @@
             <li id="grid-deleteAll"><a href="#">Delete All Commands</a></li>
             <li id="grid-copy"><a href="#">Copy Command <span class="hotKey">Ctrl+C</span></a></li>
             <li id="grid-paste"><a href="#">Paste Command <span class="hotKey">Ctrl+V</span></a></li>
-            <li id="grid-breakpoint"><a href="#">Toggle Breakpoint </a><span class="hotKey">Ctrl+B</span></li>
+            <!-- <li id="grid-breakpoint"><a href="#">Toggle Breakpoint </a><span class="hotKey">Ctrl+B</span></li> -->
         </ul>
     </div>
     <section id="main" class="column">
@@ -111,7 +111,7 @@
             <a download="info.html" id="downloadlink" style="display: none">Download</a>
             <button id="new" class="sub_btn"><i class="fa"></i> New</button>
             <button id="record" class="sub_btn" style="width: 15%"><i class="fa fa-video-camera" aria-hidden="true"></i> Record</button>
-            <button id="playback" class="sub_btn" style="width: 20%" disabled><i class="fa fa-play" aria-hidden="true"></i> Play</button>
+            <button id="playback" class="sub_btn" style="width: 20%" disabled><i class="fa fa-play" aria-hidden="true"></i> Play on DevNotePlay</button>
             <button id="stop" class="sub_btn" style="display: none; width: 20%"><i class="fa fa-stop" aria-hidden="true"></i> Stop</button>
             <button id="playSuite" class="sub_btn" style="width: 21%; display: none;" disabled><i class="fa fa-cube" aria-hidden="true"></i> Play Suite</button>
             <button id="playSuites" class="sub_btn" style="width: 21%; display: none;" disabled><i class="fa fa-cubes" aria-hidden="true"></i> Play All</button>
@@ -138,7 +138,7 @@
                 <div id="middle-container" class="module">
                     <header>
                         <h3 class="suite-container-title">
-                            <div class="suite-container-title">Test Suites</div>
+                            <div class="suite-container-title">Record Collections</div>
                             <div id="suite-fun" class="suite-fun">
                                 <div id="suite-open" class="suite-open"><i id="suite-open-icon" class="fa fa-folder-open-o suite-open" aria-hidden="true"></i></div>
                                 <div id="suite-plus" class="suite-plus"><i id="suite-plus-icon" class="fa fa-plus suite-plus" aria-hidden="true"></i></div>
@@ -152,7 +152,7 @@
                     </div>
                 </div>
                 <!-- end of messages article -->
-                <article id="result-container" class="module">
+                <!-- <article id="result-container" class="module">
                     <div class="fieldset">
                         <div class="result-row">
                             <label id="result1">Passed</label>
@@ -163,7 +163,7 @@
                             <p id="result-failures" class="failures">0</p>
                         </div>
                     </div>
-                </article>
+                </article> -->
             </article>
             <article class="module width_3_quarter">
                 <div id="command-container" class="tab_content case_hight">
@@ -268,53 +268,44 @@
                             <input id="command-target" list="command-target-list" type="text"><i id="target-" class="fa fa-chevron-down" aria-hidden="true"></i>
                             <div id="target-dropdown" class="w3-dropdown-content w3-bar-block">
                             </div>
-                            <button id="selectElementButton" class="btn_sf" style="width: 60px" tabindex="-1">Select</button>
-                            <button id="showElementButton" class="btn_sf" style="width: 50px" tabindex="-1">Find</button>
+                            <button id="selectElementButton" class="btn_sf" style="width: 60px" tabindex="-1" style="display: none;">Select</button>
+                            <button id="showElementButton" class="btn_sf" style="width: 50px" tabindex="-1" style="display: none;">Find</button>
                         </div>
                         <datalist id="command-target-list">
                         </datalist>
                         <div class="command-row">
-                            <!-- 2020-27-02 - Converted command row into a table so extra controls (radio/checkbox) are neatly displayed -->
-                            <table id="command-value-table" style="width: calc(100% - 20px); table-layout: fixed;">
-                                <tr>
-                                    <td style="width: 70px; padding: 0px;">
-                                        <label>Value</label>
-                                    </td>
-                                    <td colspan="4">
-                                        <input id="command-value" type="text" style="width: 100%;">
-                                    </td>
-                                </tr>
-                                <tr id="command-value-controls">
-                                    <td></td>
-                                    <td>
-                                        <div class="command-value-control-row">
-                                            <input id="command-none-radio" name="value-option" type="radio">
-                                            <label for="command-none-radio">None</label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="command-value-control-row">
-                                            <input id="command-value-radio" name="value-option" type="radio">
-                                            <label for="command-value-radio">Value</label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="command-value-control-row">
-                                            <input id="command-coordinates-radio" name="value-option" type="radio">
-                                            <label for="command-coordinates-radio">Coordinates</label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <!-- <input id="command-keyword" list="command-keyword-list" type="text"><i id="keyword-" class="fa fa-chevron-down" aria-hidden="true"></i> -->
-                                        <!-- <div id="keyword-dropdown" class="w3-dropdown-content w3-bar-block"></div> -->
-                                        <div class="command-value-control-row">
-                                            <label for="command-keyword-dropdown">Keywords:</label>
-                                            <select id="command-keyword-dropdown">
-                                            </select>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
+                            <label>Value</label>
+                            <input id="command-value" type="text">
+                        </div>
+                        <!-- 2020-13-03 - Use flex display for extra controls (radio/checkbox) -->
+                        <div id="command-value-controls-view">
+                            <div class="center-items-horizontally">
+                                <label style="width: auto;">Value Modifiers:</label>
+                            </div>            
+                            <div id="command-value-controls">
+                                <fieldset>
+                                    <legend>Find target element by: </legend>
+                                    <div class="command-value-control-row">
+                                        <input id="command-none-radio" name="value-option" type="radio">
+                                        <label for="command-none-radio" style="width: auto;">Default</label>
+                                    </div>
+                                    <div class="command-value-control-row">
+                                        <input id="command-value-radio" name="value-option" type="radio">
+                                        <label for="command-value-radio" style="width: auto;">Label</label>
+                                    </div>
+                                    <div class="command-value-control-row">
+                                        <input id="command-coordinates-radio" name="value-option" type="radio">
+                                        <label for="command-coordinates-radio" style="width: auto;">Coordinates</label>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>Action Modifiers: </legend>
+                                    <div class="command-value-control-row">
+                                        <label for="command-keyword-dropdown" style="width: auto;">Keyword:</label>
+                                        <select id="command-keyword-dropdown" style="width: 100%;"></select>
+                                    </div>
+                                </fieldset>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -395,11 +386,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- end of #tab4 -->
             </article>
             <!-- end of styles article -->
         </div>
-        <!--<div class="spacer"></div>-->
+        <div class="spacer"></div>
         <div id="generateToScriptsDialog" title="Export Test Case as Script" style="display: none">
             <label for="select-script-language-id">Format </label>
             <select id="select-script-language-id" class="select-script-language">
@@ -416,7 +406,6 @@
                 <option value="robot">Robot Framework</option>
                 <option value="ruby-wd-rspec">Ruby (WebDriver + RSpec)</option>
                 <option value="xml">XML</option>
-                <!-- must start with new-formatter- -->
                 <option value="new-formatter-sample">Sample for new formatters</option>
             </select>
             <div>You can add your own formatter. Read more <a target="_blank" href="https://github.com/katalon-studio/katalon-recorder" class="katalon-link">here</a>.</div>

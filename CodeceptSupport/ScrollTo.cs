@@ -1,24 +1,23 @@
-﻿using System;
+﻿using PuppetSupportLib;
+using PuppetSupportLib.Katalon;
+using PuppetSupportLib.WebAction;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PuppetSupportLib;
-using PuppetSupportLib.Katalon;
-using PuppetSupportLib.WebAction;
 
 namespace CodeceptSupport
 {
-    public class GoTo : BaseAction
+    class ScrollTo : BaseAction
     {
-        public GoTo(TestCaseSelenese katalonxml) : base(katalonxml)
+        public ScrollTo(TestCaseSelenese katalonxml) : base(katalonxml)
         {
 
         }
 
         public override TestCaseSelenese Map(object customAction)
         {
-            //throw new NotImplementedException();
             var act = (TestCaseSelenese)customAction;
             //do convettion here..
             //..
@@ -28,10 +27,10 @@ namespace CodeceptSupport
 
         public override string Script(IInterpreter interpreter)
         {
-            //await page.click('.container > #mvcforum-nav > .nav > li > .auto-logon')
-            var script = string.Format("amOnPage('{0}')"
-                , MyAction.target);
-            script = script + Environment.NewLine;
+            var target = MyAction.target.Replace("id=", "#");
+
+            var script = string.Format("scrollToElement(\"{0}\")", target);
+            script += Environment.NewLine;
 
             return script;
         }
