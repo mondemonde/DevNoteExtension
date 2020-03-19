@@ -121,9 +121,9 @@ document.getElementById("grid-paste").addEventListener("click", function() {
     pasteCommand();
 }, false);
 
-document.getElementById("grid-breakpoint").addEventListener("click",function() {
-    setBreakpoint(getSelectedRecord());
-}, false);
+// document.getElementById("grid-breakpoint").addEventListener("click",function() {
+//     setBreakpoint(getSelectedRecord());
+// }, false);
 
 document.getElementById("command-container").addEventListener("click", function(event) {
     document.getElementById("command-command").blur();
