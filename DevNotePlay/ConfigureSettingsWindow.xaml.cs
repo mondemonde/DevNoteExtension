@@ -220,7 +220,6 @@ namespace Player
 
         private void IntegerTextBoxChecker_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            //TODO: Disallow pasting text
             e.Handled = !IsTextAllowed(e.Text);
         }
 
