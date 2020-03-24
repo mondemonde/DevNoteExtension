@@ -188,10 +188,18 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigureSettingsWindow.xaml.cs">
+      <DependentUpon>ConfigureSettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\ExtensionMethods.cs" />
     <Compile Include="RecFileWatcher.cs" />
     <Page Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ConfigureSettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

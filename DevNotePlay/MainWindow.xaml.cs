@@ -310,9 +310,11 @@ namespace Player
         private void btnPlus_Click(object sender, RoutedEventArgs e)
         {
             //setting
-            var dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
-            dir = dir.Replace("file:\\", string.Empty);
-            Process.Start(dir);
+            //var dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
+            //dir = dir.Replace("file:\\", string.Empty);
+            //Process.Start(dir);
+            ConfigureSettingsWindow configWindow = new ConfigureSettingsWindow();
+            configWindow.Show();
         }
 
         private void btnRec_Click(object sender, RoutedEventArgs e)
