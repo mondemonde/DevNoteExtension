@@ -268,12 +268,12 @@
                                     </materialDesign:PackIcon.Foreground>
                                 </materialDesign:PackIcon>
                             </MenuItem.Icon>
-                            <MenuItem Header="_Manage users">
-                                <MenuItem.Icon>
+                            <MenuItem x:Name="ViewEventTagLibraryMenuItem" Header="_View Event Tag Library" Click="ViewEventTagLibraryMenuItem_Click">
+                                <!--<MenuItem.Icon>
                                     <Image Source="/Assets/photo (1).jpg" />
-                                </MenuItem.Icon>
+                                </MenuItem.Icon>-->
                             </MenuItem>
-                            <MenuItem Header="_Show groups" IsCheckable="True" IsChecked="True" />
+                            <!--<MenuItem Header="_Show groups" IsCheckable="True" IsChecked="True" />-->
                         </MenuItem>
                     </Menu>
                 </DockPanel>

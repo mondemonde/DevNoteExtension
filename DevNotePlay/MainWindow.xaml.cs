@@ -11,6 +11,7 @@ using LogApplication.Common;
 using LogApplication.Common.Commands;
 using LogApplication.Common.Config;
 using Newtonsoft.Json;
+using Player.SubWindows;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -1057,6 +1058,12 @@ namespace Player
                     Anterior_Click_1(sender, e);
                 }
             }
+        }
+
+        private void ViewEventTagLibraryMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            EventTagLibraryWindow eventTagLibraryWindow = new EventTagLibraryWindow();
+            eventTagLibraryWindow.Show();
         }
     }
 

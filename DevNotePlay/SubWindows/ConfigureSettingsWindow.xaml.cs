@@ -21,7 +21,7 @@ using System.Web.UI.WebControls;
 using System.Xml;
 using System.Text.RegularExpressions;
 
-namespace Player
+namespace Player.SubWindows
 {
     /// <summary>
     /// Interaction logic for ConfigureSettingsWindow.xaml
