@@ -189,6 +189,7 @@
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -214,6 +215,7 @@
     <Compile Include="SubWindows\EventTagLibraryWindow.xaml.cs">
       <DependentUpon>EventTagLibraryWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\EventTagViewModel.cs" />
     <Page Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
