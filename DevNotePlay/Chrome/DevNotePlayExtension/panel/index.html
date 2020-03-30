@@ -84,7 +84,7 @@
     <div id="suite-grid-menu" class="menu">
         <ul>
             <!-- <li id="load-testSuite-show-menu"><a href="#">Open Test Suites</a></li> -->
-            <li id="add-testSuite-menu"><a href="#">Add New Record Collection</a></li>
+            <li id="add-testSuite-menu" style="z-index: 101"><a href="#">Add New Record Collection</a></li>
         </ul>
     </div>
     <div id="command-grid-menu" class="menu">
@@ -118,6 +118,7 @@
             <button id="pause" class="sub_btn btn_pr" style="width: 15.5%; display: none;" disabled><i class="fa fa-pause-circle" aria-hidden="true"></i> Pause</button>
             <button id="resume" class="sub_btn btn_pr" style="display: none; width: 15.5%"><i class="fa fa-reply" aria-hidden="true"></i> Resume</button>
             <button id="export" class="sub_btn" style="width: 15%; display: none;"><i class="fa"></i> Export</button>
+            <button id="help" class="sub_btn" style="margin-left: auto;"><i class="fa"></i></button>
             <!-- <div id="speed-wrapper" style="position: relative; flex-grow: 0; flex-shrink: 0;">
                 <button id="speed" class="sub_btn"><i class="fa"></i>&nbsp;</button>
                 <div id="slider-container" style="display:none"></div>
@@ -146,8 +147,9 @@
                         </h3>
                     </header>
                     <div id="testCase-container" class="case_list">
+                        <div id="record-collection-help-section" class="help-section">Record Collections are displayed here. Record Collections group together your recordings for better organization. Right-click a Record Collection to save it to your computer. You can open a Record Collection you have previously saved by clicking the Folder icon in the Record Collections header.</div>
                         <!-- Sug: Add animation when dragdrop -->
-                        <div id="testCase-grid" class="module_content">
+                        <div id="testCase-grid" class="module_content" style="position: relative;">   
                         </div>
                     </div>
                 </div>
@@ -168,6 +170,7 @@
             <article class="module width_3_quarter">
                 <div id="command-container" class="tab_content case_hight">
                     <div class="smallSection">
+                        <div id="command-container-help-section" class="help-section">This is the Commands container. When you start recording, all the recorded actions (commands) go here. You can manually add, edit, delete and rearrange commands as needed. Right-click inside the area to see the available actions.</div>
                         <table id="command-grid" class="tablesorter" cellspacing="0">
                             <thead class="fixed">
                                 <tr>
@@ -247,6 +250,7 @@
                     </div>
                 </div>
                 <div id="command-toolbar">
+                    <div id="command-toolbar-help-section" class="help-section">This is the Commands toolbar. You can edit each individual command as you see fit.</div>
                     <div id="command-toolbar-buttons">
                         <button id="grid-add-btn"></button>
                         <button id="grid-delete-btn"></button>
@@ -389,7 +393,7 @@
             </article>
             <!-- end of styles article -->
         </div>
-        <div class="spacer"></div>
+        <!-- <div class="spacer"></div> -->
         <div id="generateToScriptsDialog" title="Export Test Case as Script" style="display: none">
             <label for="select-script-language-id">Format </label>
             <select id="select-script-language-id" class="select-script-language">

@@ -311,6 +311,7 @@ function addTestCase(title, id) {
     var menu = document.createElement("div");
     menu.setAttribute("class", "menu");
     menu.setAttribute("id", "menu" + id);
+    menu.style.zIndex = "101";
     appendContextMenu(menu, true);
     p.appendChild(menu);
 
@@ -406,6 +407,7 @@ function addTestSuite(title, id) {
     var menu = document.createElement("div");
     menu.setAttribute("class", "menu");
     menu.setAttribute("id", "menu" + id);
+    menu.style.zIndex = "101";
     appendContextMenu(menu, false);
     div.appendChild(menu);
 

@@ -11,6 +11,7 @@ using LogApplication.Common;
 using LogApplication.Common.Commands;
 using LogApplication.Common.Config;
 using Newtonsoft.Json;
+using Player.SubWindows;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -310,9 +311,11 @@ namespace Player
         private void btnPlus_Click(object sender, RoutedEventArgs e)
         {
             //setting
-            var dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
-            dir = dir.Replace("file:\\", string.Empty);
-            Process.Start(dir);
+            //var dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
+            //dir = dir.Replace("file:\\", string.Empty);
+            //Process.Start(dir);
+            ConfigureSettingsWindow configWindow = new ConfigureSettingsWindow();
+            configWindow.Show();
         }
 
         private void btnRec_Click(object sender, RoutedEventArgs e)
@@ -1055,6 +1058,12 @@ namespace Player
                     Anterior_Click_1(sender, e);
                 }
             }
+        }
+
+        private void ViewEventTagLibraryMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            EventTagLibraryWindow eventTagLibraryWindow = new EventTagLibraryWindow();
+            eventTagLibraryWindow.Show();
         }
     }
 
