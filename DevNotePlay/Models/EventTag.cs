@@ -18,7 +18,7 @@ namespace Player.Models
         public DateTime _created;
         public DateTime? _modified;
 
-        public int Id { get { return _id; } private set { _id = value; } }
+        public int Id { get { return _id; } set { _id = value; } }
         public string Domain
         {
             get { return _domain; }
