@@ -12,7 +12,7 @@ namespace Player.ViewModels
         {
             EventTagService _eventTagService = new EventTagService();
 
-            EventTags = _eventTagService.GetEventLibraryFromServer();
+            EventTags = _eventTagService.GetEvents();
         }
     }
 }

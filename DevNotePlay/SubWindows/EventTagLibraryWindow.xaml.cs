@@ -26,7 +26,6 @@ namespace Player.SubWindows
             eventTagViewModel.GetEventTags();
 
             this.DataContext = eventTagViewModel;
-            this.EventTagDataGrid.Items.Refresh();
             AppName = _configManager.GetValue("AppName");
         }
 

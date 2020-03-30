@@ -1,6 +1,5 @@
 ﻿using LogApplication.Common.Config;
 using System;
-using ServiceStack;
 using Player.Models;
 using System.Collections.ObjectModel;
 using System.Net.Http;
@@ -23,23 +22,19 @@ namespace Player.Services
             _url = config.GetValue("DevNoteFrontUrl_dev") + "/api/events/";
         }
 
-        public ObservableCollection<EventTag> GetEventLibraryFromServer()
+        public ObservableCollection<EventTag> GetEvents()
         {
             try
             {
-                //ObservableCollection<EventTag> eventTags = new ObservableCollection<EventTag>();
-                //HttpResponseMessage response = await _client.GetAsync(_url);
-                //if (response.IsSuccessStatusCode)
-                //{
-                //    string eventTagsAsString = await response.Content.ReadAsStringAsync();
-
-                //    JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
-                //    eventTags = javaScriptSerializer.Deserialize<ObservableCollection<EventTag>>(eventTagsAsString);
-                //}
-
-                //return eventTags;
-                var result = _url.GetJsonFromUrl().FromJson<ObservableCollection<EventTag>>();
-                return result;
+                ObservableCollection<EventTag> eventTags = new ObservableCollection<EventTag>();
+                var response = _client.GetAsync(_url).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    string eventTagsAsString = response.Content.ReadAsStringAsync().Result;
+                    JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+                    eventTags = javaScriptSerializer.Deserialize<ObservableCollection<EventTag>>(eventTagsAsString);
+                }
+                return eventTags;
             }
             catch (Exception ex)
             {
@@ -66,10 +61,6 @@ namespace Player.Services
                 {
                     return false;
                 }
-                #region StackService
-                //var result = _url.PutJsonToUrl(eventTag);
-                //return result; 
-                #endregion
             }
             catch (Exception ex)
             {
@@ -93,18 +84,6 @@ namespace Player.Services
                 {
                     return false;
                 }
-                #region StackService
-                //string deleteUrl = _url + eventTag.Id.ToString();
-                //var result = deleteUrl.DeleteFromUrl().FromJson<HttpResponseMessage>();
-                //if (result == HttpStatusCode.OK)
-                //{
-                //    return true;
-                //}
-                //else
-                //{
-                //    return false;
-                //} 
-                #endregion
             }
             catch (Exception ex)
             {
