@@ -315,7 +315,7 @@ namespace Player
             //dir = dir.Replace("file:\\", string.Empty);
             //Process.Start(dir);
             ConfigureSettingsWindow configWindow = new ConfigureSettingsWindow();
-            configWindow.Show();
+            configWindow.ShowDialog();
         }
 
         private void btnRec_Click(object sender, RoutedEventArgs e)
@@ -1063,7 +1063,12 @@ namespace Player
         private void ViewEventTagLibraryMenuItem_Click(object sender, RoutedEventArgs e)
         {
             EventTagLibraryWindow eventTagLibraryWindow = new EventTagLibraryWindow();
-            eventTagLibraryWindow.Show();
+            eventTagLibraryWindow.ShowDialog();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 

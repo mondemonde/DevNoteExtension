@@ -207,7 +207,7 @@
     <Compile Include="SubWindows\ConfigureSettingsWindow.xaml.cs">
       <DependentUpon>ConfigureSettingsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Extensions\ExtensionMethods.cs" />
+    <Compile Include="Extensions\InputValidators.cs" />
     <Compile Include="RecFileWatcher.cs" />
     <Compile Include="SubWindows\EventTagLibraryWindow.xaml.cs">
       <DependentUpon>EventTagLibraryWindow.xaml</DependentUpon>
@@ -386,6 +386,17 @@
     <Resource Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\iedoc-core.xml" />
     <Resource Include="CodeCeptJS\Project1\codecept.conf.template.txt" />
     <Resource Include="CodeCeptJS\Project2\output\endpoint\MyGrabValue.txt" />
+    <Resource Include="Assets\Add_16x.png" />
+    <Resource Include="Assets\icons8-delete-48.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Refresh_16x.png" />
+    <Resource Include="Assets\TransferUpload_16x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\UpdateListItem_16x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Content Include="CodeCeptJS\Project2\template_test.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
