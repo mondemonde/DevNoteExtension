@@ -14,5 +14,7 @@ namespace Player.ViewModels
 
             EventTags = _eventTagService.GetEvents();
         }
+
+
     }
 }

@@ -19,7 +19,7 @@ namespace Player.Services
             ConfigManager config = new ConfigManager();
             _client = new HttpClient();
 
-            _url = config.GetValue("DevNoteFrontUrl_dev") + "/api/events/";
+            _url = config.GetValue("DevNoteFrontUrl") + "/api/events/";
         }
 
         public ObservableCollection<EventTag> GetEvents()
