@@ -1,0 +1,12 @@
+<DrawingImage x:Key="ASX_TransferUpload_grey_16xDrawingImage">
+  <DrawingImage.Drawing>
+    <DrawingGroup ClipGeometry="M0,0 V16 H16 V0 H0 Z">
+      <GeometryDrawing Brush="#FF717171" Geometry="F1 M16,16z M0,0z M7.5,2.293L7.5,2.293 12.854,7.646 12.146,8.354 8,4.207 8,16 7,16 7,4.207 2.853,8.354 2.147,7.646z" />
+      <GeometryDrawing Brush="#FF717171">
+        <GeometryDrawing.Geometry>
+          <RectangleGeometry RadiusX="0" RadiusY="0" Rect="2,0,11,1" />
+        </GeometryDrawing.Geometry>
+      </GeometryDrawing>
+    </DrawingGroup>
+  </DrawingImage.Drawing>
+</DrawingImage>

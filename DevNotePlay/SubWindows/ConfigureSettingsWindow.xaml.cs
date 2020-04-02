@@ -2,24 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Web.UI;
 using winControls = System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using winForms = System.Windows.Forms;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Configuration;
-using System.Reflection;
-using System.IO;
-using Player.Extensions;
-using System.Web.UI.WebControls;
 using System.Xml;
-using System.Text.RegularExpressions;
+using Player.Extensions;
 
 namespace Player.SubWindows
 {
@@ -59,7 +48,7 @@ namespace Player.SubWindows
             _updatedConfigValues[configKey] = configValue;
         }
 
-        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        private void SaveDataTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             winControls.TextBox textBox = (winControls.TextBox)sender;
 
@@ -212,21 +201,12 @@ namespace Player.SubWindows
 
         private void TextBox_PreviewExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            if (e.Command == ApplicationCommands.Paste)
-            {
-                e.Handled = true;
-            }
+            e.Handled = InputValidators.PasteNotAllowed(e);
         }
 
         private void IntegerTextBoxChecker_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = !IsTextAllowed(e.Text);
-        }
-
-        private static readonly Regex _regex = new Regex("[0-9]+");
-        private static bool IsTextAllowed(string text)
-        {
-            return _regex.IsMatch(text);
+            e.Handled = !InputValidators.NumbersOnly(e.Text);
         }
     }
 }

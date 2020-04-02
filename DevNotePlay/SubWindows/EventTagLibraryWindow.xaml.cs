@@ -1,9 +1,11 @@
 ﻿using LogApplication.Common.Config;
+using Player.Extensions;
 using Player.Models;
 using Player.Services;
 using Player.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Player.SubWindows
 {
@@ -19,13 +21,13 @@ namespace Player.SubWindows
         public EventTagLibraryWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
             _configManager = new ConfigManager();
             _eventTagService = new EventTagService();
-            EventTagViewModel eventTagViewModel = new EventTagViewModel();
-            eventTagViewModel.GetEventTags();
 
-            this.DataContext = eventTagViewModel;
+            RefreshData();
+
             AppName = _configManager.GetValue("AppName");
         }
 
@@ -55,6 +57,7 @@ namespace Player.SubWindows
             if (result == true)
             {
                 MessageBox.Show("Event updated.");
+                RefreshData();
             }
             else
             {
@@ -76,11 +79,28 @@ namespace Player.SubWindows
             if (result == true)
             {
                 MessageBox.Show("Event deleted.");
+                RefreshData();
+                
             }
             else
             {
                 MessageBox.Show("Delete failed.");
             }
+        }
+
+        private void IntegerTextBoxChecker_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !InputValidators.NumbersOnly(e.Text);
+        }
+
+        private void RefreshData()
+        {
+            EventTagViewModel eventTagViewModel;
+            eventTagViewModel = new EventTagViewModel();
+            eventTagViewModel.GetEventTags();
+
+            this.DataContext = null;
+            this.DataContext = eventTagViewModel;
         }
     }
 }
