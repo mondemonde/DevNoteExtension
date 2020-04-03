@@ -26,5 +26,15 @@ namespace Player.Extensions
         {
             return e.Command == ApplicationCommands.Paste;
         }
+
+        /// <summary>
+        /// Bind to PreviewKeyDown event of TextBox to prevent typing space
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns></returns>
+        public static bool SpaceNotAllowed(KeyEventArgs e)
+        {
+            return e.Key == Key.Space;
+        }
     }
 }
