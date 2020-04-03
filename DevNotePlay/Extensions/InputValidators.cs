@@ -9,6 +9,8 @@ namespace Player.Extensions
 
         /// <summary>
         /// Bind to PreviewTextInput event of a TextBox to allow numbers only (0-9)
+        /// Sample implementation:
+        /// private void IntegerTextBoxChecker_PreviewTextInput(object sender, TextCompositionEventArgs e) { e.Handled = !InputValidators.NumbersOnly(e.Text); }
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
@@ -19,6 +21,8 @@ namespace Player.Extensions
 
         /// <summary>
         /// Bind to PreviewExecuted event of a TextBox to prevent pasting
+        /// Sample implementation:
+        /// private void TextBox_PreviewExecuted(object sender, ExecutedRoutedEventArgs e) {e.Handled = InputValidators.PasteNotAllowed(e);}
         /// </summary>
         /// <param name="e"></param>
         /// <returns></returns>
@@ -29,6 +33,8 @@ namespace Player.Extensions
 
         /// <summary>
         /// Bind to PreviewKeyDown event of TextBox to prevent typing space
+        /// Sample implementaion:
+        /// private void SpaceNotAllowedTextBox_PreviewKeyDown(object sender, KeyEventArgs e) {e.Handled = InputValidators.SpaceNotAllowed(e);}
         /// </summary>
         /// <param name="e"></param>
         /// <returns></returns>
