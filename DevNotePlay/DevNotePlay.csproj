@@ -165,6 +165,7 @@
     <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -201,14 +202,20 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\ZipArchiveHelper.cs" />
+    <Compile Include="Models\EventHeader.cs" />
     <Compile Include="Models\EventTag.cs" />
     <Compile Include="Services\EventTagService.cs" />
-    <Compile Include="SubWindows\ConfigureSettingsWindow.xaml.cs">
+    <Compile Include="ViewModels\EventHeaderViewModel.cs" />
+    <Compile Include="Views\AddEventWindow.xaml.cs">
+      <DependentUpon>AddEventWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConfigureSettingsWindow.xaml.cs">
       <DependentUpon>ConfigureSettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions\InputValidators.cs" />
     <Compile Include="RecFileWatcher.cs" />
-    <Compile Include="SubWindows\EventTagLibraryWindow.xaml.cs">
+    <Compile Include="Views\EventTagLibraryWindow.xaml.cs">
       <DependentUpon>EventTagLibraryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\EventTagViewModel.cs" />
@@ -216,7 +223,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SubWindows\ConfigureSettingsWindow.xaml">
+    <Page Include="Views\AddEventWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ConfigureSettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -232,7 +243,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="SubWindows\EventTagLibraryWindow.xaml">
+    <Page Include="Views\IconResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EventTagLibraryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -396,6 +411,7 @@
     <Resource Include="Assets\UpdateListItem_16x.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\ServerProperties_16x.png" />
     <Content Include="CodeCeptJS\Project2\template_test.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

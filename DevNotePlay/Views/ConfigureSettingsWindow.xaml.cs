@@ -11,7 +11,7 @@ using System.Xml;
 using Player.Extensions;
 using System.Diagnostics;
 
-namespace Player.SubWindows
+namespace Player.Views
 {
     /// <summary>
     /// Interaction logic for ConfigureSettingsWindow.xaml

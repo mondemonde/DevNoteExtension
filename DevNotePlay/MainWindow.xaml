@@ -247,7 +247,7 @@
                             <MenuItem x:Name="Save_As" Background="Black" Header="Save as..." Click="Save_As_Click"/>
                             <MenuItem Background="Black" Header="_Exit" />
                         </MenuItem>
-                        <MenuItem Width="74" HorizontalAlignment="Right" Click="MenuItem_Click">
+                        <MenuItem Width="74" HorizontalAlignment="Right">
                             <MenuItem.Icon>
                                 <!--<Image Source="/Assets/photo (1).jpg" Stretch="Uniform" RenderTransformOrigin="0,0.4">
                             <Image.RenderTransform>                                
@@ -268,8 +268,8 @@
                                     </materialDesign:PackIcon.Foreground>
                                 </materialDesign:PackIcon>
                             </MenuItem.Icon>
-                            <MenuItem x:Name="AddEventTagMenuItem" Header="_Upload Recording to Server">
-
+                            <MenuItem x:Name="AddEventTagMenuItem" Header="_Save to Library" Click="AddEventTagMenuItem_Click">
+                                
                             </MenuItem>
                             <MenuItem x:Name="ViewEventTagLibraryMenuItem" Header="_View Event Library" Click="ViewEventTagLibraryMenuItem_Click">
                                 <!--<MenuItem.Icon>
