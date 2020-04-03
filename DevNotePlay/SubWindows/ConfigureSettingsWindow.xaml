@@ -129,6 +129,7 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        <Button x:Name="OpenButton" Content="Open Folder" Grid.Column="1" Margin="20,0,0,28" Height="32" HorizontalAlignment="Left" Width="125" VerticalAlignment="Bottom" TabIndex="10" Click="OpenButton_Click"/>
         <Button x:Name="SaveButton" Content="Save" Grid.Column="1" Margin="0,0,114,28" Click="SaveButton_Click" Height="32" HorizontalAlignment="Right" Width="76" VerticalAlignment="Bottom" TabIndex="10"/>
         <Button x:Name="CancelButton" Content="Cancel" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,32,28" Width="74" IsCancel="True" BorderBrush="#FFF32121" Background="#FFF32121" Click="CancelButton_Click" Height="32" VerticalAlignment="Bottom" TabIndex="11"/>
     </Grid>

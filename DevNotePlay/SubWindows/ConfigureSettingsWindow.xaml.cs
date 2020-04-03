@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Configuration;
 using System.Xml;
 using Player.Extensions;
+using System.Diagnostics;
 
 namespace Player.SubWindows
 {
@@ -207,6 +208,13 @@ namespace Player.SubWindows
         private void IntegerTextBoxChecker_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !InputValidators.NumbersOnly(e.Text);
+        }
+
+        private void OpenButton_Click(object sender, RoutedEventArgs e)
+        {
+           var dir =  LogApplication.Agent.GetCurrentDir();
+            // opens the folder in explorer
+            Process.Start(dir);
         }
     }
 }
