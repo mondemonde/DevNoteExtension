@@ -10,7 +10,7 @@ using System.Configuration;
 using System.Xml;
 using Player.Extensions;
 
-namespace Player.SubWindows
+namespace Player.Views
 {
     /// <summary>
     /// Interaction logic for ConfigureSettingsWindow.xaml

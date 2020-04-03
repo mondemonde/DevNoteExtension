@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Player.SubWindows
+namespace Player.Views
 {
     /// <summary>
     /// Interaction logic for EventTagLibraryWindow.xaml

@@ -11,7 +11,8 @@ using LogApplication.Common;
 using LogApplication.Common.Commands;
 using LogApplication.Common.Config;
 using Newtonsoft.Json;
-using Player.SubWindows;
+using Player.Extensions;
+using Player.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -980,40 +981,11 @@ namespace Player
                     if (result == System.Windows.Forms.DialogResult.OK)
                     {
                         string destinationPathAndFileName = diag.FileName;
-                        ArchiveFiles(fullPathsOfFilesToCompress, destinationPathAndFileName);
+                        ZipArchiveHelper.ArchiveFiles(fullPathsOfFilesToCompress, destinationPathAndFileName);
 
                         OpenedFile = Path.GetFileName(diag.FileName);
                         UpdateStatus(false);
                     }
-                }
-            }
-        }
-
-        private void ArchiveFiles(List<string> filesToCompress, string destination)
-        {
-            using (MemoryStream zipMS = new MemoryStream())
-            {
-                using (ZipArchive zipArchive = new ZipArchive(zipMS, ZipArchiveMode.Create, true))
-                {
-                    foreach (string file in filesToCompress)
-                    {
-                        string fileName = Path.GetFileName(file);
-
-                        ZipArchiveEntry zipFileEntry = zipArchive.CreateEntry(fileName);
-
-                        byte[] fileToZipBytes = System.IO.File.ReadAllBytes(file);
-
-                        using (Stream zipEntryStream = zipFileEntry.Open())
-                        using (BinaryWriter zipFileBinary = new BinaryWriter(zipEntryStream))
-                        {
-                            zipFileBinary.Write(fileToZipBytes);
-                        }
-                    }
-                }
-                using (FileStream finalZipFileStream = new FileStream(destination, FileMode.Create))
-                {
-                    zipMS.Seek(0, SeekOrigin.Begin);
-                    zipMS.CopyTo(finalZipFileStream);
                 }
             }
         }
@@ -1045,14 +1017,8 @@ namespace Player
                     string filePath = diag.FileName;
                     OpenedFile = filePath;
 
-                    var archive = ZipFile.Open(filePath, ZipArchiveMode.Read);
-                    foreach (ZipArchiveEntry file in archive.Entries)
-                    {
-                        // Uses ExtractToFile because it supports overwriting files, ExtractToDirectory does not 
-                        string destinationFileName = Path.Combine(FileEndPointManager.Project2Folder, file.FullName);
-                        file.ExtractToFile(destinationFileName, true);
-                        //ZipFile.ExtractToDirectory(diag.FileName, FileEndPointManager.Project2Folder);
-                    }
+                    ZipArchiveHelper.ExtractFiles(filePath, FileEndPointManager.Project2Folder, true);
+
                     // Run script as soon as it is opened
                     UpdateStatus(false);
                     Anterior_Click_1(sender, e);
@@ -1066,9 +1032,15 @@ namespace Player
             eventTagLibraryWindow.ShowDialog();
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void AddEventTagMenuItem_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!File.Exists(recordJSDirectory) || !File.Exists(recordXMLDirectory))
+            {
+                //TODO: update this error message.
+                MessageBox.Show("Cannot upload Event without recording files. Please open an existing recording or make a new one.", AppName, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            AddEventWindow addEventWindow = new AddEventWindow();
+            addEventWindow.ShowDialog();
         }
     }
 
