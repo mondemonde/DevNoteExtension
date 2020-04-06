@@ -203,9 +203,11 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\IntConverter.cs" />
     <Compile Include="Extensions\ZipArchiveHelper.cs" />
     <Compile Include="Models\EventHeader.cs" />
     <Compile Include="Models\EventTag.cs" />
+    <Compile Include="RelayCommand.cs" />
     <Compile Include="Services\EventTagService.cs" />
     <Compile Include="ViewModels\EventHeaderViewModel.cs" />
     <Compile Include="Views\AddEventWindow.xaml.cs">
@@ -401,18 +403,6 @@
     <Resource Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\iedoc-core.xml" />
     <Resource Include="CodeCeptJS\Project1\codecept.conf.template.txt" />
     <Resource Include="CodeCeptJS\Project2\output\endpoint\MyGrabValue.txt" />
-    <Resource Include="Assets\Add_16x.png" />
-    <Resource Include="Assets\icons8-delete-48.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Refresh_16x.png" />
-    <Resource Include="Assets\TransferUpload_16x.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\UpdateListItem_16x.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\ServerProperties_16x.png" />
     <Content Include="CodeCeptJS\Project2\template_test.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

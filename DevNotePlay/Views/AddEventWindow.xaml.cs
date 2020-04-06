@@ -1,18 +1,7 @@
 ﻿using Player.Extensions;
 using Player.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Player.Views
 {
@@ -25,9 +14,9 @@ namespace Player.Views
         public AddEventWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
             _eventHeaderViewModel = new EventHeaderViewModel();
-            _eventHeaderViewModel.CreateBlankEvent();
             DataContext = _eventHeaderViewModel;
         }
 
@@ -37,19 +26,10 @@ namespace Player.Views
             eventTagLibraryWindow.ShowDialog();
         }
 
-        private void IntegerTextBoxChecker_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            e.Handled = !InputValidators.NumbersOnly(e.Text);
-        }
+        private void IntegerTextBoxChecker_PreviewTextInput(object sender, TextCompositionEventArgs e) { e.Handled = !InputValidators.NumbersOnly(e.Text); }
 
-        private void SpaceNotAllowedTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            e.Handled = InputValidators.SpaceNotAllowed(e);
-        }
+        private void SpaceNotAllowedTextBox_PreviewKeyDown(object sender, KeyEventArgs e) { e.Handled = InputValidators.SpaceNotAllowed(e); }
 
-        private void UploadRecording_Click(object sender, RoutedEventArgs e)
-        {
-            _eventHeaderViewModel.SaveEvent();
-        }
+        private void TextBox_PreviewExecuted(object sender, ExecutedRoutedEventArgs e) { e.Handled = InputValidators.PasteNotAllowed(e); }
     }
 }
