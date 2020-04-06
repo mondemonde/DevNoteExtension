@@ -55,20 +55,27 @@
                             <TextBox Text="{Binding SelectedItem.Id, ElementName=EventTagDataGrid,           Mode=OneWay}" Height="26" Margin="0,4,23,4" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" IsReadOnly="True" TabIndex="1" Background="White" BorderThickness="1"/>
                             <TextBox Text="{Binding SelectedItem.Domain, ElementName=EventTagDataGrid,       Mode=TwoWay}" Height="26" Margin="0,4,23,4" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" TabIndex="2" Background="White" BorderThickness="1"/>
                             <TextBox Text="{Binding SelectedItem.Department, ElementName=EventTagDataGrid,   Mode=TwoWay}" Height="26" Margin="0,4,23,4" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3" TextWrapping="Wrap" TabIndex="3" Background="White" BorderThickness="1"/>
-                            <TextBox Text="{Binding SelectedItem.Tag, ElementName=EventTagDataGrid,          Mode=TwoWay}" Height="26" Margin="0,4,23,4" VerticalAlignment="Center" Grid.Column="1" Grid.Row="4" TextWrapping="Wrap" TabIndex="4" Background="White" BorderThickness="1"/>
+                            <TextBox Text="{Binding SelectedItem.Tag, ElementName=EventTagDataGrid,          Mode=TwoWay}" Height="26" Margin="0,4,23,4" VerticalAlignment="Center" Grid.Column="1" Grid.Row="4" TextWrapping="Wrap" TabIndex="4" Background="White" BorderThickness="1" PreviewKeyDown="SpaceNotAllowedTextBox_PreviewKeyDown"/>
                             <TextBox Text="{Binding SelectedItem.SourcePath, ElementName=EventTagDataGrid,   Mode=TwoWay}" Height="106" Margin="0,15,23,16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="7" TextWrapping="Wrap" VerticalContentAlignment="Top" IsReadOnly="True" BorderThickness="1" TabIndex="17" Background="White"/>
                             <TextBox Text="{Binding SelectedItem.Descriptions, ElementName=EventTagDataGrid, Mode=TwoWay}" Height="106" Margin="0,16,23,16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="6" TextWrapping="Wrap" VerticalContentAlignment="Top" BorderThickness="1" TabIndex="6" Background="White"/>
                             <TextBox Text="{Binding SelectedItem.VersionNo, ElementName=EventTagDataGrid,    Mode=TwoWay}" Height="24" Margin="0,4,23,5" VerticalAlignment="Center" Grid.Column="1" Grid.Row="5" TextWrapping="Wrap" PreviewTextInput="IntegerTextBoxChecker_PreviewTextInput" TabIndex="5" Background="White" BorderThickness="1"/>
                         </Grid>
                         <Label x:Name="label" Content="Event Details" Margin="0,10" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" FontSize="14" RenderTransformOrigin="0.295,0.276"/>
-                        <Button x:Name="UpdateButton" Margin="0,0,52,0" VerticalAlignment="Center" Height="35" Width="35" HorizontalAlignment="Right" BorderThickness="0" Click="UpdateButton_Click" TabIndex="100" Background="White" Padding="5">
+                        <Button
+                            Command="{Binding UpdateCommand}"
+                            Margin="0,0,52,0" VerticalAlignment="Center" Height="35" Width="35" HorizontalAlignment="Right" BorderThickness="0" TabIndex="100" Background="White" Padding="5">
                             <StaticResource ResourceKey="UpdateListItemIcon"/>
                         </Button>
-                        <Button x:Name="DeleteButton" Margin="0,0,10,0" VerticalAlignment="Center" Height="35" Width="35" HorizontalAlignment="Right" BorderThickness="0" Click="DeleteButton_Click" TabIndex="101" Background="White" Padding="5">
+                        <Button
+                            Command="{Binding DeleteCommand}"
+                            Margin="0,0,10,0" VerticalAlignment="Center" Height="35" Width="35" HorizontalAlignment="Right" BorderThickness="0" TabIndex="101" Background="White" Padding="5">
                             <StaticResource ResourceKey="CancelIcon"/>
                         </Button>
                     </Grid>
-                    <DataGrid x:Name="EventTagDataGrid" ItemsSource="{Binding EventTags}" Margin="10" AutoGeneratingColumn="EventTagDataGrid_AutoGeneratingColumn" IsReadOnly="True" IsTabStop="True" TabIndex="-1" KeyboardNavigation.TabNavigation="None"/>
+                    <DataGrid x:Name="EventTagDataGrid" 
+                              ItemsSource="{Binding EventTags}" 
+                              SelectedItem="{Binding SelectedEvent}" 
+                              Margin="10" AutoGeneratingColumn="EventTagDataGrid_AutoGeneratingColumn" IsReadOnly="True" IsTabStop="True" TabIndex="-1" KeyboardNavigation.TabNavigation="None"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Parameters" IsEnabled="False">
