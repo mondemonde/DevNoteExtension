@@ -20,7 +20,7 @@ namespace Player.Extensions
         }
 
         /// <summary>
-        /// Bind to PreviewExecuted event of a TextBox to prevent pasting
+        /// Add CommandManager.PreviewExecuted="TextBox_PreviewExecuted" to XAML definition of a TextBox to prevent pasting
         /// Sample implementation:
         /// private void TextBox_PreviewExecuted(object sender, ExecutedRoutedEventArgs e) {e.Handled = InputValidators.PasteNotAllowed(e);}
         /// </summary>
