@@ -7,9 +7,6 @@ using Player.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Player.ViewModels
@@ -19,6 +16,7 @@ namespace Player.ViewModels
         private string AppName;
         private string RecordFileExtension;
 
+        public RelayCommand UploadCommand { get; set; }
         public EventHeader EventToAdd { get; set; }
 
         public EventHeaderViewModel()
@@ -26,20 +24,20 @@ namespace Player.ViewModels
             ConfigManager config = new ConfigManager();
             AppName = config.GetValue("AppName");
             RecordFileExtension = config.GetValue("RecordFileExtension");
+
+            CreateBlankEvent();
+
+            UploadCommand = new RelayCommand(OnUpload, CanUpload);
         }
 
         public void CreateBlankEvent()
         {
             EventToAdd = new EventHeader();
-            EventToAdd.Department = "Department of Health";
-            EventToAdd.Descriptions = "This describes this item in detail.";
-            EventToAdd.Domain = "DOH.gov";
-            EventToAdd.FileName = "DoHRecording";
-            EventToAdd.Tag = "Tag_to_Call_Recording";
             EventToAdd.VersionNo = 1;
+            EventToAdd.PropertyChanged += OnTargetUpdated;
         }
 
-        public async void SaveEvent()
+        private async void OnUpload()
         {
             string headerFileName = Path.Combine(FileEndPointManager.Project2Folder, "header.json");
             using (StreamWriter file = File.CreateText(headerFileName))
@@ -72,6 +70,16 @@ namespace Player.ViewModels
                 EventTagService eventTagService = new EventTagService();
                 await eventTagService.CreateEvent(eventToUploadFileName);
             }
+        }
+
+        private bool CanUpload()
+        {
+            return EventToAdd.IsValid();
+        }
+
+        private void OnTargetUpdated(Object sender, EventArgs e)
+        {
+            UploadCommand.RaiseCanExecuteChanged();
         }
     }
 }
