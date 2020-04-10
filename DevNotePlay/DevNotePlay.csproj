@@ -202,9 +202,11 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\IntConverter.cs" />
     <Compile Include="Extensions\ZipArchiveHelper.cs" />
     <Compile Include="Models\EventHeader.cs" />
     <Compile Include="Models\EventTag.cs" />
+    <Compile Include="RelayCommand.cs" />
     <Compile Include="Services\EventTagService.cs" />
     <Compile Include="ViewModels\EventHeaderViewModel.cs" />
     <Compile Include="Views\AddEventWindow.xaml.cs">

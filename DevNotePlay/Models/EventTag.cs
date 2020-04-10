@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace Player.Models
 {
-    public class EventTag
+    public class EventTag: INotifyPropertyChanged, IDataErrorInfo
     {
         private int _id;
         public string _domain;
@@ -75,7 +75,7 @@ namespace Player.Models
                 if (_description != value)
                 {
                     _description = value;
-                    RaisePropertyChanged("Description");
+                    RaisePropertyChanged("Descriptions");
                 }
             }
         }
@@ -115,6 +115,68 @@ namespace Player.Models
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
+            }
+        }
+
+        public string Error { get; set; }
+
+        private static readonly string[] ValidatedProperties =
+        {
+            "Domain",
+            "Department",
+            "Tag",
+            "VersionNo"
+        };
+
+        public bool IsValid()
+        {
+            foreach (string property in ValidatedProperties)
+            {
+                if (this[property] != "")
+                    return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Validates value of a property
+        /// </summary>
+        /// <param name="columnName"></param>
+        /// <returns></returns>
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = string.Empty;
+
+                switch (columnName)
+                {
+                    case "Domain":
+                        if (string.IsNullOrEmpty(Domain) || Domain == "")
+                        {
+                            result = "Domain is required.";
+                        }
+                        break;
+                    case "Department":
+                        if (string.IsNullOrEmpty(Department) || Department == "")
+                        {
+                            result = "Department is required.";
+                        }
+                        break;
+                    case "Tag":
+                        if (string.IsNullOrEmpty(Tag) || Tag == "")
+                        {
+                            result = "Tag is required.";
+                        }
+                        break;
+                    case "VersionNo":
+                        if (!int.TryParse(VersionNo.ToString(), out int i))
+                        {
+                            result = "Version no. cannot be empty.";
+                        }
+                        break;
+                }
+                return result;
             }
         }
     }
