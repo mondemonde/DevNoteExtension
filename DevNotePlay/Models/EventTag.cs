@@ -18,6 +18,7 @@ namespace Player.Models
         public DateTime _created;
         public DateTime? _modified;
 
+        [DisplayName("ID")]
         public int Id { get { return _id; } set { _id = value; } }
         public string Domain
         {
@@ -43,6 +44,7 @@ namespace Player.Models
                 }
             }
         }
+        [DisplayName("Event Tag")]
         public string Tag
         {
             get { return _tag; }

@@ -1,8 +1,7 @@
 ﻿using LogApplication.Common.Config;
 using Player.Extensions;
-using Player.Models;
-using Player.Services;
 using Player.ViewModels;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -20,7 +19,7 @@ namespace Player.Views
         public EventTagLibraryWindow()
         {
             InitializeComponent();
-            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             _configManager = new ConfigManager();
 
@@ -38,6 +37,10 @@ namespace Player.Views
                   headerName == "Tag"))
             {
                 e.Cancel = true;
+            }
+            if (e.PropertyDescriptor is PropertyDescriptor descriptor)
+            {
+                e.Column.Header = descriptor.DisplayName ?? descriptor.Name;
             }
         }
 

@@ -19,7 +19,7 @@
             </Rectangle.Fill>
         </Rectangle>
     </Viewbox>
-    <Viewbox x:Key="UpdateListItemIcon" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    <Viewbox x:Key="UpdateListItemIcon" x:Shared="False" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
         <Rectangle Width="16" Height="16">
             <Rectangle.Fill>
                 <DrawingBrush>
@@ -57,7 +57,7 @@
             </Rectangle.Fill>
         </Rectangle>
     </Viewbox>
-    <Viewbox x:Key="CancelIcon" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    <Viewbox x:Key="CancelIcon" x:Shared="False" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
         <Rectangle Width="16" Height="16">
             <Rectangle.Fill>
                 <DrawingBrush>
@@ -74,7 +74,7 @@
             </Rectangle.Fill>
         </Rectangle>
     </Viewbox>
-    <Viewbox x:Key="RefreshIcon" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    <Viewbox x:Key="RefreshIcon" x:Shared="False"  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
         <Rectangle Width="16" Height="16">
             <Rectangle.Fill>
                 <DrawingBrush>

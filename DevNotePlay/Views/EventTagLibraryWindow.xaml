@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Player.Views"
+        xmlns:model="clr-namespace:Player.Models"
         xmlns:extensions="clr-namespace:Player.Extensions"
         mc:Ignorable="d"
         Title="Server Event Library" Height="620" Width="800">
@@ -19,11 +20,20 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
+            <Style x:Key="DataGridCellStyle" TargetType="{x:Type TextBlock}">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="true">
+                        <Setter Property="DataGridCell.ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)/ErrorContent}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
             <extensions:IntConverter x:Key="converter"/>
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <TabControl x:Name="tabControl">
+        <TabControl x:Name="tabControl"
+                    SelectedIndex="{Binding SelectedTab}">
             <TabItem Header="Events">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
@@ -53,7 +63,7 @@
                             <!--<CheckBox IsChecked="{Binding SelectedItem.InActive, ElementName=EventTagDataGrid, Mode=TwoWay}" x:Name="InactiveCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Grid.Row="5" Height="18" Width="73"/>-->
                             <!--<Label x:Name="InactiveLabel" Content="Inactive:" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Grid.Row="5"/>-->
                             <Label HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0" Content="Date Created:" Margin="0" />
-                            <Label Content="{Binding SelectedItem.Created, ElementName=EventTagDataGrid}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="0" />
+                            <Label Content="{Binding SelectedEvent.Created}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="0" />
                             <Label HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Content="Id:" Margin="0" />
                             <Label HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" Content="Domain:" Margin="0" />
                             <Label HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3" Content="Department:" Margin="0" />
@@ -61,13 +71,13 @@
                             <Label HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="5" Content="Version No.:" Margin="0"/>
                             <Label HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="6" Content="Description:" Margin="0,10,0,0"/>
                             <Label HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="7" Content="Source Path:" Margin="0,10,0,0"/>
-                            <TextBox Text="{Binding SelectedItem.Id, ElementName=EventTagDataGrid,           Mode=OneWay}" Height="26" Margin="0,4,23,4" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" IsReadOnly="True" TabIndex="1" Background="White" BorderThickness="1"/>
-                            <TextBox Text="{Binding SelectedItem.Domain, ElementName=EventTagDataGrid,       Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True}" Height="26" Margin="0,4,23,4" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" TabIndex="2" Background="White" BorderThickness="1"/>
-                            <TextBox Text="{Binding SelectedItem.Department, ElementName=EventTagDataGrid,   Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True}" Height="26" Margin="0,4,23,4" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3" TextWrapping="Wrap" TabIndex="3" Background="White" BorderThickness="1"/>
-                            <TextBox Text="{Binding SelectedItem.Tag, ElementName=EventTagDataGrid,          Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True}" Height="26" Margin="0,4,23,4" VerticalAlignment="Center" Grid.Column="1" Grid.Row="4" TextWrapping="Wrap" TabIndex="4" Background="White" BorderThickness="1" PreviewKeyDown="SpaceNotAllowedTextBox_PreviewKeyDown"/>
-                            <TextBox Text="{Binding SelectedItem.SourcePath, ElementName=EventTagDataGrid,   Mode=TwoWay}" Height="106" Margin="0,15,23,16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="7" TextWrapping="Wrap" VerticalContentAlignment="Top" IsReadOnly="True" BorderThickness="1" TabIndex="17" Background="White"/>
-                            <TextBox Text="{Binding SelectedItem.Descriptions, ElementName=EventTagDataGrid, Mode=TwoWay}" Height="106" Margin="0,16,23,16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="6" TextWrapping="Wrap" VerticalContentAlignment="Top" BorderThickness="1" TabIndex="6" Background="White"/>
-                            <TextBox Text="{Binding SelectedItem.VersionNo, ElementName=EventTagDataGrid,    Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True, Converter={StaticResource converter}}" Height="24" Margin="0,4,23,5" VerticalAlignment="Center" Grid.Column="1" Grid.Row="5" TextWrapping="Wrap" PreviewTextInput="IntegerTextBoxChecker_PreviewTextInput" TabIndex="5" Background="White" BorderThickness="1"/>
+                            <TextBox Text="{Binding SelectedEvent.Id,           Mode=OneWay}" Height="26" Margin="0,4,23,4" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" IsReadOnly="True" TabIndex="1" Background="White" BorderThickness="1"/>
+                            <TextBox Text="{Binding SelectedEvent.Domain,       Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True}" Height="26" Margin="0,4,23,4" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" TabIndex="2" Background="White" BorderThickness="1"/>
+                            <TextBox Text="{Binding SelectedEvent.Department,   Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True}" Height="26" Margin="0,4,23,4" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3" TextWrapping="Wrap" TabIndex="3" Background="White" BorderThickness="1"/>
+                            <TextBox Text="{Binding SelectedEvent.Tag,          Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True}" Height="26" Margin="0,4,23,4" VerticalAlignment="Center" Grid.Column="1" Grid.Row="4" TextWrapping="Wrap" TabIndex="4" Background="White" BorderThickness="1" PreviewKeyDown="SpaceNotAllowedTextBox_PreviewKeyDown"/>
+                            <TextBox Text="{Binding SelectedEvent.SourcePath,   Mode=TwoWay}" Height="106" Margin="0,15,23,16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="7" TextWrapping="Wrap" VerticalContentAlignment="Top" IsReadOnly="True" BorderThickness="1" TabIndex="17" Background="White"/>
+                            <TextBox Text="{Binding SelectedEvent.Descriptions, Mode=TwoWay}" Height="106" Margin="0,16,23,16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="6" TextWrapping="Wrap" VerticalContentAlignment="Top" BorderThickness="1" TabIndex="6" Background="White"/>
+                            <TextBox Text="{Binding SelectedEvent.VersionNo,    Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True, Converter={StaticResource converter}}" Height="24" Margin="0,4,23,5" VerticalAlignment="Center" Grid.Column="1" Grid.Row="5" TextWrapping="Wrap" PreviewTextInput="IntegerTextBoxChecker_PreviewTextInput" TabIndex="5" Background="White" BorderThickness="1"/>
                         </Grid>
                         <Label x:Name="label" Content="Event Details" Margin="0,10" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" FontSize="14" RenderTransformOrigin="0.295,0.276"/>
                         <Button
@@ -92,8 +102,95 @@
                               Margin="10" AutoGeneratingColumn="EventTagDataGrid_AutoGeneratingColumn" IsReadOnly="True" IsTabStop="True" TabIndex="-1" KeyboardNavigation.TabNavigation="None"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Parameters" IsEnabled="False">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem Header="Parameters">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
+                        <Grid Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Content="Files:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="5,0,0,0"/>
+                            <ListBox ItemsSource="{Binding EventScriptFiles}" 
+                                     SelectedItem="{Binding SelectedEventScriptFile}"
+                                     DisplayMemberPath="Name"
+                                     Background="White"
+                                     Grid.Row="1" Margin="5"/>
+                        </Grid>
+                        <Grid Grid.Row="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Content="Script:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14"  Margin="5,0,0,0"/>
+                            <Label Grid.Row="0" Content="Title" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Regular" FontSize="14" Margin="54,0,0,0"/>
+                            <TextBlock Grid.Row="1" Margin="5" Background="White"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Content="Parameters:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Margin="5,0,0,0"/>
+                        <!--<Button
+
+                            Margin="0,0,90,0" VerticalAlignment="Center" Height="30" Width="30" HorizontalAlignment="Right" BorderThickness="0" TabIndex="102" Background="White" Padding="5">
+                            <StaticResource ResourceKey="RefreshIcon"/>
+                        </Button>-->
+                        <Button 
+                            Command="{Binding DeleteParameterCommand}"
+                            Margin="0,0,50,0" VerticalAlignment="Center" Height="30" Width="30" HorizontalAlignment="Right" BorderThickness="0" TabIndex="101" Background="White" Padding="3">
+                            <StaticResource ResourceKey="CancelIcon"/>
+                        </Button>
+                        <Button 
+                            Command="{Binding UpdateParameterCommand}"
+                            Margin="0,0,10,0" VerticalAlignment="Center" Height="30" Width="30" HorizontalAlignment="Right" BorderThickness="0" TabIndex="100" Background="White" Padding="3">
+                            <StaticResource ResourceKey="UpdateListItemIcon"/>
+                        </Button>
+                        <DataGrid ItemsSource="{Binding EventParameters}" 
+                                  SelectedItem="{Binding SelectedEventParameter}"
+                                  AutoGenerateColumns="False"
+                                  CanUserAddRows="False"
+                                  Grid.Row="1" Margin="5">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Property Name"
+                                                    Binding="{Binding PropertyName, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True}"
+                                                    ElementStyle="{StaticResource DataGridCellStyle}"/>
+                                <DataGridTemplateColumn Header="Variable to Map">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding MappedTo_Input_X}"
+                                                       VerticalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <ComboBox Height="30"
+                                                      ItemsSource="{Binding Path=DataContext.EventScriptVariables, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                                      SelectedItem="{Binding MappedTo_Input_X, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Default Value" 
+                                                    Binding="{Binding DefaultValue, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True}"
+                                                    ElementStyle="{StaticResource DataGridCellStyle}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                    <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>

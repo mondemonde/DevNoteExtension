@@ -13,14 +13,11 @@ namespace Player.Services
     public class EventTagService
     {
         private readonly string _url;
-        //private readonly HttpClient _client;
 
         public EventTagService()
         {
             ConfigManager config = new ConfigManager();
-            //_client = new HttpClient();
-
-            _url = config.GetValue("DevNoteFrontUrl") + "/api/events/";
+            _url = config.GetValue("DevNoteFrontUrl_dev") + "/api/events/";
         }
 
         public ObservableCollection<EventTag> GetEvents()
@@ -63,7 +60,14 @@ namespace Player.Services
 
                                 HttpResponseMessage response = await client.PostAsync(_url, content);
 
-                                return true;
+                                if (response.IsSuccessStatusCode)
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    return false;
+                                }
                             }
                         }
                     }
@@ -79,7 +83,7 @@ namespace Player.Services
                 var payload = javaScriptSerializer.Serialize(eventTag);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(payload);
                 var byteContent = new ByteArrayContent(buffer);
-                byteContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
                 using (HttpClient client = new HttpClient())
                 {

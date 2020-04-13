@@ -68,7 +68,15 @@ namespace Player.ViewModels
                 ZipArchiveHelper.ArchiveFiles(fullPathsOfFilesToCompress, eventToUploadFileName);
 
                 EventTagService eventTagService = new EventTagService();
-                await eventTagService.CreateEvent(eventToUploadFileName);
+                var result = await eventTagService.CreateEvent(eventToUploadFileName);
+                if (result)
+                {
+                    MessageBox.Show("Upload successful.", AppName, MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Upload failed.", AppName, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
