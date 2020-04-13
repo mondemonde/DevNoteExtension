@@ -268,15 +268,14 @@
                                     </materialDesign:PackIcon.Foreground>
                                 </materialDesign:PackIcon>
                             </MenuItem.Icon>
-                            <MenuItem x:Name="AddEventTagMenuItem" Header="_Save to Library" Click="AddEventTagMenuItem_Click">
+                            <MenuItem x:Name="AddEventTagMenuItem" Header="_Save to Library" Click="AddEventTagMenuItem_Click" Background="Black">
                                 
                             </MenuItem>
-                            <MenuItem x:Name="ViewEventTagLibraryMenuItem" Header="_View Event Library" Click="ViewEventTagLibraryMenuItem_Click">
+                            <MenuItem x:Name="ViewEventTagLibraryMenuItem" Header="_View Event Library" Click="ViewEventTagLibraryMenuItem_Click" Background="Black">
                                 <!--<MenuItem.Icon>
                                     <Image Source="/Assets/photo (1).jpg" />
                                 </MenuItem.Icon>-->
                             </MenuItem>
-                            <!--<MenuItem Header="_Show groups" IsCheckable="True" IsChecked="True" />-->
                         </MenuItem>
                     </Menu>
                 </DockPanel>
