@@ -79,21 +79,21 @@ class MyPuppet extends Helper {
         var coor = posXY.split("###");
         var splitX = coor[0];
 
-        console.log("splitx=" + splitX)
+        console.log("splitx=" + splitX);
 
         // await page.evaluate( function(){
         //   alert("splitx=" + coor[0]);
         // } );
 
         var splitY = coor[1];
-        console.log("splity=" + coor[1])
+        console.log("splity=" + coor[1]);
 
         try {
 
             await page.mouse.click(parseFloat(splitX), parseFloat(splitY), { delay: 1000 });
 
         } catch (e) {
-            console.log(e)
+            console.log(e);
 
         }
 
@@ -107,14 +107,14 @@ class MyPuppet extends Helper {
         var coor = posXY.split("###");
         var splitX = coor[0];
 
-        console.log("splitx=" + splitX)
+        console.log("splitx=" + splitX);
 
         // await page.evaluate( function(){
         //   alert("splitx=" + coor[0]);
         // } );
 
         var splitY = coor[1];
-        console.log("splity=" + coor[1])
+        console.log("splity=" + coor[1]);
 
         try {
 
@@ -147,7 +147,7 @@ class MyPuppet extends Helper {
             return myGrab;
 
         } catch (e) {
-            console.log(e)
+            console.log(e);
 
         }
 
@@ -205,7 +205,7 @@ class MyPuppet extends Helper {
 
 
         } catch (e) {
-            console.log(e)
+            console.log(e);
 
         }
 
@@ -222,7 +222,7 @@ class MyPuppet extends Helper {
 
         try {
             //const content = await readFile('./output/MyGrabValue.txt', 'utf8');
-            const content = newValue
+            const content = newValue;
 
             // delete file named 'MyGrabValue.txt'
             fs.unlink(grabPath, function (err) {
@@ -266,7 +266,7 @@ class MyPuppet extends Helper {
 
         //var browser = this.helpers['Puppeteer'].browser;
         const { page } = this.helpers.Puppeteer;
-        await page.keyboard.type(msgInput)
+        await page.keyboard.type(msgInput);
 
 
         //await page.waitForNavigation();

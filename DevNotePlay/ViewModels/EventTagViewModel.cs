@@ -323,5 +323,7 @@ namespace Player.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
             }
         }
+
+
     }
 }
