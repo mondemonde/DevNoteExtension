@@ -53,7 +53,8 @@
             <TextBox Text="{Binding EventToAdd.FileName,     ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnTargetUpdated=True}" Height="26" Margin="10,0" VerticalAlignment="Center" Grid.Column="1" Grid.Row="4" TextWrapping="Wrap" TabIndex="6" VerticalContentAlignment="Top" BorderThickness="1" Background="White"/>
             <TextBox Text="{Binding EventToAdd.Descriptions, ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnTargetUpdated=True}" Height="100" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="5" TextWrapping="Wrap" TabIndex="17" VerticalContentAlignment="Top" BorderThickness="1" Background="White"/>
         </Grid>
-        <Button Command="{Binding Path=UploadCommand}" x:Name="UploadRecording" Grid.Row="1" Margin="0" BorderThickness="1" Background="White" HorizontalAlignment="Center" Width="34" Height="34" Padding="5" VerticalAlignment="Center">
+        <Button Command="{Binding Path=UploadCommand}"
+                x:Name="UploadRecording" Grid.Row="1" Margin="0" BorderThickness="1" Background="White" HorizontalAlignment="Center" Width="34" Height="34" Padding="5" VerticalAlignment="Center">
             <StaticResource ResourceKey="TransferUploadIcon"/>
             <Button.ToolTip>
                 <TextBlock>Upload Event to Server Library</TextBlock>
