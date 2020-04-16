@@ -20,14 +20,14 @@ namespace Player.Services
             _url = config.GetValue("DevNoteFrontUrl_dev") + "/api/events/";
         }
 
-        public ObservableCollection<EventTag> GetEvents()
+        public async Task<ObservableCollection<EventTag>> GetEvents()
         {
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
                     ObservableCollection<EventTag> eventTags = new ObservableCollection<EventTag>();
-                    var response = client.GetAsync(_url).Result;
+                    var response = await client.GetAsync(_url);
                     if (response.IsSuccessStatusCode)
                     {
                         string eventTagsAsString = response.Content.ReadAsStringAsync().Result;
@@ -43,39 +43,40 @@ namespace Player.Services
             }
         }
 
-        public async Task<bool> CreateEvent(string eventFile)
+        public async Task<string> CreateEvent(string eventFile)
         {
-            using (HttpClient client = new HttpClient())
+            try
             {
-                using (var content = new MultipartFormDataContent())
+                using (HttpClient client = new HttpClient())
                 {
-                    using (var file = File.OpenRead(eventFile))
+                    using (var content = new MultipartFormDataContent())
                     {
-                        using (var streamContent = new StreamContent(file))
+                        using (var file = File.OpenRead(eventFile))
                         {
-                            using (var fileContent = new ByteArrayContent(await streamContent.ReadAsByteArrayAsync()))
+                            using (var streamContent = new StreamContent(file))
                             {
-                                fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
-                                content.Add(fileContent, "file", Path.GetFileName(eventFile));
-
-                                HttpResponseMessage response = await client.PostAsync(_url, content);
-
-                                if (response.IsSuccessStatusCode)
+                                using (var fileContent = new ByteArrayContent(await streamContent.ReadAsByteArrayAsync()))
                                 {
-                                    return true;
-                                }
-                                else
-                                {
-                                    return false;
+                                    fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
+                                    content.Add(fileContent, "file", Path.GetFileName(eventFile));
+
+                                    HttpResponseMessage response = await client.PostAsync(_url, content);
+
+                                    string responseMessage = response.Content.ReadAsAsync<string>().Result;
+                                    return responseMessage;
                                 }
                             }
                         }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                return "Upload Event error: " + ex.Message;
+            }
         }
 
-        public async Task<bool> UpdateEventTag(EventTag eventTag)
+        public async Task<string> UpdateEventTag(EventTag eventTag)
         {
             try
             {
@@ -88,25 +89,18 @@ namespace Player.Services
                 using (HttpClient client = new HttpClient())
                 {
                     HttpResponseMessage response = await client.PutAsync(_url, byteContent);
-                    if (response.IsSuccessStatusCode)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
+
+                    string responseMessage = response.Content.ReadAsAsync<string>().Result;
+                    return responseMessage;
                 }
             }
             catch (Exception ex)
             {
-                //return ex.Message;
-                Console.WriteLine(ex.Message);
-                return false;
+                return "Update Event error: " + ex.Message;
             }
         }
 
-        public async Task<bool> DeleteEventTag(EventTag eventTag)
+        public async Task<string> DeleteEventTag(EventTag eventTag)
         {
             try
             {
@@ -114,20 +108,14 @@ namespace Player.Services
                 {
                     string deleteUrl = _url + eventTag.Id.ToString();
                     HttpResponseMessage response = await client.DeleteAsync(deleteUrl);
-                    if (response.IsSuccessStatusCode)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
+
+                    string responseMessage = response.Content.ReadAsAsync<string>().Result;
+                    return responseMessage;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return false;
+                return "Delete Event error: " + ex.Message;
             }
         }
     }
