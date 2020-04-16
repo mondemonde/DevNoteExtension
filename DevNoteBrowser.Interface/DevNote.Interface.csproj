@@ -132,11 +132,6 @@
     <Compile Include="Common\EnumClass.cs" />
     <Compile Include="Common\IToken.cs" />
     <Compile Include="DAL\MyDbContext.cs" />
-    <Compile Include="FileAssembly1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FileAssembly.tt</DependentUpon>
-    </Compile>
     <Compile Include="DevAPIGlobal.cs" />
     <Compile Include="IBackGroundActivity.cs" />
     <Compile Include="IArmPlayer.cs" />
