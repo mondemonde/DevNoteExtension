@@ -69,14 +69,10 @@ namespace Player.ViewModels
 
                 EventTagService eventTagService = new EventTagService();
                 var result = await eventTagService.CreateEvent(eventToUploadFileName);
-                if (result)
-                {
-                    MessageBox.Show("Upload successful.", AppName, MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Upload failed.", AppName, MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+
+                MessageBox.Show(result, AppName, MessageBoxButton.OK, MessageBoxImage.Information);
+
+                File.Delete(eventToUploadFileName);
             }
         }
 
