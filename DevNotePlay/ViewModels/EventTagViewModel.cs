@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace Player.ViewModels
 {
@@ -49,8 +50,6 @@ namespace Player.ViewModels
             _eventTagService = new EventTagService();
             _eventParameterService = new EventParameterService();
 
-            GetEventTags();
-
             UpdateCommand = new RelayCommand(OnUpdate, CanUpdate);
             DeleteCommand = new RelayCommand(OnDelete, CanDelete);
             RefreshCommand = new RelayCommand(OnRefresh);
@@ -62,6 +61,11 @@ namespace Player.ViewModels
 
             ConfigManager configManager = new ConfigManager();
             AppName = configManager.GetValue("AppName");
+        }
+
+        public void OnWindowLoaded(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Dispatcher.BeginInvoke(new Action(() => GetEventTags()), DispatcherPriority.ContextIdle, null);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
