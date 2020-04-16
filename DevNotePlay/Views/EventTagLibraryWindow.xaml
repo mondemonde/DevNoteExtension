@@ -10,6 +10,13 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Server Event Library" Height="620" Width="800">
+    <behaviors:Interaction.Triggers>
+        <behaviors:EventTrigger EventName="Loaded">
+            <behaviors:CallMethodAction
+                                        TargetObject="{Binding}"
+                                        MethodName="OnWindowLoaded"/>
+        </behaviors:EventTrigger>
+    </behaviors:Interaction.Triggers>
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

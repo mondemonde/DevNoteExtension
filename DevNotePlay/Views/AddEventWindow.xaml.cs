@@ -22,7 +22,8 @@ namespace Player.Views
         private void ViewEventTagLibrary_Click(object sender, RoutedEventArgs e)
         {
             EventTagLibraryWindow eventTagLibraryWindow = new EventTagLibraryWindow();
-            eventTagLibraryWindow.ShowDialog();
+            eventTagLibraryWindow.Show();
+            Close();
         }
 
         private void IntegerTextBoxChecker_PreviewTextInput(object sender, TextCompositionEventArgs e) { e.Handled = !InputValidators.NumbersOnly(e.Text); }

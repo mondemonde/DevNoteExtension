@@ -283,6 +283,7 @@ namespace Player
         #endregion
         private void ButtonFechar_Click(object sender, RoutedEventArgs e)
         {
+            CloseCodeCeptJsWindow();
             CloseChromeWindow();
             Application.Current.Shutdown();
         }
