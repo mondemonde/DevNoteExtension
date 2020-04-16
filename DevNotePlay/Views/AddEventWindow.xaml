@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Player.Views"
         xmlns:extensions="clr-namespace:Player.Extensions"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="Upload recording to Server" Height="403" Width="500" MinWidth="500" MinHeight="400" Padding="5,0,5,10">
     <Window.Resources>
         <ResourceDictionary>

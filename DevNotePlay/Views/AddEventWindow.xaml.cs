@@ -14,7 +14,6 @@ namespace Player.Views
         public AddEventWindow()
         {
             InitializeComponent();
-            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
             _eventHeaderViewModel = new EventHeaderViewModel();
             DataContext = _eventHeaderViewModel;

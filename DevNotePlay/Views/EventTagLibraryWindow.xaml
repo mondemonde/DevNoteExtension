@@ -8,6 +8,7 @@
         xmlns:extensions="clr-namespace:Player.Extensions"
         xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="Server Event Library" Height="620" Width="800">
     <Window.Resources>
         <ResourceDictionary>

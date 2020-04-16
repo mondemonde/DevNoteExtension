@@ -19,10 +19,8 @@ namespace Player.Views
         public EventTagLibraryWindow()
         {
             InitializeComponent();
-            WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             _configManager = new ConfigManager();
-
             AppName = _configManager.GetValue("AppName");
 
             DataContext = new EventTagViewModel();
