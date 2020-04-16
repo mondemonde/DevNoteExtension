@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Player.Extensions;
 using Player.Models;
 using Player.Services;
+using Player.SharedViews;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,6 +16,7 @@ namespace Player.ViewModels
     {
         private string AppName;
         private string RecordFileExtension;
+        private ProgressBarSharedView _progressBar;
 
         public RelayCommand UploadCommand { get; set; }
         public EventHeader EventToAdd { get; set; }
@@ -68,7 +70,11 @@ namespace Player.ViewModels
                 ZipArchiveHelper.ArchiveFiles(fullPathsOfFilesToCompress, eventToUploadFileName);
 
                 EventTagService eventTagService = new EventTagService();
+
+                _progressBar = new ProgressBarSharedView("Uploading file. Please wait...");
+                _progressBar.Show();
                 var result = await eventTagService.CreateEvent(eventToUploadFileName);
+                _progressBar.Close();
 
                 MessageBox.Show(result, AppName, MessageBoxButton.OK, MessageBoxImage.Information);
 
