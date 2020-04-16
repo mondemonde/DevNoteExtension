@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 
 namespace Player
@@ -13,6 +8,9 @@ namespace Player
     /// </summary>
     public partial class App : Application
     {
-
+        public static Window CurrentWindow
+        {
+            get { return Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive); }
+        }
     }
 }
