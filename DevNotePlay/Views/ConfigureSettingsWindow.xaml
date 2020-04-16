@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Player"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="Configure Settings" Height="603" Width="800">
     <Grid x:Name="MyGrid">
         <Grid.ColumnDefinitions>

@@ -25,7 +25,6 @@ namespace Player.Views
         public ConfigureSettingsWindow()
         {
             InitializeComponent();
-            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
             ExeConfigurationFileMap configMap = new ExeConfigurationFileMap();
             configMap.ExeConfigFilename = ConfigManager.MyConfigPath;

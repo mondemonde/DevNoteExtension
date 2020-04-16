@@ -2,6 +2,7 @@
 using LogApplication.Common.Config;
 using Player.Models;
 using Player.Services;
+using Player.SharedViews;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,11 +10,15 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Player.ViewModels
 {
+    public delegate void RefToFunction();
+
     public class EventTagViewModel: INotifyPropertyChanged
     {
+        //Collections
         public ObservableCollection<EventTag> EventTags { get; set; }
         public ObservableCollection<EventParameter> EventParameters { get; set; }
         public List<EventScriptFile> EventScriptFiles { get; set; }
@@ -24,12 +29,17 @@ namespace Player.ViewModels
         public RelayCommand RefreshCommand { get; set; }
 
         //Parameter commands
+        public RelayCommand CreateParameterCommand { get; set; }
         public RelayCommand UpdateParameterCommand { get; set; }
         public RelayCommand DeleteParameterCommand { get; set; }
+        public RelayCommand RefreshParametersCommand { get; set; }
 
+        private bool CreatingItem = false;
+        private bool RowEditEndingLocker = true;
         private readonly string AppName;
         private EventTagService _eventTagService;
         private EventParameterService _eventParameterService;
+        private ProgressBarSharedView _progressBar;
 
         //TODO: Possibly move this to EventScriptFile as a property
         public ObservableCollection<string> EventScriptVariables { get; set; }
@@ -38,6 +48,7 @@ namespace Player.ViewModels
         {
             _eventTagService = new EventTagService();
             _eventParameterService = new EventParameterService();
+
             GetEventTags();
 
             UpdateCommand = new RelayCommand(OnUpdate, CanUpdate);
@@ -46,6 +57,8 @@ namespace Player.ViewModels
 
             UpdateParameterCommand = new RelayCommand(OnUpdateParameter, CanUpdateParameter);
             DeleteParameterCommand = new RelayCommand(OnDeleteParameter, CanDeleteParameter);
+            CreateParameterCommand = new RelayCommand(OnCreateParameter, CanCreateParameter);
+            RefreshParametersCommand = new RelayCommand(OnRefreshParameters, CanRefreshParameters);
 
             ConfigManager configManager = new ConfigManager();
             AppName = configManager.GetValue("AppName");
@@ -53,6 +66,7 @@ namespace Player.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        //Selected items
         private EventTag _selectedEventTag;
         public EventTag SelectedEvent
         {
@@ -67,6 +81,9 @@ namespace Player.ViewModels
                 {
                     _selectedEventTag.PropertyChanged += OnTargetEventUpdated;
                 }
+                CreatingItem = false;
+                CreateParameterCommand.RaiseCanExecuteChanged();
+                RefreshParametersCommand.RaiseCanExecuteChanged();
                 UpdateCommand.RaiseCanExecuteChanged();
                 DeleteCommand.RaiseCanExecuteChanged();
                 RaisePropertyChanged("SelectedEvent");
@@ -83,6 +100,7 @@ namespace Player.ViewModels
             set
             {
                 _selectedEventScriptFile = value;
+                RaisePropertyChanged("SelectedEventScriptFile");
             }
         }
 
@@ -116,6 +134,9 @@ namespace Player.ViewModels
             set
             {
                 _selectedTab = value;
+                CreatingItem = false;
+                CreateParameterCommand.RaiseCanExecuteChanged();
+                RefreshParametersCommand.RaiseCanExecuteChanged();
                 if (_selectedTab == 1 && _selectedEventTag != null)
                 {
                     GetEventParameters(_selectedEventTag.Id);
@@ -124,16 +145,23 @@ namespace Player.ViewModels
             }
         }
 
-        public void GetEventTags()
+        //Get methods
+        public async void GetEventTags()
         {
-            EventTags = _eventTagService.GetEvents();
+            _progressBar = new ProgressBarSharedView("Loading Events library...");
+            _progressBar.Show();
+            EventTags = await _eventTagService.GetEvents();
             RaisePropertyChanged("EventTags");
+            _progressBar.Close();
         }
 
-        public void GetEventParameters(int eventId)
+        public async void GetEventParameters(int eventId)
         {
-            EventParameters = _eventParameterService.GetEventParameters(eventId);
+            _progressBar = new ProgressBarSharedView("Loading Event Parameters...");
+            _progressBar.Show();
+            EventParameters = await _eventParameterService.GetEventParameters(eventId);
             RaisePropertyChanged("EventParameters");
+            _progressBar.Close();
         }
 
         public void GetEventScriptFiles()
@@ -156,7 +184,7 @@ namespace Player.ViewModels
                     string path = splitList[i].Split('"').First();
 
                     string name = Path.GetFileNameWithoutExtension(path);
-                    name = (i).ToString() + ". " + name;
+                    //name = (i).ToString() + ". " + name;
 
                     scriptFile.SourcePath = path;
                     scriptFile.Name = name;
@@ -170,6 +198,12 @@ namespace Player.ViewModels
             foreach (var scriptFile in EventScriptFiles)
             {
                 string path = scriptFile.SourcePath;
+
+                //Get code from file
+                if (File.Exists(path))
+                {
+                    scriptFile.Content = File.ReadAllText(path);
+                }
                 GetEventScriptFileVariables(path);
             }
         }
@@ -177,21 +211,16 @@ namespace Player.ViewModels
         public void GetEventScriptFileVariables(string scriptSourcePath)
         {
             if (!File.Exists(scriptSourcePath)) return;
-                //Set label text with script filename
-                //FileName.Text = Path.GetFileName(scriptSourcePath);
-                //Set textblock text with script content
-                //TextArea.Text = File.ReadAllText(path);
 
             int counter = 0;
             string line;
 
-            // Read the file and display it line by line.  
+            //Read the file and display it line by line.  
             StreamReader file = new StreamReader(scriptSourcePath);
             EventScriptVariables = new ObservableCollection<string>();
 
             while ((line = file.ReadLine()) != null)
             {
-                Console.WriteLine(line);
                 counter++;
 
                 var expressions = line.Split(new string[] { Keywords.declareVariable }, StringSplitOptions.None);
@@ -217,6 +246,77 @@ namespace Player.ViewModels
         }
 
         //Parameter commands
+        private void OnCreateParameter()
+        {
+            //Adds a blank entry to the EventParameters collection
+            EventParameter eventParameter = new EventParameter();
+            eventParameter.PropertyName = "";
+            eventParameter.MappedTo_Input_X = "";
+            eventParameter.WFProfileId = 0;
+            EventParameters.Add(eventParameter);
+
+            SelectedEventParameter = eventParameter;
+
+            CreatingItem = true;
+            CreateParameterCommand.RaiseCanExecuteChanged();
+            UpdateParameterCommand.RaiseCanExecuteChanged();
+            DeleteParameterCommand.RaiseCanExecuteChanged();
+            RefreshParametersCommand.RaiseCanExecuteChanged();
+        }
+
+        public async void OnRowEditEnding(object sender, DataGridRowEditEndingEventArgs args)
+        {
+            //Main method responsible for creating Event Parameters
+            //Only continue if CreatingItem flag is true
+            if (!CreatingItem) return;
+            if (SelectedEventParameter != null && RowEditEndingLocker)
+            {
+                //CommitEdit calls OnRowEditEnding again
+                //RowEditingLocker set to false to prevent infinite loop
+                if (SelectedEventParameter.Id != 0) return;
+                RowEditEndingLocker = false;
+                (sender as DataGrid).CommitEdit();
+            }
+            else return;
+
+            //Only proceed with add if the created Event Parameter is valid
+            if (!SelectedEventParameter.IsValid())
+            {
+                RowEditEndingLocker = true;
+                return;
+            }
+
+            MessageBoxResult messageBoxResult = MessageBox.Show("Proceed with creation? Click Cancel to continue editing or No to discard changes.",
+                AppName, MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+
+            if (messageBoxResult == MessageBoxResult.Cancel)
+            {
+                args.Cancel = true;
+                RowEditEndingLocker = true;
+                return;
+            }
+            else if (messageBoxResult == MessageBoxResult.No)
+            {
+                //Refresh the list if No
+                GetEventParameters(SelectedEvent.Id);
+                args.Cancel = true;
+            }
+            else
+            {
+                //Create Event Parameter if Yes
+                string result = await _eventParameterService.CreateEventParameter(SelectedEvent.Id, SelectedEventParameter);
+                MessageBox.Show(result, AppName, MessageBoxButton.OK, MessageBoxImage.Information);
+                GetEventParameters(SelectedEvent.Id);
+            }
+
+            CreatingItem = false;
+            RowEditEndingLocker = true;
+            CreateParameterCommand.RaiseCanExecuteChanged();
+            UpdateParameterCommand.RaiseCanExecuteChanged();
+            DeleteParameterCommand.RaiseCanExecuteChanged();
+            RefreshParametersCommand.RaiseCanExecuteChanged();
+        }
+
         private async void OnUpdateParameter()
         {
             var messageBoxResult = MessageBox.Show("Are you sure you want to update this item?", AppName, MessageBoxButton.YesNo);
@@ -225,7 +325,7 @@ namespace Player.ViewModels
             EventParameterService eventParameterService = new EventParameterService();
             string result = await eventParameterService.UpdateEventParameter(SelectedEvent.Id, SelectedEventParameter.Id, SelectedEventParameter);
 
-            MessageBox.Show(result, AppName);
+            MessageBox.Show(result, AppName, MessageBoxButton.OK, MessageBoxImage.Information);
             GetEventParameters(SelectedEvent.Id);
         }
 
@@ -237,18 +337,33 @@ namespace Player.ViewModels
             EventParameterService eventParameterService = new EventParameterService();
             string result = await eventParameterService.DeleteEventParameter(SelectedEvent.Id, SelectedEventParameter.Id);
 
-            MessageBox.Show(result, AppName);
+            MessageBox.Show(result, AppName, MessageBoxButton.OK, MessageBoxImage.Information);
             GetEventParameters(SelectedEvent.Id);
+        }
+
+        private void OnRefreshParameters()
+        {
+            GetEventParameters(SelectedEvent.Id);
+        }
+
+        private bool CanCreateParameter()
+        {
+            return SelectedEvent != null && !CreatingItem;
         }
 
         private bool CanUpdateParameter()
         {
-            return SelectedEventParameter != null && SelectedEventParameter.IsValid();
+            return SelectedEventParameter != null && SelectedEventParameter.IsValid() && !CreatingItem;
         }
 
         private bool CanDeleteParameter()
         {
-            return SelectedEventParameter != null;
+            return SelectedEventParameter != null && !CreatingItem;
+        }
+
+        private bool CanRefreshParameters()
+        {
+            return SelectedEvent != null && !CreatingItem;
         }
 
         //Event commands
@@ -259,16 +374,9 @@ namespace Player.ViewModels
 
             var eventTagService = new EventTagService();
             var result = await eventTagService.UpdateEventTag(SelectedEvent);
-            //TODO: Make the error messages more meaningful by sending error details
-            if (result == true)
-            {
-                MessageBox.Show("Event updated.");
-                GetEventTags();
-            }
-            else
-            {
-                MessageBox.Show("Update failed.");
-            }
+
+            MessageBox.Show(result, AppName, MessageBoxButton.OK, MessageBoxImage.Information);
+            GetEventTags();
         }
 
         private async void OnDelete()
@@ -278,21 +386,13 @@ namespace Player.ViewModels
 
             var eventTagService = new EventTagService();
             var result = await eventTagService.DeleteEventTag(SelectedEvent);
-            //TODO: Make the error messages more meaningful by sending error details
-            if (result == true)
-            {
-                MessageBox.Show("Event deleted.");
-                GetEventTags();
-            }
-            else
-            {
-                MessageBox.Show("Delete failed.");
-            }
+
+            MessageBox.Show(result, AppName, MessageBoxButton.OK, MessageBoxImage.Information);
+            GetEventTags();
         }
 
         private void OnRefresh()
         {
-            _eventTagService = new EventTagService();
             GetEventTags();
         }
 
@@ -323,7 +423,5 @@ namespace Player.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
             }
         }
-
-
     }
 }
