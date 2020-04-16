@@ -13,11 +13,10 @@ namespace Player.Services
     {
         public EventParameterService()
         {
-            //ConfigManager config = new ConfigManager();
-            //_url = config.GetValue("DevNoteFrontUrl_dev") + "/api/events/";
+
         }
 
-        public ObservableCollection<EventParameter> GetEventParameters(int eventId)
+        public async Task<ObservableCollection<EventParameter>> GetEventParameters(int eventId)
         {
             try
             {
@@ -27,7 +26,7 @@ namespace Player.Services
 
                     var url = GetParameterUrl(eventId);
 
-                    var response = client.GetAsync(url).Result;
+                    var response = await client.GetAsync(url);
                     if (response.IsSuccessStatusCode)
                     {
                         string eventParameterssAsString = response.Content.ReadAsStringAsync().Result;
@@ -40,6 +39,32 @@ namespace Player.Services
             catch (Exception ex)
             {
                 return new ObservableCollection<EventParameter>();
+            }
+        }
+
+        public async Task<string> CreateEventParameter(int eventId, EventParameter eventParameter)
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    var url = GetParameterUrl(eventId);
+
+                    JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+                    var payload = javaScriptSerializer.Serialize(eventParameter);
+                    var buffer = Encoding.UTF8.GetBytes(payload);
+                    var byteContent = new ByteArrayContent(buffer);
+                    byteContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+
+                    HttpResponseMessage response = await client.PostAsync(url, byteContent);
+
+                    string responseMessage = response.Content.ReadAsAsync<string>().Result;
+                    return responseMessage;
+                }
+            }
+            catch (Exception ex)
+            {
+                return "Create Parameter error: " + ex.Message;
             }
         }
 
