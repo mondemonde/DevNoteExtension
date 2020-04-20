@@ -30,7 +30,7 @@ namespace Player.Services
                     var response = await client.GetAsync(_url);
                     if (response.IsSuccessStatusCode)
                     {
-                        string eventTagsAsString = response.Content.ReadAsStringAsync().Result;
+                        string eventTagsAsString = await response.Content.ReadAsStringAsync();
                         JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
                         eventTags = javaScriptSerializer.Deserialize<ObservableCollection<EventTag>>(eventTagsAsString);
                     }
@@ -62,7 +62,7 @@ namespace Player.Services
 
                                     HttpResponseMessage response = await client.PostAsync(_url, content);
 
-                                    string responseMessage = response.Content.ReadAsAsync<string>().Result;
+                                    string responseMessage = await response.Content.ReadAsAsync<string>();
                                     return responseMessage;
                                 }
                             }
@@ -90,7 +90,7 @@ namespace Player.Services
                 {
                     HttpResponseMessage response = await client.PutAsync(_url, byteContent);
 
-                    string responseMessage = response.Content.ReadAsAsync<string>().Result;
+                    string responseMessage = await response.Content.ReadAsAsync<string>();
                     return responseMessage;
                 }
             }
@@ -109,7 +109,7 @@ namespace Player.Services
                     string deleteUrl = _url + eventTag.Id.ToString();
                     HttpResponseMessage response = await client.DeleteAsync(deleteUrl);
 
-                    string responseMessage = response.Content.ReadAsAsync<string>().Result;
+                    string responseMessage = await response.Content.ReadAsAsync<string>();
                     return responseMessage;
                 }
             }

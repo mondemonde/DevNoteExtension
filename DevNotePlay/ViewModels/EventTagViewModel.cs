@@ -20,9 +20,62 @@ namespace Player.ViewModels
     public class EventTagViewModel: INotifyPropertyChanged
     {
         //Collections
-        public ObservableCollection<EventTag> EventTags { get; set; }
-        public ObservableCollection<EventParameter> EventParameters { get; set; }
-        public List<EventScriptFile> EventScriptFiles { get; set; }
+        private ObservableCollection<EventTag> _eventTags;
+        public ObservableCollection<EventTag> EventTags
+        {
+            get
+            {
+                return _eventTags;
+            }
+            set
+            {
+                _eventTags = value;
+                RaisePropertyChanged("EventTags");
+            }
+        }
+
+        private ObservableCollection<EventParameter> _eventParameters;
+        public ObservableCollection<EventParameter> EventParameters
+        {
+            get
+            {
+                return _eventParameters;
+            }
+            set
+            {
+                _eventParameters = value;
+                RaisePropertyChanged("EventParameters");
+            }
+        }
+
+        private ObservableCollection<EventScriptFile> _eventScriptFiles;
+        public ObservableCollection<EventScriptFile> EventScriptFiles
+        {
+            get
+            {
+                return _eventScriptFiles;
+            }
+            set
+            {
+                _eventScriptFiles = value;
+                RaisePropertyChanged("EventScriptFiles");
+            }
+        }
+
+        //TODO: Possibly move this to EventScriptFile as a property
+        private ObservableCollection<string> _eventScriptVariables;
+        public ObservableCollection<string> EventScriptVariables
+        {
+            get
+            {
+                return _eventScriptVariables;
+            }
+            set
+            {
+                _eventScriptVariables = value;
+                RaisePropertyChanged("EventScriptVariables");
+            }
+        }
 
         //Event commands
         public RelayCommand UpdateCommand { get; set; }
@@ -34,6 +87,7 @@ namespace Player.ViewModels
         public RelayCommand UpdateParameterCommand { get; set; }
         public RelayCommand DeleteParameterCommand { get; set; }
         public RelayCommand RefreshParametersCommand { get; set; }
+        public RelayCommand PlayScriptCommand { get; set; }
 
         private bool CreatingItem = false;
         private bool RowEditEndingLocker = true;
@@ -41,9 +95,6 @@ namespace Player.ViewModels
         private EventTagService _eventTagService;
         private EventParameterService _eventParameterService;
         private ProgressBarSharedView _progressBar;
-
-        //TODO: Possibly move this to EventScriptFile as a property
-        public ObservableCollection<string> EventScriptVariables { get; set; }
 
         public EventTagViewModel()
         {
@@ -58,6 +109,7 @@ namespace Player.ViewModels
             DeleteParameterCommand = new RelayCommand(OnDeleteParameter, CanDeleteParameter);
             CreateParameterCommand = new RelayCommand(OnCreateParameter, CanCreateParameter);
             RefreshParametersCommand = new RelayCommand(OnRefreshParameters, CanRefreshParameters);
+            PlayScriptCommand = new RelayCommand(OnPlayScript, CanPlayScript);
 
             ConfigManager configManager = new ConfigManager();
             AppName = configManager.GetValue("AppName");
@@ -104,6 +156,7 @@ namespace Player.ViewModels
             set
             {
                 _selectedEventScriptFile = value;
+                PlayScriptCommand.RaiseCanExecuteChanged();
                 RaisePropertyChanged("SelectedEventScriptFile");
             }
         }
@@ -146,6 +199,12 @@ namespace Player.ViewModels
                     GetEventParameters(_selectedEventTag.Id);
                     GetEventScriptFiles();
                 }
+                else if (_selectedTab == 1 && _selectedEventTag == null)
+                {
+                    EventScriptFiles = null;
+                    SelectedEventScriptFile = null;
+                    EventParameters = null;
+                }
             }
         }
 
@@ -155,7 +214,6 @@ namespace Player.ViewModels
             _progressBar = new ProgressBarSharedView("Loading Events library...");
             _progressBar.Show();
             EventTags = await _eventTagService.GetEvents();
-            RaisePropertyChanged("EventTags");
             _progressBar.Close();
         }
 
@@ -164,7 +222,6 @@ namespace Player.ViewModels
             _progressBar = new ProgressBarSharedView("Loading Event Parameters...");
             _progressBar.Show();
             EventParameters = await _eventParameterService.GetEventParameters(eventId);
-            RaisePropertyChanged("EventParameters");
             _progressBar.Close();
         }
 
@@ -178,7 +235,7 @@ namespace Player.ViewModels
             string[] split = xmlFileContent.Split(delimeter, StringSplitOptions.None);
 
             var splitList = split.ToList();
-            List<EventScriptFile> scriptFiles = new List<EventScriptFile>();
+            ObservableCollection<EventScriptFile> scriptFiles = new ObservableCollection<EventScriptFile>();
 
             if (splitList.Count > 1)
             {
@@ -197,7 +254,6 @@ namespace Player.ViewModels
                 }
             }
             EventScriptFiles = scriptFiles;
-            RaisePropertyChanged("EventScriptFiles");
 
             foreach (var scriptFile in EventScriptFiles)
             {
@@ -210,6 +266,7 @@ namespace Player.ViewModels
                 }
                 GetEventScriptFileVariables(path);
             }
+            SelectedEventScriptFile = scriptFiles[0];
         }
 
         public void GetEventScriptFileVariables(string scriptSourcePath)
@@ -244,7 +301,7 @@ namespace Player.ViewModels
                     //dgVariableColumn.DataSource = ListOfVariables;
                 }
             }
-            RaisePropertyChanged("EventScriptVariables");
+            //RaisePropertyChanged("EventScriptVariables");
             file.Close();
             //System.Console.WriteLine("There were {0} lines.", counter);
         }
@@ -350,6 +407,15 @@ namespace Player.ViewModels
             GetEventParameters(SelectedEvent.Id);
         }
 
+        private async void OnPlayScript()
+        {
+            //MessageBox.Show(String.Format("Playing {0}!", SelectedEventScriptFile.FileNameWithExtension));
+            EventParameterService eventParameterService = new EventParameterService();
+            string result = await eventParameterService.DownloadScriptFromServer(SelectedEvent.Id, SelectedEventScriptFile.ParentFolder);
+
+            MessageBox.Show(result, AppName, MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
         private bool CanCreateParameter()
         {
             return SelectedEvent != null && !CreatingItem;
@@ -368,6 +434,11 @@ namespace Player.ViewModels
         private bool CanRefreshParameters()
         {
             return SelectedEvent != null && !CreatingItem;
+        }
+
+        private bool CanPlayScript()
+        {
+            return SelectedEventScriptFile != null && SelectedEventScriptFile.Content != null;
         }
 
         //Event commands

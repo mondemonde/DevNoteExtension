@@ -117,6 +117,7 @@
                     <DataGrid x:Name="EventTagDataGrid" 
                               ItemsSource="{Binding EventTags}" 
                               SelectedItem="{Binding SelectedEvent}" 
+                              BorderBrush="Gray" BorderThickness="1"
                               Margin="10" AutoGeneratingColumn="EventTagDataGrid_AutoGeneratingColumn" IsReadOnly="True" IsTabStop="True" TabIndex="-1" KeyboardNavigation.TabNavigation="None"/>
                 </Grid>
             </TabItem>
@@ -129,9 +130,9 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="1*"/>
                             <RowDefinition Height="5"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="2*"/>
                         </Grid.RowDefinitions>
                         <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
                         <Grid Grid.Row="0">
@@ -143,21 +144,30 @@
                             <ListBox ItemsSource="{Binding EventScriptFiles}" 
                                      SelectedItem="{Binding SelectedEventScriptFile}"
                                      DisplayMemberPath="Name"
-                                     Background="White"
+                                     Background="White" BorderBrush="Gray" BorderThickness="1"
                                      Grid.Row="1" Margin="5"/>
                         </Grid>
                         <Grid Grid.Row="2">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="40"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" Content="Script:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="14"  Margin="5,0,0,0"/>
-                            <Label Grid.Row="0" Content="{Binding SelectedEventScriptFile.Name}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Regular" FontSize="14" Margin="54,0,0,0"/>
-                            <ScrollViewer Grid.Row="1" Margin="5">
+                            <Label Grid.Row="0" Content="{Binding SelectedEventScriptFile.FileNameWithExtension}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Regular" FontSize="14" Margin="54,0,0,0"/>
+                            <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Row="1" Margin="5">
                                 <TextBlock Grid.Row="1" Text="{Binding SelectedEventScriptFile.Content}" 
                                            Background="#FF2B2B2B" Foreground="LightGray"
                                            FontFamily="Consolas" FontSize="14" FontWeight="Medium"/>
                             </ScrollViewer>
+                            <Button Command="{Binding PlayScriptCommand}"
+                                    Grid.Row="0" Margin="0,6,5,2" Padding="0"
+                                    HorizontalAlignment="Right" VerticalAlignment="Center"
+                                    FontSize="11" Foreground="Black" Background="White" BorderBrush="#FF636363" Width="115">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image HorizontalAlignment="Left" Source="/DevNotePlay;component/Assets/chrome-icon.png" Height="24" Width="24"/>
+                                    <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="3,0,0,0">Play in Chrome</TextBlock>
+                                </StackPanel>
+                            </Button>
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="2">
@@ -201,7 +211,7 @@
                         <DataGrid ItemsSource="{Binding EventParameters}" 
                                   SelectedItem="{Binding SelectedEventParameter}"
                                   AutoGenerateColumns="False"
-                                  CanUserAddRows="False"
+                                  CanUserAddRows="False" BorderBrush="Gray" BorderThickness="1"
                                   Grid.Row="1" Margin="5">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Property Name"

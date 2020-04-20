@@ -418,6 +418,7 @@
     <Resource Include="Chrome\DevNotePlayExtension\panel\js\katalon\selenium-ide\iedoc-core.xml" />
     <Resource Include="CodeCeptJS\Project1\codecept.conf.template.txt" />
     <Resource Include="CodeCeptJS\Project2\output\endpoint\MyGrabValue.txt" />
+    <Resource Include="Assets\chrome-icon.png" />
     <Content Include="CodeCeptJS\Project2\template_test.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

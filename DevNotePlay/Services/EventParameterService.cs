@@ -1,7 +1,9 @@
-﻿using LogApplication.Common.Config;
+﻿using Common;
+using LogApplication.Common.Config;
 using Player.Models;
 using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +31,7 @@ namespace Player.Services
                     var response = await client.GetAsync(url);
                     if (response.IsSuccessStatusCode)
                     {
-                        string eventParameterssAsString = response.Content.ReadAsStringAsync().Result;
+                        string eventParameterssAsString = await response.Content.ReadAsStringAsync();
                         JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
                         eventParameters = javaScriptSerializer.Deserialize<ObservableCollection<EventParameter>>(eventParameterssAsString);
                     }
@@ -58,7 +60,7 @@ namespace Player.Services
 
                     HttpResponseMessage response = await client.PostAsync(url, byteContent);
 
-                    string responseMessage = response.Content.ReadAsAsync<string>().Result;
+                    string responseMessage = await response.Content.ReadAsAsync<string>();
                     return responseMessage;
                 }
             }
@@ -84,7 +86,7 @@ namespace Player.Services
 
                     HttpResponseMessage response = await client.PutAsync(url, byteContent);
 
-                    string responseMessage = response.Content.ReadAsAsync<string>().Result;
+                    string responseMessage = await response.Content.ReadAsAsync<string>();
                     return responseMessage;
                 }
             }
@@ -103,7 +105,7 @@ namespace Player.Services
                     string url = GetParameterUrl(eventId) + "/" + parameterId.ToString();
                     HttpResponseMessage response = await client.DeleteAsync(url);
 
-                    string responseMessage = response.Content.ReadAsAsync<string>().Result;
+                    string responseMessage = await response.Content.ReadAsAsync<string>();
                     return responseMessage;
                 }
             }
@@ -113,11 +115,45 @@ namespace Player.Services
             }
         }
 
-        private string GetParameterUrl(int eventId)
+        public async Task<string> DownloadScriptFromServer(int eventId, string scriptId)
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    string url = GetParameterUrl(eventId, true) + scriptId;
+                    HttpResponseMessage response = await client.GetAsync(url);
+
+                    string responseMessage = string.Empty;
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        responseMessage = await response.Content.ReadAsAsync<string>();
+                    }
+                    else
+                    {
+                        var bytes = await response.Content.ReadAsByteArrayAsync();
+                        string fileName = FileEndPointManager.Project2Folder + @"\" + response.Content.Headers.ContentDisposition.FileName;
+                        using (var stream = new FileStream(fileName, FileMode.Create, FileAccess.Write))
+                        {
+                            await stream.WriteAsync(bytes, 0, bytes.Length);
+                        }
+                        responseMessage = "Download successful.";
+                    }
+                    return responseMessage;
+                }
+            }
+            catch (Exception ex)
+            {
+                return "Download script error: " + ex.Message;
+            }
+        }
+
+        private string GetParameterUrl(int eventId, bool isScript = false)
         {
             //TODO: Remove _dev upon release
             ConfigManager config = new ConfigManager();
             string root = config.GetValue("DevNoteFrontUrl_dev");
+            if (isScript) return root + "/api/event/" + eventId.ToString() + "/script/";
             return root + "/api/event/" + eventId.ToString() + "/parameters";
         }
     }
