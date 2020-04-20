@@ -137,7 +137,7 @@ namespace Player.Services
                         {
                             await stream.WriteAsync(bytes, 0, bytes.Length);
                         }
-                        responseMessage = "Download successful.";
+                        responseMessage = "";
                     }
                     return responseMessage;
                 }
