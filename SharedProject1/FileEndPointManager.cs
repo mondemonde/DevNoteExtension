@@ -491,13 +491,10 @@ namespace Common
                     //CLIENT
                     else //if supplied used for stand alone player
                         _defaultPlayXMLFile = file;
-
                 }
                 return _defaultPlayXMLFile;
             }
-
         }
-
 
         static  string  _defaultScriptFolder;
         public static string DefaultScriptFolder
