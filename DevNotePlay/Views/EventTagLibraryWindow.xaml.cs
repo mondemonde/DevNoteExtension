@@ -16,14 +16,14 @@ namespace Player.Views
         private readonly ConfigManager _configManager;
         private readonly string AppName;
 
-        public EventTagLibraryWindow()
+        public EventTagLibraryWindow(MainWindow mainWindow = null)
         {
             InitializeComponent();
 
             _configManager = new ConfigManager();
             AppName = _configManager.GetValue("AppName");
 
-            DataContext = new EventTagViewModel();
+            DataContext = new EventTagViewModel(mainWindow);
         }
 
         private void EventTagDataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
