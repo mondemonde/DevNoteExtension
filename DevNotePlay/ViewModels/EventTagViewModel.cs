@@ -1,4 +1,5 @@
 ﻿using BaiTextFilterClassLibrary;
+using Common;
 using LogApplication.Common.Config;
 using Player.Models;
 using Player.Services;
@@ -91,15 +92,18 @@ namespace Player.ViewModels
 
         private bool CreatingItem = false;
         private bool RowEditEndingLocker = true;
+        private bool ScriptPlaying = false;
         private readonly string AppName;
         private EventTagService _eventTagService;
         private EventParameterService _eventParameterService;
         private ProgressBarSharedView _progressBar;
+        private MainWindow _mainWindow;
 
-        public EventTagViewModel()
+        public EventTagViewModel(MainWindow mainWindow = null)
         {
             _eventTagService = new EventTagService();
             _eventParameterService = new EventParameterService();
+            _mainWindow = mainWindow;
 
             UpdateCommand = new RelayCommand(OnUpdate, CanUpdate);
             DeleteCommand = new RelayCommand(OnDelete, CanDelete);
@@ -192,6 +196,8 @@ namespace Player.ViewModels
             {
                 _selectedTab = value;
                 CreatingItem = false;
+                ScriptPlaying = false;
+                PlayScriptCommand.RaiseCanExecuteChanged();
                 CreateParameterCommand.RaiseCanExecuteChanged();
                 RefreshParametersCommand.RaiseCanExecuteChanged();
                 if (_selectedTab == 1 && _selectedEventTag != null)
@@ -409,11 +415,25 @@ namespace Player.ViewModels
 
         private async void OnPlayScript()
         {
+            ScriptPlaying = true;
+            PlayScriptCommand.RaiseCanExecuteChanged();
             //MessageBox.Show(String.Format("Playing {0}!", SelectedEventScriptFile.FileNameWithExtension));
             EventParameterService eventParameterService = new EventParameterService();
+            ProgressBarSharedView progressBar = new ProgressBarSharedView("Downloading script from server...");
+            progressBar.Show();
             string result = await eventParameterService.DownloadScriptFromServer(SelectedEvent.Id, SelectedEventScriptFile.ParentFolder);
+            progressBar.Close();
 
-            MessageBox.Show(result, AppName, MessageBoxButton.OK, MessageBoxImage.Information);
+            if (result == string.Empty && _mainWindow != null)
+            {
+                await _mainWindow.Run(FileEndPointManager.DefaultPlayXMLFile);
+            }
+            else
+            {
+                MessageBox.Show(result, AppName, MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            ScriptPlaying = false;
+            PlayScriptCommand.RaiseCanExecuteChanged();
         }
 
         private bool CanCreateParameter()
@@ -438,7 +458,7 @@ namespace Player.ViewModels
 
         private bool CanPlayScript()
         {
-            return SelectedEventScriptFile != null && SelectedEventScriptFile.Content != null;
+            return !ScriptPlaying && SelectedEventScriptFile != null && SelectedEventScriptFile.Content != null;
         }
 
         //Event commands
