@@ -542,7 +542,7 @@ namespace Player
             await Run(FileEndPointManager.DefaultPlayXMLFile);
         }
 
-        private async Task<bool> Run(string filepath)
+        public async Task Run(string filepath)
         {
             //STEP.Player #850 reset results.txt
             GlobalPlayer.ResetResult();
@@ -633,40 +633,40 @@ namespace Player
             //wait for output
             //todo HERE...           
 
-            var cond1 = new TaskWaiter.Conditions("wait_for_result.txt");
-            await cond1.WaitUntil(() => AutoPlayPolicy.AssertPlayerResultExist(started) == true, 1000).ContinueWith(x =>
-            {
-                //setStatus(string.Format("Retried {0} times", MyRetry), EnumPlayStatus.Success);
-                //Task.Delay(1000);
-                //IsAutoPlaying = false;
+            //var cond1 = new TaskWaiter.Conditions("wait_for_result.txt");
+            //await cond1.WaitUntil(() => AutoPlayPolicy.AssertPlayerResultExist(started) == true, 1000).ContinueWith(x =>
+            //{
+            //    //setStatus(string.Format("Retried {0} times", MyRetry), EnumPlayStatus.Success);
+            //    //Task.Delay(1000);
+            //    //IsAutoPlaying = false;
 
-                //Stop();
+            //    //Stop();
 
-                //var result =  await AutoPlay();
-                BotHttpClient.Log("Done.. Play codecept.");
+            //    //var result =  await AutoPlay();
+            //    BotHttpClient.Log("Done.. Play codecept.");
 
-                //step# 12 done EnumTaskStatus.DoneCodeCept
-                //IsAutoplayDone = EnumTaskStatus.DoneCodeCept;
+            //    //step# 12 done EnumTaskStatus.DoneCodeCept
+            //    //IsAutoplayDone = EnumTaskStatus.DoneCodeCept;
 
 
-                //MyPayload.IsSuccess = true;
-                //MyPayload.IsRespond = true;
+            //    //MyPayload.IsSuccess = true;
+            //    //MyPayload.IsRespond = true;
 
-                //step# 12.4 finished status
-                //IsAutoplayDone = EnumTaskStatus.Finished;
+            //    //step# 12.4 finished status
+            //    //IsAutoplayDone = EnumTaskStatus.Finished;
 
-                //not here.. yet it will retry
-                // GlobalPlayer.CreateWFOutput("none");
-            });
+            //    //not here.. yet it will retry
+            //    // GlobalPlayer.CreateWFOutput("none");
+            //});
 
             //check result
             //STEP_.Player screenshot ERROR
-            if (GlobalPlayer.IsFailedResult)
-            {
-                return false;// continue to retry
-            }
-            else
-                return true; //no need to retry
+            //if (GlobalPlayer.IsFailedResult)
+            //{
+            //    return false;// continue to retry
+            //}
+            //else
+            //    return true; //no need to retry
         }
 
         void CloseCodeCeptJsWindow()
@@ -1024,7 +1024,7 @@ namespace Player
 
         private void ViewEventTagLibraryMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            EventTagLibraryWindow eventTagLibraryWindow = new EventTagLibraryWindow();
+            EventTagLibraryWindow eventTagLibraryWindow = new EventTagLibraryWindow(this);
             eventTagLibraryWindow.ShowDialog();
         }
 
