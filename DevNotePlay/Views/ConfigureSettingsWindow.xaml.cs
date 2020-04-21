@@ -122,7 +122,6 @@ namespace Player.Views
         {
             if (_updatedConfigValues.Count != 0)
             {
-                //TODO: Use MyConfigPath on release
                 string customConfigPath = ConfigManager.MyConfigPath;
                 //string customConfigPath = @"C:\Projects\RPA\DevNoteExtension\DevNotePlay\Custom.config";
 

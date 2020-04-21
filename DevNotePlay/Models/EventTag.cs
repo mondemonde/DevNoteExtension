@@ -15,8 +15,6 @@ namespace Player.Models
         public bool _inactive;
         public int _versionNo;
         public string _fileName;
-        public DateTime _created;
-        public DateTime? _modified;
 
         [DisplayName("ID")]
         public int Id { get { return _id; } set { _id = value; } }
@@ -107,8 +105,6 @@ namespace Player.Models
         }
         public string SourcePath { get; set; }
         public string FileName { get; set; }
-        public DateTime Created { get; set; }
-        public DateTime? Modified { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
