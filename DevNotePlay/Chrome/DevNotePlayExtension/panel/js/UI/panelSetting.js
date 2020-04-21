@@ -246,10 +246,11 @@ function genCommandDatalist() {
         // "storeTitle",
         // "storeValue",
         // "submit",
-        "type"
+        "type",
         // "verifyText",
         // "verifyTitle",
         // "verifyValue"
+        "waitForElementPresent"
     ];
 
     // supportedCommand = _loadSeleniumCommands();

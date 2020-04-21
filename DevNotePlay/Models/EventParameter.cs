@@ -1,24 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Player.Models
 {
     public class EventParameter: INotifyPropertyChanged, IDataErrorInfo
     {
-        //private int _id;
-        //private int _wfProfileId;
         private string _propertyName;
         private string _mappedToInputX;
         private string _defaultValue;
-        //private DateTime? _created;
-        //private DateTime? _modified;
 
-        //public int Id { get { return _id; } set { _id = value; } }
-        //public int WFProfileId { get { return _wfProfileId; } set { _wfProfileId = value; } }
         public int Id { get; set; }
         public int WFProfileId { get; set; }
 

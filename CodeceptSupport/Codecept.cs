@@ -59,6 +59,9 @@ namespace CodeceptSupport
                 case "scrollTo":
                     result = new ScrollTo(cmd).Script(it);
                     break;
+                case "waitForElementPresent":
+                    result = new WaitForElement(cmd).Script(it);
+                    break;
                 default:
                     result = new NotSupportedAction(cmd).Script(it);
                     break;

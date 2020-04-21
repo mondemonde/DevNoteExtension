@@ -1,14 +1,13 @@
-﻿using System;
-using PuppetSupportLib;
+﻿using PuppetSupportLib;
 using PuppetSupportLib.Katalon;
 using PuppetSupportLib.WebAction;
+using System;
 
 namespace CodeceptSupport
 {
-    public class WaitDelay : BaseAction
+    public class WaitForElement : BaseAction
     {
-
-        public WaitDelay(TestCaseSelenese katalonxml) : base(katalonxml)
+        public WaitForElement(TestCaseSelenese katalonxml) : base(katalonxml)
         {
 
         }
@@ -22,12 +21,13 @@ namespace CodeceptSupport
             //.
             return act;
         }
-        
+
         public override string Script(IInterpreter interpreter)
         {
+            string target = MyAction.target;
             string value = MyAction.value;
 
-            var script = string.Format("say('Delay');I.wait({0});", value);            
+            var script = string.Format("waitForElement(\"{0}\", {1});", target, value);
             script = script + Environment.NewLine;
 
             return script;
