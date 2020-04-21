@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PuppetSupportLib;
 using PuppetSupportLib.Katalon;
 using PuppetSupportLib.WebAction;
@@ -24,23 +20,14 @@ namespace CodeceptSupport
             //do convettion here..
             //..
             //.
-
-
             return act;
         }
-
         
         public override string Script(IInterpreter interpreter)
         {
-           var targetValue = MyAction.target;
-            var target = Convert.ToInt32(targetValue);
+            string value = MyAction.value;
 
-            target = target / 1000;
-
-
-
-            var script = string.Format("say('Delay');I.wait({0});",target.ToString());            
-
+            var script = string.Format("say('Delay');I.wait({0});", value);            
             script = script + Environment.NewLine;
 
             return script;
