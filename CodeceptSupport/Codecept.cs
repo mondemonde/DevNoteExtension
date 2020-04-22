@@ -62,6 +62,9 @@ namespace CodeceptSupport
                 case "waitForElementPresent":
                     result = new WaitForElement(cmd).Script(it);
                     break;
+                case "waitForElementNotVisible":
+                    result = new WaitForInvisible(cmd).Script(it);
+                    break;
                 default:
                     result = new NotSupportedAction(cmd).Script(it);
                     break;

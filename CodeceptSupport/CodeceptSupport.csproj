@@ -116,6 +116,7 @@
   <ItemGroup>
     <Compile Include="CaptureScreenshot.cs" />
     <Compile Include="ClickAndType.cs" />
+    <Compile Include="WaitForInvisible.cs" />
     <Compile Include="ScrollTo.cs" />
     <Compile Include="Wait.cs" />
     <Compile Include="NotSupportedAction.cs" />

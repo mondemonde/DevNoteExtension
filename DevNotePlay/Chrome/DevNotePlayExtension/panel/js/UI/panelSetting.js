@@ -250,6 +250,7 @@ function genCommandDatalist() {
         // "verifyText",
         // "verifyTitle",
         // "verifyValue"
+        "waitForElementNotVisible",
         "waitForElementPresent"
     ];
 
