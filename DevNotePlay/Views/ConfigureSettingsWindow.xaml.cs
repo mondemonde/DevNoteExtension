@@ -214,5 +214,14 @@ namespace Player.Views
             // opens the folder in explorer
             Process.Start(dir);
         }
+
+        private void TabControl_SelectionChanged(object sender, winControls.SelectionChangedEventArgs e)
+        {
+            if (tabControl.SelectedIndex == tabControl.Items.Count - 1)
+            {
+                ShowAdvancedSettingsCheckbox.IsEnabled = false;
+            }
+            else ShowAdvancedSettingsCheckbox.IsEnabled = true;
+        }
     }
 }
