@@ -9,16 +9,39 @@
         Title="Configure Settings" Height="603" Width="800">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+        <Style TargetType="TextBox">
+            <Setter Property="Padding" Value="0"/>
+        </Style>
     </Window.Resources>
     <Grid x:Name="MyGrid">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
             <RowDefinition Height="85*"/>
-            <RowDefinition Height="15*"/>
+            <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
-        <TabControl x:Name="tabControl" Grid.ColumnSpan="2" Margin="0,0,0,0" SelectionChanged="TabControl_SelectionChanged">
+        <TextBlock Grid.Row="0" Text="For values that require files or folders, double-click the text box to edit."
+                   VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+        <TabControl Grid.Row="1" x:Name="tabControl" Margin="0,0,0,0" SelectionChanged="TabControl_SelectionChanged" Background="#FFE5E5E5">
+            <TabItem Header="Endpoints">
+                <Grid x:Name="FolderEndpointsControlGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="119*"/>
+                        <ColumnDefinition Width="274*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label   Grid.Row="0" Grid.Column="0" Content="DevNoteFront URL" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="DevNoteFrontUrlTextBox" Height="25" Margin="10,10,10,0" VerticalAlignment="Top" LostFocus="SaveDataTextBox_LostFocus"/>
+                    <Label   Grid.Row="1" Grid.Column="0" x:Name="LogFileLabel" Content="Log File" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="LogFileTextBox" Margin="10,10,10,0" Padding="0" Height="25" VerticalAlignment="Top" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick"/>
+                    <Label   Grid.Row="2" Grid.Column="0" x:Name="MaxTimeOutMinutesLabel" Content="Max Timeout (minutes)" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.967,0.692"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" x:Name="MaxTimeOutMinutesTextBox" Margin="10,10,10,0" Height="25" VerticalAlignment="Top" LostFocus="SaveDataTextBox_LostFocus" PreviewTextInput="IntegerTextBoxChecker_PreviewTextInput" CommandManager.PreviewExecuted="TextBox_PreviewExecuted"/>
+                </Grid>
+            </TabItem>
             <TabItem Header="Main Folders">
                 <Grid x:Name="MainFoldersControlGrid">
                     <Grid.ColumnDefinitions>
@@ -101,26 +124,6 @@
                     <TextBox x:Name="Default_EventTagTextBox" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="1" Height="25" Grid.Row="2" LostFocus="SaveDataTextBox_LostFocus"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Endpoints">
-                <Grid x:Name="FolderEndpointsControlGrid">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="119*"/>
-                        <ColumnDefinition Width="274*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Label x:Name="LogFileLabel" Content="Log File" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="LogFileTextBox" Margin="10,10,10,0" Grid.Column="1" Padding="0" Height="25" VerticalAlignment="Top" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick"/>
-                    <Label x:Name="MaxTimeOutMinutesLabel" Content="Max Timeout (minutes)" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.967,0.692" Grid.Row="1"/>
-                    <TextBox x:Name="MaxTimeOutMinutesTextBox" Margin="10,10,10,0" Grid.Column="1" Grid.Row="1" Height="25" VerticalAlignment="Top" LostFocus="SaveDataTextBox_LostFocus" PreviewTextInput="IntegerTextBoxChecker_PreviewTextInput" CommandManager.PreviewExecuted="TextBox_PreviewExecuted"/>
-                    <Label Content="DevNoteFront URL" Margin="10,10,0,0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                    <TextBox x:Name="DevNoteFrontUrlTextBox" Height="25" Margin="10,10,10,0" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" LostFocus="SaveDataTextBox_LostFocus"/>
-                </Grid>
-            </TabItem>
             <TabItem Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Header="Designer">
                 <Grid x:Name="DesignerControlGrid">
                     <Grid.ColumnDefinitions>
@@ -139,9 +142,19 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Button Grid.Row="1" x:Name="OpenButton" Content="Open DevNotePlay root" Margin="20,0,0,0" Height="32" VerticalAlignment="Center" TabIndex="10" Click="OpenButton_Click" HorizontalAlignment="Left"/>
-        <CheckBox Grid.Row="1" x:Name="ShowAdvancedSettingsCheckbox" Content="Show advanced settings" Margin="250,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <Button Grid.Row="1" x:Name="SaveButton" Content="Save" Margin="0,0,114,0" Click="SaveButton_Click" Height="32" HorizontalAlignment="Right" Width="76" VerticalAlignment="Center" TabIndex="10"/>
-        <Button Grid.Row="1" x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Right" Margin="0,0,32,0" Width="74" IsCancel="True" BorderBrush="#FFF32121" Background="#FFF32121" Click="CancelButton_Click" Height="32" VerticalAlignment="Center" TabIndex="11"/>
+        <Button Grid.Row="2" x:Name="OpenButton" Content="Open DevNotePlay root" 
+                Margin="20,0,0,0" Padding="0,7"
+                Height="Auto" Width="174" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                TabIndex="10" Click="OpenButton_Click"/>
+        <CheckBox Grid.Row="2" x:Name="ShowAdvancedSettingsCheckbox" Content="Show advanced settings" Margin="250,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Button Grid.Row="2" x:Name="SaveButton" Content="Save" 
+                Margin="0,0,114,0" Padding="0,7"
+                Height="Auto" Width="76" HorizontalAlignment="Right" VerticalAlignment="Center"
+                TabIndex="10" Click="SaveButton_Click" />
+        <Button Grid.Row="2" x:Name="CancelButton" Content="Cancel" 
+                Margin="0,0,20,0" Padding="0,7"
+                Height="Auto" Width="74" HorizontalAlignment="Right" VerticalAlignment="Center" IsCancel="True" 
+                BorderBrush="#FFF32121" Background="#FFF32121"
+                TabIndex="11" Click="CancelButton_Click"/>
     </Grid>
 </Window>
