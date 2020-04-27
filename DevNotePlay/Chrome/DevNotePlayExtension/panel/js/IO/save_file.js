@@ -93,7 +93,7 @@ var textFile = null
         // return textFile;
 
         
-        var textFileAsBlob = new Blob([text], {type:'text/plain'}); 
+        var textFileAsBlob = new Blob([text], {type:'text/html'}); 
     	var downloadLink = document.createElement("a");
     	downloadLink.download =  FileName;
         downloadLink.innerHTML = "Download File";
