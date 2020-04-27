@@ -496,6 +496,53 @@ namespace Common
             }
         }
 
+        static string _defaultPlayXMLBackup;
+        public static string DefaultPlayXMLBackup
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_defaultPlayXMLBackup))
+                {
+                    ConfigManager config = new ConfigManager();
+                    var file = config.GetValue("DefaultPlayXMLBackup");
+
+                    //STEP_.PLAYER CHROME DOWNLOAD FOLDER
+                    //SERVER: use the main folder of devnote.main
+                    if (string.IsNullOrEmpty(file))
+                    {
+                        //D:\_MY_PROJECTS\_DEVNOTE\_DevNote4\DevNote.Main\bin\Debug2\_EXE\Player\CodeCeptJS\Project2
+                        //var dir = string.Format("{0}\\_EXE\\Player\\CodeCeptJS\\Project2", FileEndPointManager.MyMainDirectory);
+                        _defaultPlayXMLBackup = System.IO.Path.Combine(Project2Folder, "latest_test.js.bak");
+                    }
+                    //CLIENT
+                    else //if supplied used for stand alone player
+                        _defaultPlayXMLBackup = file;
+                }
+                return _defaultPlayXMLBackup;
+            }
+        }
+
+        public static void WriteBackupFile()
+        {
+            string scriptFile = DefaultPlayXMLFile;
+            string backupFile = DefaultPlayXMLBackup;
+            if (File.Exists(scriptFile))
+            {
+                if (File.Exists(backupFile)) File.Delete(backupFile);
+
+                File.Move(scriptFile, backupFile);
+            }
+        }
+
+        public static void RestoreBackupFile()
+        {
+            string scriptFile = DefaultPlayXMLFile;
+            string backupFile = DefaultPlayXMLBackup;
+
+            File.Delete(scriptFile);
+            File.Move(backupFile, scriptFile);
+        }
+
         static  string  _defaultScriptFolder;
         public static string DefaultScriptFolder
         {

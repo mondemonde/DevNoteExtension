@@ -418,9 +418,12 @@ namespace Player.ViewModels
             ScriptPlaying = true;
             PlayScriptCommand.RaiseCanExecuteChanged();
             //MessageBox.Show(String.Format("Playing {0}!", SelectedEventScriptFile.FileNameWithExtension));
+
             EventParameterService eventParameterService = new EventParameterService();
             ProgressBarSharedView progressBar = new ProgressBarSharedView("Downloading script from server...");
             progressBar.Show();
+            //Backup current latest_test.js
+            FileEndPointManager.WriteBackupFile();
             string result = await eventParameterService.DownloadScriptFromServer(SelectedEvent.Id, SelectedEventScriptFile.ParentFolder);
             progressBar.Close();
 
@@ -432,6 +435,9 @@ namespace Player.ViewModels
             {
                 MessageBox.Show(result, AppName, MessageBoxButton.OK, MessageBoxImage.Information);
             }
+
+            //Restore latest_test.js
+            FileEndPointManager.RestoreBackupFile();
             ScriptPlaying = false;
             PlayScriptCommand.RaiseCanExecuteChanged();
         }
