@@ -133,11 +133,6 @@
     <Compile Include="Common\IToken.cs" />
     <Compile Include="DAL\MyDbContext.cs" />
     <Compile Include="DevAPIGlobal.cs" />
-    <Compile Include="FileAssembly1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FileAssembly.tt</DependentUpon>
-    </Compile>
     <Compile Include="IBackGroundActivity.cs" />
     <Compile Include="IArmPlayer.cs" />
     <Compile Include="IBot.cs" />
