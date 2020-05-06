@@ -12,7 +12,6 @@ namespace CodeceptSupport
 {
     public class ClickAndType : BaseAction
     {
-
         public ClickAndType(TestCaseSelenese katalonxml) : base(katalonxml)
         {
 
@@ -28,28 +27,21 @@ namespace CodeceptSupport
             return act;
         }
 
-
-
         public override string Script(IInterpreter interpreter)
         {
             //await page.click('.container > #mvcforum-nav > .nav > li > .auto-logon')
             string result = string.Empty;
 
             var content = MyAction.target.ToString();
-
             var textContent = MyAction.value;
 
-          if (textContent.Contains(Keywords.ClickAndEndDelimiter))//("Delay3_END"))// do click and type
+            if (textContent.Contains(Keywords.ClickAndEndDelimiter))//("Delay3_END"))// do click and type
             {
-
                return ScriptClickToEnd(interpreter);              
-
             }
 
-
-           else if (string.IsNullOrEmpty(textContent) || !textContent.Contains("#1#"))
+            else if (string.IsNullOrEmpty(textContent) || !textContent.Contains("#1#"))
             {
-
                 if (content.StartsWith("link="))
                 {
                     var script = string.Format("clickLink({0})"
@@ -80,20 +72,15 @@ namespace CodeceptSupport
                     {
                         script = string.Format("click({0})", newTarget);
                     }
-
-
                     else
                     {
                         script = string.Format("click('{0}')", newTarget);
-
                     }
                     script = script + Environment.NewLine;
                     result = script;
                 }
-
             }//no textContent
-
-           else if(textContent.Contains("#1#")) //default use text in button like click('Login');
+            else if(textContent.Contains("#1#")) //default use text in button like click('Login');
             {
                 string delimitter = "#1#";
                 string[] splitScript = textContent.Split(new string[] { delimitter }, StringSplitOptions.None);
@@ -112,8 +99,6 @@ namespace CodeceptSupport
 
                         var script1 = string.Format("sendCharacter('{0}');", splitDelay.Last());
                         result = script1;
-                     
-
                     }
                     else if (xyPart.Contains(Keywords.TypeAndTabDelimiter))//("Delay3_"))// do click and type
                     {
@@ -124,32 +109,24 @@ namespace CodeceptSupport
 
                         var script1 =  string.Format("sendCharacter('{0}');", splitDelay.Last()) + scriptTab;
                         result = script1;
-
                     }
-
                     else if (xyPart.Contains(Keywords.clickAndTypeDelimiter))//("Delay3_"))// do click and type
                     {
                         delimitter = Keywords.clickAndTypeDelimiter;
                         string[] splitDelay = xyPart
                             .Split(new string[] { delimitter }, StringSplitOptions.None);
 
-                       
                         var script1 = string.Format("mouseClick('{0}');I.wait(1);I.sendCharacter('{1}');", splitDelay.First(), splitDelay.Last());
                         result = script1;
 
                         //todo ADD modifier to handle variable input assignment var like...
                         //I.say('step#2');I.say('DECLARE');var input_1_ = 'rgalvez@blastasia.com';I.waitForElement('[id="usernamebox"]',45);I.retry({ retries: 3, maxTimeout: 3000 }).fillField({id:'usernamebox'}, input_1_);I.wait(1);
-
-
                     }
-
-
                     else
                     {
                         delimitter = "Delay";
                         string[] splitDelay = xyPart
                             .Split(new string[] { delimitter }, StringSplitOptions.None);
-
 
                         var script1 = string.Format("mouseClick('{0}');I.wait({1})", splitDelay.First(), splitDelay.Last());
                         result = script1;
@@ -165,9 +142,6 @@ namespace CodeceptSupport
                     result = script2;
                 }               
             }
-           
-
-
             return result;
         }
 
@@ -190,7 +164,6 @@ namespace CodeceptSupport
 
             if (string.IsNullOrEmpty(textContent) || !textContent.Contains("#1#"))
             {
-
                 if (content.StartsWith("link="))
                 {
                     var script = string.Format("grabAsync({0})"
@@ -202,9 +175,7 @@ namespace CodeceptSupport
                 else
                 {
                     var newTarget = interpreter.FormatSelector(MyAction.target);
-
                     var script = string.Empty;//string.Format("click('{0}')", newTarget);
-
                     var prefix = string.Format("{0};MyGrabValue = await I.", @"say('MyGrabValue:')");
 
                     if (newTarget.StartsWith("{"))//json
@@ -224,17 +195,13 @@ namespace CodeceptSupport
                     {
                         script = string.Format("grabAsync({0})", newTarget);
                     }
-
-
                     else
                     {
                         script = string.Format("grabAsync('{0}')", newTarget);
-
                     }
                     script = script + Environment.NewLine;
                     result =prefix + script;
                 }
-
             }
             else
             {
@@ -248,20 +215,12 @@ namespace CodeceptSupport
                 splitDelay = xyPart
                     .Split(new string[] { delimitter }, StringSplitOptions.None);
 
-
-
                 var resultScript = splitDelay.First();// + "Delay1";
 
                 var script1 = string.Format("mouseClickXYToGrabValue('{0}');", resultScript);
                 result = script1;
-
             }
-
-
             return result;
-
-         
         }
-
     }
 }
