@@ -238,7 +238,7 @@
                                 <DataGridTextColumn Header="Property Name"
                                                     Binding="{Binding PropertyName, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True}"
                                                     ElementStyle="{StaticResource DataGridCellStyle}"/>
-                                <DataGridTemplateColumn Header="Variable to Map">
+                                <DataGridTemplateColumn Header="Variable">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding MappedTo_Input_X}"
@@ -253,7 +253,7 @@
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellEditingTemplate>
                                 </DataGridTemplateColumn>
-                                <DataGridTextColumn Header="Default Value" 
+                                <DataGridTextColumn Header="Value" 
                                                     Binding="{Binding DefaultValue, Mode=TwoWay, NotifyOnTargetUpdated=True}"
                                                     ElementStyle="{StaticResource DataGridCellStyle}"/>
                             </DataGrid.Columns>
