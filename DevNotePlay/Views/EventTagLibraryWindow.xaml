@@ -38,6 +38,7 @@
                 </Style.Triggers>
             </Style>
             <extensions:IntConverter x:Key="converter"/>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
@@ -192,12 +193,32 @@
                                 <ToolTip Content="Create a new Event Parameter."/>
                             </Button.ToolTip>
                         </Button>
+                        <Button
+                            Command="{Binding CommitCreateCommand}"
+                            Visibility="{Binding CreatingItem, Converter={StaticResource BooleanToVisibility}}"
+                            IsEnabled="{Binding CreatingItem}"
+                            Margin="0,0,90,0" VerticalAlignment="Center" Height="30" Width="30" HorizontalAlignment="Right" BorderThickness="0" TabIndex="102" Background="White" Padding="5">
+                            <StaticResource ResourceKey="CheckIcon"/>
+                            <Button.ToolTip>
+                                <ToolTip Content="Commit changes."/>
+                            </Button.ToolTip>
+                        </Button>
                         <Button 
                             Command="{Binding DeleteParameterCommand}"
                             Margin="0,0,10,0" VerticalAlignment="Center" Height="30" Width="30" HorizontalAlignment="Right" BorderThickness="0" TabIndex="101" Background="White" Padding="3">
                             <StaticResource ResourceKey="CancelIcon"/>
                             <Button.ToolTip>
                                 <ToolTip Content="Delete selelcted Event Parameter."/>
+                            </Button.ToolTip>
+                        </Button>
+                        <Button 
+                            Command="{Binding CancelCreateCommand}"
+                            Visibility="{Binding CreatingItem, Converter={StaticResource BooleanToVisibility}}"
+                            IsEnabled="{Binding CreatingItem}"
+                            Margin="0,0,10,0" VerticalAlignment="Center" Height="30" Width="30" HorizontalAlignment="Right" BorderThickness="0" TabIndex="101" Background="White" Padding="3">
+                            <StaticResource ResourceKey="CancelIcon"/>
+                            <Button.ToolTip>
+                                <ToolTip Content="Cancel create."/>
                             </Button.ToolTip>
                         </Button>
                         <Button 
@@ -233,17 +254,9 @@
                                     </DataGridTemplateColumn.CellEditingTemplate>
                                 </DataGridTemplateColumn>
                                 <DataGridTextColumn Header="Default Value" 
-                                                    Binding="{Binding DefaultValue, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnTargetUpdated=True}"
+                                                    Binding="{Binding DefaultValue, Mode=TwoWay, NotifyOnTargetUpdated=True}"
                                                     ElementStyle="{StaticResource DataGridCellStyle}"/>
                             </DataGrid.Columns>
-                            <behaviors:Interaction.Triggers>
-                                <behaviors:EventTrigger EventName="RowEditEnding">
-                                    <!--<behaviors:InvokeCommandAction Command="{Binding SelectedItemChangedCommand}"/>-->
-                                    <behaviors:CallMethodAction
-                                        TargetObject="{Binding}"
-                                        MethodName="OnRowEditEnding"/>
-                                </behaviors:EventTrigger>
-                            </behaviors:Interaction.Triggers>
                         </DataGrid>
                     </Grid>
                     <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
