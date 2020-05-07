@@ -13,26 +13,21 @@ using DevNoteCmdPlayer;
 
 namespace DevNote.Web.Recorder
 {
-  public   class RecFileWatcher
+    public   class RecFileWatcher
     {
-
-      public   IFrmDevNoteCmd Player { get; set; }
-      
-
-      public static DateTime TimeStarted { get; set; }
-
-    
-
+        public IFrmDevNoteCmd Player { get; set; }
+        public static DateTime TimeStarted { get; set; }
+        public string PlayFile { get; set; }
 
         public RecFileWatcher()
         {
-            //ConfigManager config = new ConfigManager();
+            ConfigManager config = new ConfigManager();
+            PlayFile = config.GetValue("PlayFile");
             //var endPointFolder =config.GetValue("DefaultXMLFile");
 
             var endPointFolder = FileEndPointManager.Project2Folder;
 
             FileSystemWatcher fileWatcher = new FileSystemWatcher(endPointFolder);
-
 
             //Enable events
             fileWatcher.EnableRaisingEvents = true;
@@ -44,13 +39,9 @@ namespace DevNote.Web.Recorder
             fileWatcher.Renamed += FileWatcher_Changed;
 
             TimeStarted = DateTime.Now.AddSeconds(-10);
-
         }
 
-     
-
         #region FILE ENDPOINT
-
         //This event adds the work to the Thread queue
         private void FileWatcher_Changed(object sender, FileSystemEventArgs e)
         {
@@ -68,10 +59,7 @@ namespace DevNote.Web.Recorder
                     break;
                 case WatcherChangeTypes.Created:
                     Console.WriteLine($"File is created: {e.Name}");
-
                     TriggerPlay(e);
-                  
-
                     break;
                 case WatcherChangeTypes.Deleted:
                     Console.WriteLine($"File is deleted: {e.Name}");
@@ -79,19 +67,16 @@ namespace DevNote.Web.Recorder
                 case WatcherChangeTypes.Renamed:
                     Console.WriteLine($"File is renamed: {e.Name}");
                     TriggerPlay(e);
-
                     break;
             }
         }
 
-
         void TriggerPlay(FileSystemEventArgs e)
         {
             //step# 70 PLAY.TXT
-            if (e.Name.ToLower() == "play.txt")
+            if (e.Name.ToLower() == PlayFile)
             {
                 var endPointFolder = FileEndPointManager.Project2Folder;
-
 
                 Console.WriteLine("found play.txt");
                 var span = DateTime.Now - TimeStarted;
@@ -105,17 +90,16 @@ namespace DevNote.Web.Recorder
                 //dot restart let run for awhile
                 if (span.TotalSeconds > 20)
                 {
-                   //var player = new frmDevNoteCmd();
+                    //var player = new frmDevNoteCmd();
                     Player.InvokeOnUiThreadIfRequired(() => Player.Play(true));
                     TimeStarted = DateTime.Now;
                 }
-
                 //delete play.txt
 
                 //ConfigManager config = new ConfigManager();
                 //var endPointFolder = config.GetValue("DefaultXMLFile");
 
-                var txtFile = Path.Combine(endPointFolder, "play.txt");
+                var txtFile = Path.Combine(endPointFolder, PlayFile);
                 File.Delete(txtFile);
             }
             if (e.Name.ToLower().StartsWith("record"))
@@ -128,17 +112,13 @@ namespace DevNote.Web.Recorder
                 var latestFiles = Directory.GetFiles(endPointFolder, "recor*.xml",SearchOption.TopDirectoryOnly);
                 var fileList = latestFiles.ToList();
 
-               
-
                 //var latestXML = Path.Combine(endPointFolder, "latest_" + DateTime.Now.Ticks.ToString() + ".xml");
                 var latestXML = Path.Combine(endPointFolder, "latest.xml");
 
                 if (File.Exists(latestXML))
                     File.Delete(latestXML);
 
-
-               // FileEndPointManager.DefaultKATFile = latestXML;
-
+                // FileEndPointManager.DefaultKATFile = latestXML;
                 foreach (string file in fileList)
                 {
                     try
@@ -156,7 +136,6 @@ namespace DevNote.Web.Recorder
 
             }
         }
-
         #endregion
     }
 }
