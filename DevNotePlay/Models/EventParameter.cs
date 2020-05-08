@@ -69,8 +69,7 @@ namespace Player.Models
         private static readonly string[] ValidatedProperties =
         {
             "PropertyName",
-            "MappedTo_Input_X",
-            "DefaultValue"
+            "MappedTo_Input_X"
         };
 
         public bool IsValid()
@@ -108,12 +107,12 @@ namespace Player.Models
                             result = "A selection is required.";
                         }
                         break;
-                    case "DefaultValue":
-                        if (string.IsNullOrEmpty(DefaultValue) || DefaultValue == "")
-                        {
-                            result = "Default value is required.";
-                        }
-                        break;
+                    //case "DefaultValue":
+                    //    if (string.IsNullOrEmpty(DefaultValue) || DefaultValue == "")
+                    //    {
+                    //        result = "Default value is required.";
+                    //    }
+                    //    break;
                 }
                 return result;
             }

@@ -10,6 +10,7 @@ using System.Configuration;
 using System.Xml;
 using Player.Extensions;
 using System.Diagnostics;
+using System.IO;
 
 namespace Player.Views
 {
@@ -82,13 +83,14 @@ namespace Player.Views
         {
             if (isFile)
             {
+                winControls.TextBox textBox = (winControls.TextBox)sender;
+
                 winForms.OpenFileDialog fileBrowser = new winForms.OpenFileDialog();
+                fileBrowser.InitialDirectory = Path.GetDirectoryName(textBox.Text);
                 winForms.DialogResult dialogResult = fileBrowser.ShowDialog();
 
                 if (dialogResult == System.Windows.Forms.DialogResult.OK)
                 {
-                    winControls.TextBox textBox = (winControls.TextBox)sender;
-
                     string configKey = GetConfigKey(textBox.Name, textBox.GetType());
                     string configValue = fileBrowser.FileName;
 
@@ -99,13 +101,14 @@ namespace Player.Views
             }
             else
             {
+                winControls.TextBox textBox = (winControls.TextBox)sender;
+                
                 winForms.FolderBrowserDialog folderBrowser = new winForms.FolderBrowserDialog();
+                folderBrowser.SelectedPath = Path.GetFullPath(textBox.Text);
                 winForms.DialogResult dialogResult = folderBrowser.ShowDialog();
 
                 if (dialogResult == System.Windows.Forms.DialogResult.OK)
                 {
-                    winControls.TextBox textBox = (winControls.TextBox)sender;
-
                     string configKey = GetConfigKey(textBox.Name, textBox.GetType());
                     string configValue = folderBrowser.SelectedPath;
 

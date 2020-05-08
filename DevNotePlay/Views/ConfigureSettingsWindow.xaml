@@ -37,7 +37,7 @@
                     <Label   Grid.Row="0" Grid.Column="0" Content="DevNoteFront URL" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     <TextBox Grid.Row="0" Grid.Column="1" x:Name="DevNoteFrontUrlTextBox" Height="25" Margin="10,10,10,0" VerticalAlignment="Top" LostFocus="SaveDataTextBox_LostFocus"/>
                     <Label   Grid.Row="1" Grid.Column="0" x:Name="LogFileLabel" Content="Log File" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="LogFileTextBox" Margin="10,10,10,0" Padding="0" Height="25" VerticalAlignment="Top" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="LogFileTextBox" IsReadOnly="True" Margin="10,10,10,0" Padding="0" Height="25" VerticalAlignment="Top" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick"/>
                     <Label   Grid.Row="2" Grid.Column="0" x:Name="MaxTimeOutMinutesLabel" Content="Max Timeout (minutes)" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.967,0.692"/>
                     <TextBox Grid.Row="2" Grid.Column="1" x:Name="MaxTimeOutMinutesTextBox" Margin="10,10,10,0" Height="25" VerticalAlignment="Top" LostFocus="SaveDataTextBox_LostFocus" PreviewTextInput="IntegerTextBoxChecker_PreviewTextInput" CommandManager.PreviewExecuted="TextBox_PreviewExecuted"/>
                 </Grid>
