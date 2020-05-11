@@ -5,13 +5,11 @@ using Player.Models;
 using Player.Services;
 using Player.SharedViews;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Threading;
 
 namespace Player.ViewModels
@@ -20,6 +18,8 @@ namespace Player.ViewModels
 
     public class EventTagViewModel: INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         //Collections
         private ObservableCollection<EventTag> _eventTags;
         public ObservableCollection<EventTag> EventTags
@@ -85,13 +85,13 @@ namespace Player.ViewModels
 
         //Parameter commands
         public RelayCommand CreateParameterCommand { get; set; }
+        public RelayCommand CommitCreateCommand { get; set; }
+        public RelayCommand CancelCreateCommand { get; set; }
         public RelayCommand UpdateParameterCommand { get; set; }
         public RelayCommand DeleteParameterCommand { get; set; }
         public RelayCommand RefreshParametersCommand { get; set; }
         public RelayCommand PlayScriptCommand { get; set; }
 
-        private bool CreatingItem = false;
-        private bool RowEditEndingLocker = true;
         private bool ScriptPlaying = false;
         private readonly string AppName;
         private EventTagService _eventTagService;
@@ -112,9 +112,12 @@ namespace Player.ViewModels
             UpdateParameterCommand = new RelayCommand(OnUpdateParameter, CanUpdateParameter);
             DeleteParameterCommand = new RelayCommand(OnDeleteParameter, CanDeleteParameter);
             CreateParameterCommand = new RelayCommand(OnCreateParameter, CanCreateParameter);
+            CommitCreateCommand = new RelayCommand(OnCommitCreateParameter);
+            CancelCreateCommand = new RelayCommand(OnCancelCreateParameter);
             RefreshParametersCommand = new RelayCommand(OnRefreshParameters, CanRefreshParameters);
             PlayScriptCommand = new RelayCommand(OnPlayScript, CanPlayScript);
 
+            CreatingItem = false;
             ConfigManager configManager = new ConfigManager();
             AppName = configManager.GetValue("AppName");
         }
@@ -124,7 +127,19 @@ namespace Player.ViewModels
             Application.Current.Dispatcher.BeginInvoke(new Action(() => GetEventTags()), DispatcherPriority.ContextIdle, null);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        private bool _creatingItem;
+        public bool CreatingItem
+        {
+            get
+            {
+                return _creatingItem;
+            }
+            set
+            {
+                _creatingItem = value;
+                RaisePropertyChanged("CreatingItem");
+            }
+        }
 
         //Selected items
         private EventTag _selectedEventTag;
@@ -330,26 +345,23 @@ namespace Player.ViewModels
             DeleteParameterCommand.RaiseCanExecuteChanged();
             RefreshParametersCommand.RaiseCanExecuteChanged();
         }
-
-        public async void OnRowEditEnding(object sender, DataGridRowEditEndingEventArgs args)
+        
+        private void OnCancelCreateParameter()
         {
-            //Main method responsible for creating Event Parameters
-            //Only continue if CreatingItem flag is true
-            if (!CreatingItem) return;
-            if (SelectedEventParameter != null && RowEditEndingLocker)
-            {
-                //CommitEdit calls OnRowEditEnding again
-                //RowEditingLocker set to false to prevent infinite loop
-                if (SelectedEventParameter.Id != 0) return;
-                RowEditEndingLocker = false;
-                (sender as DataGrid).CommitEdit();
-            }
-            else return;
+            GetEventParameters(SelectedEvent.Id);
+            CreatingItem = false;
+            CreateParameterCommand.RaiseCanExecuteChanged();
+            UpdateParameterCommand.RaiseCanExecuteChanged();
+            DeleteParameterCommand.RaiseCanExecuteChanged();
+            RefreshParametersCommand.RaiseCanExecuteChanged();
+        }
 
-            //Only proceed with add if the created Event Parameter is valid
-            if (!SelectedEventParameter.IsValid())
+        private async void OnCommitCreateParameter()
+        {
+            if (!(SelectedEventParameter.Id == 0 && SelectedEventParameter.IsValid()))
             {
-                RowEditEndingLocker = true;
+                MessageBox.Show("Error. Make sure that the new parameter is selected and that Property Name and Variable fields have values.",
+                    AppName, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -358,15 +370,11 @@ namespace Player.ViewModels
 
             if (messageBoxResult == MessageBoxResult.Cancel)
             {
-                args.Cancel = true;
-                RowEditEndingLocker = true;
                 return;
             }
             else if (messageBoxResult == MessageBoxResult.No)
             {
-                //Refresh the list if No
-                GetEventParameters(SelectedEvent.Id);
-                args.Cancel = true;
+                OnCancelCreateParameter();
             }
             else
             {
@@ -377,7 +385,6 @@ namespace Player.ViewModels
             }
 
             CreatingItem = false;
-            RowEditEndingLocker = true;
             CreateParameterCommand.RaiseCanExecuteChanged();
             UpdateParameterCommand.RaiseCanExecuteChanged();
             DeleteParameterCommand.RaiseCanExecuteChanged();

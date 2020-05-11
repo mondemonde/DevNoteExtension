@@ -94,6 +94,7 @@ namespace Player
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
 
         private string AppName;
+        private string PlayFile;
         private string RecordFileExtension;
         private string FileDialogFilter;
 
@@ -121,6 +122,7 @@ namespace Player
 
             ConfigManager config = new ConfigManager();
             AppName = config.GetValue("AppName");
+            PlayFile = config.GetValue("PlayFile");
             RecordFileExtension = config.GetValue("RecordFileExtension");
             FileDialogFilter = config.GetValue("FileDialogFilter");
 
@@ -222,7 +224,7 @@ namespace Player
         async Task<bool> TriggerPlay(System.IO.FileSystemEventArgs e)
         {
             //step# 70 PLAY.TXT
-            if (e.Name.ToLower() == "play.txt")
+            if (e.Name.ToLower() == PlayFile)
             {
                 var endPointFolder = FileEndPointManager.Project2Folder;
 
@@ -245,7 +247,7 @@ namespace Player
 
                 //ConfigManager config = new ConfigManager();
                 //var endPointFolder = config.GetValue("DefaultXMLFile");
-                var txtFile = System.IO.Path.Combine(endPointFolder, "play.txt");
+                var txtFile = System.IO.Path.Combine(endPointFolder, PlayFile);
                 System.IO.File.Delete(txtFile);
             }
             if (e.Name.ToLower().StartsWith("record"))
