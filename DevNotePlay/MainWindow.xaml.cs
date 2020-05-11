@@ -339,6 +339,13 @@ namespace Player
         public void CreateChrome()
         {
             ChromiumDir = FileEndPointManager.MyChromeViaRecorder;//LogApplication.Agent.GetCurrentDir() + "\\Chrome\\chrome-win\\chrome.exe";
+
+            if(!File.Exists(ChromiumDir))
+            {
+                MessageBox.Show("Chrome.exe is missing. Please check the settings configuration window.", AppName, MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             if (CmdExeForChrome == null)
             {
                 CmdExeForChrome = Process.Start(ChromiumDir);
