@@ -103,6 +103,7 @@ namespace Player.Models
                 }
             }
         }
+        public string TenantId { get; set; }
         public string SourcePath { get; set; }
         public string FileName { get; set; }
 
