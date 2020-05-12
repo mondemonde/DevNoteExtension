@@ -8,6 +8,7 @@ namespace Player.Models
         private string _propertyName;
         private string _mappedToInputX;
         private string _defaultValue;
+        private string _description;
 
         public int Id { get; set; }
         public int WFProfileId { get; set; }
@@ -48,6 +49,18 @@ namespace Player.Models
                 {
                     _defaultValue = value;
                     RaisePropertyChanged("DefaultValue");
+                }
+            }
+        }
+        public string Description
+        {
+            get { return _description; }
+            set
+            {
+                if (_description != value)
+                {
+                    _description = value;
+                    RaisePropertyChanged("Description");
                 }
             }
         }

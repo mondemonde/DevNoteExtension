@@ -52,6 +52,14 @@ namespace Player.Views
         private void SaveDataTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             winControls.TextBox textBox = (winControls.TextBox)sender;
+            if (textBox.Name == "TenantIdTextBox") {
+                if (textBox.Text.Length < textBox.MaxLength)
+                {
+                    MessageBox.Show("Tenant Id should contain exactly 36 characters." + Environment.NewLine +
+                        "Format: 00112233-4455-6677-8899-aabbccddeeff");
+                    return;
+                }
+            }
 
             string configKey = GetConfigKey(textBox.Name, textBox.GetType());
             string configValue = textBox.Text;

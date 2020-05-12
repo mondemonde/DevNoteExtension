@@ -23,6 +23,7 @@ namespace Player.Models
                 {
                     _domain = value;
                     RaisePropertyChanged("Domain");
+                    RaisePropertyChanged("FileName");
                 }
             }
         }
@@ -47,6 +48,7 @@ namespace Player.Models
                 {
                     _tag = value;
                     RaisePropertyChanged("Tag");
+                    RaisePropertyChanged("FileName");
                 }
             }
         }
@@ -76,16 +78,18 @@ namespace Player.Models
         }
         public string FileName
         {
-            get { return _fileName; }
-            set
-            {
-                if (_fileName != value)
-                {
-                    _fileName = value;
-                    RaisePropertyChanged("FileName");
-                }
-            }
+            //get { return _fileName; }
+            //set
+            //{
+            //    if (_fileName != value)
+            //    {
+            //        _fileName = value;
+            //        RaisePropertyChanged("FileName");
+            //    }
+            //}
+            get { return Domain + "_" + Tag; }
         }
+        public string TenantId { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -106,7 +110,7 @@ namespace Player.Models
             "Department",
             "Tag",
             "VersionNo",
-            "FileName",
+            //"FileName",
         };
 
         public bool IsValid()
@@ -156,16 +160,16 @@ namespace Player.Models
                             result = "Version no. cannot be empty.";
                         }
                         break;
-                    case "FileName":
-                        if (string.IsNullOrEmpty(FileName) || FileName == "")
-                        {
-                            result = "File name is required.";
-                        }
-                        else if (Path.GetExtension(FileName) != String.Empty)
-                        {
-                            result = "Extension cannot be included in File name.";
-                        }
-                        break;
+                    //case "FileName":
+                    //    if (string.IsNullOrEmpty(FileName) || FileName == "")
+                    //    {
+                    //        result = "File name is required.";
+                    //    }
+                    //    else if (Path.GetExtension(FileName) != String.Empty)
+                    //    {
+                    //        result = "Extension cannot be included in File name.";
+                    //    }
+                    //    break;
                 }
                 return result;
             }
