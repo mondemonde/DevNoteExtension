@@ -23,8 +23,11 @@ namespace CodeceptSupport
                 case "#":
                     result = new Comment(cmd).Script(it);
                     break;
-                case "open":
-                    result = new GoTo(cmd).Script(it);
+                case "addSelection":
+                    result = new SelectOption(cmd).Script(it);
+                    break;
+                case "captureEntirePageScreenshot":
+                    result = new CaptureScreenshot(cmd).Script(it);
                     break;
                 case "click":
                     result = new ClickAndType(cmd).Script(it);
@@ -32,11 +35,17 @@ namespace CodeceptSupport
                 case "doubleClick":
                     result = new ClickAndType(cmd).Script(it);
                     break;
+                case "grabValueAndEnd":
+                    result = new GrabValueAndEnd(cmd).Script(it);
+                    break;
+                case "open":
+                    result = new GoTo(cmd).Script(it);
+                    break;
                 case "pause":
                     result = new WaitDelay(cmd).Script(it);
                     break;
-                case "type":
-                    result = new TypeIn(cmd).Script(it);
+                case "scrollTo":
+                    result = new ScrollTo(cmd).Script(it);
                     break;
                 case "select":
                     result = new SelectOption(cmd).Script(it);
@@ -50,20 +59,14 @@ namespace CodeceptSupport
                 case "submit":
                     result = "";
                     break;
-                case "addSelection":
-                    result = new SelectOption(cmd).Script(it);
-                    break;
-                case "captureEntirePageScreenshot":
-                    result = new CaptureScreenshot(cmd).Script(it);
-                    break;
-                case "scrollTo":
-                    result = new ScrollTo(cmd).Script(it);
-                    break;
-                case "waitForElementPresent":
-                    result = new WaitForElement(cmd).Script(it);
+                case "type":
+                    result = new TypeIn(cmd).Script(it);
                     break;
                 case "waitForElementNotVisible":
                     result = new WaitForInvisible(cmd).Script(it);
+                    break;
+                case "waitForElementPresent":
+                    result = new WaitForElement(cmd).Script(it);
                     break;
                 default:
                     result = new NotSupportedAction(cmd).Script(it);
