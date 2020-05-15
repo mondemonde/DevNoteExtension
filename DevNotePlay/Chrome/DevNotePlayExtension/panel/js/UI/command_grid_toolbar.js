@@ -110,18 +110,30 @@ $("#command-value").on("input", function(event) {
 
 // 2020-02-27 - Toggles show/hide for Value controls
 function toggleValueControls(commandSelector) {
-    if (commandSelector.value == "click") {
-        $("#command-value-controls-view").show();
-        updateRadioButtonSelection()
+    switch (commandSelector.value) {
+        case "click":
+            $("#command-value-controls-view").show();
+            $("#target-element-controls").show();
+            $("#action-modifier-controls").show();
+            // $("#grab-value-controls").hide();
+            break;
+        case "grabValueAndEnd":
+            $("#command-value-controls-view").show();
+            $("#target-element-controls").show();
+            $("#action-modifier-controls").hide();
+            // $("#grab-value-controls").show();
+            break;
+        default:
+            $("#command-value-controls-view").hide();
+            $("#target-element-controls").hide();
+            $("#action-modifier-controls").hide();
+            // $("#grab-value-controls").hide();
     }
-    else {
-        $("#command-value-controls-view").hide();
-    }
+    updateRadioButtonSelection()
 }
 
+var valuePattern = /#\d{1}#.*#\d{1}#\d*###\d*Delay3/;
 $(function() {
-    let valuePattern = /#\d{1}#.*#\d{1}#\d*###\d*Delay3/;
-
     // 2020-02-26 - Command value options
     $('#command-command').change(function() {
         toggleValueControls(this);
@@ -169,17 +181,25 @@ $(function() {
 
     // 2020-02-28 - Keywords dropdown
     $('#command-keyword-dropdown').change(function() {
-        let value = $("#command-value").val();
-        let result = valuePattern.test(value);
-        if (result == false) return;
-
-        let keyword = JSON.parse($(this).val());
-        let index = value.indexOf("Delay3") + 6;
-        value = value.substring(0, index) + keyword.key;
-
-        saveValueToTextbox(value);
+        updateCommandValueTextBox(this);
     });
+    // 2020-05-13 - Keywords dropdown
+    // $('#command-grab-value-dropdown').change(function() {
+    //     updateCommandValueTextBox(this);
+    // });
 });
+
+function updateCommandValueTextBox(dropdown) {
+    let value = $("#command-value").val();
+    let result = valuePattern.test(value);
+    if (result == false) return;
+
+    let keyword = JSON.parse($(dropdown).val());
+    let index = value.indexOf("Delay3") + 6;
+    value = value.substring(0, index) + keyword.key;
+
+    saveValueToTextbox(value);
+}
 
 function resetValueOptions(value) {
     let indexToReset = value.indexOf("#1#");

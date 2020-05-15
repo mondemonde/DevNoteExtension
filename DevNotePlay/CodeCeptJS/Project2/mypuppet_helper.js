@@ -8,9 +8,6 @@ const util = require('util');
 
 
 class MyPuppet extends Helper {
-
-
-
     // add custom methods here
     // If you need to access other helpers
     // use: this.helpers['helperName']
@@ -35,19 +32,15 @@ class MyPuppet extends Helper {
         //return page.pdf({path: 'page.pdf'});
     }
 
-
     async waitByXPath(thisSelector, timeOut) {
-
         const { page } = this.helpers.Puppeteer;
         //await page.emulate(iPhone);
 
         try {
             await page.waitForXPath(thisSelector);//then(() => console.log('waitByPuppet done');
-
         } catch (e) {
             //console.log(e)
         }
-
         //return page.pdf({path: 'page.pdf'});
     }
 
@@ -67,13 +60,10 @@ class MyPuppet extends Helper {
 
         //const { browser } = this.helpers.Puppeteer;
         // await browser.pages(); // List of pages in the browser
-
     }
-
 
     //posXY = "123###456"
     async mouseClick(posXY) {
-
         const { page } = this.helpers.Puppeteer;
 
         var coor = posXY.split("###");
@@ -89,26 +79,20 @@ class MyPuppet extends Helper {
         console.log("splity=" + coor[1]);
 
         try {
-
             await page.mouse.click(parseFloat(splitX), parseFloat(splitY), { delay: 1000 });
-
         } catch (e) {
             console.log(e);
-
         }
-
         //return page.pdf({path: 'page.pdf'});
     }
 
     async mouseClickXYToGrabValue(posXY) {
-
         const { page } = this.helpers.Puppeteer;
 
         var coor = posXY.split("###");
         var splitX = coor[0];
 
         console.log("splitx=" + splitX);
-
         // await page.evaluate( function(){
         //   alert("splitx=" + coor[0]);
         // } );
@@ -117,7 +101,6 @@ class MyPuppet extends Helper {
         console.log("splity=" + coor[1]);
 
         try {
-
             await page.mouse.click(parseFloat(splitX), parseFloat(splitY), { delay: 1000 });
             // await page.mouse.click(parseFloat(splitX), parseFloat(splitY), { delay: 1000 });
 
@@ -132,7 +115,7 @@ class MyPuppet extends Helper {
                 return innerText;
             }, { X, Y });
 
-            //await this.WriteMyGrabValue(myGrab);
+            await this.WriteMyGrabValue(myGrab);
 
             console.log('MyGrabValue = ' + myGrab);
             //console.log(await page.evaluate(() => {
@@ -141,28 +124,20 @@ class MyPuppet extends Helper {
 
             //    WriteMyGrabValue(innerText);
             //    return innerText;
-
             //}));
-
             return myGrab;
-
         } catch (e) {
             console.log(e);
-
         }
-
         //return page.pdf({path: 'page.pdf'});
     }
 
     async mouseClickXpathToGrabValue(xpath) {
-
         const { page } = this.helpers.Puppeteer;
 
         try {
-
             // let el = await page.xpath(xpath);
             //let el = await page.$x(xpath);
-
             var selector = xpath;//"'" + xpath +"'";
             console.log(selector);
             var xpathData = await page.$x(selector);
@@ -171,7 +146,6 @@ class MyPuppet extends Helper {
             var myGrab = text;//el.innerText;         
             // await this.WriteMyGrabValue(myGrab);
             console.log('MyGrabValue = ' + myGrab);
-
 
             var grabPath = './output/endpoint/MyGrabValue.txt';
 
@@ -182,43 +156,29 @@ class MyPuppet extends Helper {
                     // if no error, file has been deleted successfully
                     console.log('File deleted!');
                 });
-
-            }
-            catch (e) {
+            } catch (e) {
                 console.log(e);
             }
 
-
-
             fs.writeFile(grabPath, myGrab, function (err) {
-
                 if (err)
                     return console.log(err);
                 console.log('Wrote MyGrabValue.txt, just check it');
                 //ROOT_APP_PATH = fs.realpathSync('.');
                 console.log(grabPath);
             });
-
             //  return this.MyGrabValue;
-
             return myGrab;
-
-
         } catch (e) {
             console.log(e);
-
         }
-
         //return page.pdf({path: 'page.pdf'});
     }
 
-
     async WriteMyGrabValue(newValue) {
-
         //var grabPath = '##EndPointFolder##\\MyGrabValue.txt';
         var grabPath = './output/endpoint/MyGrabValue.txt';
         var resultPath = './output/endpoint/result.txt';
-
 
         try {
             //const content = await readFile('./output/MyGrabValue.txt', 'utf8');
@@ -228,37 +188,32 @@ class MyPuppet extends Helper {
             fs.unlink(grabPath, function (err) {
                 if (err) throw err;
                 // if no error, file has been deleted successfully
-                console.log('File deleted!');
+                console.log('WriteMyGrabValue: File deleted!');
             });
-
         } catch (e) {
             console.error(e);
         }
 
         fs.writeFile(grabPath, newValue, function (err) {
-
             if (err)
                 return console.log(err);
             // this.say('write by puppeteer MyGrabValue.txt =' + content);
-
-            console.log('ReWrote by puppeteer MyGrabValue.txt =' + newValue);
+            console.log('WriteMyGrabValue: ReWrote by puppeteer MyGrabValue.txt =' + newValue);
             //ROOT_APP_PATH = fs.realpathSync('.');
-            console.log(grabPath);
+            console.log('WriteMyGrabValue: ' + grabPath);
         });
 
         fs.writeFile(resultPath, newValue, function (err) {
 
             if (err)
                 return console.log(err);
-            console.log('ReWrote result.txt, just check it');
+            console.log('WriteMyGrabValue: ReWrote result.txt, just check it');
             //ROOT_APP_PATH = fs.realpathSync('.');
             console.log(grabPath);
         });
 
         return newValue;
     }
-
-
 
     async sendCharacter(msgInput) {
         // targetCreated event listener in test.bootstrap.js activated and sets global.pages to all open windows in instance
@@ -268,14 +223,8 @@ class MyPuppet extends Helper {
         const { page } = this.helpers.Puppeteer;
         await page.keyboard.type(msgInput);
 
-
         //await page.waitForNavigation();
-
-
-
     }
-
-
 }
 
 module.exports = MyPuppet;
