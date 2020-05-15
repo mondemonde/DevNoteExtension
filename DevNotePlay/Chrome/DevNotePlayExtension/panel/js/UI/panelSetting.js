@@ -140,6 +140,7 @@ $(document).ready(function() {
 
     $("#command-dropdown,#command-command-list").html(genCommandDatalist());
     $("#command-keyword-dropdown").html(genKeywordDatalist());
+    // $("#command-grab-value-dropdown").html(genGrabValueKeywords());
 
     $(".record-bottom").click(function() {
         $(this).addClass("active");
@@ -226,6 +227,7 @@ function genCommandDatalist() {
         // "dragAndDropToObject",
         // "echo",
         // "editContent",
+        "grabValueAndEnd",
         // "mouseDownAt",
         // "mouseMoveAt",
         // "mouseOut",
@@ -284,9 +286,34 @@ function genKeywordDatalist() {
             key: '_@',
             description: 'Type only'
         },
+        // {
+        //     key: '_END',
+        //     description: 'Click and End'
+        // },
+    ];
+
+    var datalistHTML = "";
+    keywords.forEach(function(keyword) {
+        let keywordJSON = JSON.stringify(keyword)
+        datalistHTML += ("<option value='" + keywordJSON + "'>" + keyword.description + "</option>\n");
+    });
+
+    return datalistHTML;
+}
+
+function genGrabValueKeywords() {
+    var keywords = [
         {
-            key: '_END',
-            description: 'Click and End'
+            key: '',
+            description: 'None'
+        },
+        {
+            key: '_GrabSingle',
+            description: 'Single'
+        },
+        {
+            key: '_GrabMulti',
+            description: 'All'
         },
     ];
 
