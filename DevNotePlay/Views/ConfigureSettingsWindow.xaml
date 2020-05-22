@@ -33,16 +33,19 @@
                         <RowDefinition Height="45"/>
                         <RowDefinition Height="45"/>
                         <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Label   Grid.Row="0" Grid.Column="0" Content="DevNoteFront URL" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     <TextBox Grid.Row="0" Grid.Column="1" x:Name="DevNoteFrontUrlTextBox" Height="25" Margin="10,10,10,0" VerticalAlignment="Top" LostFocus="SaveDataTextBox_LostFocus"/>
-                    <Label   Grid.Row="1" Grid.Column="0" x:Name="TenantIdLabel" Content="Tenant Id" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="TenantIdTextBox" Margin="10,10,10,0" VerticalAlignment="Top" Height="25" LostFocus="SaveDataTextBox_LostFocus" MaxLength="36"/>
-                    <Label   Grid.Row="2" Grid.Column="0" x:Name="LogFileLabel" Content="Log File" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox Grid.Row="2" Grid.Column="1" x:Name="LogFileTextBox" IsReadOnly="True" Margin="10,10,10,0" Padding="0" Height="25" VerticalAlignment="Top" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick"/>
-                    <Label   Grid.Row="3" Grid.Column="0" x:Name="MaxTimeOutMinutesLabel" Content="Max Timeout (minutes)" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.967,0.692"/>
-                    <TextBox Grid.Row="3" Grid.Column="1" x:Name="MaxTimeOutMinutesTextBox" Margin="10,10,10,0" Height="25" VerticalAlignment="Top" LostFocus="SaveDataTextBox_LostFocus" PreviewTextInput="IntegerTextBoxChecker_PreviewTextInput" CommandManager.PreviewExecuted="TextBox_PreviewExecuted"/>
+                    <Label   Grid.Row="1" Grid.Column="0" x:Name="Project2FolderLabel" Content="Project2 Folder" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="Project2FolderTextBox" Margin="10,10,10,0" VerticalAlignment="Top" Height="25" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick"/>
+                    <Label   Grid.Row="2" Grid.Column="0" x:Name="TenantIdLabel" Content="Tenant Id" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" x:Name="TenantIdTextBox" Margin="10,10,10,0" VerticalAlignment="Top" Height="25" LostFocus="SaveDataTextBox_LostFocus" MaxLength="36"/>
+                    <Label   Grid.Row="3" Grid.Column="0" x:Name="LogFileLabel" Content="Log File" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" x:Name="LogFileTextBox" IsReadOnly="True" Margin="10,10,10,0" Padding="0" Height="25" VerticalAlignment="Top" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick"/>
+                    <Label   Grid.Row="4" Grid.Column="0" x:Name="MaxTimeOutMinutesLabel" Content="Max Timeout (minutes)" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.967,0.692"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" x:Name="MaxTimeOutMinutesTextBox" Margin="10,10,10,0" Height="25" VerticalAlignment="Top" LostFocus="SaveDataTextBox_LostFocus" PreviewTextInput="IntegerTextBoxChecker_PreviewTextInput" CommandManager.PreviewExecuted="TextBox_PreviewExecuted"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Main Folders">
@@ -52,36 +55,39 @@
                         <ColumnDefinition Width="274*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
                     </Grid.RowDefinitions>
-                    <Label    Grid.Row="0" x:Name="label" Content="Main Folder" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26" Width="73"/>
-                    <TextBox  Grid.Row="0" Grid.Column="1" x:Name="MyMainFolderTextBox" IsReadOnly="True" Margin="10,10,10,0" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick" Padding="0" Height="25" VerticalAlignment="Top" TabIndex="1"/>
-                    <Label    Grid.Row="1" x:Name="label_Copy" Content="Common .exe Folder" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.967,0.692" Height="26" Width="120"/>
-                    <TextBox  Grid.Row="1" Grid.Column="1" x:Name="CommonExeFolderTextBox" IsReadOnly="True" Margin="10,10,10,0" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick" Height="25" VerticalAlignment="Top" TabIndex="2"/>
-                    <Label    Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="7" x:Name="label_Copy1" Content="Script Toolbox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26" Width="85"/>
-                    <TextBox  Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="7" Grid.Column="1" x:Name="ScriptToolBoxTextBox" IsReadOnly="True" Margin="10,10,10,0" VerticalAlignment="Top" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick" Height="25" TabIndex="3"/>
-                    <Label    Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="3" x:Name="label_Copy2" Content="Azure Bus Receiver" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.967,0.692" Height="26" Width="110"/>
-                    <TextBox  Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="3" Grid.Column="1" x:Name="AzureServiceBusReceiverTextBox" IsReadOnly="True" Margin="10,10,10,0" VerticalAlignment="Top" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick" Height="25" TabIndex="4"/>
-                    <Label    Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="4" x:Name="label_Copy3" Content="Azure Bus Sender" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.967,0.692" Height="26" Width="103"/>
-                    <TextBox  Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="4" Grid.Column="1" x:Name="AzureServiceBusSenderTextBox" IsReadOnly="True" Margin="10,10,10,0" VerticalAlignment="Top" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick" Height="25" TabIndex="5"/>
-                    <Label    Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="5" x:Name="label_Copy4" Content="Chrome Remote Debugger File (Window)" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.967,0.692" Height="26" Width="228"/>
-                    <TextBox  Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="5" Grid.Column="1" x:Name="ChromeRemoteDebuggerFile_Window" IsReadOnly="True" Margin="10,10,10,0" VerticalAlignment="Top" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick" Height="25" TabIndex="6"/>
-                    <Label    Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="6" x:Name="label_Copy5" Content="Chrome Remote Debugger File (Headless)" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.967,0.692" Height="26" Width="232"/>
-                    <TextBox  Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="6" Grid.Column="1" x:Name="ChromeRemoteDebuggerFile_Headless" IsReadOnly="True" Margin="10,10,10,0" VerticalAlignment="Top" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick" Height="25" TabIndex="7"/>
-                    <Label    Grid.Row="2" x:Name="label_Copy6" Content="Chrome.exe" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26"/>
-                    <TextBox  Grid.Row="2" Grid.Column="1" x:Name="ChromeExeTextBox" IsReadOnly="True" Margin="10,10,10,0" VerticalAlignment="Top" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick" Height="25" TabIndex="7"/>
-                    <CheckBox Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="8" x:Name="IsCefSharpCheckBox" Content="CefSharp" HorizontalAlignment="Left" Height="26" Margin="15,10,0,0" VerticalAlignment="Top" Width="80" Checked="IsCheckBox_Checked" Unchecked="IsCheckBox_Checked" TabIndex="8"/>
-                    <CheckBox Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="9" x:Name="IsHeadlessCheckBox" Content="Headless" HorizontalAlignment="Left" Height="26" Margin="15,10,0,0" VerticalAlignment="Top" Width="80" Checked="IsCheckBox_Checked" Unchecked="IsCheckBox_Checked" TabIndex="9"/>
+                    <Label    Grid.Row="0" x:Name="MyMainFolderLabel" Content="Main Folder" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="26" Width="73"/>
+                    <TextBox  Grid.Row="0" Grid.Column="1" x:Name="MyMainFolderTextBox" IsReadOnly="True" Margin="10,0" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick" Padding="0" Height="25" VerticalAlignment="Center" TabIndex="1"/>
+                    <Label    Grid.Row="1" x:Name="CommonExeFolderLabel" Content="Common .exe Folder" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="0.967,0.692" Height="26" Width="120"/>
+                    <TextBox  Grid.Row="1" Grid.Column="1" x:Name="CommonExeFolderTextBox" IsReadOnly="True" Margin="10,0" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick" Height="25" VerticalAlignment="Center" TabIndex="2"/>
+                    <Label    Grid.Row="2" x:Name="ChromeExeLabel" Content="Chrome.exe" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="26"/>
+                    <TextBox  Grid.Row="2" Grid.Column="1" x:Name="ChromeExeTextBox" IsReadOnly="True" Margin="10,0" VerticalAlignment="Center" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick" Height="25" TabIndex="7"/>
+                    <Label    Grid.Row="3" x:Name="DevNoteAPIExeLabel" Content="DevNotePlay API" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="26"/>
+                    <TextBox  Grid.Row="3" Grid.Column="1" x:Name="DevNoteAPIExeTextBox" IsReadOnly="True" Margin="10,0" VerticalAlignment="Center" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick" Height="25" TabIndex="7"/>
+                    <Label    Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="4" x:Name="label_Copy2" Content="Azure Bus Receiver" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="0.967,0.692" Height="26" Width="110"/>
+                    <TextBox  Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="4" Grid.Column="1" x:Name="AzureServiceBusReceiverTextBox" IsReadOnly="True" Margin="10,0" VerticalAlignment="Center" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick" Height="25" TabIndex="4"/>
+                    <Label    Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="5" x:Name="label_Copy3" Content="Azure Bus Sender" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="0.967,0.692" Height="26" Width="103"/>
+                    <TextBox  Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="6" Grid.Column="1" x:Name="AzureServiceBusSenderTextBox" IsReadOnly="True" Margin="10,0" VerticalAlignment="Center" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick" Height="25" TabIndex="5"/>
+                    <Label    Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="6" x:Name="label_Copy4" Content="Chrome Remote Debugger File (Window)" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="0.967,0.692" Height="26" Width="228"/>
+                    <TextBox  Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="6" Grid.Column="1" x:Name="ChromeRemoteDebuggerFile_Window" IsReadOnly="True" Margin="10,0" VerticalAlignment="Center" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick" Height="25" TabIndex="6"/>
+                    <Label    Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="7" x:Name="label_Copy5" Content="Chrome Remote Debugger File (Headless)" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="0.967,0.692" Height="26" Width="232"/>
+                    <TextBox  Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="7" Grid.Column="1" x:Name="ChromeRemoteDebuggerFile_Headless" IsReadOnly="True" Margin="10,0" VerticalAlignment="Center" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick" Height="25" TabIndex="7"/>
+                    <Label    Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="8" x:Name="label_Copy1" Content="Script Toolbox" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="26" Width="85"/>
+                    <TextBox  Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="8" Grid.Column="1" x:Name="ScriptToolBoxTextBox" IsReadOnly="True" Margin="10,0" VerticalAlignment="Center" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick" Height="25" TabIndex="3"/>
+                    <CheckBox Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="9" x:Name="IsCefSharpCheckBox" Content="CefSharp" HorizontalAlignment="Left" Height="26" Margin="15,0,0,0" VerticalAlignment="Center" Width="80" Checked="IsCheckBox_Checked" Unchecked="IsCheckBox_Checked" TabIndex="8"/>
+                    <CheckBox Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="10" x:Name="IsHeadlessCheckBox" Content="Headless" HorizontalAlignment="Left" Height="26" Margin="15,0,0,0" VerticalAlignment="Center" Width="80" Checked="IsCheckBox_Checked" Unchecked="IsCheckBox_Checked" TabIndex="9"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Recordings">
