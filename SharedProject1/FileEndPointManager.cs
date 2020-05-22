@@ -16,7 +16,6 @@ namespace Common
 {
     public static class FileEndPointManager
     {
-
         public static STEP_ Root { get; set; }
 
         public static String MyMainDirectory
@@ -27,18 +26,14 @@ namespace Common
                 {
                     //var dir = LogApplication.Agent.GetCurrentDir();
                     //dir = dir.Replace("file:\\", string.Empty);
-
                     ConfigManager config = new ConfigManager();
                     var dir = config.GetValue("MyMainFolder");
-
 
                     myMainDirectory = dir;
                 }
                 return myMainDirectory;
             }
         }
-
-
 
         static string _myCommonExeDirectory;
         public static string MyCommonExeDirectory
@@ -53,7 +48,6 @@ namespace Common
                 }
                 return _myCommonExeDirectory;
             }
-
         }
 
         public static bool IsEventBusy
@@ -131,13 +125,12 @@ namespace Common
                 ConfigManager config = new ConfigManager();
                 string exe = config.GetValue("ChromeExe");
 
-                if (string.IsNullOrEmpty(exe))
+                if (string.IsNullOrEmpty(exe) || !File.Exists(exe))
                 {
                     //get default directory
                     //D:\_MY_PROJECTS\_DEVNOTE\_DevNote4\DevNote.Web.Recorder\Chrome\chrome-win\chrome.exe
                     var currentDir = LogApplication.Agent.GetCurrentDir();
                     currentDir = currentDir.Replace("file:\\", string.Empty);
-
 
                     var dir = string.Format("{0}\\Chrome\\chrome-win", currentDir);
                     exe = System.IO.Path.Combine(dir, "chrome.exe");
@@ -626,34 +619,30 @@ namespace Common
         static string _project2Folder;
         public static string Project2Folder
         {
-           
-                get
-                      {
-                    if (Root == STEP_.PLAYER)
+            get
+            {
+                if (Root == STEP_.PLAYER)
+                {
+                    if (string.IsNullOrEmpty(_project2Folder) || !File.Exists(_project2Folder))
                     {
-                        if (string.IsNullOrEmpty(_project2Folder))
-                        {
-                            var dir = LogApplication.Agent.GetCurrentDir();
-                            myMainDirectory = dir.Replace("file:\\", string.Empty);
-                            var exeFolder1 = string.Format("{0}\\CodeCeptJS\\Project2", MyMainDirectory);
-                            _project2Folder = exeFolder1;
-                        }
-
+                        var dir = LogApplication.Agent.GetCurrentDir();
+                        myMainDirectory = dir.Replace("file:\\", string.Empty);
+                        var exeFolder1 = string.Format("{0}\\CodeCeptJS\\Project2", MyMainDirectory);
+                        _project2Folder = exeFolder1;
                     }
-                    else
-                    {
-                        //STEP_.EVENT Project2EndPointFolder
-                        if (string.IsNullOrEmpty(_project2Folder))
-                        {
-
-                            var dir = string.Format("{0}\\_EXE\\Player\\CodeCeptJS\\Project2", MyMainDirectory);
-                           _project2Folder = dir;
-                        }
-                    }
-
-                    return _project2Folder;
                 }
+                else
+                {
+                    //STEP_.EVENT Project2EndPointFolder
+                    if (string.IsNullOrEmpty(_project2Folder))
+                    {
+                        var dir = string.Format("{0}\\_EXE\\Player\\CodeCeptJS\\Project2", MyMainDirectory);
+                        _project2Folder = dir;
+                    }
+                }
+                return _project2Folder;
             }
+        }
         public static string Latest_testJS()
         {
             var @result = string.Empty;
