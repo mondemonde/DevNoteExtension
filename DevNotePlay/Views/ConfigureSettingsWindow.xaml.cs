@@ -112,7 +112,10 @@ namespace Player.Views
                 winControls.TextBox textBox = (winControls.TextBox)sender;
                 
                 winForms.FolderBrowserDialog folderBrowser = new winForms.FolderBrowserDialog();
-                folderBrowser.SelectedPath = Path.GetFullPath(textBox.Text);
+                if (File.Exists(textBox.Text))
+                {
+                    folderBrowser.SelectedPath = Path.GetFullPath(textBox.Text);
+                }
                 winForms.DialogResult dialogResult = folderBrowser.ShowDialog();
 
                 if (dialogResult == System.Windows.Forms.DialogResult.OK)
