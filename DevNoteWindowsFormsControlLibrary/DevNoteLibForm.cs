@@ -581,7 +581,7 @@ namespace DevNoteWindowsFormsControlLibrary
         private void toolStripPlayChrome_Click(object sender, EventArgs e)
         {
             var content = TextArea.Text;
-            File.WriteAllText(FileEndPointManager.DefaultPlayXMLFile, content);
+            File.WriteAllText(FileEndPointManager.DefaultPlayJsFile, content);
             OnPlayWithChrome(e);
 
         }

@@ -130,8 +130,8 @@ namespace Player
 
 
 
-            recordJSDirectory = FileEndPointManager.DefaultPlayXMLFile;
-            recordXMLDirectory = FileEndPointManager.DefaultLatestXMLFile;
+            recordJSDirectory = FileEndPointManager.DefaultPlayJsFile;
+            recordXMLDirectory = FileEndPointManager.DefaultPlayJsFile;//.DefaultLatestXMLFile;
 
             var chromeDefaultDownload = FileEndPointManager.Project2Folder;//Path.GetDirectoryName(FileEndPointManager.DefaultPlayXMLFile);
 
@@ -427,7 +427,7 @@ namespace Player
             // this.InvokeOnUiThreadIfRequired(() => ShowHelper());
             CloseCodeCeptJsWindow();
             // ConfigManager config = new ConfigManager();
-            var defaultXML = FileEndPointManager.DefaultPlayXMLFile; // config.GetValue("DefaultXMLFile");
+            var defaultXML = FileEndPointManager.DefaultPlayJsFile; // config.GetValue("DefaultXMLFile");
             if (isRecording)
             {
                 var endPointFolder = FileEndPointManager.Project2Folder;
@@ -560,7 +560,7 @@ namespace Player
 
         private async void Anterior_Click_1(object sender, RoutedEventArgs e)
         {
-            await Run(FileEndPointManager.DefaultPlayXMLFile);
+            await Run(FileEndPointManager.DefaultPlayJsFile);
         }
 
         public async Task Run(string filepath)

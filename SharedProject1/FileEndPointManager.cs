@@ -459,43 +459,37 @@ namespace Common
             {
                 if (string.IsNullOrEmpty(_defaultLatestXMLFile))
                 {
-                    ConfigManager config = new ConfigManager();
-                    var file = config.GetValue("DefaultLatestXMLFile");
-
-                    if (string.IsNullOrEmpty(file))
-                    {
-                        _defaultLatestXMLFile = System.IO.Path.Combine(Project2Folder, "latest.xml");
-                    }
-                    else
-                        _defaultLatestXMLFile = file;
+                  
+                        _defaultLatestXMLFile = System.IO.Path.Combine(Project2Folder, "latest.xml");                  
+                       
                 }
                 return _defaultLatestXMLFile;
             }
         }
 
-        static string _defaultPlayXMLFile;
-        public static string DefaultPlayXMLFile
+        static string _defaultPlayJsFile;
+        public static string DefaultPlayJsFile
         {
             get
             {
-                if (string.IsNullOrEmpty(_defaultPlayXMLFile))
+                if (string.IsNullOrEmpty(_defaultPlayJsFile))
                 {
                     ConfigManager config = new ConfigManager();
-                    var file = config.GetValue("DefaultPlayXMLFile");
+                    var file = config.GetValue("DefaultPlayJsFile");
 
                     //STEP_.PLAYER CHROME DOWNLOAD FOLDER
                     //SERVER: use the main folder of devnote.main
                     if (string.IsNullOrEmpty(file))
-                    {                 
+                    {
                         //D:\_MY_PROJECTS\_DEVNOTE\_DevNote4\DevNote.Main\bin\Debug2\_EXE\Player\CodeCeptJS\Project2
                         //var dir = string.Format("{0}\\_EXE\\Player\\CodeCeptJS\\Project2", FileEndPointManager.MyMainDirectory);
-                        _defaultPlayXMLFile = System.IO.Path.Combine(Project2Folder, "latest_test.js");
+                        _defaultPlayJsFile = System.IO.Path.Combine(Project2Folder, "latest_test.js");
                     }
                     //CLIENT
                     else //if supplied used for stand alone player
-                        _defaultPlayXMLFile = file;
+                        _defaultPlayJsFile = file;
                 }
-                return _defaultPlayXMLFile;
+                return _defaultPlayJsFile;
             }
         }
 
@@ -527,7 +521,7 @@ namespace Common
 
         public static void WriteBackupFile()
         {
-            string scriptFile = DefaultPlayXMLFile;
+            string scriptFile = DefaultPlayJsFile;
             string backupFile = DefaultPlayXMLBackup;
             if (File.Exists(scriptFile))
             {
@@ -539,7 +533,7 @@ namespace Common
 
         public static void RestoreBackupFile()
         {
-            string scriptFile = DefaultPlayXMLFile;
+            string scriptFile = DefaultPlayJsFile;
             string backupFile = DefaultPlayXMLBackup;
 
             File.Delete(scriptFile);

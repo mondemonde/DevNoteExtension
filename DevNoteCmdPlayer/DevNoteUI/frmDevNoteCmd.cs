@@ -1896,7 +1896,7 @@ namespace DevNoteCmdPlayer
             CloseCodeCeptJsWindow();
 
             // ConfigManager config = new ConfigManager();
-            var defaultXML = FileEndPointManager.DefaultPlayXMLFile; // config.GetValue("DefaultXMLFile");
+            var defaultXML = FileEndPointManager.DefaultPlayJsFile; // config.GetValue("DefaultXMLFile");
 
 
             if (isRecording)
@@ -1963,7 +1963,7 @@ namespace DevNoteCmdPlayer
         private async void BtnPlay_Click(object sender, EventArgs e)
         {
             // await Play();
-            await Run(FileEndPointManager.DefaultPlayXMLFile);
+            await Run(FileEndPointManager.DefaultPlayJsFile);
 
         }
 

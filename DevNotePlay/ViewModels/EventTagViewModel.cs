@@ -436,7 +436,7 @@ namespace Player.ViewModels
 
             if (result == string.Empty && _mainWindow != null)
             {
-                await _mainWindow.Run(FileEndPointManager.DefaultPlayXMLFile);
+                await _mainWindow.Run(FileEndPointManager.DefaultPlayJsFile);
             }
             else
             {

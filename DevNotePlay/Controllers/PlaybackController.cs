@@ -19,17 +19,10 @@ namespace DevNotePlay.API.Controllers
         {
             try
             {
-                ConfigManager config = new ConfigManager();
 
-                string path = FileEndPointManager.Project2EndPointFolder; //config.GetValue("Project2Folder");
-                //string playFile = Path.Combine(path, "play.txt");// config.GetValue("PlayFile"));
-                string latestXML = Path.Combine(path, "latest.xml"); //config.GetValue("RecXMLFile"));
-
-
+                string latestXML = FileEndPointManager.DefaultLatestXMLFile;//Path.Combine(path, "latest.xml"); //config.GetValue("RecXMLFile"));
                 if (File.Exists(latestXML))
                     File.Delete(latestXML);
-
-
 
 
                 string content = xmlScript["content"];
