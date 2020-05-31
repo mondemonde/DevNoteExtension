@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web.Http;
+using System.Web.Http.SelfHost;
 
 namespace Player
 {
@@ -51,13 +53,30 @@ namespace Player
             }
 
 
-            
-            var application = new App();
-            application.InitializeComponent();
-            application.Run();
+            string baseAddress = "http://localhost:9000/";
+            var config = new HttpSelfHostConfiguration(baseAddress);
+
+            config.Routes.MapHttpRoute(
+                "API Default", "api/{controller}/{id}",
+                new { id = RouteParameter.Optional });
+
+            using (HttpSelfHostServer server = new HttpSelfHostServer(config))
+            {
+                server.OpenAsync().Wait();
+
+                Console.WriteLine("API app started.");
+                Console.WriteLine(String.Format("Listening on: {0}", baseAddress));
+
+                var application = new App();
+                application.InitializeComponent();
+                application.Run();
+            }
 
 
           
+
+
+
         }
 
 

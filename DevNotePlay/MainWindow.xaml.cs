@@ -494,10 +494,14 @@ namespace Player
             string driveLetter = drive.First().ToString();
 
             //var param = string.Format("cd /{0} {1}\\CodeceptJs\\Project2", driveLetter, dir);
-            var param = string.Format("cd {1}\\CodeceptJs\\Project2", driveLetter, dir);
+            //var param = string.Format("cd {1}\\CodeceptJs\\Project2", driveLetter, dir);
+            var chromeDownload = FileEndPointManager.Project2Folder;
+            string chromeDrive = Path.GetPathRoot(chromeDownload);
+            string chromeDriveLetter = chromeDrive.First().ToString();
+            var param = string.Format("cd /{0} {1}", driveLetter, chromeDownload);
 
             //MyConsoleControlForChrome.WriteInput("node LaunchChromeExt.js", Color.AliceBlue, true);
-            var batFolder = string.Format("{0}\\Bat", dir);  //@"D:\_ROBOtFRAMeWORK\CodeceptsJs\Project1\";
+            var batFolder = Path.Combine(dir, "Bat");  //string.Format("{0}\\Bat", dir);  //@"D:\_ROBOtFRAMeWORK\CodeceptsJs\Project1\";
             var batPath = Path.Combine(batFolder, "RunCodeceptjs.bat");
             var batTemplate = File.ReadAllText(batPath);
 

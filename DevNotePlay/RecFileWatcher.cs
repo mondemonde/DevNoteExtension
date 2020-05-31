@@ -13,21 +13,32 @@ using DevNoteCmdPlayer;
 
 namespace DevNote.Web.Recorder
 {
-    public   class RecFileWatcher
+    public class RecFileWatcher
     {
         public IFrmDevNoteCmd Player { get; set; }
         public static DateTime TimeStarted { get; set; }
-        public string PlayFile { get; set; }
+        public string PlayFile
+        {
+            get
+            {
+                //PlayFile = config.GetValue("PlayFile");
+                return "play.txt";
+            }
+        }
 
         public RecFileWatcher()
         {
             ConfigManager config = new ConfigManager();
-            PlayFile = config.GetValue("PlayFile");
+
             //var endPointFolder =config.GetValue("DefaultXMLFile");
 
             var endPointFolder = FileEndPointManager.Project2Folder;
 
             FileSystemWatcher fileWatcher = new FileSystemWatcher(endPointFolder);
+
+            Console.WriteLine("WATCHING: " + endPointFolder);
+            Console.WriteLine("WATCHING: " + endPointFolder);
+
 
             //Enable events
             fileWatcher.EnableRaisingEvents = true;
@@ -109,7 +120,7 @@ namespace DevNote.Web.Recorder
                 var endPointFolder = FileEndPointManager.Project2Folder;
 
                 //"*.exe|*.dll"
-                var latestFiles = Directory.GetFiles(endPointFolder, "recor*.xml",SearchOption.TopDirectoryOnly);
+                var latestFiles = Directory.GetFiles(endPointFolder, "recor*.xml", SearchOption.TopDirectoryOnly);
                 var fileList = latestFiles.ToList();
 
                 //var latestXML = Path.Combine(endPointFolder, "latest_" + DateTime.Now.Ticks.ToString() + ".xml");

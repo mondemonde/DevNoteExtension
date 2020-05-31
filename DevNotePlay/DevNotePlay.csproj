@@ -193,6 +193,12 @@
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.SelfHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.SelfHost.5.2.7\lib\net45\System.Web.Http.SelfHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -208,6 +214,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\PlaybackController.cs" />
     <Compile Include="Extensions\IntConverter.cs" />
     <Compile Include="Extensions\ZipArchiveHelper.cs" />
     <Compile Include="Models\EventHeader.cs" />
@@ -354,6 +361,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Controllers\ReadMe.txt" />
     <Resource Include="Chrome\DevNotePlayExtension\chromeExtIcon.PNG" />
     <Resource Include="Chrome\DevNotePlayExtension\icons\help.png" />
     <Resource Include="Chrome\DevNotePlayExtension\icons\icons-48.png" />

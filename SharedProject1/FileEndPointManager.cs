@@ -629,34 +629,47 @@ namespace Common
         static string _project2Folder;
         public static string Project2Folder
         {
-           
-                get
-                      {
-                    if (Root == STEP_.PLAYER)
+            get
+            {
+                ConfigManager config = new ConfigManager();
+                var file = config.GetValue("Project2Folder");
+                _project2Folder = file;
+                //_HACK safe to delete 
+                #region---TEST ONLY: Compiler will  automatically erase this in RELEASE mode and it will not run if Global.GlobalTestMode is not set to TestMode.Simulation
+#if OVERRIDE || OFFLINE 
+
+            System.Diagnostics.Debug.WriteLine("HACK-TEST -");
+         
+            file = config.GetValue("TestFor-Project2Folder");
+
+                return file;
+
+#endif
+                #endregion //////////////END TEST
+
+
+                if (Root == STEP_.PLAYER)
+                {
+                    if (string.IsNullOrEmpty(_project2Folder) || !Directory.Exists(_project2Folder))
                     {
-                        if (string.IsNullOrEmpty(_project2Folder))
-                        {
-                            var dir = LogApplication.Agent.GetCurrentDir();
-                            myMainDirectory = dir.Replace("file:\\", string.Empty);
-                            var exeFolder1 = string.Format("{0}\\CodeCeptJS\\Project2", MyMainDirectory);
-                            _project2Folder = exeFolder1;
-                        }
-
+                        var dir = LogApplication.Agent.GetCurrentDir();
+                        myMainDirectory = dir.Replace("file:\\", string.Empty);
+                        var exeFolder1 = string.Format("{0}\\CodeCeptJS\\Project2", MyMainDirectory);
+                        _project2Folder = exeFolder1;
                     }
-                    else
-                    {
-                        //STEP_.EVENT Project2EndPointFolder
-                        if (string.IsNullOrEmpty(_project2Folder))
-                        {
-
-                            var dir = string.Format("{0}\\_EXE\\Player\\CodeCeptJS\\Project2", MyMainDirectory);
-                           _project2Folder = dir;
-                        }
-                    }
-
-                    return _project2Folder;
                 }
+                else
+                {
+                    //STEP_.EVENT Project2EndPointFolder
+                    if (string.IsNullOrEmpty(_project2Folder))
+                    {
+                        var dir = string.Format("{0}\\_EXE\\Player\\CodeCeptJS\\Project2", MyMainDirectory);
+                        _project2Folder = dir;
+                    }
+                }
+                return _project2Folder;
             }
+        }
         public static string Latest_testJS()
         {
             var @result = string.Empty;
