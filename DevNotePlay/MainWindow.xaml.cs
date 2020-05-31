@@ -120,16 +120,24 @@ namespace Player
 
             FileEndPointManager.Root = STEP_.PLAYER;
 
+
+
             ConfigManager config = new ConfigManager();
             AppName = config.GetValue("AppName");
             PlayFile = config.GetValue("PlayFile");
             RecordFileExtension = config.GetValue("RecordFileExtension");
             FileDialogFilter = config.GetValue("FileDialogFilter");
 
+
+
             recordJSDirectory = FileEndPointManager.DefaultPlayXMLFile;
             recordXMLDirectory = FileEndPointManager.DefaultLatestXMLFile;
 
             var chromeDefaultDownload = FileEndPointManager.Project2Folder;//Path.GetDirectoryName(FileEndPointManager.DefaultPlayXMLFile);
+
+            var chromePath = FileEndPointManager.MyChromeViaRecorder;
+            config.SetValue("ChromeExe",chromePath);
+            config.Save();
 
             RecFileWatcher watcher = new RecFileWatcher();
             watcher.Player = this;

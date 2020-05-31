@@ -141,6 +141,9 @@ namespace Common
 
                     var dir = string.Format("{0}\\Chrome\\chrome-win", currentDir);
                     exe = System.IO.Path.Combine(dir, "chrome.exe");
+
+                    
+
                 }
                 return exe;
             }

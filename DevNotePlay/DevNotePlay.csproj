@@ -316,7 +316,7 @@
     </None>
     <None Include="CodeCeptJS\Project2\RunCodeceptjs0.bat" />
     <None Include="Custom.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="DevNotePlay_TemporaryKey.pfx" />
     <None Include="packages.config" />
