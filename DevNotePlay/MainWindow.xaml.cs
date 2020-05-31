@@ -140,7 +140,7 @@ namespace Player
             config.Save();
 
             RecFileWatcher watcher = new RecFileWatcher();
-            watcher.Player = this;
+            RecFileWatcher.Player = this;
 
             var maxThreads = 4;
             // Times to as most machines have double the logic processers as cores
@@ -793,58 +793,14 @@ namespace Player
             }
         }
 
+        public static ScriptReader MyScriptReader;
+
         void ReadXML(string file)
         {
-            //var file = @"D:\_MY_PROJECTS\Mond\AIFS_Manager\DevNoteCmd\Katalon\Xamun.xml";// @"D:\_MY_PROJECTS\Mond\AIFS_Manager\CodeceptSupport\Katalon\test.xml";
-            //run series of commands
-            Interpreter it = new Interpreter();
 
-            //step# 80 _Entry CONVERSION xml to codecept
-            //_STEP_.Player _Entry CONVERSION xml to codecept
-            it.ReadXmlFile(file);
-            if (it.MyActions == null)
-                return;
-
-            //STEP.CodeCept #80 ACTIONS modifier
-            //step# 81 mods..modify actions
-            ClickModifier clickExt = new ClickModifier();
-            it.Mod<ClickModifier>(clickExt);
-
-            SendKeyModifier keyExt = new SendKeyModifier();
-            it.Mod<SendKeyModifier>(keyExt);
-
-            //step# 82 Declare VARIABLES
-            FillFieldModifier fillFieldExt = new FillFieldModifier();
-            it.Mod<FillFieldModifier>(fillFieldExt);
-
-            //step# 83 identify Variables 
-            VariableModifier variableList = new VariableModifier();
-            it.Mod<VariableModifier>(variableList);
-
-            //step# 83 assign Variables 
-            AssignModifier variableExt = new AssignModifier();
-            it.Mod<AssignModifier>(variableExt);
-
-            //step# 84 finalize
-            FinalModifier finalExt = new FinalModifier();
-            it.Mod<FinalModifier>(finalExt);
-
-            //MyActions = it.MyActions;
-            //add summary
-            MyActions = SummaryModifier.AddSummary(it, variableList.ListOfVariables);
-
-            //this.actionSource.DataSource = MyActions;
-            //refreshList();
-
-            //txtCaption.Text = "DevNote Recorder -" + System.IO.Path.GetFileName(openFileDialog1.FileName);
-            //saveFileDialog1.FileName = openFileDialog1.FileName;
-
-            // var folder = Path.GetDirectoryName(jsXMLFile);
-
-            //var dir = LogApplication.Agent.GetCurrentDir();
-            //dir = dir.Replace("file:\\", string.Empty);
-            //string drive =System.IO.Path.GetPathRoot(dir);
-            //string driveLetter = drive.First().ToString();
+            MyScriptReader = new ScriptReader();
+            MyScriptReader.ReadXML(file);
+         
             var codeceptjsFolder = FileEndPointManager.Project2Folder;//string.Format("{0}\\CodeceptJs\\Project2", dir);  //@"D:\_ROBOtFRAMeWORK\CodeceptsJs\Project1\";
 
             var codeceptTestPath = System.IO.Path.Combine(codeceptjsFolder, "latest_test.js");
@@ -866,43 +822,13 @@ namespace Player
             }
             else
             {
-                //save
-                var list = MyActions; //actionSource.List;
-                var length = list.Count;
-                List<CodeceptAction> myList = new List<CodeceptAction>();
-
-                string codes = string.Empty;
-
-                for (int i = 0; i < length; i++)
-                {
-                    CodeceptAction a = (CodeceptAction)list[i];
-                    //myList.Add(a);
-                    if (string.IsNullOrEmpty(a.Script))
-                        continue;
-
-                    var code = a.Script.Trim();
-
-                    while (code.Last() == ';')
-                    {
-                        code = code.Substring(0, code.Length - 1);
-                    }
-
-                    if (code.StartsWith("say('step#"))
-                        codes = codes + string.Format("I.{0};\n", code);
-                    else
-                        codes = codes + string.Format("I.say('step#{0}');I.{1};\n", a.OrderNo.ToString(), code);
-                }
-
-                //step# _8.4 config.GetValue("CodeceptTestTemplate");
-                var codeCeptConfigPath = FileEndPointManager.MyCodeceptTestTemplate; //config.GetValue("CodeceptTestTemplate");
-                var codeCeptTestTemplate = File.ReadAllText(codeCeptConfigPath);
-                codeCeptTestTemplate = codeCeptTestTemplate.Replace("##steps##", codes);
+                //save             
 
                 if (File.Exists(saveFileDialog1.FileName))
                     File.Delete(saveFileDialog1.FileName);
 
                 //step# _8.5 save scenario file
-                File.WriteAllText(saveFileDialog1.FileName, codeCeptTestTemplate);
+                File.WriteAllText(saveFileDialog1.FileName, MyScriptReader.MyScript);//codeCeptTestTemplate);
                 //txtCaption.Text = "Dev Note Console -" + Path.GetFileNameWithoutExtension(saveFileDialog1.FileName);
                 //UpdateStatus(true);
             }

@@ -627,7 +627,11 @@
     <Content Include="CodeCeptJS\Project2\wfh_test.js" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CodeCeptJS\*.*">
+    <Content Include="CodeCeptJS\ReadMe.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Visible>True</Visible>
+    </Content>
+    <Content Include="CodeCeptJS\steps_file.js.template.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Visible>True</Visible>
     </Content>

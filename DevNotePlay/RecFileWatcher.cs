@@ -15,7 +15,7 @@ namespace DevNote.Web.Recorder
 {
     public class RecFileWatcher
     {
-        public IFrmDevNoteCmd Player { get; set; }
+        public static IFrmDevNoteCmd Player { get; set; }
         public static DateTime TimeStarted { get; set; }
         public string PlayFile
         {
@@ -102,8 +102,8 @@ namespace DevNote.Web.Recorder
                 if (span.TotalSeconds > 20)
                 {
                     //var player = new frmDevNoteCmd();
-                    Player.InvokeOnUiThreadIfRequired(() => Player.Play(true));
-                    TimeStarted = DateTime.Now;
+                    //Player.InvokeOnUiThreadIfRequired(() => Player.Play(true));
+                    //TimeStarted = DateTime.Now;
                 }
                 //delete play.txt
 
@@ -115,38 +115,56 @@ namespace DevNote.Web.Recorder
             }
             if (e.Name.ToLower().StartsWith("record"))
             {
-                //copy and delete record.xml
-                // record(1).xml  ,record(2).xml
-                var endPointFolder = FileEndPointManager.Project2Folder;
-
-                //"*.exe|*.dll"
-                var latestFiles = Directory.GetFiles(endPointFolder, "recor*.xml", SearchOption.TopDirectoryOnly);
-                var fileList = latestFiles.ToList();
-
-                //var latestXML = Path.Combine(endPointFolder, "latest_" + DateTime.Now.Ticks.ToString() + ".xml");
-                var latestXML = Path.Combine(endPointFolder, "latest.xml");
-
-                if (File.Exists(latestXML))
-                    File.Delete(latestXML);
-
-                // FileEndPointManager.DefaultKATFile = latestXML;
-                foreach (string file in fileList)
-                {
-                    try
-                    {
-                        File.Copy(file, latestXML);
-                        File.Delete(file);
-
-                    }
-                    catch (Exception err)
-                    {
-
-                        LogApplication.Agent.LogError(err);
-                    }
-                }
-
+                //obsolete api do now the creattion of xml
+                //CreateLatestXML();
             }
         }
+
+        public static void Play()
+        {
+            //var player = new frmDevNoteCmd();
+            Player.InvokeOnUiThreadIfRequired(() => Player.Play(true));
+            TimeStarted = DateTime.Now;
+        }
+
+        public void CreateLatestXML()
+        {
+            //copy and delete record.xml
+            // record(1).xml  ,record(2).xml
+            var endPointFolder = FileEndPointManager.Project2Folder;
+
+            //"*.exe|*.dll"
+            var latestFiles = Directory.GetFiles(endPointFolder, "recor*.xml", SearchOption.TopDirectoryOnly);
+            var fileList = latestFiles.ToList();
+
+
+
+            //var latestXML = Path.Combine(endPointFolder, "latest_" + DateTime.Now.Ticks.ToString() + ".xml");
+            var latestXML = Path.Combine(endPointFolder, "latest.xml");
+
+            if (File.Exists(latestXML))
+                File.Delete(latestXML);
+
+
+            // FileEndPointManager.DefaultKATFile = latestXML;
+
+            foreach (string file in fileList)
+            {
+                try
+                {
+                    File.Copy(file, latestXML);
+                    File.Delete(file);
+
+                }
+                catch (Exception err)
+                {
+
+                    LogApplication.Agent.LogError(err);
+                }
+            }
+
+        }
+
         #endregion
     }
 }

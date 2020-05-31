@@ -53,7 +53,7 @@ namespace Player
             }
 
 
-            string baseAddress = "http://localhost:9000/";
+            string baseAddress = "http://localhost:9876/";
             var config = new HttpSelfHostConfiguration(baseAddress);
 
             config.Routes.MapHttpRoute(

@@ -1,4 +1,6 @@
-﻿using LogApplication.Common.Config;
+﻿using Common;
+using DevNote.Web.Recorder;
+using LogApplication.Common.Config;
 using System;
 using System.IO;
 using System.Net;
@@ -19,17 +21,28 @@ namespace DevNotePlay.API.Controllers
             {
                 ConfigManager config = new ConfigManager();
 
-                string path = config.GetValue("Project2Folder");
-                string playFile = Path.Combine(path, "play.txt");// config.GetValue("PlayFile"));
-                string recFile = Path.Combine(path, "record.xml"); //config.GetValue("RecXMLFile"));
+                string path = FileEndPointManager.Project2EndPointFolder; //config.GetValue("Project2Folder");
+                //string playFile = Path.Combine(path, "play.txt");// config.GetValue("PlayFile"));
+                string latestXML = Path.Combine(path, "latest.xml"); //config.GetValue("RecXMLFile"));
+
+
+                if (File.Exists(latestXML))
+                    File.Delete(latestXML);
+
+
+
+
                 string content = xmlScript["content"];
+                if (File.Exists(latestXML)) File.Delete(latestXML);
+                //if (File.Exists(playFile)) File.Delete(playFile);
 
-                if (File.Exists(recFile)) File.Delete(recFile);
-                if (File.Exists(playFile)) File.Delete(playFile);
-
-                File.WriteAllText(recFile, content);
+                File.WriteAllText(latestXML, content);
                 Thread.Sleep(1000);
-                File.WriteAllText(playFile, string.Empty);
+                //File.WriteAllText(playFile, string.Empty);
+
+                RecFileWatcher.Play();
+
+              
 
                 return Request.CreateResponse(HttpStatusCode.OK, "Script sent to DevPlay. Please wait for playback.");
             }
