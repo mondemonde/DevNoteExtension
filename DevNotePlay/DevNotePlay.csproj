@@ -208,8 +208,10 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\ConfigurationDefaults.cs" />
     <Compile Include="Extensions\IntConverter.cs" />
     <Compile Include="Extensions\ZipArchiveHelper.cs" />
+    <Compile Include="Models\ConfigSettingTypes.cs" />
     <Compile Include="Models\EventHeader.cs" />
     <Compile Include="Models\EventParameter.cs" />
     <Compile Include="Models\EventScriptFile.cs" />
@@ -229,6 +231,9 @@
     </Compile>
     <Compile Include="Extensions\InputValidators.cs" />
     <Compile Include="RecFileWatcher.cs" />
+    <Compile Include="Views\CustomControls\ConfigSettingControl.xaml.cs">
+      <DependentUpon>ConfigSettingControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EventTagLibraryWindow.xaml.cs">
       <DependentUpon>EventTagLibraryWindow.xaml</DependentUpon>
     </Compile>
@@ -261,6 +266,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\CustomControls\ConfigSettingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\IconResourceDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

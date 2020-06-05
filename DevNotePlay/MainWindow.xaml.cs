@@ -579,7 +579,7 @@ namespace Player
             var started = DateTime.Now;
 
             //Application.DoEvents();
-            TaskWaiter.Conditions cond = new TaskWaiter.Conditions("Wait_CondceptJS_Console");
+            Conditions cond = new Conditions("Wait_CondceptJS_Console");
             await cond.WaitUntil(() => (DateTime.Now - started).TotalSeconds > 5)
                 .ContinueWith(x =>
                 {
@@ -964,7 +964,7 @@ namespace Player
 
         private void Save_As_Click(object sender, RoutedEventArgs e)
         {
-            if (!File.Exists(recordJSDirectory) || !File.Exists(recordXMLDirectory))
+            if (String.IsNullOrEmpty(OpenedFile) || !File.Exists(recordJSDirectory) || !File.Exists(recordXMLDirectory))
             {
                 //TODO: update this error message.
                 MessageBox.Show("There are no record files to save. Please open an existing recording or make a new one.", AppName, MessageBoxButton.OK, MessageBoxImage.Error);
