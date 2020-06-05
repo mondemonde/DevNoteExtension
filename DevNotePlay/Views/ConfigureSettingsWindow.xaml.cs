@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using winControls = System.Windows.Controls;
+using System.Windows.Controls;
 using winForms = System.Windows.Forms;
 using System.Windows.Input;
 using System.Configuration;
@@ -11,6 +11,9 @@ using System.Xml;
 using Player.Extensions;
 using System.Diagnostics;
 using System.IO;
+using Player.Views.CustomControls;
+using System.Reflection;
+using Player.Enums;
 
 namespace Player.Views
 {
@@ -38,12 +41,33 @@ namespace Player.Views
             _updatedConfigValues = new Dictionary<string, string>();
         }
 
+        private void SetDefaultValue(object sender, RoutedEventArgs e)
+        {
+            Button configItem = sender as Button;
+            string configKey = configItem.Tag as string;
+            ConfigSettingControl control = configItem.DataContext as ConfigSettingControl;
+            PropertyInfo propertyInfo = typeof(ConfigurationDefaults).GetProperty(configKey);
+
+            if (control.ConfigType == ConfigSettingTypes.Regular_CheckBox)
+            {
+                control.configCheckBox.IsChecked = propertyInfo.GetValue(null, null) as bool?;
+            }
+            else
+            {
+                string value = propertyInfo.GetValue(null, null) as string;
+                ChangeConfigValue(configItem.DataContext, defaultValue: value, key: configKey);
+            }
+        }
+
         private void IsCheckBox_Checked(object sender, RoutedEventArgs e)
         {
+            Console.WriteLine(sender);
             if (_updatedConfigValues == null) return;
 
-            winControls.CheckBox checkBox = (winControls.CheckBox)sender;
-            string configKey = GetConfigKey(checkBox.Name, checkBox.GetType());
+            CheckBox checkBox = sender as CheckBox;
+            ConfigSettingControl configSetting = checkBox.DataContext as ConfigSettingControl;
+            //string configKey = GetConfigKey(checkBox.Name, checkBox.GetType());
+            string configKey = configSetting.ConfigKey;
             string configValue = checkBox.IsChecked.ToString();
 
             _updatedConfigValues[configKey] = configValue;
@@ -51,8 +75,11 @@ namespace Player.Views
 
         private void SaveDataTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            winControls.TextBox textBox = (winControls.TextBox)sender;
-            if (textBox.Name == "TenantIdTextBox") {
+            ConfigSettingControl configItem = (ConfigSettingControl)sender;
+            TextBox textBox = configItem.configTextBox_Manual;
+            //TextBox textBox = (TextBox)sender;
+            if (textBox.Tag as string == "TenantId")
+            {
                 if (textBox.Text.Length < textBox.MaxLength)
                 {
                     MessageBox.Show("Tenant Id should contain exactly 36 characters." + Environment.NewLine +
@@ -61,20 +88,21 @@ namespace Player.Views
                 }
             }
 
-            string configKey = GetConfigKey(textBox.Name, textBox.GetType());
+            string configKey = textBox.Tag as string;
             string configValue = textBox.Text;
 
             _updatedConfigValues[configKey] = configValue;
+            Console.WriteLine((sender as ConfigSettingControl)?.ConfigKey);
         }
 
         private void ChangeDirectoryTextBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ChangeConfigValue(sender);
+            ChangeConfigValue(sender, false, key: (sender as ConfigSettingControl).ConfigKey);
         }
 
         private void ChangeFileTextBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ChangeConfigValue(sender, true);
+            ChangeConfigValue(sender, true, key: (sender as ConfigSettingControl).ConfigKey);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -87,19 +115,32 @@ namespace Player.Views
             SaveConfig();
         }
 
-        private void ChangeConfigValue(object sender, bool isFile = false)
+        private void ChangeConfigValue(object sender, bool isFile = false, string defaultValue = null, string key = null)
         {
+            //ConfigSettingControl configItem = (ConfigSettingControl)sender;
+            TextBox textBox = GetConfigTextBox((ConfigSettingControl)sender);
+            //winControls.TextBox textBox = configItem.configSettingControlGrid.Children.OfType<winControls.TextBox>().First();
+            //winControls.TextBox textBox = (winControls.TextBox)sender;
+
+            if (defaultValue != null)
+            {
+                string configKey = key;
+                string configValue = defaultValue;
+
+                _updatedConfigValues[configKey] = configValue;
+
+                textBox.Text = configValue;
+                return;
+            }
             if (isFile)
             {
-                winControls.TextBox textBox = (winControls.TextBox)sender;
-
                 winForms.OpenFileDialog fileBrowser = new winForms.OpenFileDialog();
                 fileBrowser.InitialDirectory = Path.GetDirectoryName(textBox.Text);
                 winForms.DialogResult dialogResult = fileBrowser.ShowDialog();
 
                 if (dialogResult == System.Windows.Forms.DialogResult.OK)
                 {
-                    string configKey = GetConfigKey(textBox.Name, textBox.GetType());
+                    string configKey = key;
                     string configValue = fileBrowser.FileName;
 
                     _updatedConfigValues[configKey] = configValue;
@@ -109,8 +150,6 @@ namespace Player.Views
             }
             else
             {
-                winControls.TextBox textBox = (winControls.TextBox)sender;
-                
                 winForms.FolderBrowserDialog folderBrowser = new winForms.FolderBrowserDialog();
                 if (File.Exists(textBox.Text))
                 {
@@ -120,7 +159,7 @@ namespace Player.Views
 
                 if (dialogResult == System.Windows.Forms.DialogResult.OK)
                 {
-                    string configKey = GetConfigKey(textBox.Name, textBox.GetType());
+                    string configKey = key;
                     string configValue = folderBrowser.SelectedPath;
 
                     _updatedConfigValues[configKey] = configValue;
@@ -174,42 +213,46 @@ namespace Player.Views
 
         private void InitializeControlValues()
         {
-            var mainFolderControls = MainFoldersControlGrid.Children;
-            var designerControls = DesignerControlGrid.Children;
-            var recordingsControls = RecordingsControlGrid.Children;
-            var defaultsEventEntry = DefaultsEventEntryControlGrid.Children;
-            var folderEndpoints = FolderEndpointsControlGrid.Children;
+            List<UIElementCollection> configTabs = new List<UIElementCollection>
+            {
+                MainFoldersControlGrid.Children,
+                DesignerControlGrid.Children,
+                RecordingsControlGrid.Children,
+                DefaultsEventEntryControlGrid.Children,
+                FolderEndpointsControlGrid.Children
+            };
 
-            foreach (var control in mainFolderControls.OfType<winControls.TextBox>())
+            foreach (var tab in configTabs)
             {
-                control.Text = _config.AppSettings.Settings[GetConfigKey(control.Name, control.GetType())].Value;
-            }
-            foreach (var control in mainFolderControls.OfType<winControls.CheckBox>())
-            {
-                control.IsChecked = bool.Parse(_config.AppSettings.Settings[GetConfigKey(control.Name, control.GetType())].Value);
-            }
-
-            foreach (var control in designerControls.OfType<winControls.TextBox>())
-            {
-                control.Text = _config.AppSettings.Settings[GetConfigKey(control.Name, control.GetType())].Value;
-            }
-            foreach (var control in recordingsControls.OfType<winControls.TextBox>())
-            {
-                control.Text = _config.AppSettings.Settings[GetConfigKey(control.Name, control.GetType())].Value;
-            }
-            foreach (var control in defaultsEventEntry.OfType<winControls.TextBox>())
-            {
-                control.Text = _config.AppSettings.Settings[GetConfigKey(control.Name, control.GetType())].Value;
-            }
-            foreach (var control in folderEndpoints.OfType<winControls.TextBox>())
-            {
-                control.Text = _config.AppSettings.Settings[GetConfigKey(control.Name, control.GetType())].Value;
+                foreach (var control in tab.OfType<ConfigSettingControl>())
+                {
+                    switch (control.ConfigType)
+                    {
+                        case ConfigSettingTypes.FileFolder_TextBox:
+                            control.configTextBox_FileFolder.Text = _config.AppSettings.Settings[control.ConfigKey].Value;
+                            break;
+                        case ConfigSettingTypes.Regular_CheckBox:
+                            control.configCheckBox.IsChecked = bool.Parse(_config.AppSettings.Settings[control.ConfigKey].Value);
+                            break;
+                        case ConfigSettingTypes.ManualEntry_TextBox:
+                            control.configTextBox_Manual.Text = _config.AppSettings.Settings[control.ConfigKey].Value;
+                            break;
+                    }
+                }
             }
         }
 
-        private string GetConfigKey(string controlName, Type controlType)
+        private TextBox GetConfigTextBox(ConfigSettingControl control)
         {
-            return controlName.Replace(controlType.Name, "");
+            switch (control.ConfigType)
+            {
+                case ConfigSettingTypes.FileFolder_TextBox:
+                    return control.configTextBox_FileFolder;
+                case ConfigSettingTypes.ManualEntry_TextBox:
+                    return control.configTextBox_Manual;
+                default:
+                    return null;
+            }
         }
 
         private void TextBox_PreviewExecuted(object sender, ExecutedRoutedEventArgs e)
@@ -229,7 +272,7 @@ namespace Player.Views
             Process.Start(dir);
         }
 
-        private void TabControl_SelectionChanged(object sender, winControls.SelectionChangedEventArgs e)
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (tabControl.SelectedIndex == tabControl.Items.Count - 1)
             {
