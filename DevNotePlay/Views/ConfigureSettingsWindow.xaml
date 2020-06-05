@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Player"
+        xmlns:uc="clr-namespace:Player.Views.CustomControls"
+        xmlns:en="clr-namespace:Player.Enums"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Configure Settings" Height="603" Width="800">
@@ -24,10 +26,6 @@
         <TabControl Grid.Row="1" x:Name="tabControl" Margin="0,0,0,0" SelectionChanged="TabControl_SelectionChanged" Background="#FFE5E5E5">
             <TabItem Header="Endpoints">
                 <Grid x:Name="FolderEndpointsControlGrid">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="119*"/>
-                        <ColumnDefinition Width="274*"/>
-                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="45"/>
                         <RowDefinition Height="45"/>
@@ -36,24 +34,29 @@
                         <RowDefinition Height="45"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Label   Grid.Row="0" Grid.Column="0" Content="DevNoteFront URL" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="DevNoteFrontUrlTextBox" Height="25" Margin="10,10,10,0" VerticalAlignment="Top" LostFocus="SaveDataTextBox_LostFocus"/>
-                    <Label   Grid.Row="1" Grid.Column="0" x:Name="Project2FolderLabel" Content="Project2 Folder" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="Project2FolderTextBox" Margin="10,10,10,0" VerticalAlignment="Top" Height="25" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick"/>
-                    <Label   Grid.Row="2" Grid.Column="0" x:Name="TenantIdLabel" Content="Tenant Id" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox Grid.Row="2" Grid.Column="1" x:Name="TenantIdTextBox" Margin="10,10,10,0" VerticalAlignment="Top" Height="25" LostFocus="SaveDataTextBox_LostFocus" MaxLength="36"/>
-                    <Label   Grid.Row="3" Grid.Column="0" x:Name="LogFileLabel" Content="Log File" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox Grid.Row="3" Grid.Column="1" x:Name="LogFileTextBox" IsReadOnly="True" Margin="10,10,10,0" Padding="0" Height="25" VerticalAlignment="Top" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick"/>
-                    <Label   Grid.Row="4" Grid.Column="0" x:Name="MaxTimeOutMinutesLabel" Content="Max Timeout (minutes)" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.967,0.692"/>
-                    <TextBox Grid.Row="4" Grid.Column="1" x:Name="MaxTimeOutMinutesTextBox" Margin="10,10,10,0" Height="25" VerticalAlignment="Top" LostFocus="SaveDataTextBox_LostFocus" PreviewTextInput="IntegerTextBoxChecker_PreviewTextInput" CommandManager.PreviewExecuted="TextBox_PreviewExecuted"/>
+                    <uc:ConfigSettingControl Grid.Row="0" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="DevNoteFrontUrl" ConfigType="{x:Static en:ConfigSettingTypes.ManualEntry_TextBox}"
+                                             LabelCaption="DevNoteFront URL" LostFocus="SaveDataTextBox_LostFocus"/>
+                    <uc:ConfigSettingControl Grid.Row="1" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="Project2Folder" ConfigType="{x:Static en:ConfigSettingTypes.FileFolder_TextBox}"
+                                             LabelCaption="Project2 Folder" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick"/>
+                    <uc:ConfigSettingControl Grid.Row="2" Grid.Column="1" Click="SetDefaultValue" MaxLength="36"
+                                             ConfigKey="TenantId" ConfigType="{x:Static en:ConfigSettingTypes.ManualEntry_TextBox}"
+                                             LabelCaption="Tenant Id" LostFocus="SaveDataTextBox_LostFocus"/>
+                    <uc:ConfigSettingControl Grid.Row="3" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="LogFile" ConfigType="{x:Static en:ConfigSettingTypes.FileFolder_TextBox}"
+                                             LabelCaption="Log File" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick"/>
+                    <!-- Add validations later -->
+                    <uc:ConfigSettingControl Grid.Row="4" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="MaxTimeOutMinutes" ConfigType="{x:Static en:ConfigSettingTypes.ManualEntry_TextBox}"
+                                             LabelCaption="Max Timeout (minutes)" LostFocus="SaveDataTextBox_LostFocus"
+                                             PreviewTextInput="IntegerTextBoxChecker_PreviewTextInput" />
+                    <!--<Label   Grid.Row="4" Grid.Column="0" x:Name="MaxTimeOutMinutesLabel" Content="Max Timeout (minutes)" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.967,0.692"/>-->
+                    <!--<TextBox Grid.Row="4" Grid.Column="1" x:Name="MaxTimeOutMinutesTextBox" Margin="10,10,10,0" Height="25" VerticalAlignment="Top" LostFocus="SaveDataTextBox_LostFocus" PreviewTextInput="IntegerTextBoxChecker_PreviewTextInput" CommandManager.PreviewExecuted="TextBox_PreviewExecuted"/>-->
                 </Grid>
             </TabItem>
             <TabItem Header="Main Folders">
                 <Grid x:Name="MainFoldersControlGrid">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="119*"/>
-                        <ColumnDefinition Width="274*"/>
-                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="35"/>
                         <RowDefinition Height="35"/>
@@ -68,34 +71,50 @@
                         <RowDefinition Height="35"/>
                         <RowDefinition Height="35"/>
                     </Grid.RowDefinitions>
-                    <Label    Grid.Row="0" x:Name="MyMainFolderLabel" Content="Main Folder" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="26" Width="73"/>
-                    <TextBox  Grid.Row="0" Grid.Column="1" x:Name="MyMainFolderTextBox" IsReadOnly="True" Margin="10,0" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick" Padding="0" Height="25" VerticalAlignment="Center" TabIndex="1"/>
-                    <Label    Grid.Row="1" x:Name="CommonExeFolderLabel" Content="Common .exe Folder" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="0.967,0.692" Height="26" Width="120"/>
-                    <TextBox  Grid.Row="1" Grid.Column="1" x:Name="CommonExeFolderTextBox" IsReadOnly="True" Margin="10,0" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick" Height="25" VerticalAlignment="Center" TabIndex="2"/>
-                    <Label    Grid.Row="2" x:Name="ChromeExeLabel" Content="Chrome.exe" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="26"/>
-                    <TextBox  Grid.Row="2" Grid.Column="1" x:Name="ChromeExeTextBox" IsReadOnly="True" Margin="10,0" VerticalAlignment="Center" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick" Height="25" TabIndex="7"/>
-                    <Label    Grid.Row="3" x:Name="DevNoteAPIExeLabel" Content="DevNotePlay API" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="26"/>
-                    <TextBox  Grid.Row="3" Grid.Column="1" x:Name="DevNoteAPIExeTextBox" IsReadOnly="True" Margin="10,0" VerticalAlignment="Center" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick" Height="25" TabIndex="7"/>
-                    <Label    Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="4" x:Name="label_Copy2" Content="Azure Bus Receiver" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="0.967,0.692" Height="26" Width="110"/>
-                    <TextBox  Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="4" Grid.Column="1" x:Name="AzureServiceBusReceiverTextBox" IsReadOnly="True" Margin="10,0" VerticalAlignment="Center" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick" Height="25" TabIndex="4"/>
-                    <Label    Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="5" x:Name="label_Copy3" Content="Azure Bus Sender" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="0.967,0.692" Height="26" Width="103"/>
-                    <TextBox  Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="6" Grid.Column="1" x:Name="AzureServiceBusSenderTextBox" IsReadOnly="True" Margin="10,0" VerticalAlignment="Center" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick" Height="25" TabIndex="5"/>
-                    <Label    Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="6" x:Name="label_Copy4" Content="Chrome Remote Debugger File (Window)" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="0.967,0.692" Height="26" Width="228"/>
-                    <TextBox  Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="6" Grid.Column="1" x:Name="ChromeRemoteDebuggerFile_Window" IsReadOnly="True" Margin="10,0" VerticalAlignment="Center" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick" Height="25" TabIndex="6"/>
-                    <Label    Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="7" x:Name="label_Copy5" Content="Chrome Remote Debugger File (Headless)" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="0.967,0.692" Height="26" Width="232"/>
-                    <TextBox  Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="7" Grid.Column="1" x:Name="ChromeRemoteDebuggerFile_Headless" IsReadOnly="True" Margin="10,0" VerticalAlignment="Center" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick" Height="25" TabIndex="7"/>
-                    <Label    Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="8" x:Name="label_Copy1" Content="Script Toolbox" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="26" Width="85"/>
-                    <TextBox  Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="8" Grid.Column="1" x:Name="ScriptToolBoxTextBox" IsReadOnly="True" Margin="10,0" VerticalAlignment="Center" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick" Height="25" TabIndex="3"/>
-                    <CheckBox Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="9" x:Name="IsCefSharpCheckBox" Content="CefSharp" HorizontalAlignment="Left" Height="26" Margin="15,0,0,0" VerticalAlignment="Center" Width="80" Checked="IsCheckBox_Checked" Unchecked="IsCheckBox_Checked" TabIndex="8"/>
-                    <CheckBox Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Grid.Row="10" x:Name="IsHeadlessCheckBox" Content="Headless" HorizontalAlignment="Left" Height="26" Margin="15,0,0,0" VerticalAlignment="Center" Width="80" Checked="IsCheckBox_Checked" Unchecked="IsCheckBox_Checked" TabIndex="9"/>
+                    <uc:ConfigSettingControl Grid.Row="0" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="MyMainFolder" ConfigType="{x:Static en:ConfigSettingTypes.FileFolder_TextBox}"
+                                             LabelCaption="Main Folder" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick"/>
+                    <uc:ConfigSettingControl Grid.Row="1" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="CommonExeFolder" ConfigType="{x:Static en:ConfigSettingTypes.FileFolder_TextBox}"
+                                             LabelCaption="Common .exe Folder" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick" />
+                    <uc:ConfigSettingControl Grid.Row="2" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="ChromeExe" ConfigType="{x:Static en:ConfigSettingTypes.FileFolder_TextBox}"
+                                             LabelCaption="Chrome.exe" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick" />
+                    <uc:ConfigSettingControl Grid.Row="3" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="DevNoteAPIExe" ConfigType="{x:Static en:ConfigSettingTypes.FileFolder_TextBox}"
+                                             LabelCaption="DevNotePlay.API.exe" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick" />
+                    <uc:ConfigSettingControl Grid.Row="4" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="AzureServiceBusReceiver" ConfigType="{x:Static en:ConfigSettingTypes.FileFolder_TextBox}"
+                                             LabelCaption="Azure Bus Receiver" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick"
+                                             Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" />
+                    <uc:ConfigSettingControl Grid.Row="5" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="AzureServiceBusSender" ConfigType="{x:Static en:ConfigSettingTypes.FileFolder_TextBox}"
+                                             LabelCaption="Azure Bus Sender" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick"
+                                             Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" />
+                    <uc:ConfigSettingControl Grid.Row="6" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="ChromeRemoteDebuggerFile_Window" ConfigType="{x:Static en:ConfigSettingTypes.FileFolder_TextBox}"
+                                             LabelCaption="Chrome Remote Debugger File (Window)" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick"
+                                             Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" />
+                    <uc:ConfigSettingControl Grid.Row="7" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="ChromeRemoteDebuggerFile_Headless" ConfigType="{x:Static en:ConfigSettingTypes.FileFolder_TextBox}"
+                                             LabelCaption="Chrome Remote Debugger File (Headless)" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick"
+                                             Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" />
+                    <uc:ConfigSettingControl Grid.Row="8" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="ScriptToolBox" ConfigType="{x:Static en:ConfigSettingTypes.FileFolder_TextBox}"
+                                             LabelCaption="Script Toolbox" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick"
+                                             Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" />
+                    <uc:ConfigSettingControl Grid.Row="9" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="IsCefSharp" ConfigType="{x:Static en:ConfigSettingTypes.Regular_CheckBox}"
+                                             LabelCaption="CefSharp" Checked="IsCheckBox_Checked"
+                                             Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" />
+                    <uc:ConfigSettingControl Grid.Row="10" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="IsHeadless" ConfigType="{x:Static en:ConfigSettingTypes.Regular_CheckBox}"
+                                             LabelCaption="Headless" Checked="IsCheckBox_Checked"
+                                             Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" />
                 </Grid>
             </TabItem>
             <TabItem Header="Recordings">
                 <Grid x:Name="RecordingsControlGrid">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="119*"/>
-                        <ColumnDefinition Width="274*"/>
-                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="45"/>
                         <RowDefinition Height="45"/>
@@ -103,51 +122,56 @@
                         <RowDefinition Height="45"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Label x:Name="DevNotePlayerExeLabel" Content="DevNotePlayer .exe" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="DevNotePlayerExeTextBox" IsReadOnly="True" Margin="10,10,10,0" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick" Grid.Column="1" Padding="0" Height="25" VerticalAlignment="Top"/>
-                    <Label x:Name="Click_Default_WaitLabel" Content="Click Default Wait" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.967,0.692" Grid.Row="1"/>
-                    <TextBox x:Name="Click_Default_WaitTextBox" Margin="10,10,10,0" Grid.Column="1" Grid.Row="1" Height="25" VerticalAlignment="Top" PreviewTextInput="IntegerTextBoxChecker_PreviewTextInput" LostFocus="SaveDataTextBox_LostFocus" CommandManager.PreviewExecuted="TextBox_PreviewExecuted"/>
-                    <Label x:Name="ScreenshotOnFailLabel" Content="Screenshot on Error" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="2"/>
-                    <TextBox x:Name="ScreenshotOnFailTextBox" IsReadOnly="True" Margin="10,10,10,0" VerticalAlignment="Top" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick" Grid.Column="1" Height="25" Grid.Row="2"/>
-                    <Label x:Name="TestKeyLabel" Content="Test Key" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.967,0.692" Grid.Row="3"/>
-                    <TextBox x:Name="TestKeyTextBox" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="1" Height="25" Grid.Row="3" LostFocus="SaveDataTextBox_LostFocus"/>
+                    <uc:ConfigSettingControl Grid.Row="0" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="DevNotePlayerExe" ConfigType="{x:Static en:ConfigSettingTypes.FileFolder_TextBox}"
+                                             LabelCaption="DevNotePlayer .exe" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick"/>
+                    <!-- TODO: Add validations -->
+                    <uc:ConfigSettingControl Grid.Row="1" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="Click_Default_Wait" ConfigType="{x:Static en:ConfigSettingTypes.ManualEntry_TextBox}"
+                                             LabelCaption="Click Default Wait" LostFocus="SaveDataTextBox_LostFocus"
+                                             PreviewTextInput="IntegerTextBoxChecker_PreviewTextInput"/>
+                    <uc:ConfigSettingControl Grid.Row="2" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="ScreenshotOnFail" ConfigType="{x:Static en:ConfigSettingTypes.FileFolder_TextBox}"
+                                             LabelCaption="Screenshot on Error" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick"/>
+                    <uc:ConfigSettingControl Grid.Row="3" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="TestKey" ConfigType="{x:Static en:ConfigSettingTypes.ManualEntry_TextBox}"
+                                             LabelCaption="Test Key" LostFocus="SaveDataTextBox_LostFocus"/>
+                    <!--<Label x:Name="Click_Default_WaitLabel" Content="Click Default Wait" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.967,0.692" Grid.Row="1"/>-->
+                    <!--<TextBox x:Name="Click_Default_WaitTextBox" Margin="10,10,10,0" Grid.Column="1" Grid.Row="1" Height="25" VerticalAlignment="Top" PreviewTextInput="IntegerTextBoxChecker_PreviewTextInput" LostFocus="SaveDataTextBox_LostFocus" CommandManager.PreviewExecuted="TextBox_PreviewExecuted"/>-->
                 </Grid>
             </TabItem>
             <TabItem Header="Defaults Event Entry">
                 <Grid x:Name="DefaultsEventEntryControlGrid">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="119*"/>
-                        <ColumnDefinition Width="274*"/>
-                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="45"/>
                         <RowDefinition Height="45"/>
                         <RowDefinition Height="45"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Label   Grid.Row="0" Grid.Column="0" x:Name="Default_DomainLabel" Content="Default Domain" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="Default_DomainTextBox" Margin="10,10,10,0" Padding="0" Height="25" VerticalAlignment="Top" LostFocus="SaveDataTextBox_LostFocus"/>
-                    <Label   Grid.Row="1" Grid.Column="0" x:Name="Default_DeptLabel" Content="Default Department" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.967,0.692"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="Default_DeptTextBox" Margin="10,10,10,0" Height="25" VerticalAlignment="Top" LostFocus="SaveDataTextBox_LostFocus"/>
-                    <Label   Grid.Row="2" Grid.Column="0" x:Name="Default_EventTagLabel" Content="Default Event Tag" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox Grid.Row="2" Grid.Column="1" x:Name="Default_EventTagTextBox" Margin="10,10,10,0" VerticalAlignment="Top" Height="25" LostFocus="SaveDataTextBox_LostFocus"/>
+                    <uc:ConfigSettingControl Grid.Row="0" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="Default_Domain" ConfigType="{x:Static en:ConfigSettingTypes.ManualEntry_TextBox}"
+                                             LabelCaption="Default Domain" LostFocus="SaveDataTextBox_LostFocus"/>
+                    <uc:ConfigSettingControl Grid.Row="1" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="Default_Dept" ConfigType="{x:Static en:ConfigSettingTypes.ManualEntry_TextBox}"
+                                             LabelCaption="Default Department" LostFocus="SaveDataTextBox_LostFocus"/>
+                    <uc:ConfigSettingControl Grid.Row="2" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="Default_EventTag" ConfigType="{x:Static en:ConfigSettingTypes.ManualEntry_TextBox}"
+                                             LabelCaption="Default Event Tag" LostFocus="SaveDataTextBox_LostFocus"/>
                 </Grid>
             </TabItem>
-            <TabItem Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}" Header="Designer">
+            <TabItem Header="Designer" Visibility="{Binding IsChecked, ElementName=ShowAdvancedSettingsCheckbox, Converter={StaticResource BooleanToVisibility}}">
                 <Grid x:Name="DesignerControlGrid">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="119*"/>
-                        <ColumnDefinition Width="274*"/>
-                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="45"/>
                         <RowDefinition Height="45"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Label x:Name="DevNoteDesignerExeLabel" Content="DevNoteDesigner .exe" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="DevNoteDesignerExeTextBox" IsReadOnly="True" Margin="10,10,10,0" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick" Grid.Column="1" Padding="0" Height="25" VerticalAlignment="Top"/>
-                    <Label x:Name="DevNoteDesignerLibraryLabel" Content="DevNoteDesigner Library" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.967,0.692" Grid.Row="1"/>
-                    <TextBox x:Name="DevNoteDesignerLibraryTextBox" IsReadOnly="True" Margin="10,10,10,0" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick" Grid.Column="1" Grid.Row="1" Height="25" VerticalAlignment="Top"/>
+                    <uc:ConfigSettingControl Grid.Row="0" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="DevNoteDesignerExe" ConfigType="{x:Static en:ConfigSettingTypes.FileFolder_TextBox}"
+                                             LabelCaption="DevNoteDesigner .exe" MouseDoubleClick="ChangeFileTextBox_MouseDoubleClick"/>
+                    <uc:ConfigSettingControl Grid.Row="1" Grid.Column="1" Click="SetDefaultValue"
+                                             ConfigKey="DevNoteDesignerLibrary" ConfigType="{x:Static en:ConfigSettingTypes.FileFolder_TextBox}"
+                                             LabelCaption="DevNoteDesigner Library" MouseDoubleClick="ChangeDirectoryTextBox_MouseDoubleClick"/>
                 </Grid>
             </TabItem>
         </TabControl>
