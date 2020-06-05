@@ -370,10 +370,10 @@ $(function() {
     });
 })
 
-function handleGenerateToScript() {
+function handleGenerateToScript() {//bookmark
     var selectedTestCase = getSelectedCase();
     if (selectedTestCase) {
-        loadScripts();
+        loadScripts(); //bookmark
     } else {
         alert('Please select a testcase');
     }
@@ -389,14 +389,29 @@ function copyToClipboard() {
 function saveToFile() {
     var $textarea = $("#txt-script-id");
     var cm = $textarea.data('cm');
-    var format = '.' + window.options.defaultExtension;
+    // var format = '.' + window.options.defaultExtension;
     // var fileName = testClassName(getTestCaseName()) + ".xml";
-    var fileName = "Record.xml";
+    // var fileName = "Record.xml";
     
     var content = cm.getValue();
-    //saveAsFileOfTestCase(fileName, content);
-    var link = makeTextFile(fileName, content);
-    link.click()
+    var url = "http://localhost:9000/api/playback/upload";
+    var settings = {
+        "url": url,
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "data": JSON.stringify({"content":content}),
+    };
+        
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        // alert(response);
+    });
+    // saveAsFileOfTestCase(fileName, content);
+    // var link = makeTextFile(fileName, content);
+    // link.click()
 }
 
 $(function() {
@@ -716,8 +731,8 @@ function generateScripts(isExternalCapability, language, newFormatter) {
         document.head.appendChild(script);
     }
     $("#generateToScriptsDialog").dialog( "close" );
-    saveToFile()
 
+    saveToFile(); //bookmark
 }
 // KAT-END
 

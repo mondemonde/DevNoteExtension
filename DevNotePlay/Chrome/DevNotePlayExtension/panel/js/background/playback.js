@@ -174,9 +174,9 @@ window.onload = function() {
         initAllSuite();
         setCaseScrollTop(getSelectedCase());
         // KAT-BEGIN focus on window when playing test case
-        if (contentWindowId) {
-            browser.windows.update(contentWindowId, {focused: true});
-        }
+        // if (contentWindowId) {
+        //     browser.windows.update(contentWindowId, {focused: true});
+        // }
         declaredVars = {};
         clearScreenshotContainer();
         expectingLabel = null;
@@ -188,9 +188,7 @@ window.onload = function() {
         logStartTime();
 
         $('#export').click()
-        setTimeout(function(){play()},1000);
-        
-        
+        // setTimeout(function(){play()},1000);
     });
     stopButton.addEventListener("click", function() {
         stop();

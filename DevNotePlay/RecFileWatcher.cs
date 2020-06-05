@@ -23,7 +23,7 @@ namespace DevNote.Web.Recorder
         {
             ConfigManager config = new ConfigManager();
             PlayFile = config.GetValue("PlayFile");
-            //var endPointFolder =config.GetValue("DefaultXMLFile");
+            //var endPointFolder = config.GetValue("DefaultXMLFile");
 
             var endPointFolder = FileEndPointManager.Project2Folder;
 
