@@ -136,7 +136,7 @@ namespace Player
             var chromeDefaultDownload = FileEndPointManager.Project2Folder;//Path.GetDirectoryName(FileEndPointManager.DefaultPlayXMLFile);
 
             var chromePath = FileEndPointManager.MyChromeViaRecorder;
-            config.SetValue("ChromeExe",chromePath);
+            config.SetValue("ChromeExe", chromePath);
             config.Save();
 
             RecFileWatcher watcher = new RecFileWatcher();
@@ -153,7 +153,6 @@ namespace Player
             txtVersion.Text = string.Format("DevNotePlay™ version {0}", GetVersion());
             //txtCaption.Text = string.Format("DevNotePlay™ version {0}", GetVersion());
             UpdateStatus(false);
-            RunDevNoteAPI();
         }
 
         string GetVersion()
@@ -201,100 +200,99 @@ namespace Player
         #endregion
 
         #region FILE ENDPOINT
-        ////This event adds the work to the Thread queue
-        //private void FileWatcher_Changed(object sender, System.IO.FileSystemEventArgs e)
-        //{
-        //    ThreadPool.QueueUserWorkItem((o) => ProcessFile(e));
-        //}
+        //This event adds the work to the Thread queue
+        private void FileWatcher_Changed(object sender, System.IO.FileSystemEventArgs e)
+        {
+            ThreadPool.QueueUserWorkItem((o) => ProcessFile(e));
+        }
 
-        ////This method processes your file, you can do your sync here
-        //private void ProcessFile(System.IO.FileSystemEventArgs e)
-        //{
-        //    // Based on the eventtype you do your operation
-        //    switch (e.ChangeType)
-        //    {
-        //        case System.IO.WatcherChangeTypes.Changed:
-        //            Console.WriteLine($"File is changed: {e.Name}");
-        //            break;
-        //        case System.IO.WatcherChangeTypes.Created:
-        //            Console.WriteLine($"File is created: {e.Name}");
-        //            Task.Run<bool>(async () => await TriggerPlay(e));
-        //            break;
-        //        case System.IO.WatcherChangeTypes.Deleted:
-        //            Console.WriteLine($"File is deleted: {e.Name}");
-        //            break;
-        //        case System.IO.WatcherChangeTypes.Renamed:
-        //            Console.WriteLine($"File is renamed: {e.Name}");
-        //            Task.Run<bool>(async () => await TriggerPlay(e));
-        //            break;
-        //    }
-        //}
+        //This method processes your file, you can do your sync here
+        private void ProcessFile(System.IO.FileSystemEventArgs e)
+        {
+            // Based on the eventtype you do your operation
+            switch (e.ChangeType)
+            {
+                case System.IO.WatcherChangeTypes.Changed:
+                    Console.WriteLine($"File is changed: {e.Name}");
+                    break;
+                case System.IO.WatcherChangeTypes.Created:
+                    Console.WriteLine($"File is created: {e.Name}");
+                    Task.Run<bool>(async () => await TriggerPlay(e));
+                    break;
+                case System.IO.WatcherChangeTypes.Deleted:
+                    Console.WriteLine($"File is deleted: {e.Name}");
+                    break;
+                case System.IO.WatcherChangeTypes.Renamed:
+                    Console.WriteLine($"File is renamed: {e.Name}");
+                    Task.Run<bool>(async () => await TriggerPlay(e));
+                    break;
+            }
+        }
 
-        //async Task<bool> TriggerPlay(System.IO.FileSystemEventArgs e)
-        //{
-        //    //step# 70 PLAY.TXT
-        //    if (e.Name.ToLower() == PlayFile)
-        //    {
-        //        var endPointFolder = FileEndPointManager.Project2Folder;
+        async Task<bool> TriggerPlay(System.IO.FileSystemEventArgs e)
+        {
+            //step# 70 PLAY.TXT
+            if (e.Name.ToLower() == PlayFile)
+            {
+                var endPointFolder = FileEndPointManager.Project2Folder;
 
-        //        Console.WriteLine("found play.txt");
-        //        var span = DateTime.Now - TimeStarted;
+                Console.WriteLine("found play.txt");
+                var span = DateTime.Now - TimeStarted;
 
-        //        var latestFiles = System.IO.Directory.GetFiles(endPointFolder, "recor*.xml", System.IO.SearchOption.TopDirectoryOnly);
-        //        var fileList = latestFiles.ToList();
+                var latestFiles = System.IO.Directory.GetFiles(endPointFolder, "recor*.xml", System.IO.SearchOption.TopDirectoryOnly);
+                var fileList = latestFiles.ToList();
 
-        //        if (fileList.Count > 0)
-        //            return true;
+                if (fileList.Count > 0)
+                    return true;
 
-        //        //dot restart let run for awhile
-        //        if (span.TotalSeconds > 20)
-        //        {
-        //            await Play(true);
-        //            TimeStarted = DateTime.Now;
-        //        }
-        //        //delete play.txt
+                //dot restart let run for awhile
+                if (span.TotalSeconds > 20)
+                {
+                    await Play(true);
+                    TimeStarted = DateTime.Now;
+                }
+                //delete play.txt
 
-        //        //ConfigManager config = new ConfigManager();
-        //        //var endPointFolder = config.GetValue("DefaultXMLFile");
-        //        var txtFile = System.IO.Path.Combine(endPointFolder, PlayFile);
-        //        System.IO.File.Delete(txtFile);
-        //    }
-        //    if (e.Name.ToLower().StartsWith("record"))
-        //    {
-        //        //copy and delete record.xml
-        //        // record(1).xml  ,record(2).xml
-        //        var endPointFolder = FileEndPointManager.Project2Folder;
+                //ConfigManager config = new ConfigManager();
+                //var endPointFolder = config.GetValue("DefaultXMLFile");
+                var txtFile = System.IO.Path.Combine(endPointFolder, PlayFile);
+                System.IO.File.Delete(txtFile);
+            }
+            if (e.Name.ToLower().StartsWith("record"))
+            {
+                //copy and delete record.xml
+                // record(1).xml  ,record(2).xml
+                var endPointFolder = FileEndPointManager.Project2Folder;
 
-        //        //"*.exe|*.dll"
-        //        var latestFiles = System.IO.Directory.GetFiles(endPointFolder, "recor*.xml", System.IO.SearchOption.TopDirectoryOnly);
-        //        var fileList = latestFiles.ToList();
+                //"*.exe|*.dll"
+                var latestFiles = System.IO.Directory.GetFiles(endPointFolder, "recor*.xml", System.IO.SearchOption.TopDirectoryOnly);
+                var fileList = latestFiles.ToList();
 
-        //        //var latestXML = Path.Combine(endPointFolder, "latest_" + DateTime.Now.Ticks.ToString() + ".xml");
-        //        var latestXML = System.IO.Path.Combine(endPointFolder, "latest.xml");
+                //var latestXML = Path.Combine(endPointFolder, "latest_" + DateTime.Now.Ticks.ToString() + ".xml");
+                var latestXML = System.IO.Path.Combine(endPointFolder, "latest.xml");
 
-        //        if (System.IO.File.Exists(latestXML))
-        //            System.IO.File.Delete(latestXML);
-        //        // FileEndPointManager.DefaultKATFile = latestXML;
-        //        foreach (string file in fileList)
-        //        {
-        //            try
-        //            {
-        //                System.IO.File.Copy(file, latestXML);
-        //                System.IO.File.Delete(file);
-        //            }
-        //            catch (Exception err)
-        //            {
-        //                LogApplication.Agent.LogError(err);
-        //            }
-        //        }
-        //    }
-        //    return true;
-        //}
+                if (System.IO.File.Exists(latestXML))
+                    System.IO.File.Delete(latestXML);
+                // FileEndPointManager.DefaultKATFile = latestXML;
+                foreach (string file in fileList)
+                {
+                    try
+                    {
+                        System.IO.File.Copy(file, latestXML);
+                        System.IO.File.Delete(file);
+                    }
+                    catch (Exception err)
+                    {
+                        LogApplication.Agent.LogError(err);
+                    }
+                }
+            }
+            return true;
+        }
 
         #endregion
         private void ButtonFechar_Click(object sender, RoutedEventArgs e)
         {
-            CloseDevNoteAPI();
             CloseCodeCeptJsWindow();
             CloseChromeWindow();
             Application.Current.Shutdown();
@@ -344,6 +342,7 @@ namespace Player
         }
 
         public static Process CmdExeForChrome;
+        //public List<Process> ChromeProcesses;
         public static Process CmdExeForCodecept;
         public static string ChromiumDir;
 
@@ -351,7 +350,7 @@ namespace Player
         {
             ChromiumDir = FileEndPointManager.MyChromeViaRecorder;//LogApplication.Agent.GetCurrentDir() + "\\Chrome\\chrome-win\\chrome.exe";
 
-            if(!File.Exists(ChromiumDir))
+            if (!File.Exists(ChromiumDir))
             {
                 MessageBox.Show("Chrome.exe is missing. Please check the settings configuration window.", AppName, MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -561,14 +560,7 @@ namespace Player
 
         private async void Anterior_Click_1(object sender, RoutedEventArgs e)
         {
-            string playFile = FileEndPointManager.DefaultPlayXMLFile;
-            if (string.IsNullOrEmpty(OpenedFile))
-            {
-                MessageBox.Show("No recordings have been opened yet. Please open an existing recording first.",
-                    AppName, MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            await Run(playFile);
+            await Run(FileEndPointManager.DefaultPlayJsFile);
         }
 
         public async Task Run(string filepath)
@@ -651,7 +643,7 @@ namespace Player
             var started = DateTime.Now;
 
             //Application.DoEvents();
-            Conditions cond = new Conditions("Wait_CondceptJS_Console");
+            TaskWaiter.Conditions cond = new TaskWaiter.Conditions("Wait_CondceptJS_Console");
             await cond.WaitUntil(() => (DateTime.Now - started).TotalSeconds > 5)
                 .ContinueWith(x =>
                 {
@@ -698,38 +690,6 @@ namespace Player
             //    return true; //no need to retry
         }
 
-        public Process DevNoteAPIExe;
-        private void RunDevNoteAPI()
-        {
-            if (DevNoteAPIExe == null)
-            {
-                ConfigManager config = new ConfigManager();
-                string apiExePath = config.GetValue("DevNoteAPIExe");
-                if (File.Exists(apiExePath))
-                {
-                    DevNoteAPIExe = new Process();
-                    DevNoteAPIExe.StartInfo.FileName = apiExePath;
-                    DevNoteAPIExe.StartInfo.UseShellExecute = false;
-                    DevNoteAPIExe.StartInfo.CreateNoWindow = true;
-                    DevNoteAPIExe.Start();
-                }
-                else
-                {
-                    MessageBox.Show("Failed to launch DevNotePlay API. Open the Configure Settings window -> Main Folders tab and set the" +
-                        "correct file path to DevNotePlay.API.exe.",
-                        AppName, MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-        }
-
-        private void CloseDevNoteAPI()
-        {
-            foreach (var process in Process.GetProcessesByName("DevNotePlay.API"))
-            {
-                process.Kill();
-            }
-        }
-
         void CloseCodeCeptJsWindow()
         {
             if (CmdExeForCodecept != null)
@@ -748,30 +708,6 @@ namespace Player
             }
             CmdExeForCodecept = new Process();
             Thread.Sleep(5000);
-        }
-
-        public void CreateChrome()
-        {
-            ChromiumDir = FileEndPointManager.MyChromeViaRecorder;//LogApplication.Agent.GetCurrentDir() + "\\Chrome\\chrome-win\\chrome.exe";
-            if (!File.Exists(ChromiumDir))
-            {
-                MessageBox.Show("Could not find Chromium. Please go to Configure Settings window and check if chrome.exe file path is correct.",
-                    AppName, MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            if (CmdExeForChrome == null)
-            {
-                CmdExeForChrome = Process.Start(ChromiumDir);
-            }
-            else if (CmdExeForChrome.HasExited)
-            {
-                CmdExeForChrome = Process.Start(ChromiumDir);
-            }
-            else
-            {
-                MessageBox.Show("Only one instance of Chromium can be opened at a time.", AppName, MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-            return;
         }
 
         void CloseChromeWindow()
@@ -864,13 +800,13 @@ namespace Player
 
             MyScriptReader = new ScriptReader();
             MyScriptReader.ReadXML(file);
-         
+
             var codeceptjsFolder = FileEndPointManager.Project2Folder;//string.Format("{0}\\CodeceptJs\\Project2", dir);  //@"D:\_ROBOtFRAMeWORK\CodeceptsJs\Project1\";
 
-            var codeceptTestPath = Path.Combine(codeceptjsFolder, "latest_test.js");
+            var codeceptTestPath = System.IO.Path.Combine(codeceptjsFolder, "latest_test.js");
 
-            if (File.Exists(codeceptTestPath))
-                File.Delete(codeceptTestPath);
+            if (System.IO.File.Exists(codeceptTestPath))
+                System.IO.File.Delete(codeceptTestPath);
 
             saveFileDialog1.FileName = codeceptTestPath;
 
@@ -880,7 +816,7 @@ namespace Player
 
         private void toolStripButtonSave_Click(object sender, EventArgs e)
         {
-            if (Path.GetExtension(saveFileDialog1.FileName.ToLower()) == ".xml")
+            if (System.IO.Path.GetExtension(saveFileDialog1.FileName.ToLower()) == ".xml")
             {
                 toolStripLabelSaveAs_Click(sender, e);
             }
@@ -962,7 +898,7 @@ namespace Player
 
         private void Save_As_Click(object sender, RoutedEventArgs e)
         {
-            if (String.IsNullOrEmpty(OpenedFile) || !File.Exists(recordJSDirectory) || !File.Exists(recordXMLDirectory))
+            if (!File.Exists(recordJSDirectory) || !File.Exists(recordXMLDirectory))
             {
                 //TODO: update this error message.
                 MessageBox.Show("There are no record files to save. Please open an existing recording or make a new one.", AppName, MessageBoxButton.OK, MessageBoxImage.Error);
