@@ -256,6 +256,9 @@
                                 <DataGridTextColumn Header="Value" 
                                                     Binding="{Binding DefaultValue, Mode=TwoWay, NotifyOnTargetUpdated=True}"
                                                     ElementStyle="{StaticResource DataGridCellStyle}"/>
+                                <DataGridTextColumn Header="Description" 
+                                                    Binding="{Binding Description, Mode=TwoWay, NotifyOnTargetUpdated=True}"
+                                                    ElementStyle="{StaticResource DataGridCellStyle}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>

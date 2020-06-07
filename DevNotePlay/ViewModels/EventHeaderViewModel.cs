@@ -16,6 +16,7 @@ namespace Player.ViewModels
     {
         private string AppName;
         private string RecordFileExtension;
+        private string TenantId;
         private ProgressBarSharedView _progressBar;
 
         public RelayCommand UploadCommand { get; set; }
@@ -26,6 +27,7 @@ namespace Player.ViewModels
             ConfigManager config = new ConfigManager();
             AppName = config.GetValue("AppName");
             RecordFileExtension = config.GetValue("RecordFileExtension");
+            TenantId = config.GetValue("TenantId");
 
             CreateBlankEvent();
 
@@ -37,6 +39,7 @@ namespace Player.ViewModels
             EventToAdd = new EventHeader();
             EventToAdd.VersionNo = 1;
             EventToAdd.PropertyChanged += OnTargetUpdated;
+            EventToAdd.TenantId = TenantId;
         }
 
         private async void OnUpload()

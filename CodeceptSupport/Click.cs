@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PuppetSupportLib;
 using PuppetSupportLib.Katalon;
 using PuppetSupportLib.WebAction;
@@ -11,7 +8,6 @@ namespace CodeceptSupport
 {
     public class Click : BaseAction
     {
-
         public Click(TestCaseSelenese katalonxml) : base(katalonxml)
         {
 
@@ -27,8 +23,6 @@ namespace CodeceptSupport
             return act;
         }
 
-
-
         public override string Script(IInterpreter interpreter)
         {
             //await page.click('.container > #mvcforum-nav > .nav > li > .auto-logon')
@@ -39,7 +33,6 @@ namespace CodeceptSupport
             var textContent = MyAction.value;
             if (string.IsNullOrEmpty(textContent) || !textContent.Contains("#1#"))
             {
-
                 if (content.StartsWith("link="))
                 {
                     var script = string.Format("clickLink({0})"
@@ -70,19 +63,14 @@ namespace CodeceptSupport
                     {
                         script = string.Format("click({0})", newTarget);
                     }
-
-
                     else
                     {
                         script = string.Format("click('{0}')", newTarget);
-
                     }
                     script = script + Environment.NewLine;
                     result = script;
                 }
-
             }//no textContent
-
             else if(textContent.Contains("#1#")) //default use text in button like click('Login');
             {
                 string delimitter = "#1#";
@@ -95,7 +83,6 @@ namespace CodeceptSupport
                     delimitter = "Delay";
                     string[] splitDelay = splitScript.Last()
                         .Split(new string[] { delimitter }, StringSplitOptions.None);
-
 
                     var script1 = string.Format("mouseClick('{0}');I.wait({1})", splitDelay.First(),splitDelay.Last());
                     result = script1;
@@ -110,9 +97,6 @@ namespace CodeceptSupport
                     result = script2;
                 }               
             }
-           
-
-
             return result;
         }
     }

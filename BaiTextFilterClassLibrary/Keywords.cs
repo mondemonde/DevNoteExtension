@@ -1,24 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BaiTextFilterClassLibrary
+﻿namespace BaiTextFilterClassLibrary
 {
-   public static class Keywords
+    public static class Keywords
     {
         public const string declareVariable = "say('DECLARE');var ";
         public const string useVariable = "say('USE_VAR');";
 
         //TIP: Keywords
-        public const string clickAndTypeDelimiter = "Delay3_";
-        public const string TypeAndTabDelimiter = "Delay3_?";
-        public const string JustTypeOnlyDelimiter = "Delay3_@";
+        public const string NoDelimiter = "Delay3";
+        //public const string clickAndTypeDelimiter = "Delay3_";
+        public static string clickAndTypeDelimiter { get { return NoDelimiter + "_"; } }
+        //public const string TypeAndTabDelimiter = "Delay3_?";
+        public static string TypeAndTabDelimiter { get { return NoDelimiter + "_?"; } }
+        //public const string JustTypeOnlyDelimiter = "Delay3_@";
+        public static string JustTypeOnlyDelimiter { get { return NoDelimiter + "_@"; } }
+        //public const string ClickAndEndDelimiter = "Delay3_END";
+        public static string ClickAndEndDelimiter { get { return NoDelimiter + "_END"; } }
 
-        public const string ClickAndEndDelimiter = "Delay3_END";
-
-
-
+        //Grab value keywords
+        public static string GrabSingleDelimiter { get { return NoDelimiter + "_GrabSingle"; } }
+        public static string GrabMultiDelimiter { get { return NoDelimiter + "_GrabMulti"; } }
     }
 }

@@ -12,17 +12,13 @@ namespace Player
 {
     class Program
     {
-
         // public static int RemoteDebuggerPort = 8088;
         static bool IsAuto { get; set; }
         static bool IsHeadless { get; set; }
-
         static string JSFile { get; set; }
-
         //public static RunWFCmdParam MyPayload { get; set; }
         //static WinPlayer MyPlayer = new WinPlayer();
         //public static System.IO.FileSystemWatcher fileWatcher;
-
 
         /// <summary>
         /// The main entry point for the application.
@@ -30,8 +26,6 @@ namespace Player
         [STAThread]
         static  void Main(string[] args)
         {
-
-
             for (int i = 0; i < args.Length; i++)
             {
                 if (args[i] == "-file")
@@ -78,8 +72,5 @@ namespace Player
 
 
         }
-
-
-
     }
 }

@@ -218,22 +218,22 @@
                                 </materialDesign:PackIcon.Foreground>
                             </materialDesign:PackIcon>
                         </Button>
-                        <MenuItem  Background="{x:Null}" BorderBrush="{x:Null}" Width="69" >
-                            <MenuItem.ToolTip>
+                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Width="45" Click="Save_As_Click">
+                            <Button.ToolTip>
                                 <ToolTip>
                                     Save recording
                                 </ToolTip>
-                            </MenuItem.ToolTip>
-                            <MenuItem.Icon>
+                            </Button.ToolTip>
+                            <!--<MenuItem.Icon>-->
                                 <!--<Image Source="/Assets/photo (1).jpg" Stretch="Uniform" RenderTransformOrigin="0,0.4">
-                            <Image.RenderTransform>                                
-                                    <ScaleTransform ScaleX  ="3" ScaleY="3.7"/>                                
-                            </Image.RenderTransform>
-                            </Image>-->
-                                <materialDesign:PackIcon Kind="ContentSave" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="-.5,0.5">
-                                    <materialDesign:PackIcon.RenderTransform>
+                                <Image.RenderTransform>                                
+                                        <ScaleTransform ScaleX  ="3" ScaleY="3.7"/>                                
+                                </Image.RenderTransform>
+                                </Image>-->
+                                <materialDesign:PackIcon Kind="ContentSave" VerticalAlignment="Center" HorizontalAlignment="Center" Width="30" Height="30">
+                                    <!--<materialDesign:PackIcon.RenderTransform>
                                         <ScaleTransform ScaleX  ="2" ScaleY="2"/>
-                                    </materialDesign:PackIcon.RenderTransform>
+                                    </materialDesign:PackIcon.RenderTransform>-->
                                     <materialDesign:PackIcon.Foreground>
                                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                                             <GradientStop Color="#FFD69016"/>
@@ -242,21 +242,20 @@
                                         </LinearGradientBrush>
                                     </materialDesign:PackIcon.Foreground>
                                 </materialDesign:PackIcon>
-                            </MenuItem.Icon>
+                            <!--</MenuItem.Icon>-->
                             <!--<MenuItem x:Name="Save" Background="Black" Header="Save" Click="Save_Click"/>-->
-                            <MenuItem x:Name="Save_As" Background="Black" Header="Save as..." Click="Save_As_Click"/>
-                        </MenuItem>
+                            <!--<MenuItem x:Name="Save_As" Background="Black" Header="Save as..." Click="Save_As_Click"/>-->
+                        </Button>
                         <MenuItem Width="74" HorizontalAlignment="Right">
                             <MenuItem.Icon>
                                 <!--<Image Source="/Assets/photo (1).jpg" Stretch="Uniform" RenderTransformOrigin="0,0.4">
                             <Image.RenderTransform>                                
                                     <ScaleTransform ScaleX  ="3" ScaleY="3.7"/>                                
                             </Image.RenderTransform>
-                        </Image>-->
+                            </Image>-->
                                 <materialDesign:PackIcon Kind="Archive" VerticalAlignment="Center" HorizontalAlignment="Right" RenderTransformOrigin="-1,0.5">
                                     <materialDesign:PackIcon.RenderTransform>
-                                        <ScaleTransform ScaleX  ="1.8" ScaleY="1.8
-                                                "/>
+                                        <ScaleTransform ScaleX="1.8" ScaleY="1.8"/>
                                     </materialDesign:PackIcon.RenderTransform>
                                     <materialDesign:PackIcon.Foreground>
                                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">

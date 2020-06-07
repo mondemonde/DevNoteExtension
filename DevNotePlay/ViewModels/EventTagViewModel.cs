@@ -94,6 +94,7 @@ namespace Player.ViewModels
 
         private bool ScriptPlaying = false;
         private readonly string AppName;
+        private readonly string TenantId;
         private EventTagService _eventTagService;
         private EventParameterService _eventParameterService;
         private ProgressBarSharedView _progressBar;
@@ -119,6 +120,7 @@ namespace Player.ViewModels
 
             CreatingItem = false;
             ConfigManager configManager = new ConfigManager();
+            TenantId = configManager.GetValue("TenantId");
             AppName = configManager.GetValue("AppName");
         }
 
@@ -480,6 +482,7 @@ namespace Player.ViewModels
             var messageBoxResult = MessageBox.Show("Are you sure you want to update this item?", AppName, MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.No) return;
 
+            SelectedEvent.TenantId = TenantId;
             var eventTagService = new EventTagService();
             var result = await eventTagService.UpdateEventTag(SelectedEvent);
 
