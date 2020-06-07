@@ -52,3 +52,12 @@
     display: none;
     padding-top: 10px;
 }
+#target-element-controls {
+    display: none;
+}
+#action-modifier-controls {
+    display: none;
+}
+#grab-value-controls {
+    display: none;
+}

@@ -11,6 +11,7 @@ using PuppetSupportLib.Helpers;
 using System.Globalization;
 using CodeceptSupport.Mod;
 using LogApplication.Common.Config;
+using Common;
 
 namespace CodeceptSupport
 {
@@ -199,8 +200,8 @@ namespace CodeceptSupport
             }
 
             //reinsert from template..
-            ConfigManager config = new ConfigManager();
-            var codeCeptConfigPath = config.GetValue("CodeceptTestTemplate");
+            //ConfigManager config = new ConfigManager();
+            var codeCeptConfigPath = FileEndPointManager.MyCodeceptTestTemplate; //config.GetValue("CodeceptTestTemplate");
             var codeCeptTestTemplate = File.ReadAllText(codeCeptConfigPath);
             codeCeptTestTemplate = codeCeptTestTemplate.Replace("##steps##", myScript);         
 

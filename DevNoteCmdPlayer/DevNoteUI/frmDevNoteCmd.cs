@@ -1105,8 +1105,8 @@ namespace DevNoteCmdPlayer
                 //var codeCeptTestTemplate = File.ReadAllText(Path.Combine(codeceptjsFolder, "codecept.conf.template.txt"));
 
                 //step# _8.4 config.GetValue("CodeceptTestTemplate");
-                ConfigManager config = new ConfigManager();
-                var codeCeptConfigPath = config.GetValue("CodeceptTestTemplate");
+                //ConfigManager config = new ConfigManager();
+                var codeCeptConfigPath = FileEndPointManager.MyCodeceptTestTemplate; //config.GetValue("CodeceptTestTemplate");
                 var codeCeptTestTemplate = File.ReadAllText(codeCeptConfigPath);
                 codeCeptTestTemplate = codeCeptTestTemplate.Replace("##steps##", codes);
 
@@ -1490,7 +1490,8 @@ namespace DevNoteCmdPlayer
 
             //step# _8.4 config.GetValue("CodeceptTestTemplate");
             ConfigManager config = new ConfigManager();
-            var codeCeptConfigPath = config.GetValue("CodeceptTestTemplate");
+            var codeCeptConfigPath = FileEndPointManager.MyCodeceptTestTemplate;// config.GetValue("CodeceptTestTemplate");
+
             var codeCeptTestTemplate = File.ReadAllText(codeCeptConfigPath);
             codeCeptTestTemplate = codeCeptTestTemplate.Replace("##steps##", codes);
 
@@ -1571,7 +1572,7 @@ namespace DevNoteCmdPlayer
 
             //step# _8.4 config.GetValue("CodeceptTestTemplate");
             ConfigManager config = new ConfigManager();
-            var codeCeptConfigPath = config.GetValue("CodeceptTestTemplate");
+            var codeCeptConfigPath = FileEndPointManager.MyCodeceptTestTemplate;//config.GetValue("CodeceptTestTemplate");
             var codeCeptTestTemplate = File.ReadAllText(codeCeptConfigPath);
             codeCeptTestTemplate = codeCeptTestTemplate.Replace("##steps##", codes);
 
@@ -1895,7 +1896,7 @@ namespace DevNoteCmdPlayer
             CloseCodeCeptJsWindow();
 
             // ConfigManager config = new ConfigManager();
-            var defaultXML = FileEndPointManager.DefaultPlayXMLFile; // config.GetValue("DefaultXMLFile");
+            var defaultXML = FileEndPointManager.DefaultPlayJsFile; // config.GetValue("DefaultXMLFile");
 
 
             if (isRecording)
@@ -1962,7 +1963,7 @@ namespace DevNoteCmdPlayer
         private async void BtnPlay_Click(object sender, EventArgs e)
         {
             // await Play();
-            await Run(FileEndPointManager.DefaultPlayXMLFile);
+            await Run(FileEndPointManager.DefaultPlayJsFile);
 
         }
 
@@ -2428,8 +2429,8 @@ namespace DevNoteCmdPlayer
                 //var codeCeptTestTemplate = File.ReadAllText(Path.Combine(codeceptjsFolder, "codecept.conf.template.txt"));
 
                 //step# _8.4 config.GetValue("CodeceptTestTemplate");
-                ConfigManager config = new ConfigManager();
-                var codeCeptConfigPath = config.GetValue("CodeceptTestTemplate");
+                //ConfigManager config = new ConfigManager();
+                var codeCeptConfigPath = FileEndPointManager.MyCodeceptTestTemplate;//config.GetValue("CodeceptTestTemplate");
                 var codeCeptTestTemplate = File.ReadAllText(codeCeptConfigPath);
                 codeCeptTestTemplate = codeCeptTestTemplate.Replace("##steps##", codes);
 

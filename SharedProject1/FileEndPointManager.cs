@@ -141,6 +141,9 @@ namespace Common
 
                     var dir = string.Format("{0}\\Chrome\\chrome-win", currentDir);
                     exe = System.IO.Path.Combine(dir, "chrome.exe");
+
+                    
+
                 }
                 return exe;
             }
@@ -456,43 +459,37 @@ namespace Common
             {
                 if (string.IsNullOrEmpty(_defaultLatestXMLFile))
                 {
-                    ConfigManager config = new ConfigManager();
-                    var file = config.GetValue("DefaultLatestXMLFile");
-
-                    if (string.IsNullOrEmpty(file))
-                    {
-                        _defaultLatestXMLFile = System.IO.Path.Combine(Project2Folder, "latest.xml");
-                    }
-                    else
-                        _defaultLatestXMLFile = file;
+                  
+                        _defaultLatestXMLFile = System.IO.Path.Combine(Project2Folder, "latest.xml");                  
+                       
                 }
                 return _defaultLatestXMLFile;
             }
         }
 
-        static string _defaultPlayXMLFile;
-        public static string DefaultPlayXMLFile
+        static string _defaultPlayJsFile;
+        public static string DefaultPlayJsFile
         {
             get
             {
-                if (string.IsNullOrEmpty(_defaultPlayXMLFile))
+                if (string.IsNullOrEmpty(_defaultPlayJsFile))
                 {
                     ConfigManager config = new ConfigManager();
-                    var file = config.GetValue("DefaultPlayXMLFile");
+                    var file = config.GetValue("DefaultPlayJsFile");
 
                     //STEP_.PLAYER CHROME DOWNLOAD FOLDER
                     //SERVER: use the main folder of devnote.main
                     if (string.IsNullOrEmpty(file))
-                    {                 
+                    {
                         //D:\_MY_PROJECTS\_DEVNOTE\_DevNote4\DevNote.Main\bin\Debug2\_EXE\Player\CodeCeptJS\Project2
                         //var dir = string.Format("{0}\\_EXE\\Player\\CodeCeptJS\\Project2", FileEndPointManager.MyMainDirectory);
-                        _defaultPlayXMLFile = System.IO.Path.Combine(Project2Folder, "latest_test.js");
+                        _defaultPlayJsFile = System.IO.Path.Combine(Project2Folder, "latest_test.js");
                     }
                     //CLIENT
                     else //if supplied used for stand alone player
-                        _defaultPlayXMLFile = file;
+                        _defaultPlayJsFile = file;
                 }
-                return _defaultPlayXMLFile;
+                return _defaultPlayJsFile;
             }
         }
 
@@ -524,7 +521,7 @@ namespace Common
 
         public static void WriteBackupFile()
         {
-            string scriptFile = DefaultPlayXMLFile;
+            string scriptFile = DefaultPlayJsFile;
             string backupFile = DefaultPlayXMLBackup;
             if (File.Exists(scriptFile))
             {
@@ -536,7 +533,7 @@ namespace Common
 
         public static void RestoreBackupFile()
         {
-            string scriptFile = DefaultPlayXMLFile;
+            string scriptFile = DefaultPlayJsFile;
             string backupFile = DefaultPlayXMLBackup;
 
             File.Delete(scriptFile);
@@ -626,34 +623,50 @@ namespace Common
         static string _project2Folder;
         public static string Project2Folder
         {
-           
-                get
-                      {
-                    if (Root == STEP_.PLAYER)
+            get
+            {
+                ConfigManager config = new ConfigManager();
+                var file = config.GetValue("Project2Folder");
+                _project2Folder = file;
+                //_HACK safe to delete 
+                #region---TEST ONLY: Compiler will  automatically erase this in RELEASE mode and it will not run if Global.GlobalTestMode is not set to TestMode.Simulation
+#if OVERRIDE || OFFLINE 
+
+            System.Diagnostics.Debug.WriteLine("HACK-TEST -");
+         
+            file = config.GetValue("TestFor-Project2Folder");
+
+                return file;
+
+#endif
+                #endregion //////////////END TEST
+
+
+                if (Root == STEP_.PLAYER)
+                {
+                    if (string.IsNullOrEmpty(_project2Folder) || !Directory.Exists(_project2Folder))
                     {
-                        if (string.IsNullOrEmpty(_project2Folder))
-                        {
-                            var dir = LogApplication.Agent.GetCurrentDir();
-                            myMainDirectory = dir.Replace("file:\\", string.Empty);
-                            var exeFolder1 = string.Format("{0}\\CodeCeptJS\\Project2", MyMainDirectory);
-                            _project2Folder = exeFolder1;
-                        }
-
+                        var dir = LogApplication.Agent.GetCurrentDir();
+                        myMainDirectory = dir.Replace("file:\\", string.Empty);
+                        var exeFolder1 = string.Format("{0}\\CodeCeptJS\\Project2", MyMainDirectory);
+                        _project2Folder = exeFolder1;
                     }
-                    else
-                    {
-                        //STEP_.EVENT Project2EndPointFolder
-                        if (string.IsNullOrEmpty(_project2Folder))
-                        {
-
-                            var dir = string.Format("{0}\\_EXE\\Player\\CodeCeptJS\\Project2", MyMainDirectory);
-                           _project2Folder = dir;
-                        }
-                    }
-
-                    return _project2Folder;
                 }
+                else
+                {
+                    //STEP_.EVENT Project2EndPointFolder
+                    if (string.IsNullOrEmpty(_project2Folder))
+                    {
+                        var dir = string.Format("{0}\\_EXE\\Player\\CodeCeptJS\\Project2", MyMainDirectory);
+                        _project2Folder = dir;
+                    }
+                }
+                return _project2Folder;
             }
+        }
+
+
+
         public static string Latest_testJS()
         {
             var @result = string.Empty;

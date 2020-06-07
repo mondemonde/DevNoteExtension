@@ -48,7 +48,7 @@ namespace Player.ViewModels
                 serializer.Serialize(file, EventToAdd);
             }
 
-            string recordJSDirectory = FileEndPointManager.DefaultPlayXMLFile;
+            string recordJSDirectory = FileEndPointManager.DefaultPlayJsFile;
             string recordXMLDirectory = FileEndPointManager.DefaultLatestXMLFile;
 
             if (!File.Exists(recordJSDirectory) || !File.Exists(recordXMLDirectory))

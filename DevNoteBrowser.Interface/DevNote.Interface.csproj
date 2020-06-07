@@ -133,11 +133,7 @@
     <Compile Include="Common\IToken.cs" />
     <Compile Include="DAL\MyDbContext.cs" />
     <Compile Include="DevAPIGlobal.cs" />
-    <Compile Include="FileAssembly1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FileAssembly.tt</DependentUpon>
-    </Compile>
+    <Compile Include="FileAssembly.cs" />
     <Compile Include="IBackGroundActivity.cs" />
     <Compile Include="IArmPlayer.cs" />
     <Compile Include="IBot.cs" />
@@ -156,12 +152,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="FileAssembly.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FileAssembly1.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

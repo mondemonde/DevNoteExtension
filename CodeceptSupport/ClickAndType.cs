@@ -166,6 +166,7 @@ namespace CodeceptSupport
             {
                 if (content.StartsWith("link="))
                 {
+                    //Step grabAsynch
                     var script = string.Format("grabAsync({0})"
                     , interpreter.FormatSelector(MyAction.target));
                     script = script + Environment.NewLine;
