@@ -17,6 +17,9 @@ Copy
 netsh http add urlacl url=http://+:9876/ user=machine\username
 where machine\username is your user account.
 
+or use everyone...
+C:\WINDOWS\system32>netsh http add urlacl url=http://+:9876/  user=everyone
+
 When you are finished self-hosting, be sure to delete the reservation:
 
 Console 

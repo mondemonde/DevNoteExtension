@@ -490,6 +490,8 @@ namespace Player
         {
             var dir = LogApplication.Agent.GetCurrentDir();
             dir = dir.Replace("file:\\", string.Empty);
+
+
             string drive = Path.GetPathRoot(dir);
             string driveLetter = drive.First().ToString();
 
@@ -498,7 +500,13 @@ namespace Player
             var chromeDownload = FileEndPointManager.Project2Folder;
             string chromeDrive = Path.GetPathRoot(chromeDownload);
             string chromeDriveLetter = chromeDrive.First().ToString();
+
             var param = string.Format("cd /{0} {1}", driveLetter, chromeDownload);
+
+            if(chromeDriveLetter.ToLower()==driveLetter.ToLower())
+                param = string.Format("cd {0}", chromeDownload);
+
+
 
             //MyConsoleControlForChrome.WriteInput("node LaunchChromeExt.js", Color.AliceBlue, true);
             var batFolder = Path.Combine(dir, "Bat");  //string.Format("{0}\\Bat", dir);  //@"D:\_ROBOtFRAMeWORK\CodeceptsJs\Project1\";
