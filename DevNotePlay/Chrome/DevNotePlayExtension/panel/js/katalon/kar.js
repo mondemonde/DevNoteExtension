@@ -370,10 +370,10 @@ $(function() {
     });
 })
 
-function handleGenerateToScript() {//bookmark
+function handleGenerateToScript() {
     var selectedTestCase = getSelectedCase();
     if (selectedTestCase) {
-        loadScripts(); //bookmark
+        loadScripts();
     } else {
         alert('Please select a testcase');
     }
@@ -389,10 +389,13 @@ function copyToClipboard() {
 function saveToFile() {
     var $textarea = $("#txt-script-id");
     var cm = $textarea.data('cm');
-    // var format = '.' + window.options.defaultExtension;
-    // var fileName = testClassName(getTestCaseName()) + ".xml";
-    // var fileName = "Record.xml";
-    
+    var selectedRecording = getSelectedCase();
+    output =
+        '<table cellpadding="1" cellspacing="1" border="1">\n<thead>\n<tr><td rowspan="1" colspan="3">' +
+        sideex_testCase[selectedRecording.id].title +
+        '</td></tr>\n</thead>\n' +
+        panelToFile(document.getElementById("records-grid").innerHTML) +
+        '</table>\n';
     var content = cm.getValue();
     var url = "http://localhost:9876/api/playback/upload";
     var settings = {
@@ -402,16 +405,16 @@ function saveToFile() {
         "headers": {
           "Content-Type": "application/json"
         },
-        "data": JSON.stringify({"content":content})
+        "data": JSON.stringify({
+            "xml": content,
+            "html": output
+        })
     };
-        
+    
     $.ajax(settings).done(function (response) {
         console.log(response);
         // alert(response);
     });
-    // saveAsFileOfTestCase(fileName, content);
-    // var link = makeTextFile(fileName, content);
-    // link.click()
 }
 
 $(function() {
