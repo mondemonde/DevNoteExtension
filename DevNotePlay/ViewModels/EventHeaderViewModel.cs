@@ -53,36 +53,41 @@ namespace Player.ViewModels
 
             string recordJSDirectory = FileEndPointManager.DefaultPlayJsFile;
             string recordXMLDirectory = FileEndPointManager.DefaultLatestXMLFile;
+            string recordHtmlDirectory = FileEndPointManager.DefaultLatestHtmlFile;
 
-            if (!File.Exists(recordJSDirectory) || !File.Exists(recordXMLDirectory))
+            List<string> fullPathsOfFilesToCompress = new List<string>
             {
-                //TODO: update this error message.
-                MessageBox.Show("There are no record files to save. Please open an existing recording or make a new one.", AppName, MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else
+                recordJSDirectory,
+                recordXMLDirectory,
+                recordHtmlDirectory,
+                headerFileName
+            };
+
+            foreach (string file in fullPathsOfFilesToCompress)
             {
-                List<string> fullPathsOfFilesToCompress = new List<string>
+                if (!File.Exists(file))
                 {
-                    recordJSDirectory,
-                    recordXMLDirectory,
-                    headerFileName
-                };
-
-                string eventToUploadFileName = Path.Combine(FileEndPointManager.Project2Folder, EventToAdd.FileName + "." + RecordFileExtension);
-
-                ZipArchiveHelper.ArchiveFiles(fullPathsOfFilesToCompress, eventToUploadFileName);
-
-                EventTagService eventTagService = new EventTagService();
-
-                _progressBar = new ProgressBarSharedView("Uploading file. Please wait...");
-                _progressBar.Show();
-                var result = await eventTagService.CreateEvent(eventToUploadFileName);
-                _progressBar.Close();
-
-                MessageBox.Show(result, AppName, MessageBoxButton.OK, MessageBoxImage.Information);
-
-                File.Delete(eventToUploadFileName);
+                    MessageBox.Show("There are no record files to save. Please open an existing recording or make a new one.",
+                        AppName, MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
             }
+
+            string eventToUploadFileName = Path.Combine(FileEndPointManager.Project2Folder, EventToAdd.FileName + "." + RecordFileExtension);
+
+            ZipArchiveHelper.ArchiveFiles(fullPathsOfFilesToCompress, eventToUploadFileName);
+
+            EventTagService eventTagService = new EventTagService();
+
+            _progressBar = new ProgressBarSharedView("Uploading file. Please wait...");
+            _progressBar.Show();
+            var result = await eventTagService.CreateEvent(eventToUploadFileName);
+            _progressBar.Close();
+
+            MessageBox.Show(result, AppName, MessageBoxButton.OK, MessageBoxImage.Information);
+
+            File.Delete(eventToUploadFileName);
+            File.Delete(headerFileName);
         }
 
         private bool CanUpload()

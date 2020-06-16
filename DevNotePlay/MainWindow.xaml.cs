@@ -100,6 +100,7 @@ namespace Player
 
         private string recordJSDirectory;
         private string recordXMLDirectory;
+        private string recordHtmlDirectory;
 
         public MainWindow()
         {
@@ -120,18 +121,15 @@ namespace Player
 
             FileEndPointManager.Root = STEP_.PLAYER;
 
-
-
             ConfigManager config = new ConfigManager();
             AppName = config.GetValue("AppName");
             PlayFile = config.GetValue("PlayFile");
             RecordFileExtension = config.GetValue("RecordFileExtension");
             FileDialogFilter = config.GetValue("FileDialogFilter");
 
-
-
             recordJSDirectory = FileEndPointManager.DefaultPlayJsFile;
-            recordXMLDirectory = FileEndPointManager.DefaultPlayJsFile;//.DefaultLatestXMLFile;
+            recordXMLDirectory = FileEndPointManager.DefaultLatestXMLFile;
+            recordHtmlDirectory = FileEndPointManager.DefaultLatestHtmlFile;
 
             var chromeDefaultDownload = FileEndPointManager.Project2Folder;//Path.GetDirectoryName(FileEndPointManager.DefaultPlayXMLFile);
 
@@ -824,14 +822,13 @@ namespace Player
 
         private void toolStripButtonSave_Click(object sender, EventArgs e)
         {
-            if (System.IO.Path.GetExtension(saveFileDialog1.FileName.ToLower()) == ".xml")
+            if (Path.GetExtension(saveFileDialog1.FileName.ToLower()) == ".xml")
             {
                 toolStripLabelSaveAs_Click(sender, e);
             }
             else
             {
                 //save             
-
                 if (File.Exists(saveFileDialog1.FileName))
                     File.Delete(saveFileDialog1.FileName);
 
@@ -858,7 +855,7 @@ namespace Player
             {
                 //textBox1.Text = saveFileDialog1.FileName;
                 toolStripButtonSave_Click(sender, e);
-                SetProjectFolder(System.IO.Path.GetDirectoryName(saveFileDialog1.FileName));
+                SetProjectFolder(Path.GetDirectoryName(saveFileDialog1.FileName));
             }
         }
 
@@ -889,7 +886,7 @@ namespace Player
                         archive.GetEntry(fileName).Delete();
                         ZipArchiveEntry zipFileEntry = archive.CreateEntry(fileName);
 
-                        byte[] fileToZipBytes = System.IO.File.ReadAllBytes(file);
+                        byte[] fileToZipBytes = File.ReadAllBytes(file);
                         using (Stream zipEntryStream = zipFileEntry.Open())
                         using (BinaryWriter zipFileBinary = new BinaryWriter(zipEntryStream))
                         {
@@ -906,37 +903,40 @@ namespace Player
 
         private void Save_As_Click(object sender, RoutedEventArgs e)
         {
-            if (!File.Exists(recordJSDirectory) || !File.Exists(recordXMLDirectory))
+            List<string> fullPathsOfFilesToCompress = new List<string>
             {
-                //TODO: update this error message.
-                MessageBox.Show("There are no record files to save. Please open an existing recording or make a new one.", AppName, MessageBoxButton.OK, MessageBoxImage.Error);
+                recordJSDirectory,
+                recordXMLDirectory,
+                recordHtmlDirectory                 
+            };
+
+            foreach(string file in fullPathsOfFilesToCompress)
+            {
+                if(!File.Exists(file))
+                {
+                    MessageBox.Show("There are no record files to save. Please open an existing recording or make a new one.", 
+                        AppName, MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
             }
-            else
+
+            using (var diag = new System.Windows.Forms.SaveFileDialog())
             {
-                List<string> fullPathsOfFilesToCompress = new List<string>
+                diag.SupportMultiDottedExtensions = true;
+                diag.FileOk += CheckIfFileHasCorrectExtension;
+                diag.Filter = FileDialogFilter;
+                diag.DefaultExt = RecordFileExtension;
+                diag.AddExtension = true;
+
+                var result = diag.ShowDialog();
+
+                if (result == System.Windows.Forms.DialogResult.OK)
                 {
-                    recordJSDirectory,
-                    recordXMLDirectory
-                };
+                    string destinationPathAndFileName = diag.FileName;
+                    ZipArchiveHelper.ArchiveFiles(fullPathsOfFilesToCompress, destinationPathAndFileName);
 
-                using (var diag = new System.Windows.Forms.SaveFileDialog())
-                {
-                    diag.SupportMultiDottedExtensions = true;
-                    diag.FileOk += CheckIfFileHasCorrectExtension;
-                    diag.Filter = FileDialogFilter;
-                    diag.DefaultExt = RecordFileExtension;
-                    diag.AddExtension = true;
-
-                    var result = diag.ShowDialog();
-
-                    if (result == System.Windows.Forms.DialogResult.OK)
-                    {
-                        string destinationPathAndFileName = diag.FileName;
-                        ZipArchiveHelper.ArchiveFiles(fullPathsOfFilesToCompress, destinationPathAndFileName);
-
-                        OpenedFile = Path.GetFileName(diag.FileName);
-                        UpdateStatus(false);
-                    }
+                    OpenedFile = Path.GetFileName(diag.FileName);
+                    UpdateStatus(false);
                 }
             }
         }
