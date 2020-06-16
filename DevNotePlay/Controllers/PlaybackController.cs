@@ -1,6 +1,5 @@
 ﻿using Common;
 using DevNote.Web.Recorder;
-using LogApplication.Common.Config;
 using System;
 using System.IO;
 using System.Net;
@@ -15,27 +14,25 @@ namespace DevNotePlay.API.Controllers
     {
         [Route("upload")]
         [HttpPost]
-        public HttpResponseMessage Upload([FromBody]dynamic xmlScript)
+        public HttpResponseMessage Upload([FromBody]dynamic payload)
         {
             try
             {
+                string latestXML = FileEndPointManager.DefaultLatestXMLFile;
+                string latestHtml = FileEndPointManager.DefaultLatestHtmlFile;
+                string xmlContent = payload["xml"];
+                string htmlContent = payload["html"];
 
-                string latestXML = FileEndPointManager.DefaultLatestXMLFile;//Path.Combine(path, "latest.xml"); //config.GetValue("RecXMLFile"));
                 if (File.Exists(latestXML))
                     File.Delete(latestXML);
+                if (File.Exists(latestHtml))
+                    File.Delete(latestHtml);
 
-
-                string content = xmlScript["content"];
-                if (File.Exists(latestXML)) File.Delete(latestXML);
-                //if (File.Exists(playFile)) File.Delete(playFile);
-
-                File.WriteAllText(latestXML, content);
+                File.WriteAllText(latestXML, xmlContent);
+                File.WriteAllText(latestHtml, htmlContent);
                 Thread.Sleep(1000);
-                //File.WriteAllText(playFile, string.Empty);
 
                 RecFileWatcher.Play();
-
-              
 
                 return Request.CreateResponse(HttpStatusCode.OK, "Script sent to DevPlay. Please wait for playback.");
             }
