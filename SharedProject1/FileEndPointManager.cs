@@ -452,11 +452,22 @@ namespace Common
             {
                 if (string.IsNullOrEmpty(_defaultLatestXMLFile))
                 {
-                  
-                        _defaultLatestXMLFile = System.IO.Path.Combine(Project2Folder, "latest.xml");                  
-                       
+                    _defaultLatestXMLFile = Path.Combine(Project2Folder, "latest.xml");                  
                 }
                 return _defaultLatestXMLFile;
+            }
+        }
+
+        static string _defaultLatestHtmlFile;
+        public static string DefaultLatestHtmlFile
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_defaultLatestHtmlFile))
+                {
+                    _defaultLatestHtmlFile = Path.Combine(Project2Folder, "latest.html");
+                }
+                return _defaultLatestHtmlFile;
             }
         }
 
