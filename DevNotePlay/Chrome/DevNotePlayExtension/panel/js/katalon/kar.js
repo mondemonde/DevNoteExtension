@@ -987,6 +987,7 @@ $(function() {
         '#new': 'new-icon-16.svg',
         '#playback': 'play-icon-16.svg',
         '#stop': 'stop-icon-16.svg',
+        '#refresh-library': 'refresh-icon.png',
         '#playSuite': 'play-suite-icon-16.svg',
         '#playSuites': 'play-all-icon-16.svg',
         '#pause': 'pause-icon-16.svg',
