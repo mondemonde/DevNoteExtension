@@ -979,8 +979,8 @@ namespace Player
 
         private void ViewEventTagLibraryMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            EventTagLibraryWindow eventTagLibraryWindow = new EventTagLibraryWindow(this);
-            eventTagLibraryWindow.ShowDialog();
+            EventLibraryWindow eventLibraryWindow = new EventLibraryWindow(this);
+            eventLibraryWindow.ShowDialog();
         }
 
         private void AddEventTagMenuItem_Click(object sender, RoutedEventArgs e)
@@ -990,7 +990,7 @@ namespace Player
                 //TODO: update this error message.
                 MessageBox.Show("Cannot upload Event without recording files. Please open an existing recording or make a new one.", AppName, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            AddEventWindow addEventWindow = new AddEventWindow();
+            AddEventWindow addEventWindow = new AddEventWindow(null);
             addEventWindow.ShowDialog();
         }
     }
