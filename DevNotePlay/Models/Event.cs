@@ -1,9 +1,8 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace Player.Models
 {
-    public class EventTag: INotifyPropertyChanged, IDataErrorInfo
+    public class Event: INotifyPropertyChanged, IDataErrorInfo
     {
         private int _id;
         public string _domain;

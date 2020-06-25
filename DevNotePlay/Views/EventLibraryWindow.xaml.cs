@@ -9,21 +9,21 @@ using System.Windows.Input;
 namespace Player.Views
 {
     /// <summary>
-    /// Interaction logic for EventTagLibraryWindow.xaml
+    /// Interaction logic for EventLibraryWindow.xaml
     /// </summary>
-    public partial class EventTagLibraryWindow : Window
+    public partial class EventLibraryWindow : Window
     {
         private readonly ConfigManager _configManager;
         private readonly string AppName;
 
-        public EventTagLibraryWindow(MainWindow mainWindow = null)
+        public EventLibraryWindow(MainWindow mainWindow = null)
         {
             InitializeComponent();
 
             _configManager = new ConfigManager();
             AppName = _configManager.GetValue("AppName");
 
-            DataContext = new EventTagViewModel(mainWindow);
+            DataContext = new EventViewModel(mainWindow);
         }
 
         private void EventTagDataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
