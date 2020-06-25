@@ -1,4 +1,4 @@
-﻿<Window x:Class="Player.Views.EventTagLibraryWindow"
+﻿<Window x:Class="Player.Views.EventLibraryWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -92,7 +92,7 @@
                         <Label x:Name="label" Content="Event Details" Margin="0,10" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" FontSize="14" RenderTransformOrigin="0.295,0.276"/>
                         <Button
                             Command="{Binding RefreshCommand}"
-                            Margin="0,0,90,0" VerticalAlignment="Center" Height="35" Width="35" HorizontalAlignment="Right" BorderThickness="0" TabIndex="102" Background="White" Padding="5">
+                            Margin="0,0,130,0" VerticalAlignment="Center" Height="35" Width="35" HorizontalAlignment="Right" BorderThickness="0" TabIndex="102" Background="White" Padding="5">
                             <StaticResource ResourceKey="RefreshIcon"/>
                             <Button.ToolTip>
                                 <ToolTip Content="Refresh Event list."/>
@@ -100,10 +100,18 @@
                         </Button>
                         <Button
                             Command="{Binding UpdateCommand}"
-                            Margin="0,0,50,0" VerticalAlignment="Center" Height="35" Width="35" HorizontalAlignment="Right" BorderThickness="0" TabIndex="100" Background="White" Padding="5">
+                            Margin="0,0,90,0" VerticalAlignment="Center" Height="35" Width="35" HorizontalAlignment="Right" BorderThickness="0" TabIndex="100" Background="White" Padding="5">
                             <StaticResource ResourceKey="UpdateListItemIcon"/>
                             <Button.ToolTip>
-                                <ToolTip Content="Update selected Event."/>
+                                <ToolTip Content="Update details selected Event."/>
+                            </Button.ToolTip>
+                        </Button>
+                        <Button
+                            Command="{Binding UploadCommand}"
+                            Margin="0,0,50,0" VerticalAlignment="Center" Height="35" Width="35" HorizontalAlignment="Right" BorderThickness="0" TabIndex="100" Background="White" Padding="5">
+                            <StaticResource ResourceKey="TransferUploadIcon"/>
+                            <Button.ToolTip>
+                                <ToolTip Content="Update script for event."/>
                             </Button.ToolTip>
                         </Button>
                         <Button
@@ -116,7 +124,7 @@
                         </Button>
                     </Grid>
                     <DataGrid x:Name="EventTagDataGrid" 
-                              ItemsSource="{Binding EventTags}" 
+                              ItemsSource="{Binding Events}" 
                               SelectedItem="{Binding SelectedEvent}" 
                               BorderBrush="Gray" BorderThickness="1"
                               Margin="10" AutoGeneratingColumn="EventTagDataGrid_AutoGeneratingColumn" IsReadOnly="True" IsTabStop="True" TabIndex="-1" KeyboardNavigation.TabNavigation="None"/>
