@@ -90,8 +90,8 @@ namespace Player.Services
                 {
                     HttpResponseMessage response = await client.PutAsync(_url, byteContent);
 
-                    string responseMessage = await response.Content.ReadAsAsync<string>();
-                    return responseMessage;
+                    //string responseMessage = await response.Content.ReadAsStringAsync();//.ReadAsAsync<string>();
+                    return response.StatusCode.ToString();////responseMessage;
                 }
             }
             catch (Exception ex)

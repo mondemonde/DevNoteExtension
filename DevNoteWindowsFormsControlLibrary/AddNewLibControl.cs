@@ -136,6 +136,8 @@ namespace DevNoteWindowsFormsControlLibrary
                 thisDb.SaveChanges();
                 lblOutput.Text = profile.Name + Environment.NewLine + profile.SourcePath;
 
+                return;
+                //skip multiple file appending
 
                 //step# 35 IMPORT JSFile to WF folder
                 var newProfile = ImportJSFile(profile);

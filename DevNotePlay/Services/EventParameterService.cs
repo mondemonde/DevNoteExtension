@@ -156,5 +156,6 @@ namespace Player.Services
             if (isScript) return root + "/api/event/" + eventId.ToString() + "/script/";
             return root + "/api/event/" + eventId.ToString() + "/parameters";
         }
+
     }
 }
