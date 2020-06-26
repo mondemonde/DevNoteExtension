@@ -47,13 +47,17 @@
             <Label HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3" Content="Version No.:" Margin="5,0,0,0" Height="26" Width="73"/>
             <Label HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="4" Content="File name:" Margin="5,0,0,0" Height="26" Width="75"/>
             <Label HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="5" Content="Description:" Margin="5,10,0,0" Height="26" Width="73"/>
-            <TextBox Text="{Binding EventToAdd.Domain,       ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnTargetUpdated=True}" Height="26" Margin="10,0" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" TabIndex="2" Background="White" BorderThickness="1" PreviewKeyDown="SpaceNotAllowedTextBox_PreviewKeyDown"/>
-            <TextBox Text="{Binding EventToAdd.Department,   ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnTargetUpdated=True}" Height="26" Margin="10,0" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" TabIndex="3" Background="White" BorderThickness="1"/>
-            <TextBox Text="{Binding EventToAdd.Tag,          ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnTargetUpdated=True}" Height="26" Margin="10,0" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" TabIndex="4" Background="White" BorderThickness="1" PreviewKeyDown="SpaceNotAllowedTextBox_PreviewKeyDown" CommandManager.PreviewExecuted="TextBox_PreviewExecuted"/>
-            <TextBox Text="{Binding EventToAdd.VersionNo,    ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnTargetUpdated=True, Converter={StaticResource converter}}" Height="26" Margin="10,0" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3" TextWrapping="Wrap" TabIndex="5" PreviewTextInput="IntegerTextBoxChecker_PreviewTextInput" Background="White" BorderThickness="1" PreviewKeyDown="SpaceNotAllowedTextBox_PreviewKeyDown"/>
+            <TextBox Text="{Binding EventToAdd.Domain,       ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnTargetUpdated=True}" 
+                     Height="26" Margin="10,0" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" TabIndex="2" Background="White" BorderThickness="1" PreviewKeyDown="SpaceNotAllowedTextBox_PreviewKeyDown"/>
+            <TextBox Text="{Binding EventToAdd.Department,   ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnTargetUpdated=True}" 
+                     Height="26" Margin="10,0" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" TabIndex="3" Background="White" BorderThickness="1"/>
+            <TextBox Text="{Binding EventToAdd.Tag,          ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnTargetUpdated=True}" IsEnabled="{Binding NotUpdatingScript}"
+                     Height="26" Margin="10,0" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" TabIndex="4" Background="White" BorderThickness="1" PreviewKeyDown="SpaceNotAllowedTextBox_PreviewKeyDown" CommandManager.PreviewExecuted="TextBox_PreviewExecuted"/>
+            <TextBox Text="{Binding EventToAdd.VersionNo,    ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnTargetUpdated=True, Converter={StaticResource converter}}" 
+                     Height="26" Margin="10,0" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3" TextWrapping="Wrap" TabIndex="5" PreviewTextInput="IntegerTextBoxChecker_PreviewTextInput" Background="White" BorderThickness="1" PreviewKeyDown="SpaceNotAllowedTextBox_PreviewKeyDown"/>
             <TextBlock Text="{Binding EventToAdd.FileName}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="4" Grid.Column="1" Margin="10,0,0,0" Height="Auto" Width="Auto"/>
-            <!--<TextBox Text="{Binding EventToAdd.FileName,     ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnTargetUpdated=True}" Height="26" Margin="10,0" VerticalAlignment="Center" Grid.Column="1" Grid.Row="4" TextWrapping="Wrap" TabIndex="6" VerticalContentAlignment="Top" BorderThickness="1" Background="White"/>-->
-            <TextBox Text="{Binding EventToAdd.Descriptions, ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnTargetUpdated=True}" Height="100" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="5" TextWrapping="Wrap" TabIndex="17" VerticalContentAlignment="Top" BorderThickness="1" Background="White"/>
+            <TextBox Text="{Binding EventToAdd.Descriptions, ValidatesOnDataErrors=True, Mode=TwoWay, NotifyOnTargetUpdated=True}" 
+                     Height="100" Margin="10,10,10,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="5" TextWrapping="Wrap" TabIndex="17" VerticalContentAlignment="Top" BorderThickness="1" Background="White"/>
         </Grid>
         <Button Command="{Binding Path=UploadCommand}"
                 x:Name="UploadRecording" Grid.Row="1" Margin="0" BorderThickness="1" Background="White" HorizontalAlignment="Center" Width="34" Height="34" Padding="5" VerticalAlignment="Center">
@@ -63,7 +67,9 @@
             </Button.ToolTip>
         </Button>
         <!--<Button Grid.Row="1" Margin="138,10,241,6" BorderThickness="1" Background="White"/>-->
-        <Button x:Name="ViewEventTagLibrary" Grid.Row="1" Margin="0,0,30,0" BorderThickness="1" Background="White" Padding="5" Height="34" VerticalAlignment="Center" Width="35" HorizontalAlignment="Right" Click="ViewEventTagLibrary_Click">
+        <Button x:Name="ViewEventTagLibrary" Grid.Row="1" Margin="0,0,30,0" BorderThickness="1" Background="White" 
+                Padding="5" Height="34" Width="35" VerticalAlignment="Center" HorizontalAlignment="Right" 
+                IsEnabled="{Binding NotUpdatingScript}" Click="ViewEventTagLibrary_Click">
             <StaticResource ResourceKey="ServerPropertiesIcon"/>
             <Button.ToolTip>
                 <TextBlock>View Event Library from Server</TextBlock>

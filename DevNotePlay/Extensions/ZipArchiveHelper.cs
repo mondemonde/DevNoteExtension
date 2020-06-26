@@ -25,7 +25,7 @@ namespace Player.Extensions
 
                         ZipArchiveEntry zipFileEntry = zipArchive.CreateEntry(fileName);
 
-                        byte[] fileToZipBytes = System.IO.File.ReadAllBytes(file);
+                        byte[] fileToZipBytes = File.ReadAllBytes(file);
 
                         using (Stream zipEntryStream = zipFileEntry.Open())
                         using (BinaryWriter zipFileBinary = new BinaryWriter(zipEntryStream))

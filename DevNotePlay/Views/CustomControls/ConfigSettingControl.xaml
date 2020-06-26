@@ -23,7 +23,8 @@
                   Padding="5" Height="Auto" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"
                   FontSize="12" FontFamily="Tahoma"
                   Click="OnButtonClick" />
-        <TextBox  Grid.Column="2" Name="configTextBox_FileFolder" IsReadOnly="{Binding IsFileFolder}" 
+        <!-- Add this to make read-only: IsReadOnly="{Binding IsFileFolder}"-->
+        <TextBox  Grid.Column="2" Name="configTextBox_FileFolder" 
                   Padding="0" Margin="10,0" Height="Auto" VerticalAlignment="Center"
                   Visibility="{Binding IsFileFolder, Converter={StaticResource BooleanToVisibility}}"
                   MouseDoubleClick="OnDoubleClick"/>

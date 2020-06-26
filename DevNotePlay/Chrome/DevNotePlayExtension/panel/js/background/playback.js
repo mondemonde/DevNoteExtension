@@ -47,6 +47,7 @@ var extCommand = new ExtCommand();
 window.onload = function() {
     var recordButton = document.getElementById("record");
     var playButton = document.getElementById("playback");
+    var refreshButton = document.getElementById("refresh-library");
     var stopButton = document.getElementById("stop");
     var pauseButton = document.getElementById("pause");
     var resumeButton = document.getElementById("resume");
@@ -190,6 +191,9 @@ window.onload = function() {
         $('#export').click()
         // setTimeout(function(){play()},1000);
     });
+    refreshButton.addEventListener("click", function() {
+        loadRecordingLibrary();
+    });
     stopButton.addEventListener("click", function() {
         stop();
     });
@@ -302,7 +306,57 @@ window.onload = function() {
             console.error(e);
         }
     });
+
+    setTimeout(() => {
+        loadRecordingLibrary(true);
+    }, 1000);
 };
+
+function loadRecordingLibrary(isInitialLoad) {
+    toggleLoader();
+    var url = "http://localhost/DevNoteFront/api/recordings";
+    var settings = {
+        "url": url,
+        "method": "GET",
+        "timeout": 0,
+    };
+    $.ajax(settings).done(function (response) {
+        var date = new Date();
+        console.log(date);
+        deleteExistingLibrary();
+        readSuite(response, false);
+
+        toggleLoader();
+    });
+}
+
+function deleteExistingLibrary() {
+    var libraryId;
+    for (var key in sideex_testSuite) {
+        if (Object.prototype.hasOwnProperty.call(sideex_testSuite, key)) {
+            if (key != 'count') {
+                var val = sideex_testSuite[key];
+                if (val && val.title == 'Record Library') {
+                    libraryId = key;
+                    console.log("Library deleted: ", key, val);
+                    break;
+                }
+            }
+        }
+    }
+    if (libraryId) {
+        setSelectedSuite(libraryId);
+        remove_testSuite();
+    }
+    var date = new Date();
+    console.log(date);
+}
+
+function toggleLoader() {
+    console.log('loader toggle');
+    $("#loader").toggle();
+    $("#blank-background").toggle();
+}
 
 /**
  * Send the show element message to content script.

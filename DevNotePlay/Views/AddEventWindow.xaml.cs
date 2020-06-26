@@ -1,4 +1,5 @@
 ﻿using Player.Extensions;
+using Player.Models;
 using Player.ViewModels;
 using System.Windows;
 using System.Windows.Input;
@@ -11,18 +12,18 @@ namespace Player.Views
     public partial class AddEventWindow : Window
     {
         private readonly EventHeaderViewModel _eventHeaderViewModel;
-        public AddEventWindow()
+        public AddEventWindow(Event @event)
         {
             InitializeComponent();
 
-            _eventHeaderViewModel = new EventHeaderViewModel();
+            _eventHeaderViewModel = new EventHeaderViewModel(@event);
             DataContext = _eventHeaderViewModel;
         }
 
         private void ViewEventTagLibrary_Click(object sender, RoutedEventArgs e)
         {
-            EventTagLibraryWindow eventTagLibraryWindow = new EventTagLibraryWindow();
-            eventTagLibraryWindow.Show();
+            EventLibraryWindow eventLibraryWindow = new EventLibraryWindow();
+            eventLibraryWindow.Show();
             Close();
         }
 

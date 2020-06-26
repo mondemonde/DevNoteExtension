@@ -222,10 +222,10 @@
     <Compile Include="Models\EventHeader.cs" />
     <Compile Include="Models\EventParameter.cs" />
     <Compile Include="Models\EventScriptFile.cs" />
-    <Compile Include="Models\EventTag.cs" />
+    <Compile Include="Models\Event.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Services\EventParameterService.cs" />
-    <Compile Include="Services\EventTagService.cs" />
+    <Compile Include="Services\EventService.cs" />
     <Compile Include="SharedViews\ProgressBarSharedView.xaml.cs">
       <DependentUpon>ProgressBarSharedView.xaml</DependentUpon>
     </Compile>
@@ -241,10 +241,10 @@
     <Compile Include="Views\CustomControls\ConfigSettingControl.xaml.cs">
       <DependentUpon>ConfigSettingControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EventTagLibraryWindow.xaml.cs">
-      <DependentUpon>EventTagLibraryWindow.xaml</DependentUpon>
+    <Compile Include="Views\EventLibraryWindow.xaml.cs">
+      <DependentUpon>EventLibraryWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\EventTagViewModel.cs" />
+    <Compile Include="ViewModels\EventViewModel.cs" />
     <Page Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -281,7 +281,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\EventTagLibraryWindow.xaml">
+    <Page Include="Views\EventLibraryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

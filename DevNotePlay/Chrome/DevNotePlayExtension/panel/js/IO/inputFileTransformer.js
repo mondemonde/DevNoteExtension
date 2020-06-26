@@ -134,21 +134,29 @@ function appendOpenCommandTarget(str) {
     return "<td>" + seleniumBase + str.substring(4, str.length-5) + "</td>";
 }
 
-function appendTestSuite(suiteFile, suiteResult) {
+function appendTestSuite(suiteFile, suiteResult, fileName) {
     // append on test grid
     var id = "suite" + sideex_testSuite.count;
     sideex_testSuite.count++;
     var suiteFileName;
-    if (suiteFile.name.lastIndexOf(".") >= 0) {
-        suiteFileName = suiteFile.name.substring(0, suiteFile.name.lastIndexOf("."));
-    } else {
-        suiteFileName = suiteFile.name;
+    var suiteFileNameExt;
+
+    if (fileName) {
+        suiteFileName = suiteFileNameExt = fileName;
+    }
+    else {
+        suiteFileNameExt = suiteFile.name;
+        if (suiteFile.name.lastIndexOf(".") >= 0) {
+            suiteFileName = suiteFile.name.substring(0, suiteFile.name.lastIndexOf("."));
+        } else {
+            suiteFileName = suiteFile.name;
+        }
     }
 
     addTestSuite(suiteFileName, id);
     // name is used for download
     sideex_testSuite[id] = {
-        file_name: suiteFile.name,
+        file_name: suiteFileNameExt,
         title: suiteFileName
     };
 

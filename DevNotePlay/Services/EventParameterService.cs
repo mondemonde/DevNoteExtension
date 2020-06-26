@@ -17,30 +17,37 @@ namespace Player.Services
         {
 
         }
-
-        public async Task<ObservableCollection<EventParameter>> GetEventParameters(int eventId)
-        {
+        
+        public async Task<(ObservableCollection<EventParameter>, ObservableCollection<EventScriptFile>)> GetEventParameters(int eventId)
+        { // old return type: Task<ObservableCollection<EventParameter>>
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
                     ObservableCollection<EventParameter> eventParameters = new ObservableCollection<EventParameter>();
+                    ObservableCollection<EventScriptFile> eventScriptFiles = new ObservableCollection<EventScriptFile>();
 
                     var url = GetParameterUrl(eventId);
 
                     var response = await client.GetAsync(url);
                     if (response.IsSuccessStatusCode)
                     {
-                        string eventParameterssAsString = await response.Content.ReadAsStringAsync();
+                        //string rawResponseData = await response.Content.ReadAsStringAsync();
+                        var responseData = await response.Content.ReadAsAsync<dynamic>();
                         JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
-                        eventParameters = javaScriptSerializer.Deserialize<ObservableCollection<EventParameter>>(eventParameterssAsString);
+
+                        string eventParams = responseData["eventParameters"];
+                        string scriptfiles = responseData["eventScripts"];
+
+                        eventParameters = javaScriptSerializer.Deserialize<ObservableCollection<EventParameter>>(eventParams);
+                        eventScriptFiles = javaScriptSerializer.Deserialize<ObservableCollection<EventScriptFile>>(scriptfiles);
                     }
-                    return eventParameters;
+                    return (eventParameters, eventScriptFiles);
                 }
             }
             catch (Exception ex)
             {
-                return new ObservableCollection<EventParameter>();
+                return (null, null);
             }
         }
 
@@ -115,13 +122,14 @@ namespace Player.Services
             }
         }
 
-        public async Task<string> DownloadScriptFromServer(int eventId, string scriptId)
+        public async Task<string> DownloadScriptFromServer(int eventId)
         {
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    string url = GetParameterUrl(eventId, true) + scriptId;
+                    //string url = GetParameterUrl(eventId, true) + scriptId;
+                    string url = GetParameterUrl(eventId, true);
                     HttpResponseMessage response = await client.GetAsync(url);
 
                     string responseMessage = string.Empty;

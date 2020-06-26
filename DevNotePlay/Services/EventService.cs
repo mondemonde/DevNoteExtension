@@ -10,36 +10,36 @@ using System.Net.Http.Headers;
 
 namespace Player.Services
 {
-    public class EventTagService
+    public class EventService
     {
         private readonly string _url;
 
-        public EventTagService()
+        public EventService()
         {
             ConfigManager config = new ConfigManager();
             _url = config.GetValue("DevNoteFrontUrl_dev") + "/api/events/";
         }
 
-        public async Task<ObservableCollection<EventTag>> GetEvents()
+        public async Task<ObservableCollection<Event>> GetEvents()
         {
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    ObservableCollection<EventTag> eventTags = new ObservableCollection<EventTag>();
+                    ObservableCollection<Event> events = new ObservableCollection<Event>();
                     var response = await client.GetAsync(_url);
                     if (response.IsSuccessStatusCode)
                     {
-                        string eventTagsAsString = await response.Content.ReadAsStringAsync();
+                        string eventsAsString = await response.Content.ReadAsStringAsync();
                         JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
-                        eventTags = javaScriptSerializer.Deserialize<ObservableCollection<EventTag>>(eventTagsAsString);
+                        events = javaScriptSerializer.Deserialize<ObservableCollection<Event>>(eventsAsString);
                     }
-                    return eventTags;
+                    return events;
                 }
             }
             catch (Exception ex)
             {
-                return new ObservableCollection<EventTag>();
+                return new ObservableCollection<Event>();
             }
         }
 
@@ -76,7 +76,7 @@ namespace Player.Services
             }
         }
 
-        public async Task<string> UpdateEventTag(EventTag eventTag)
+        public async Task<string> UpdateEvent(Event eventTag)
         {
             try
             {
@@ -100,7 +100,7 @@ namespace Player.Services
             }
         }
 
-        public async Task<string> DeleteEventTag(EventTag eventTag)
+        public async Task<string> DeleteEvent(Event eventTag)
         {
             try
             {

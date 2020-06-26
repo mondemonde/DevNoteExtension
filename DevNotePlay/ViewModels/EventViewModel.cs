@@ -4,6 +4,7 @@ using LogApplication.Common.Config;
 using Player.Models;
 using Player.Services;
 using Player.SharedViews;
+using Player.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -16,22 +17,22 @@ namespace Player.ViewModels
 {
     public delegate void RefToFunction();
 
-    public class EventTagViewModel: INotifyPropertyChanged
+    public class EventViewModel: INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
         //Collections
-        private ObservableCollection<EventTag> _eventTags;
-        public ObservableCollection<EventTag> EventTags
+        private ObservableCollection<Event> _event;
+        public ObservableCollection<Event> Events
         {
             get
             {
-                return _eventTags;
+                return _event;
             }
             set
             {
-                _eventTags = value;
-                RaisePropertyChanged("EventTags");
+                _event = value;
+                RaisePropertyChanged("Events");
             }
         }
 
@@ -80,6 +81,7 @@ namespace Player.ViewModels
 
         //Event commands
         public RelayCommand UpdateCommand { get; set; }
+        public RelayCommand UploadCommand { get; set; }
         public RelayCommand DeleteCommand { get; set; }
         public RelayCommand RefreshCommand { get; set; }
 
@@ -95,18 +97,19 @@ namespace Player.ViewModels
         private bool ScriptPlaying = false;
         private readonly string AppName;
         private readonly string TenantId;
-        private EventTagService _eventTagService;
+        private EventService _eventTagService;
         private EventParameterService _eventParameterService;
         private ProgressBarSharedView _progressBar;
         private MainWindow _mainWindow;
 
-        public EventTagViewModel(MainWindow mainWindow = null)
+        public EventViewModel(MainWindow mainWindow = null)
         {
-            _eventTagService = new EventTagService();
+            _eventTagService = new EventService();
             _eventParameterService = new EventParameterService();
             _mainWindow = mainWindow;
 
             UpdateCommand = new RelayCommand(OnUpdate, CanUpdate);
+            UploadCommand = new RelayCommand(OnUpload, CanUpdate);
             DeleteCommand = new RelayCommand(OnDelete, CanDelete);
             RefreshCommand = new RelayCommand(OnRefresh);
 
@@ -144,24 +147,25 @@ namespace Player.ViewModels
         }
 
         //Selected items
-        private EventTag _selectedEventTag;
-        public EventTag SelectedEvent
+        private Event _selectedEvent;
+        public Event SelectedEvent
         {
             get
             {
-                return _selectedEventTag;
+                return _selectedEvent;
             }
             set
             {
-                _selectedEventTag = value;
-                if (_selectedEventTag != null)
+                _selectedEvent = value;
+                if (_selectedEvent != null)
                 {
-                    _selectedEventTag.PropertyChanged += OnTargetEventUpdated;
+                    _selectedEvent.PropertyChanged += OnTargetEventUpdated;
                 }
                 CreatingItem = false;
                 CreateParameterCommand.RaiseCanExecuteChanged();
                 RefreshParametersCommand.RaiseCanExecuteChanged();
                 UpdateCommand.RaiseCanExecuteChanged();
+                UploadCommand.RaiseCanExecuteChanged();
                 DeleteCommand.RaiseCanExecuteChanged();
                 RaisePropertyChanged("SelectedEvent");
             }
@@ -217,12 +221,12 @@ namespace Player.ViewModels
                 PlayScriptCommand.RaiseCanExecuteChanged();
                 CreateParameterCommand.RaiseCanExecuteChanged();
                 RefreshParametersCommand.RaiseCanExecuteChanged();
-                if (_selectedTab == 1 && _selectedEventTag != null)
+                if (_selectedTab == 1 && _selectedEvent != null)
                 {
-                    GetEventParameters(_selectedEventTag.Id);
-                    GetEventScriptFiles();
+                    GetEventParameters(_selectedEvent.Id);
+                    //GetEventScriptFiles();
                 }
-                else if (_selectedTab == 1 && _selectedEventTag == null)
+                else if (_selectedTab == 1 && _selectedEvent == null)
                 {
                     EventScriptFiles = null;
                     SelectedEventScriptFile = null;
@@ -236,7 +240,7 @@ namespace Player.ViewModels
         {
             _progressBar = new ProgressBarSharedView("Loading Events library...");
             _progressBar.Show();
-            EventTags = await _eventTagService.GetEvents();
+            Events = await _eventTagService.GetEvents();
             _progressBar.Close();
         }
 
@@ -244,89 +248,17 @@ namespace Player.ViewModels
         {
             _progressBar = new ProgressBarSharedView("Loading Event Parameters...");
             _progressBar.Show();
-            EventParameters = await _eventParameterService.GetEventParameters(eventId);
+
+            var result = await _eventParameterService.GetEventParameters(eventId);
+            EventParameters = result.Item1;
+            EventScriptFiles = result.Item2;
+            if (EventScriptFiles != null)
+            {
+                SelectedEventScriptFile = EventScriptFiles.First();
+                EventScriptVariables = SelectedEventScriptFile.Variables;
+            }
+
             _progressBar.Close();
-        }
-
-        public void GetEventScriptFiles()
-        {
-            string sourcePath = _selectedEventTag.SourcePath;
-            if (!File.Exists(sourcePath)) return;
-
-            var xmlFileContent = File.ReadAllText(sourcePath);
-            string[] delimeter = new string[] { "JSFullFIlePath=\"" };
-            string[] split = xmlFileContent.Split(delimeter, StringSplitOptions.None);
-
-            var splitList = split.ToList();
-            ObservableCollection<EventScriptFile> scriptFiles = new ObservableCollection<EventScriptFile>();
-
-            if (splitList.Count > 1)
-            {
-                for (int i = 1; i < splitList.Count; i++)
-                {
-                    EventScriptFile scriptFile = new EventScriptFile();
-                    string path = splitList[i].Split('"').First();
-
-                    string name = Path.GetFileNameWithoutExtension(path);
-                    //name = (i).ToString() + ". " + name;
-
-                    scriptFile.SourcePath = path;
-                    scriptFile.Name = name;
-
-                    scriptFiles.Add(scriptFile);
-                }
-            }
-            EventScriptFiles = scriptFiles;
-
-            foreach (var scriptFile in EventScriptFiles)
-            {
-                string path = scriptFile.SourcePath;
-
-                //Get code from file
-                if (File.Exists(path))
-                {
-                    scriptFile.Content = File.ReadAllText(path);
-                }
-                GetEventScriptFileVariables(path);
-            }
-            SelectedEventScriptFile = scriptFiles[0];
-        }
-
-        public void GetEventScriptFileVariables(string scriptSourcePath)
-        {
-            if (!File.Exists(scriptSourcePath)) return;
-
-            int counter = 0;
-            string line;
-
-            //Read the file and display it line by line.  
-            StreamReader file = new StreamReader(scriptSourcePath);
-            EventScriptVariables = new ObservableCollection<string>();
-
-            while ((line = file.ReadLine()) != null)
-            {
-                counter++;
-
-                var expressions = line.Split(new string[] { Keywords.declareVariable }, StringSplitOptions.None);
-                //I.say('DECLARE');var
-                //TIP: we only allow one varible declare per action line OR we only covert the first var
-                if (expressions.Length > 1)
-                {
-                    //X='123';I.say('END_DECLARE')";I.fillField({id:'usernamebox'}
-                    var expression = expressions[1].Split(';').First();
-
-                    //x ='123'
-                    //x
-                    var xName = expression.Split('=').First().Trim();
-                    if (!EventScriptVariables.Contains(xName))
-                        EventScriptVariables.Add(xName);
-                    //Set Data Source
-                    //dgVariableColumn.DataSource = ListOfVariables;
-                }
-            }
-            //RaisePropertyChanged("EventScriptVariables");
-            file.Close();
-            //System.Console.WriteLine("There were {0} lines.", counter);
         }
 
         //Parameter commands
@@ -433,7 +365,8 @@ namespace Player.ViewModels
             progressBar.Show();
             //Backup current latest_test.js
             FileEndPointManager.WriteBackupFile();
-            string result = await eventParameterService.DownloadScriptFromServer(SelectedEvent.Id, SelectedEventScriptFile.ParentFolder);
+            //string result = await eventParameterService.DownloadScriptFromServer(SelectedEvent.Id, SelectedEventScriptFile.ParentFolder);
+            string result = await eventParameterService.DownloadScriptFromServer(SelectedEvent.Id);
             progressBar.Close();
 
             if (result == string.Empty && _mainWindow != null)
@@ -483,11 +416,17 @@ namespace Player.ViewModels
             if (messageBoxResult == MessageBoxResult.No) return;
 
             SelectedEvent.TenantId = TenantId;
-            var eventTagService = new EventTagService();
-            var result = await eventTagService.UpdateEventTag(SelectedEvent);
+            var eventTagService = new EventService();
+            var result = await eventTagService.UpdateEvent(SelectedEvent);
 
             MessageBox.Show(result, AppName, MessageBoxButton.OK, MessageBoxImage.Information);
             GetEventTags();
+        }
+
+        private void OnUpload()
+        {
+            AddEventWindow addEventWindow = new AddEventWindow(SelectedEvent);
+            addEventWindow.Show();
         }
 
         private async void OnDelete()
@@ -495,8 +434,8 @@ namespace Player.ViewModels
             var messageBoxResult = MessageBox.Show("Are you sure you want to delete this item?", AppName, MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.No) return;
 
-            var eventTagService = new EventTagService();
-            var result = await eventTagService.DeleteEventTag(SelectedEvent);
+            var eventTagService = new EventService();
+            var result = await eventTagService.DeleteEvent(SelectedEvent);
 
             MessageBox.Show(result, AppName, MessageBoxButton.OK, MessageBoxImage.Information);
             GetEventTags();
@@ -512,6 +451,20 @@ namespace Player.ViewModels
             return SelectedEvent != null && SelectedEvent.IsValid();
         }
 
+        //private bool CanUpload()
+        //{
+        //    //string recordJSDirectory = FileEndPointManager.DefaultPlayJsFile;
+        //    //string recordXMLDirectory = FileEndPointManager.DefaultLatestXMLFile;
+        //    //string recordHtmlDirectory = FileEndPointManager.DefaultLatestHtmlFile;
+
+        //    //bool ScriptExists = File.Exists(recordJSDirectory);
+        //    //bool XMLExists = File.Exists(recordXMLDirectory);
+        //    //bool HTMLExists = File.Exists(recordHtmlDirectory);
+
+        //    return SelectedEvent != null && SelectedEvent.IsValid();//&&
+        //    //    ScriptExists && XMLExists && HTMLExists;
+        //}
+
         private bool CanDelete()
         {
             return SelectedEvent != null;
@@ -520,6 +473,7 @@ namespace Player.ViewModels
         private void OnTargetEventUpdated(Object sender, EventArgs e)
         {
             UpdateCommand.RaiseCanExecuteChanged();
+            UploadCommand.RaiseCanExecuteChanged();
         }
 
         private void OnTargetParameterUpdated(Object sender, EventArgs e)
@@ -529,10 +483,7 @@ namespace Player.ViewModels
 
         private void RaisePropertyChanged(string property)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(property));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
     }
 }
