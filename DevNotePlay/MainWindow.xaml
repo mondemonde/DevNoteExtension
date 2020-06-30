@@ -7,7 +7,8 @@
         xmlns:myControls="clr-namespace:DevNoteCmdPlayer2.DevNoteUI;assembly=DevNoteCmdPlayer2"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="PLAYER" Height="120" Width="325" ResizeMode="NoResize" WindowStartupLocation="Manual" Foreground="LightSteelBlue" WindowStyle="None" MouseDown="Window_MouseDown" Activated="Window_Activated">
+        Height="120" Width="325" MinHeight="120" MinWidth="325" 
+        Title="PLAYER" ResizeMode="NoResize" WindowStartupLocation="Manual" Foreground="LightSteelBlue" WindowStyle="None" MouseDown="Window_MouseDown" Activated="Window_Activated">
     <Window.Resources>
         <ResourceDictionary>
             <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
