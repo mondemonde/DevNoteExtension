@@ -318,7 +318,7 @@ function loadRecordingLibrary(isInitialLoad) {
     var settings = {
         "url": url,
         "method": "GET",
-        "timeout": 0,
+        "timeout": 0
     };
     $.ajax(settings).done(function (response) {
         var date = new Date();

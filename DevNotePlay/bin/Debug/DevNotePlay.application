@@ -14,14 +14,14 @@
     <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="DevNotePlay.exe.manifest" size="104391">
+    <dependentAssembly dependencyType="install" codebase="DevNotePlay.exe.manifest" size="105211">
       <assemblyIdentity name="DevNotePlay.exe" version="1.0.0.18" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>NjM6Fi6+QJXijIOSNmeLs9ncgqod9jodw1LymGBvf5w=</dsig:DigestValue>
+        <dsig:DigestValue>z4TOBqCdoJUqMzYM8rH8S4oqrTq0UdsaylfQil8GDd8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
