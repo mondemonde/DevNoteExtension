@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCase>
+  <selenese>
+    <command>open</command>
+    <target><![CDATA[https://www.google.com/]]></target>
+    <value><![CDATA[]]></value>
+  </selenese>
+  <selenese>
+    <command>click</command>
+    <target><![CDATA[name=q]]></target>
+    <value><![CDATA[]]></value>
+  </selenese>
+  <selenese>
+    <command>type</command>
+    <target><![CDATA[name=q]]></target>
+    <value><![CDATA[blastasia]]></value>
+  </selenese>
+  <selenese>
+    <command>sendKeys</command>
+    <target><![CDATA[name=q]]></target>
+    <value><![CDATA[${KEY_ENTER}]]></value>
+  </selenese>
+  <selenese>
+    <command>click</command>
+    <target><![CDATA[xpath=(.//*[normalize-space(text()) and normalize-space(.)='Web results'])[1]/following::h3[1]]]></target>
+    <value><![CDATA[]]></value>
+  </selenese>
+  <selenese>
+    <command>click</command>
+    <target><![CDATA[id=DrpDwnMn0-5s31label]]></target>
+    <value><![CDATA[]]></value>
+  </selenese>
+  <selenese>
+    <command>click</command>
+    <target><![CDATA[id=DrpDwnMn0-5s3moreContainer1label]]></target>
+    <value><![CDATA[]]></value>
+  </selenese>
+  <selenese>
+    <command>click</command>
+    <target><![CDATA[id=DrpDwnMn0-5s32label]]></target>
+    <value><![CDATA[]]></value>
+  </selenese>
+  <selenese>
+    <command>click</command>
+    <target><![CDATA[id=DrpDwnMn0-5s3moreContainer2label]]></target>
+    <value><![CDATA[]]></value>
+  </selenese>
+</TestCase>
