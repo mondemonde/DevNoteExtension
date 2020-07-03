@@ -35,6 +35,8 @@
 
     <link rel="stylesheet" href="js/katalon/codemirror-5.31.0/lib/codemirror.css">
     <link rel="stylesheet" href="css/kar.css"/>
+
+    <link rel="stylesheet" href="css/custom.css">
     <!-- to hide right button feature -->
     <!--[if lt IE 9]>
     <link rel="stylesheet" href="panel/css/ie.css" type="text/css" media="screen" />
@@ -71,6 +73,9 @@
 <!-- TODO: Make whole panel size flexible -->
 
 <body>
+    <div id="loader"></div>
+    <div id="blank-background"></div>
+
     <header id="header">
         <hgroup>
             <img class="logo_img" src="../icons/logo.png"></img>
@@ -124,9 +129,11 @@
             <button id="pause" class="sub_btn btn_pr" style="width: 15.5%" disabled><i class="fa fa-pause-circle" aria-hidden="true"></i> Pause</button>
             <button id="resume" class="sub_btn btn_pr" style="display: none; width: 15.5%"><i class="fa fa-reply" aria-hidden="true"></i> Resume</button>
             <button id="export" class="sub_btn" style="width: 15%"><i class="fa"></i> Export</button>
+            <button id="d_export" class="sub_btn" style="display: none; width: 15%"><i class="fa"></i> Export</button>
            
             <!-- //@todo  devnote menu -->
-            <button id="savetoLibrary" class="sub_btn" style="width: 15%"><i class="fa"></i> Save to Lib</button>
+            <button id="save-to-library" class="sub_btn" style="width: 15%"><i class="fa"></i> Save to Lib</button>
+            <button id="refresh-library" class="sub_btn" style="width: 20%"><i class="fa fa-stop" aria-hidden="true"></i> Refresh</button>
          
             <div id="speed-wrapper" style="position: relative; flex-grow: 0; flex-shrink: 0;">
                 <button id="speed" class="sub_btn"><i class="fa"></i>&nbsp;</button>
@@ -479,7 +486,18 @@
     <script src="js/background/formatCommand.js"></script>
     <script src="js/background/playback.js"></script>
     
-    <script src="js/background/devnote.js"></script> 
+    <!-- DevNote -->
+    <!-- config -->
+    <script src="js/devnote/config.js"></script>
+    <!-- scripts -->
+    <script src="js/devnote/devnote.js"></script>
+    <script src="js/devnote/d_inputFileTransformer.js"></script>
+    <script src="js/devnote/d_load_file.js"></script>
+    <script src="js/devnote/d_playback.js"></script>
+    <script src="js/devnote/d_kar.js"></script>
+    <!-- services -->
+    <script src="js/devnote/services/devNoteExtenService.js"></script>
+    <script src="js/devnote/services/devNoteFrontService.js"></script>
 
     <script src="js/katalon/kar.js"></script>
     <script type="text/javascript" src="js/katalon/newformatters/sample.js"></script>
