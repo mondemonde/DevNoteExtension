@@ -1,10 +1,4 @@
-﻿using LogApplication.Common.Config;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System;
 using System.Web.Http;
 using System.Web.Http.SelfHost;
 
@@ -32,7 +26,6 @@ namespace Player
                 {
                     // call http client args[i+1] for URL
                     JSFile = args[i + 1];
-
                 }
                 else if (args[i] == "-isHeadless")
                 {
@@ -45,7 +38,6 @@ namespace Player
                     IsAuto = Convert.ToBoolean(args[i + 1]);
                 }
             }
-
 
             string baseAddress = "http://localhost:9876/";
             var config = new HttpSelfHostConfiguration(baseAddress);
@@ -65,12 +57,6 @@ namespace Player
                 application.InitializeComponent();
                 application.Run();
             }
-
-
-          
-
-
-
         }
     }
 }
