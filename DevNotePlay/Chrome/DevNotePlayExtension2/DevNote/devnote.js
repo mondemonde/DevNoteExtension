@@ -1,79 +1,55 @@
-
-
-
-
 chrome.runtime.getBackgroundPage(function(bg) {
-
-
     $('#someUploadIdentifier').bind('change', function (e) {
         var f;
         f = e.target.files || [{name: this.value}];
         readLatestSuite(f[0]);
     });
-    
-
-
-
     // Relevant function at the background page. In your specific example:
     //bg.clearCache();
     //D:\_ChromeExtension\katalon-recorder-samples-master\katalon-recorder-samples-master
-      var preCtrl =  $('#katalonScript');
+    var preCtrl =  $('#katalonScript');
     preCtrl.load("latest.html");
-
 
     //readLatestSuite(preCtrl.val());
 
-// This data/text below is local to the JS script, so we are allowed to send it!
-//uploadFile({'hello!':'how are you?'});
+    // This data/text below is local to the JS script, so we are allowed to send it!
+    //uploadFile({'hello!':'how are you?'});
 
-//uploadFile('hello! MOND');
-uploadFile(preCtrl.val());
-
-
+    //uploadFile('hello! MOND');
+    uploadFile(preCtrl.val());
     console.log('devnote running on bg.');
-   // alert('oi');
-
+    // alert('oi');
 });
-
-
-
-
-
 
 function uploadFile (data) {
     // define data and connections
-//var blob = new Blob([JSON.stringify(data)]);
-//var url = URL.createObjectURL(blob);
+    //var blob = new Blob([JSON.stringify(data)]);
+    //var url = URL.createObjectURL(blob);
 
+    var mystring = data;////"Hello World!";
+    var blob = new Blob([mystring], {
+        type: 'text/plain'
+    });
 
-var mystring = data;////"Hello World!";
-var blob = new Blob([mystring], {
-    type: 'text/plain'
-});
+    var url = URL.createObjectURL(blob);
 
-var url = URL.createObjectURL(blob);
+    readLatestSuite(blob);
 
-readLatestSuite(blob);
+    // var xhr = new XMLHttpRequest();
+    // xhr.open('POST', 'devnote.html', true);
 
-// var xhr = new XMLHttpRequest();
-// xhr.open('POST', 'devnote.html', true);
+    //     // define new form
+    // var formData = new FormData();
+    // formData.append('someUploadIdentifier', blob, 'someFileName.txt');
 
-//     // define new form
-// var formData = new FormData();
-// formData.append('someUploadIdentifier', blob, 'someFileName.txt');
+    //     // action after uploading happens
+    // xhr.onload = function(e) {
+    //     console.log("File uploading completed!");
+    // };
 
-//     // action after uploading happens
-// xhr.onload = function(e) {
-//     console.log("File uploading completed!");
-// };
-
-//     // do the uploading
-// console.log("File uploading started!");
-// xhr.send(formData);
-
-
-
-
+    //     // do the uploading
+    // console.log("File uploading started!");
+    // xhr.send(formData);
 }
 
 // This data/text below is local to the JS script, so we are allowed to send it!
