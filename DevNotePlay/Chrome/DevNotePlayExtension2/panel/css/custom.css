@@ -1,0 +1,125 @@
+/* Custom CSS */
+
+.help-section {
+    display: none;
+    float: left;
+    position: absolute;
+    /* left: 20px;
+    top: 20px; */
+    bottom: 1em;
+    left: 1em;
+
+    background-color: lightgoldenrodyellow;
+	padding: .7em .7em;
+	font-size: 1em;
+	border-radius: 1rem;
+    box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
+}
+
+.center-items-horizontally {
+    display: flex;
+    justify-content: center;
+}
+
+.overflow-auto {
+    overflow: auto;
+}
+
+.command-value-control-row {
+    align-items: center;
+    display: flex;
+    margin: 0px 10px;
+}
+
+#command-value-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+}
+
+/* Command value table controls */
+/* #command-value-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+#command-value-table td {
+    width: auto;
+} */
+
+#command-value-controls-view {
+    display: none;
+    padding-top: 10px;
+}
+#target-element-controls {
+    display: none;
+}
+#action-modifier-controls {
+    display: none;
+}
+#grab-value-controls {
+    display: none;
+}
+
+/* Loader */
+#blank-background
+{
+    display: none;
+    z-index: 99;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:rgba(255,255,255,0.5);
+}
+
+#loader {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 100;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  }
+  
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Add animation to "page content" */
+  .animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+  }
+  
+  @-webkit-keyframes animatebottom {
+    from { bottom:-100px; opacity:0 } 
+    to { bottom:0px; opacity:1 }
+  }
+  
+  @keyframes animatebottom { 
+    from{ bottom:-100px; opacity:0 } 
+    to{ bottom:0; opacity:1 }
+  }
