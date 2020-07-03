@@ -133,52 +133,51 @@
 
     "offline_enabled": true,
 
-  "commands": {  
-
-
-    "close_All": {
-      "NO-suggested_key": {
-        "default": "Ctrl+Shift+1"
-      },
-      "description": "Close Main window",
-      "global": true
-    },
-
-    "close_Katalon": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+0"
-      },
-      "description": "Save before close Main window",
-      "global": true
-    },
-
-    "start_Katalon": {
-        "suggested_key": {
-          "default": "Ctrl+Shift+5"
+    "commands": 
+    {  
+        "close_All": 
+        {
+            "NO-suggested_key": {
+                "default": "Ctrl+Shift+1"
+            },
+            "description": "Close Main window",
+            "global": true
         },
-        "description": "Open Main window",
-        "global": true
-      },
-  
-  
-      "load_Latest": {
-        "suggested_key": {
-          "default": "Ctrl+Shift+6"
-        },
-        "description": "Load default latest.html",
-        "global": true
-      },
-  
 
-   "play_Suite": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+7"
-      },
-      "description": "Save before close Main window",
-      "global": true
+        "close_Katalon": 
+        {
+            "suggested_key": {
+                "default": "Ctrl+Shift+0"
+            },
+            "description": "Save before close Main window",
+            "global": true
+        },
+
+        "start_Katalon": 
+        {
+            "suggested_key": {
+                "default": "Ctrl+Shift+5"
+            },
+            "description": "Open Main window",
+            "global": true
+        },
+
+        "load_Latest": 
+        {
+            "suggested_key": {
+                "default": "Ctrl+Shift+6"
+            },
+            "description": "Load default latest.html",
+            "global": true
+        },
+
+        "play_Suite": 
+        {
+            "suggested_key": {
+                "default": "Ctrl+Shift+7"
+            },
+            "description": "Save before close Main window",
+            "global": true
+        }
     }
-    
-
-  }
-
 }
