@@ -1,4 +1,5 @@
-window.onload = function() {
+// window.onload = function() {
+function devNoteOnLoad() {
     var saveToLibraryButton = document.getElementById("save-to-library");
     var refreshLibraryButton = document.getElementById("refresh-library");
 

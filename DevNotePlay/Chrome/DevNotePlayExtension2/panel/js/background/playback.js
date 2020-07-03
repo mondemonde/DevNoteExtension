@@ -300,6 +300,8 @@ window.onload = function() {
             console.error(e);
         }
     });
+
+    devNoteOnLoad();
 };
 
 /**
