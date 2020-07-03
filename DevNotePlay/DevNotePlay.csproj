@@ -214,9 +214,11 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\WindowController.cs" />
     <Compile Include="Extensions\ConfigurationDefaults.cs" />
     <Compile Include="Controllers\PlaybackController.cs" />
     <Compile Include="Extensions\IntConverter.cs" />
+    <Compile Include="Extensions\WindowHelper.cs" />
     <Compile Include="Extensions\ZipArchiveHelper.cs" />
     <Compile Include="Models\ConfigSettingTypes.cs" />
     <Compile Include="Models\EventHeader.cs" />
@@ -644,7 +646,6 @@
     <Resource Include="Chrome\DevNotePlayExtension2\panel\images\sidebar_shadow.png" />
     <Resource Include="Chrome\DevNotePlayExtension2\panel\images\table_sorter_header.png" />
     <Content Include="Chrome\DevNotePlayExtension2\panel\index.html" />
-    <Content Include="Chrome\DevNotePlayExtension2\panel\js\background\devnote.js" />
     <Content Include="Chrome\DevNotePlayExtension2\panel\js\background\doc.js" />
     <Content Include="Chrome\DevNotePlayExtension2\panel\js\background\editor.js" />
     <Content Include="Chrome\DevNotePlayExtension2\panel\js\background\formatCommand.js" />
