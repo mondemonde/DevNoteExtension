@@ -226,42 +226,30 @@ browser.runtime.onConnect.addListener(function(m) {
 
 //@todo can receive messge here
 chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-      console.log(sender.tab ?
-                  "from a content script:" + sender.tab.url :
-                  "from the extension");
-      if (request.greeting == "hello")
-      {
-          //nohting to do yet
-        sendResponse({farewell: "goodbye"});
-      }
-    });
-
-
+function(request, sender, sendResponse) {
+    console.log(sender.tab ?
+                "from a content script:" + sender.tab.url :
+                "from the extension");
+    if (request.greeting == "hello")
+    {
+    //nohting to do yet
+    sendResponse({farewell: "goodbye"});
+    }
+});
 
 /////////////////////////////////////////////
 
-
-
-
-
-
-
 function openDefault()
 {
-
-
-        chrome.windows.getCurrent(function(win)
+    chrome.windows.getCurrent(function(win)
+    {
+        chrome.tabs.getAllInWindow(win.id, function(tabs)
         {
-            chrome.tabs.getAllInWindow(win.id, function(tabs)
-            {
-                // Should output an array of tab objects to your dev console.
-                console.debug(tabs);
-                openPanel(tabs[0]);
-
-            });
+            // Should output an array of tab objects to your dev console.
+            console.debug(tabs);
+            openPanel(tabs[0]);
         });
-
+    });
     //var tab = browser.windows[0];
     //chrome.windows.WINDOW_ID_CURRENT
     //openPanelById(chrome.windows.WINDOW_ID_CURRENT);
@@ -270,29 +258,21 @@ function openDefault()
 //_STEP#1 chrome.commands.onCommand.addListener(function(command) {
 chrome.commands.onCommand.addListener(function(command) {
     console.log('Command:', command);
-    if(command ==='start_Katalon')
-    {
+    if(command ==='start_Katalon') {
         openDefault();
     }
-    else if(command ==='close_All')
-        {    
-            
-
-            chrome.windows.getAll({}, function(windows){
-                for(var i = 0; i < windows.length; i++)
-                  chrome.windows.remove(windows[i].id);
-              });
-
-          
-        }
-    else if(command ==='close_Katalon')
-        {
-            //@messageging
-            chrome.runtime.sendMessage({greeting: command}, function(response) {
-                console.log(response.farewell);
-              });
+    else if(command ==='close_All') {    
+        chrome.windows.getAll({}, function(windows){
+            for(var i = 0; i < windows.length; i++)
+                chrome.windows.remove(windows[i].id);
+            });
     }
-
+    else if(command ==='close_Katalon') {
+        //@messageging
+        chrome.runtime.sendMessage({greeting: command}, function(response) {
+            console.log(response.farewell);
+        });
+    }
     else if (command === 'load_Latest') {
         //@messageging
         //_STEP#21 load  trigger by hotkeys ctrl+shift+6
@@ -300,7 +280,6 @@ chrome.commands.onCommand.addListener(function(command) {
             console.log(response.farewell);
         });
     }
-
     //play_Suite
     else if (command === 'play_Suite') {
         //@messageging
@@ -309,13 +288,4 @@ chrome.commands.onCommand.addListener(function(command) {
             console.log(response.farewell);
         });
     }
-
-
-
 });
-
-
-
-
-
-
